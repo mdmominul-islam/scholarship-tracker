@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Europe Master's Scholarship Tracker — 266 Programmes</title>
+<title>Master's Scholarship Tracker — 266 Programmes</title>
 <style>
   :root{
     color-scheme: light;
@@ -85,6 +85,7 @@
   }
   .p-full{background:var(--green-soft);color:var(--green)}
   .p-part{background:var(--amber-soft);color:var(--amber)}
+  .p-mix{background:var(--blue-soft);color:var(--blue)}
   .p-low{background:var(--grey-soft);color:var(--grey)}
   .p-high{background:var(--accent-soft);color:var(--accent)}
   .p-med{background:var(--blue-soft);color:var(--blue)}
@@ -159,9 +160,9 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">Bangladesh → Europe · 2027 entry</div>
-    <h1>Europe Master's Scholarship Tracker</h1>
-    <div class="sub">266 programmes across 26 countries, covering all 11 broad fields (ISCED) — tuition, living cost, funding schemes and the deadline that actually matters for each one.</div>
+    <div class="kicker">Bangladesh → Europe &amp; selected global destinations · 2027 entry</div>
+    <h1>Master's Scholarship Tracker</h1>
+    <div class="sub">266 programmes across 25 countries plus multi-country consortia, covering all 11 broad fields (ISCED). The list is Europe-focused, with selected opportunities in Australia and the United States.</div>
   </header>
 
   <div class="stats" id="stats"></div>
@@ -522,16 +523,29 @@ const MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:1
 // timeline always shows the first thing you have to act on (often the scholarship,
 // not the programme deadline). Falls back to the 15th when no day is given.
 function keyDate(s){
-  const re=/(\d{1,2})?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s*(\d{4})/gi;
-  let m, best=null;
-  while((m=re.exec(s))!==null){
-    const mon=MONTHS[m[2].toLowerCase().slice(0,3)];
-    const yr=parseInt(m[3],10);
+  // Ignore historical parenthetical references and application opening dates;
+  // the timeline should show the earliest actionable deadline, not an old round
+  // or the date an application window opens.
+  const clean=String(s||'')
+    .replace(/\((?=[^)]*(?:last round|closed|reportedly|applications opened|previous round|prior round|ran\b))[^)]*\)/gi,' ')
+    .replace(/\bopens?\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b(?:\s+\d{4})?/gi,' ');
+  const re=/(\d{1,2})?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b\s*(\d{4})?/gi;
+  const matches=[...clean.matchAll(re)];
+  if(!matches.length) return null;
+  const explicit=matches.map((m,i)=>m[3]?{i,year:parseInt(m[3],10)}:null).filter(Boolean);
+  if(!explicit.length) return null;
+  const dates=[];
+  matches.forEach((m,i)=>{
+    const next=explicit.find(x=>x.i>i);
+    const prev=[...explicit].reverse().find(x=>x.i<i);
+    const year=m[3]?parseInt(m[3],10):(next?.year??prev?.year);
+    if(!year) return;
+    const month=MONTHS[m[2].toLowerCase().slice(0,3)];
     const day=m[1]?parseInt(m[1],10):15;
-    const d=new Date(yr,mon-1,Math.min(day,28));
-    if(!best || d<best) best=d;
-  }
-  return best;
+    const d=new Date(year,month-1,day);
+    if(d.getFullYear()===year && d.getMonth()===month-1 && d.getDate()===day) dates.push(d);
+  });
+  return dates.length?new Date(Math.min(...dates.map(d=>d.getTime()))):null;
 }
 
 const RAW=parseCSV(CSV).map(r=>{
@@ -558,26 +572,27 @@ const grp=d=>{const f=d.field;
  if(/^(Arts|Humanities|Languages)/.test(f)) return GROUPS[2];
  if(/^Law|Business|Finance|Management/.test(f)) return GROUPS[4];
  if(/Public Health|Social Work|^Health/.test(f)) return GROUPS[9];
- if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food)/.test(f)) return GROUPS[8];
- if(/^(Engineering|Architecture|Manufacturing)|Environment – Engineering/.test(f)) return GROUPS[7];
- if(/Environment|Life Science|Bioscience|^Natural Science/.test(f)) return GROUPS[5];
+ if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food|Environment)/.test(f)) return GROUPS[8];
+ if(/^(Engineering|Architecture|Manufacturing|Computer Engineering)|Environment – Engineering/.test(f)) return GROUPS[7];
+ if(/^(Environment\/Sustainability|Environment – Sciences|Life Science|Bioscience|Natural Science)/.test(f)) return GROUPS[5];
  if(/^Services/.test(f)) return GROUPS[10];
  if(/Social Science|Journalism|Public Policy/.test(f)) return GROUPS[3];
  return GROUPS[6];};
 const rowCls=d=>d.fundLevel==='Full'?'rf':/Full/.test(d.fundLevel)?'rm':'';
 
-const TODAY=new Date(2026,10,14);
+const TODAY=new Date();
+TODAY.setHours(0,0,0,0);
 const days=(a,b)=>Math.round((a-b)/86400000);
 const MONTHNAME=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 /* ---------- stats ---------- */
 const fullCount=DATA.filter(d=>d.fundLevel==='Full').length;
-const countries=new Set(DATA.map(d=>d.country)).size;
+const countries=new Set(DATA.map(d=>d.country).filter(c=>c!=='EU (multi-country)')).size;
 const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
 document.getElementById('stats').innerHTML=[
   [DATA.length,'Programmes'],
   [countries,'Countries'],
-  [fullCount,'Full-funding options'],
+  [fullCount,'Full funding (explicit)'],
   [soon,'Deadlines in 120 days']
 ].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
 
@@ -616,7 +631,7 @@ function sortRows(rows){
 }
 
 /* ---------- table ---------- */
-const fundClass=l=> l==='Full'?'p-full' : l==='Partial'?'p-part' : 'p-part';
+const fundClass=l=> l==='Full'?'p-full' : /Full/.test(l)?'p-mix' : l==='Partial'?'p-part' : 'p-low';
 const prioClass=p=> p==='High'?'p-high' : p==='Medium'?'p-med' : 'p-low';
 
 function fmtDate(d){
@@ -845,7 +860,7 @@ document.getElementById('dl').addEventListener('click',()=>{
   const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='Europe_Masters_Scholarship_Tracker_266.csv';
+  a.download='Masters_Scholarship_Tracker_266.csv';
   a.click(); URL.revokeObjectURL(a.href);
 });
 
