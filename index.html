@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Master's Scholarship Tracker — 186 Programmes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Europe Master's Scholarship Tracker — 266 Programmes</title>
 <style>
   :root{
     color-scheme: light;
@@ -15,8 +15,6 @@
     --blue:#1d5ca6; --blue-soft:#dfecf9;
   }
   *{box-sizing:border-box}
-  :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-  html{scroll-padding-top:env(safe-area-inset-top,0px)}
   body{
     margin:0; background:var(--paper); color:var(--ink);
     font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif;
@@ -156,110 +154,23 @@
   .dgrid p{margin:0 0 5px;font-size:12px}
   .dgrid .tip{grid-column:1/-1;font-size:11px;color:var(--ink-soft)}
   .dgrid a{color:var(--accent)}
-
-  /* ===== refined palette and polish ===== */
-  :root{
-    --ink:#182033; --ink-soft:#5a6578; --line:#d9dfe9; --paper:#f3f5f9; --card:#ffffff;
-    --accent:#1f3864; --accent-soft:#e6ecf7;
-    --green:#0f7a4f; --green-soft:#dcf2e6;
-    --teal:#0b6b7a; --teal-soft:#d9eff2;
-    --amber:#97590a; --amber-soft:#fdeccb;
-    --rose:#ae1f4b; --rose-soft:#fbe0e8;
-    --blue:#2c5aa0; --blue-soft:#e0eaf8;
-    --grey:#5a6578; --grey-soft:#e9ecf2;
-    --r-eu:#2c5aa0; --r-as:#c2410c; --r-oc:#0f766e; --r-na:#6d3fc0; --r-gl:#5a6578;
-  }
-  body{background:var(--paper)}
-  header{
-    background:linear-gradient(135deg,#1f3864 0%,#27508f 100%);color:#fff;border:0;
-    border-radius:12px;padding:26px 28px 22px;margin-bottom:22px;
-  }
-  header h1{color:#fff;font-size:30px}
-  header .kicker{color:#a9c1ea}
-  header .sub{color:#d5e0f4}
-  .stat{border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;box-shadow:0 1px 2px rgba(24,32,51,.05)}
-  .stat:nth-child(2){border-top-color:var(--r-as)}
-  .stat:nth-child(3){border-top-color:var(--green)}
-  .stat:nth-child(4){border-top-color:var(--rose)}
-  .controls,.tablebox,.tlmonth,.ccard{border-radius:10px}
-  .controls{box-shadow:0 1px 2px rgba(24,32,51,.05)}
-  .controls input:focus,.controls select:focus,button:focus-visible,.tab:focus-visible{outline:2px solid #3b6fd4;outline-offset:1px}
-  button{background:var(--accent);border-color:var(--accent);border-radius:6px}
-  button.ghost{background:#fff;color:var(--accent);border-color:var(--line)}
-  .tab.on{color:var(--accent);border-bottom-color:var(--accent)}
-  .chip{border-radius:999px;font-weight:600}
-  .chip.on{background:var(--accent);border-color:var(--accent)}
-  thead th{background:#e8edf6;color:#44506a}
-  thead th.sorted{color:var(--accent)}
-  tbody tr:nth-child(4n+3){background:#fafbfd}
-  tbody tr:hover{background:#eef3fb}
-  .p-full{background:var(--green-soft);color:var(--green)}
-  .p-mix{background:var(--teal-soft);color:var(--teal)}
-  .p-part{background:var(--amber-soft);color:var(--amber)}
-  .p-low{background:var(--grey-soft);color:var(--grey)}
-  .p-high{background:var(--rose-soft);color:var(--rose)}
-  .p-med{background:var(--blue-soft);color:var(--blue)}
-  tr.rf td:first-child{box-shadow:inset 4px 0 0 var(--green)}
-  tr.rm td:first-child{box-shadow:inset 4px 0 0 var(--teal)}
-  .rg{display:inline-block;font-size:10px;font-weight:700;border-radius:4px;padding:1px 6px;margin-bottom:3px;color:#fff}
-  .rg-europe{background:var(--r-eu)} .rg-asia{background:var(--r-as)} .rg-oceania{background:var(--r-oc)}
-  .rg-northamerica{background:var(--r-na)} .rg-global{background:var(--r-gl)}
-  .tlhead{background:#e8edf6;border-left:4px solid var(--accent)}
-  .tlhead .cd.soon{color:var(--rose)}
-  .tlhead .mn,.ccard h3{font-family:Georgia,serif}
-  tr.dtr td{background:#f4f7fd}
-  .dgrid h4{color:var(--accent)} .dgrid a,.dbtn{color:var(--accent)} .dbtn{border-color:var(--accent);border-radius:5px}
-
-  /* ===== pass 2: richer layout ===== */
-  body{font-family:"Segoe UI Variable","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;letter-spacing:.005em}
-  .wrap{max-width:1440px}
-  header{box-shadow:0 10px 30px -14px rgba(31,56,100,.55);position:relative;overflow:hidden}
-  header::after{content:"";position:absolute;right:-70px;top:-90px;width:300px;height:300px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.14),rgba(255,255,255,0) 68%);pointer-events:none}
-  .next{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;position:relative;z-index:1}
-  .next .nl{width:100%;font-size:12px;font-weight:600;color:#b9cdf0;letter-spacing:.2px}
-  .nx{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:9px 13px;min-width:210px;max-width:340px}
-  .nx b{display:block;font-size:13px;color:#fff;line-height:1.3}
-  .nx span{font-size:11.5px;color:#cfdcf5}
-  .nx.hot{background:rgba(255,255,255,.96);border-color:#fff}
-  .nx.hot b{color:var(--rose)} .nx.hot span{color:#4a5568}
-  .rchips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
-  .rc{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--ink);border:1px solid var(--line);
-    border-radius:999px;padding:6px 14px 6px 11px;font-size:12.5px;font-weight:600}
-  .rc i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--accent))}
-  .rc em{font-style:normal;color:var(--ink-soft);font-weight:400}
-  .rc.on{background:var(--c,var(--accent));border-color:var(--c,var(--accent));color:#fff}
-  .rc.on i{background:#fff} .rc.on em{color:rgba(255,255,255,.85)}
-  .tablebox{box-shadow:0 2px 10px -4px rgba(24,32,51,.12)}
-  tbody td{padding:11px 11px}
-  .uni{font-size:13.5px;color:var(--accent)}
-  .pill{border-radius:999px;padding:3px 9px;font-size:10.5px}
-  .ccard{transition:box-shadow .15s}.ccard:hover{box-shadow:0 6px 18px -8px rgba(24,32,51,.25)}
-  .ccard h3{color:var(--accent)}
-  .tlmonth{box-shadow:0 1px 3px rgba(24,32,51,.06)}
-  .tlrow .day{color:var(--accent)}
-  footer{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-  @media (max-width:640px){.nx{min-width:100%;max-width:none}header{padding:20px 16px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">Bangladesh → Europe, Asia, Oceania &amp; North America · 2027 entry</div>
-    <h1>Master's Scholarship Tracker</h1>
-    <div class="sub">186 programmes across 35 destinations (Europe, Asia, Oceania and North America), including social sciences and public health — tuition, living cost, funding schemes and the deadline that actually matters for each one. Owner: Mominul Islam.</div>
-    <div class="next" id="next"></div>
+    <div class="kicker">Bangladesh → Europe · 2027 entry</div>
+    <h1>Europe Master's Scholarship Tracker</h1>
+    <div class="sub">266 programmes across 26 countries, covering all 11 broad fields (ISCED) — tuition, living cost, funding schemes and the deadline that actually matters for each one.</div>
   </header>
 
   <div class="stats" id="stats"></div>
 
-  <div class="rchips" id="rchips"></div>
-
+  <details style="margin:0 0 12px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
   <div class="chips" id="chips"></div>
 
   <div class="controls">
     <input type="search" id="q" placeholder="Search university, country, programme…">
-    <select id="fRegion"><option value="">All regions</option><option>Europe</option><option>Asia</option><option>Oceania</option><option>North America</option><option>Global</option></select>
     <select id="fCountry"><option value="">All countries</option></select>
     <select id="fField"><option value="">All fields</option></select>
     <select id="fFund">
@@ -470,42 +381,120 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 150,Czechia,Prague,Charles University,M.Sc. Demography,Social Science – Demography,English,2 yrs,€4000–6000,700,Czech Government Scholarship; Charles University merit,Full or partial,Feb 2027 – Apr 2027,cuni.cz,Czech Government scheme often runs Jan–Mar; confirm.,Not started,Low
 151,Spain,Barcelona,Universitat Pompeu Fabra (with Groningen),Double Master Social Demography (MRes Sociology and Demography + MSc Population Studies),Social Science – Demography,English,2 yrs,€4000–6000,1000,UPF and Groningen scholarships; MAEC-AECID,Partial,Jan 2027 – Mar 2027 (check UPF and Groningen),rug.nl/masters/ddm-social-demography,Two degrees; research-intensive; good for applicants with publications.,Not started,High
 152,Germany,Cologne,University of Cologne (with Groningen),Double Master Demography and Social Inequality,Social Science – Demography,English,2 yrs,€0 + fees,950,DAAD; Cologne scholarships,Partial,Check programme page,wiso.uni-koeln.de,Tuition-free; second year at Groningen; research-intensive. Deadline not confirmed.,Not started,Medium
-153,South Korea,Multiple,GKS-designated universities (NIIED),Global Korea Scholarship – Graduate (embassy or university track),Various,English/Korean,2–3 yrs (+1 yr Korean language),€0 (covered by scholarship),700,GKS (tuition + monthly stipend + airfare + settlement + Korean language year),Full,Graduate call not yet published; expected Feb 2027 – Mar 2027,studyinkorea.go.kr,"Choose the embassy track OR the university track, not both. Watch Study in Korea and the Korean Embassy in Dhaka for the 2027 graduate guidelines. Many social science programmes are taught in English.",Not started,High
-154,South Korea,Seoul,Seoul National University (GSIS),MA International Studies / Area Studies,Social Science – Political Science/IR,English,2 yrs,≈ €3000–5000 (covered by GKS),800,GKS; SNU merit awards,Full or partial,Feb 2027 – Apr 2027 (typical; confirm),snu.ac.kr,List it as a GKS university choice or on your embassy-track form.,Not started,Medium
-155,South Korea,Seoul,Yonsei University (GSIS),MA International Studies / International Cooperation,Social Science – Development Studies,English,2 yrs,≈ €5000–7000 (covered by GKS),850,GKS; Yonsei merit awards,Full or partial,Feb 2027 – Apr 2027 (typical; confirm),yonsei.ac.kr,"Good fit for development, governance and cooperation topics.",Not started,Medium
-156,South Korea,Sejong,KDI School of Public Policy and Management,MPP / Master of Development Policy,Social Science – Development Studies,English,1.5–2 yrs,€0–10000 (scholarships common),700,KDI School scholarships; KOICA; GKS,Full or partial,Fall 2027 intake expected Mar 2027 (Fall 2026 ran 3–31 Mar),kdischool.ac.kr,Fully English-taught and policy-focused. Ask which scholarship rounds Bangladeshi applicants qualify for.,Not started,High
-157,Japan,Multiple,Japanese universities (MEXT),"MEXT Scholarship – Embassy Recommendation (research student, then master's)",Various,English/Japanese,2 yrs (+ up to 6 months language),€0 (covered by scholarship),800,MEXT (tuition + monthly stipend + airfare),Full,2027 call closed spring 2026; next call expected May 2027,studyinjapan.go.jp,Apply through the Embassy of Japan in Dhaka. Seats are very few (the embassy has mentioned about ten). Match your research proposal to a supervisor early.,Not started,Medium
-158,Japan,Beppu,Ritsumeikan Asia Pacific University (APU),MA Asia Pacific Studies / International Cooperation Policy,Social Science – Development Studies,English,2 yrs,≈ €6000–8000 (waivers common),800,APU tuition waivers; accepts MEXT embassy-track applicants,Partial to full,Rounds Dec 2026 – Mar 2027 (typical; confirm),apu.ac.jp,English-taught graduate school with an international cohort.,Not started,Medium
-159,Japan,Nagoya,Nagoya University (GSID),MA International Development,Social Science – Development Studies,English,2 yrs,≈ €4000–5000,800,MEXT (university recommendation); Nagoya merit support,Full or partial,Check the GSID page; autumn–winter rounds are typical,nagoya-u.ac.jp,Strong development-studies school; confirm the current admission schedule.,Not started,Medium
-160,China,Multiple,Chinese universities (CSC),Chinese Government Scholarship (CSC) – Master's,Various,English/Chinese,2–3 yrs,€0 (covered by scholarship),450,CSC (tuition + housing + monthly stipend + insurance),Full,Jan 2027 – Apr 2027 (typical; confirm on the CSC site),campuschina.org,Type A goes through the Chinese Embassy in Dhaka; Type B goes directly to each university. Many English-taught social science and public policy master's exist.,Not started,Medium
-161,China,Beijing,Peking University (Yenching Academy),MA China Studies (interdisciplinary),Social Science – Political Science/IR,English,2 yrs,€0 (full scholarship),700,Yenching Academy scholarship (tuition + housing + stipend),Full,30 Nov 2026 (official; 09:00 Beijing time),yenching.pku.edu.cn,"Very competitive, multidisciplinary cohort with a lot of social science. No Chinese needed. Strong essays and referees matter.",Not started,Medium
-162,Singapore,Singapore,National University of Singapore,MSocSci Sociology (by research),Social Science – Sociology,English,1.5–2 yrs,€0 (research scholarship covers tuition),1300,NUS Research Scholarship (tuition + stipend),Full,"Check the NUS FASS page (one main round a year, usually closing Dec–Jan)",nus.edu.sg,Research master's: needs a clear proposal and a supervisor match. Very competitive.,Not started,Medium
-163,Taiwan,Multiple,Taiwanese universities,MOE Taiwan Scholarship / ICDF Scholarship – Master's,Various,English,2 yrs,€0–3000 (covered by scholarship),500,Taiwan MOE Scholarship (tuition + monthly stipend); Taiwan ICDF,Full or partial,Feb 2027 – Mar 2027 (typical; confirm),studyintaiwan.org,"Many English-taught programmes in public health, development and social sciences. Check the current eligible-country list.",Not started,Medium
-164,Thailand,Bangkok,Asian Institute of Technology (AIT),M.Sc. / M.A. programmes in Development and Sustainability,Social Science – Development Studies,English,1.5–2 yrs,€6000–10000 (scholarships common),450,AIT scholarships; partner and Thai government awards,Partial to full,Rounds Jan 2027 – Apr 2027 (typical; confirm),ait.ac.th,Low living cost and a large Bangladeshi alumni community. Check which programmes fit your field.,Not started,Low
-165,Australia,Multiple,Australian universities,Australia Awards Scholarships (DFAT) – Master's,Various,English,1.5–2 yrs,€0 (covered by scholarship),1400,Australia Awards (tuition + living + airfare + health cover),Full,Opens 1 Feb 2027; closes 30 Apr 2027 (official yearly window),australiaawards.gov.au,Development-relevant fields; usually asks for work experience and a commitment to return home. Confirm Bangladesh eligibility on the Australia Awards Bangladesh page.,Not started,High
-166,Australia,Canberra,Australian National University,Master of Public Policy (Crawford School),Social Science – Public Policy,English,2 yrs,≈ €25000–30000,1400,ANU international scholarships (partial); Australia Awards,Partial,Check ANU scholarship rounds (usually mid-year for the next intake),anu.edu.au,Expensive without a scholarship; works best paired with Australia Awards.,Not started,Low
-167,New Zealand,Multiple,New Zealand universities,Manaaki New Zealand Scholarships – Master's,Various,English,1–2 yrs,€0 (covered by scholarship),1100,Manaaki NZ Scholarships (tuition + living + travel),Full,Typically Mar 2027 – Apr 2027 (confirm Bangladesh eligibility first),mfat.govt.nz,Several guides say Bangladesh is NOT eligible any more; verify on the official list before applying.,Not started,Low
-168,Canada,Toronto,University of Toronto,MA Sociology,Social Science – Sociology,English,1 yr,≈ €20000+,1300,Departmental funding; U of T scholarships,Partial,Dec 2026 – Jan 2027 (typical; confirm),utoronto.ca,"Competitive. Funding is not guaranteed for international master's students, so check the department page.",Not started,Medium
-169,Canada,Vancouver,University of British Columbia,MA Sociology (thesis),Social Science – Sociology,English,2 yrs,≈ €6000–9000,1300,UBC graduate funding (RA/TA + awards),Partial,Dec 2026 – Jan 2027 (typical; confirm),ubc.ca,Thesis-based master's with funding packages; research fit and supervisor contact matter.,Not started,Medium
-170,USA,Multiple,US universities,Fulbright Foreign Student Program (Bangladesh) – Master's,Various,English,1–2 yrs,€0 (covered by scholarship),1600,Fulbright (tuition + living + airfare + insurance),Full,Next call expected Jun 2027 – Jul 2027 (previous call closed mid-2026; not announced),foreign.fulbrightonline.org,Highly competitive. You are placed at a US university; check the eligibility and work-experience rules.,Not started,Medium
-171,USA,Boston,Brandeis University (Heller School),MA Sustainable International Development,Social Science – Development Studies,English,1–2 yrs,€40000+ (merit aid common),1600,Heller merit scholarships (often large),Partial,Jan 2027 – Feb 2027 (typical; confirm),brandeis.edu,"Merit aid can cut cost a lot, but the rest still needs funding.",Not started,Low
-172,Global (multi-country),Multiple,Aga Khan Foundation,International Scholarship Programme – Master's (limited),Various,English,1–2 yrs,Varies by university,1200,"AKF grant and loan mix (about half grant, half loan)",Partial,Mar 2027 (typical; confirm),akdn.org,For students with no other funding source. Check the current eligible-country list and conditions.,Not started,Low
-
-173,Thailand,,Mahidol University (Institute of Human Rights and Peace Studies),MA Human Rights (International Program),Social Science – Human Rights,English,2 yrs,Not retrieved,550,Mahidol / partner scholarships (check each call),Partial to full,2026 call closed 31 May 2026 (official IHRP page); 2027 call expected about Mar–May 2027,ihrp.mahidol.ac.th/master-of-arts-in-human-rights-international-program,Research-intensive; social-justice and inequality themes fit a sociology background.,Not started,Medium
-174,Thailand,,Mahidol University (Institute of Human Rights and Peace Studies),APMA – MA Human Rights and Democratisation (Asia Pacific),Social Science – Human Rights,English,12–18 months (sources differ),Not retrieved,550,Full and partial scholarships advertised (including EU–APMA),Partial to full,Earlier calls closed around 1–25 April; 2027 call expected in spring,www.gchumanrights.org,Designed for practitioners; Global Campus page lists bachelor’s with GPA 2.50 minimum.,Not started,High
-175,Japan,,Tohoku University (IRIDeS / Graduate School of Environmental Studies),Master of Disaster Science,Social Science – Disaster Studies,English,2 yrs,Not retrieved,900,MEXT (embassy or university route); JASSO; Tohoku International Excellence Scholarship from 2027 (third-party),Full or partial,Not retrieved – check IRIDeS / Environmental Studies admissions,www.tohoku.ac.jp/en,"Fits disaster, vulnerability and risk research; Tohoku confirmed the degree title in its news release.",Not started,High
-176,Hong Kong,,The Chinese University of Hong Kong,MPhil Sociology (research),Social Science – Sociology,English,2 yrs,"HK$49,500 for 2027/28 (official)",1300,Studentships/RA (not retrieved); HKPFS is for PhD only,Partial,Main round 1 Dec 2026; clearing round 31 Mar 2027 (official),www.gs.cuhk.edu.hk,Prefers a solid social-science background; research proposal needed.,Not started,Medium
-177,Hong Kong,,The Chinese University of Hong Kong,MPhil Gender Studies (inter-faculty),Social Science – Gender Studies,English,2 yrs,"HK$49,500 for 2027/28 (official)",1300,Studentships (not retrieved),Partial,Main round 1 Dec 2026; clearing round 31 Mar 2027 (official),www.gs.cuhk.edu.hk/programmes/inter-faculty/mphil-phd-gender-studies,Considered jointly with a department such as sociology or social work.,Not started,Medium
-178,Hong Kong,,The Chinese University of Hong Kong,MA Anthropology / MA Gender Studies / MA Sociology (taught),Social Science – Anthropology,English,1 yr,"About HK$44,500/yr for anthropology; gender studies about USD 23,000/yr (third-party)",1300,Mostly self-funded,Not funded,Not retrieved,www.gs.cuhk.edu.hk/admissions,Anthropology degree not required; work experience desirable (anthropology listing).,Not started,Low
-179,Hong Kong,,The Hong Kong Polytechnic University (APSS),Master of Social Work,Social Science – Social Work,English,1–2 yrs,"HK$400,400 total (official)",1300,None listed,Not funded,Main round 25 Feb 2027 (early round already closed),www.polyu.edu.hk/apss/study/taught-postgraduate-programmes/master-of-social-work,Professional qualifying degree with fieldwork; very expensive without funding.,Not started,Low
-180,Hong Kong,,City University of Hong Kong,Master of Social Work,Social Science – Social Work,English,Not retrieved,Not retrieved,1300,Non-government-funded (official); Future Talents award is for local students,Not funded,31 Dec 2026 (official application deadline),www.cityu.edu.hk/en/pg/programme/program-list/2027/college-of-liberal-arts-and-social-sciences/department-of-social-and-behavioural-sciences/p71,Social-science graduates may need extra theory workshops.,Not started,Low
-181,Hong Kong,,The University of Hong Kong,MPhil Sociology (research),Social Science – Sociology,English,2 yrs,"HK$49,500/yr for 2027 (third-party)",1300,Not retrieved,Partial,International deadline not retrieved,www.hku.hk,Check the department page for studentships.,Not started,Low
-182,Singapore,,Nanyang Technological University (Wee Kim Wee School),MSc Communication Studies,Social Science – Communication,English,1–2 yrs,High (not retrieved),1300,NTU awards (partial),Partial,Not retrieved,www.wkwsci.ntu.edu.sg,Fits digital-media and social-relationship research.,Not started,Low
-183,Singapore,,National University of Singapore,Master of Social Work,Social Science – Social Work,English,2 yrs,Not retrieved,1300,NUS awards,Partial,Not retrieved,fass.nus.edu.sg,Professional social work degree; confirm intake and entry rules.,Not started,Low
-184,Canada,,McGill University,MA Sociology,Social Science – Sociology,English,2 yrs,Not retrieved,1200,Department funding,Partial,Not retrieved (usually Dec–Jan),www.mcgill.ca,Direct match; confirm funding for international students.,Not started,Medium
-185,Canada,,York University,Master in Disaster and Emergency Management,Social Science – Disaster Studies,English,1–2 yrs,Not retrieved,1200,York awards,Partial,Not retrieved,www.yorku.ca,Social-science route into disaster research; confirm admissions rules.,Not started,Low
-186,Australia,,Monash University,Master of International Development Practice,Social Science – Development Studies,English,1.5–2 yrs,Not retrieved,1400,Monash scholarships; Australia Awards,Partial,Not retrieved,www.monash.edu,Pair with Australia Awards; confirm programme name and entry rules.,Not started,Low
-`;
+153,EU (multi-country),Multiple,PlantHealth consortium (Göttingen; Valencia UPV; Padova; Institut Agro/AgroParisTech),Erasmus Mundus MSc Plant Health in Sustainable Cropping Systems,Agriculture – Plant Science,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,31 Dec 2026 (round 1; only this round gets EMJM scholarships),erasmus-plus.ec.europa.eu,Closes soon: 31 Dec 2026. Takes about 30 students; BSc in agronomy; botany; biology or similar. Counts toward the 3-application EMJM limit.,Not started,High
+154,EU (multi-country),Multiple,SUSTAGRI consortium,Erasmus Mundus MSc Cutting-Edge Technologies for Sustainable Agriculture,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Precision and digital agriculture; check the exact deadline.,Not started,High
+155,EU (multi-country),Multiple,DAFM consortium (Czech University of Life Sciences Prague; others),Erasmus Mundus Danube Agrifood Master (sustainable agriculture; food production and technology),Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€0–9000 (covered by scholarship),800,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Danube region universities; lower living costs than western Europe.,Not started,Medium
+156,EU (multi-country),Multiple,EMABG consortium,Erasmus Mundus MSc Animal Biodiversity and Genomics,Agriculture – Animal Science,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Genomics-heavy; suits botany or biology backgrounds with lab skills.,Not started,Medium
+157,EU (multi-country),Multiple,GLOFOR consortium,Erasmus Mundus MSc Global Forestry,Agriculture – Forestry,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Forest science and policy.,Not started,Medium
+158,EU (multi-country),Multiple,European Forestry consortium (AgroParisTech; others),Erasmus Mundus European Forestry Master,Agriculture – Forestry,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Dec 2026 – Jan 2027 (last round 15 Dec–21 Jan),erasmus-plus.ec.europa.eu,Renewable resources; bioeconomy; environmental management.,Not started,Medium
+159,EU (multi-country),Multiple,MERGED consortium (Milan; others),Erasmus Mundus MSc Global Environment and Development (MERGED),Agriculture – Environment/Climate,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),merged.info,Environment and development; good fit if you also come from a social science background.,Not started,Medium
+160,Netherlands,Wageningen,Wageningen University,M.Sc. Plant Sciences,Agriculture – Plant Science,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Top agricultural university; many specialisations; strong for a botany background.,Not started,High
+161,Netherlands,Wageningen,Wageningen University,M.Sc. Plant Biotechnology,Agriculture – Plant Science,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Molecular plant science and breeding.,Not started,Medium
+162,Netherlands,Wageningen,Wageningen University,M.Sc. Food Technology,Agriculture – Food Science,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Food science and engineering.,Not started,Low
+163,Netherlands,Wageningen,Wageningen University,M.Sc. Aquaculture and Marine Resource Management,Agriculture – Aquaculture,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Fisheries and aquaculture; relevant for Bangladesh.,Not started,Medium
+164,Netherlands,Wageningen,Wageningen University,M.Sc. Climate Studies,Agriculture – Environment/Climate,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Climate impacts on agriculture and society.,Not started,Medium
+165,Germany,Göttingen,University of Göttingen,M.Sc. Tropical and International Agriculture,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€0 + ~€400/semester fee,950,DAAD; Göttingen scholarships,Partial,Jan 2027 – Mar 2027,uni-goettingen.de,Tropical farming systems; confirm the exact programme name and deadline.,Not started,High
+166,Germany,Stuttgart,University of Hohenheim,M.Sc. Agricultural Sciences in the Tropics and Subtropics,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€3000,950,DAAD; Hohenheim scholarships,Partial,Jan 2027 – Mar 2027,uni-hohenheim.de,Strong tropical agriculture reputation; Baden-Württemberg fee applies; confirm deadline.,Not started,High
+167,Sweden,Uppsala,Swedish University of Agricultural Sciences (SLU),Master's Programme in Plant Biology for Sustainable Production,Agriculture – Plant Science,English,2 yrs,SEK 130000–145000 (~€12000–13000),950,SISGP (full); SLU scholarship,Full or partial,15 Jan 2027 (national portal),slu.se,Same national portal as the other Swedish rows; check exact fee.,Not started,High
+168,Sweden,Lund,Lund University,Master's Programme in Food Technology and Nutrition,Agriculture – Food Science,English,2 yrs,SEK 145000 (~€13000),950,SISGP (full); Lund University Global Scholarship,Full or partial,15 Jan 2027 (national portal),lunduniversity.lu.se,Food science; applicable for agriculture graduates.,Not started,Low
+169,Finland,Helsinki,University of Helsinki,Master's Programme in Agricultural Sciences,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€13000–18000,950,UH scholarship 50–100%,Partial to full,Jan 2027,helsinki.fi,Four tracks: plant production; animal science; agrotechnology; environmental soil science.,Not started,High
+170,Belgium,Ghent,Ghent University,M.Sc. Agro- and Environmental Nematology,Agriculture – Plant Science,English,2 yrs,€1000–7000,1000,VLIR-UOS ICP (full),Full,1 Feb 2027 (VLIR-UOS ICP),ugent.be,Plant pests and soil health; check that Bangladesh is on the VLIR-UOS list.,Not started,High
+171,Belgium,Ghent,Ghent University,M.Sc. Bioscience Engineering: Agricultural Sciences,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€1000–7000,1000,Ghent and VLIR-UOS scholarships,Partial,1 Mar 2027 (non-EEA; check),ugent.be,Engineering-heavy; confirm the English-taught track names.,Not started,Low
+172,Austria,Vienna,University of Natural Resources and Life Sciences (BOKU),M.Sc. Organic Agricultural Systems and Agroecology,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€1500,1100,OeAD Ernst Mach Grant (€1150/mo),Partial,1 Feb 2027 (Ernst Mach) / check BOKU deadline,boku.ac.at,Agroecology; very low tuition.,Not started,Medium
+173,Switzerland,Zurich,ETH Zurich,M.Sc. Agricultural Sciences,Agriculture – Plant Science,English,1.5 yrs,CHF 1500 (~€1600),2200,ETH Excellence Scholarship (ESOP); ESKAS,Full or partial,15 Dec 2026 (ESOP),ethz.ch,Very selective; best with a strong CGPA and research record.,Not started,Low
+174,Denmark,Copenhagen,University of Copenhagen,M.Sc. Agricultural Science,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€13000–16000,1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm track names (plant; soil; animal) on the programme page.,Not started,Low
+175,Hungary,Gödöllő / Budapest,Hungarian University of Agriculture and Life Sciences (MATE),M.Sc. programmes in Plant Protection; Agricultural Biotechnology; Agricultural Engineering,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€4000–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing),Full,15 Jan 2027,uni-mate.hu,Same Stipendium Hungaricum route as rows 85–87; choose the programme in the application.,Not started,High
+176,Czechia,Prague,Czech University of Life Sciences Prague,M.Sc. programmes in Tropical Agrobiology; Sustainable Agriculture (English tracks),Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€4000–6000,700,Czech Government Scholarship; CZU merit,Full or partial,Feb 2027 – Apr 2027,czu.cz,Confirm English tracks and deadline.,Not started,Medium
+177,United Kingdom,London,London School of Economics,MSc Development Studies,Social Science – Development Studies,English,1 yr,£30000,1900,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships,Partial,Jan 2027 (LSE funding round; check),lse.ac.uk,Very competitive and expensive; 2027 entry needs LSE's own funding or savings.,Not started,Medium
+178,United Kingdom,Brighton,University of Sussex (IDS),MA Development Studies,Social Science – Development Studies,English,1 yr,£24000,1200,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships; Sussex scholarships,Partial,Jan 2027 – Apr 2027 (funding rounds; rolling offers),sussex.ac.uk,Institute of Development Studies is based here.,Not started,Medium
+179,United Kingdom,Edinburgh,University of Edinburgh,MSc Public Health,Public Health/Global Health,English,1 yr,£30000,1300,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships; Edinburgh Global Masters,Partial,Jan 2027 (scholarship round; check),ed.ac.uk,Check exact fee and scholarship deadline.,Not started,Medium
+180,United Kingdom,London,London School of Hygiene and Tropical Medicine,MSc Public Health,Public Health/Global Health,English,1 yr,£30000,1900,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships; LSHTM scholarships,Partial,Jan 2027 – Apr 2027 (funding rounds; check),lshtm.ac.uk,Global health leader; expensive without a scholarship.,Not started,Medium
+181,United Kingdom,Cranfield,Cranfield University,MSc Environmental Engineering,Environment – Engineering,English,1 yr,£20000–25000 (check),1000,GREAT Scholarship Bangladesh (£10000); Cranfield bursaries,Partial,18 May 2027 (GREAT scholarship),cranfield.ac.uk,Scholarship deadline listed on Mastersportal; confirm on Cranfield's page.,Not started,Low
+182,United States,Various,Fulbright Foreign Student Program (US universities),Fulbright master's (any field; placed at a US university),Various (any field),English,1–2 yrs,Covered by Fulbright,1800,Fulbright (tuition + stipend + airfare + J-1 health cover),Full,Jul 2027 (expected; 2027/28 round reportedly closed 11 Jul 2026),bd.usembassy.gov,Biggest funded route to the US master's; needs leadership and work record; confirm dates with the US Embassy.,Not started,Medium
+183,United States,Madison,University of Wisconsin–Madison,Ph.D. Sociology (funded; M.A. en route),Social Science – Sociology,English,5 yrs,Funded (assistantship),1500,Departmental funding package (tuition waiver + stipend),Full,Dec 2026 – Jan 2027,sociology.wisc.edu,Research-heavy; publications and a writing sample matter; confirm deadline and funding.,Not started,Medium
+184,United States,Ithaca,Cornell University,M.S. or Ph.D. Plant Breeding and Genetics (assistantships),Agriculture – Plant Science,English,2–5 yrs,Funded for assistantship holders,1500,Research or teaching assistantship (tuition waiver + stipend),Full,Dec 2026 – Jan 2027,cals.cornell.edu,Contact a professor first; funding depends on a faculty member.,Not started,Medium
+185,United States,Seattle,University of Washington,M.P.H. Global Health,Public Health/Global Health,English,2 yrs,US$30000–45000 (check),2000,UW scholarships; Fulbright,Partial,Dec 2026 – Jan 2027 (check; rolling),sph.washington.edu,Confirm the track and scholarship options on the programme page.,Not started,Low
+186,Australia,Various,Australia Awards Scholarships (Australian universities),Australia Awards master's (priority fields set for Bangladesh),Various (priority fields),English,1–2 yrs,Covered by the award,1800,Australia Awards (tuition + living + airfare + health cover),Full,30 Apr 2027 (opens 1 Feb; for study starting 2028),australiaawardsbangladesh.org,Needs leadership and work experience; return-home condition applies; opens early 2027.,Not started,High
+187,Australia,Canberra,Australian National University (Crawford School),Master of International and Development Economics,Social Science – Economics,English,2 yrs,AUD 50000 (check),2000,Australia Awards; ANU scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,anu.edu.au,Check exact fee and intake months (Feb or Jul).,Not started,Medium
+188,Australia,Melbourne,University of Melbourne,Master of Public Health,Public Health/Global Health,English,2 yrs,AUD 50000 (check),2100,Australia Awards; Melbourne scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,unimelb.edu.au,Check scholarship round dates.,Not started,Low
+189,Australia,Brisbane,University of Queensland,Master of Agricultural Science,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,AUD 40000 (check),1800,Australia Awards; UQ scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,uq.edu.au,Check specialisations and fees.,Not started,Medium
+190,Australia,Brisbane,University of Queensland,Master of Development Practice,Social Science – Development Studies,English,2 yrs,AUD 40000 (check),1800,Australia Awards; UQ scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,uq.edu.au,Practice-oriented; includes a placement.,Not started,Medium
+191,Netherlands,Wageningen,Wageningen University,M.Sc. Biotechnology,Life Science – Biotechnology,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Biotech with plant; food and environmental options.,Not started,Medium
+192,Netherlands,Wageningen,Wageningen University,M.Sc. Biology,Life Science – Biology/Ecology,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Ecology and evolution specialisations; suits botany graduates.,Not started,Medium
+193,Netherlands,Wageningen,Wageningen University,M.Sc. Environmental Sciences,Environment – Sciences,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Environmental policy and natural-science tracks.,Not started,Medium
+194,EU (multi-country),Multiple,Mundus Journalism consortium (Aarhus; others),Erasmus Mundus MA Journalism; Media and Globalisation,Journalism – Media,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,10 Jan 2027,erasmus-plus.ec.europa.eu,Start in Aarhus. 2027 round closes 10 Jan 2027; about 10–15 scholarships.,Not started,High
+195,EU (multi-country),Multiple,Mundus MAPP consortium,Erasmus Mundus MA Public Policy (Mundus MAPP),Social Science – Public Policy,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,2027–29 intake; scholarship plus tuition covered.,Not started,Medium
+196,EU (multi-country),Multiple,EMTM consortium (SDU; Ljubljana; Girona),Erasmus Mundus European Master in Tourism Management (EMTM),Services – Tourism/Hospitality,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (last round closed 31 Jan 2026; check),erasmus-plus.ec.europa.eu,Southern Denmark; Ljubljana; Girona.,Not started,Medium
+197,EU (multi-country),Multiple,MARIHE consortium (ELTE; others),Erasmus Mundus MA Research and Innovation in Higher Education (MARIHE),Education – Higher Education,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (applications opened 3 Jul 2026; check),erasmus-plus.ec.europa.eu,Higher education policy and management.,Not started,Medium
+198,EU (multi-country),Multiple,EDU_MIG consortium,Erasmus Mundus MA Education; Migration and Diversity (EDU_MIG),Education – Migration/Diversity,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Feb 2027 (last round closed 28 Feb 2026; check),erasmus-plus.ec.europa.eu,Education and migration studies; check the exact deadline.,Not started,Medium
+199,EU (multi-country),Multiple,MAiSI consortium,Erasmus Mundus MA Sports Ethics and Integrity (MAiSI),Services – Sport,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Check that Bangladeshi applicants are eligible for the scholarship.,Not started,Low
+200,EU (multi-country),Multiple,IMSISS consortium,Erasmus Mundus MA Security; Intelligence and Strategic Studies (IMSISS),Services – Security,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Check that the programme is running for 2027.,Not started,Low
+201,EU (multi-country),Multiple,EMLE consortium,Erasmus Mundus European Master in Law and Economics (EMLE),Law – Law and Economics,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 – Feb 2027 (check programme site),erasmus-plus.ec.europa.eu,Law and economics; confirm the intake.,Not started,Low
+202,EU (multi-country),Multiple,TCCM consortium,Erasmus Mundus MSc Theoretical Chemistry and Computational Modelling (TCCM),Natural Science – Physical,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Confirm the intake and partners.,Not started,Low
+203,Finland,Oulu,University of Oulu,Master's Degree Programme in Education and Globalisation,Education – Global Education,English,2 yrs,€10000–12000 (check),850,University of Oulu scholarship,Partial to full,Jan 2027,oulu.fi,Education policy and comparative education.,Not started,Medium
+204,Finland,Helsinki,Aalto University,Master's Programme in Creative Sustainability,Arts – Design,English,2 yrs,€12000–15000 (check),1000,Aalto scholarship (50–100%),Partial to full,Jan 2027,aalto.fi,Design; business and sustainability; check portfolio requirements.,Not started,Low
+205,Austria,Vienna,Central European University (CEU),MA Cultural Heritage Studies,Humanities – Heritage/History,English,1–2 yrs,€12000–13000,1100,CEU merit-based tuition awards; CEU scholarships,Partial to full,Jan 2027 (check programme page),ceu.edu,Humanities and heritage; confirm programme details.,Not started,Low
+206,Finland,Helsinki,University of Helsinki,Master's Programme in Linguistic Diversity and Digital Humanities,Languages – Linguistics,English,2 yrs,€13000–18000,950,UH scholarship 50–100%,Partial to full,Jan 2027,helsinki.fi,Linguistics and digital humanities; confirm fee.,Not started,Low
+207,Sweden,Lund,Lund University,LL.M. International Human Rights Law,Law – Human Rights,English,1 yr,SEK 135000 (~€12000),950,SISGP (full); Lund University Global Scholarship,Full or partial,15 Jan 2027 (national portal),lunduniversity.lu.se,Check exact fee; law degree usually required.,Not started,Medium
+208,Belgium,Leuven,KU Leuven,Master of Statistics and Data Science,Natural Science – Mathematics/Statistics,English,1–2 yrs,€6600,1000,KU Leuven scholarships for non-EEA students,Partial,1 Mar 2027 (non-EEA; check),kuleuven.be,Good for researchers with a quantitative background.,Not started,Medium
+209,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Sustainable Energy Engineering,Engineering – Energy,English,2 yrs,SEK 160000 (~€14000; check),1000,SISGP (full); KTH scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Check exact fee; engineering BSc required.,Not started,Low
+210,Sweden,Gothenburg,Chalmers University of Technology,Master's Programme in Materials Engineering,Manufacturing – Materials,English,2 yrs,SEK 150000 (~€13000; check),950,SISGP (full); Chalmers scholarship,Full or partial,15 Jan 2027 (national portal),chalmers.se,Check exact fee and intake.,Not started,Low
+211,Italy,Milan,Politecnico di Milano,M.Sc. Architecture – Built Environment – Interiors,Architecture – Construction,English,2 yrs,€3000–4000,1000,PoliMi merit scholarships; Italian regional grants,Partial,Rounds Dec 2026 – Mar 2027 (check),polimi.it,Portfolio and entry test may be required.,Not started,Low
+212,Sweden,Gothenburg,Chalmers University of Technology,Master's Programme in Maritime Management,Services – Transport,English,2 yrs,SEK 150000 (~€13000; check),950,SISGP (full); Chalmers scholarship,Full or partial,15 Jan 2027 (national portal),chalmers.se,Shipping and logistics; confirm programme name and fee.,Not started,Low
+213,United Kingdom,London,Royal Veterinary College,MSc Veterinary Epidemiology,Veterinary – Epidemiology,English,1 yr,£30000 (check),1900,Chevening (closed 6 Oct 2026); Commonwealth (closed 20 Oct 2026); RVC scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,rvc.ac.uk,Animal and public health; veterinary or biology background.,Not started,Low
+214,Netherlands,Wageningen,Wageningen University,M.Sc. Nutrition and Health,Health – Nutrition,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Nutrition and health science.,Not started,Medium
+215,Sweden,Stockholm,Karolinska Institutet,Master's Programme in Biomedicine,Health – Biomedicine,English,2 yrs,SEK 185000 (~€16500; check),1000,SISGP; KI Global Master's Scholarship,Full or partial,15 Jan 2027 (national portal),kib.ki.se,Lab-based biomedical research.,Not started,Low
+216,Denmark,Copenhagen,University of Copenhagen,M.Sc. Pharmaceutical Sciences,Health – Pharmacy,English,2 yrs,€13000–16000,1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm specialisations on the programme page.,Not started,Low
+217,EU (multi-country),Multiple,EMERALD consortium (Liège; Lorraine; Luleå; Freiberg),Erasmus Mundus MSc Georesources Engineering (EMERALD),Manufacturing – Mining/Extraction,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Mar 2027 (last round closed 8 Mar 2026; check),erasmus-plus.ec.europa.eu,Liège; Lorraine; Luleå; Freiberg. Needs engineering or geology BSc with maths.,Not started,Medium
+218,EU (multi-country),Multiple,PROMISE consortium (Leoben; others),Erasmus Mundus MSc Sustainable Mineral and Metal Processing Engineering (PROMISE),Manufacturing – Mining/Extraction,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Check programme site,erasmus-plus.ec.europa.eu,Leoben-led; check the 2027 intake.,Not started,Low
+219,EU (multi-country),Multiple,SMDTex consortium (Borås; Ghent; others),Erasmus Mundus MSc Sustainable Management and Design for Textiles (SMDTex),Manufacturing – Textiles,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Check programme site,erasmus-plus.ec.europa.eu,Confirm the programme is running for 2027.,Not started,Low
+220,EU (multi-country),Multiple,MAIA consortium,Erasmus Mundus MSc Medical Imaging and Applications (MAIA),Health – Medical Diagnostic Technology,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Check programme site,erasmus-plus.ec.europa.eu,Confirm the programme is running for 2027.,Not started,Low
+221,Finland,Jyväskylä,University of Jyväskylä,Master's Degree Programme in Educational Sciences (specialisations incl. Early Childhood),Education – Early Childhood/Education Science,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,jyu.fi,Non-EU fee about €10000; specialisations include Early Childhood; Special Education; Guidance.,Not started,High
+222,Finland,Joensuu,University of Eastern Finland,Master's Programme in Early Language Education for Intercultural Communication,Education – Teacher Training (subject: languages),English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,uef.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+223,Finland,Tampere,Tampere University,Master's Programme in Teaching; Learning and Media Education,Education – Teacher Training (general),English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,tuni.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+224,Finland,Helsinki,University of Helsinki,Master's Programme in Changing Education,Education – Education Science,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,helsinki.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+225,Italy,Milan,Politecnico di Milano,M.Sc. Design for the Fashion System,Arts – Fashion/Design,English,2 yrs,€2000–4000 (check),950,University merit scholarships; regional grants,Partial,Jan 2027 – Mar 2027,polimi.it,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+226,Finland,Helsinki,Aalto University,Master's Programme in Collaborative and Industrial Design,Arts – Industrial Design,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,aalto.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+227,Netherlands,Amsterdam,University of Amsterdam,MA Media Studies,Arts – Audio-visual/Media Production,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),uva.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+228,Finland,Helsinki,Aalto University,Master's Programme in Visual Culture and Contemporary Art,Arts – Fine Arts,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,aalto.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+229,Finland,Jyväskylä,University of Jyväskylä,Master's Degree Programme in Music; Mind and Technology,Arts – Music/Performing Arts,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,jyu.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+230,Belgium,Leuven,KU Leuven,MA Theology and Religious Studies,Humanities – Religion/Theology,English,1 yr,€1000–7000 (check),1000,University scholarships for non-EEA students,Partial,1 Mar 2027 (non-EEA; check),kuleuven.be,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+231,Netherlands,Leiden,Leiden University,MA Archaeology,Humanities – History/Archaeology,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),universiteitleiden.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+232,Netherlands,Amsterdam,University of Amsterdam,MA History,Humanities – History/Archaeology,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),uva.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+233,Netherlands,Amsterdam,University of Amsterdam,MA Philosophy,Humanities – Philosophy/Ethics,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),uva.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+234,Netherlands,Amsterdam,University of Amsterdam,MA Linguistics,Languages – Language Acquisition/Linguistics,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),uva.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+235,Netherlands,Leiden,Leiden University,MA Literary Studies,Languages – Literature,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),universiteitleiden.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+236,Belgium,Leuven,KU Leuven,Master of Cultural Studies,Social Science – Cultural Studies,English,1 yr,€1000–7000 (check),1000,University scholarships for non-EEA students,Partial,1 Mar 2027 (non-EEA; check),kuleuven.be,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+237,Sweden,Borås,University of Borås,Master's Programme in Library and Information Science,Journalism – Library/Information/Archival,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),hb.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+238,Austria,Vienna,WU Vienna,Master in Taxation and Accounting,Business – Accounting/Taxation,English,2 yrs,€1500,1100,OeAD Ernst Mach Grant,Partial,1 Feb 2027 (Ernst Mach) / check university,wu.ac.at,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+239,Denmark,Copenhagen,University of Copenhagen,M.Sc. Actuarial Mathematics,Business – Insurance/Finance,English,2 yrs,€13000–16000 (check),1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+240,Sweden,Lund,Lund University,M.Sc. International Marketing and Brand Management,Business – Marketing/Advertising,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),lunduniversity.lu.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+241,Denmark,Copenhagen,University of Copenhagen,M.Sc. Biochemistry,Natural Science – Biochemistry,English,2 yrs,€13000–16000 (check),1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+242,Netherlands,Wageningen,Wageningen University,M.Sc. Forest and Nature Conservation,Natural Science – Wildlife/Natural Environments,English,2 yrs,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+243,Netherlands,Utrecht,Utrecht University,M.Sc. Earth Sciences,Natural Science – Earth Sciences,English,2 yrs,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),uu.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+244,Denmark,Copenhagen,University of Copenhagen,M.Sc. Physics,Natural Science – Physics,English,2 yrs,€13000–16000 (check),1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+245,Denmark,Copenhagen,University of Copenhagen,M.Sc. Mathematics,Natural Science – Mathematics,English,2 yrs,€13000–16000 (check),1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+246,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Communication Systems,ICT – Networks/Systems,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+247,Belgium,Leuven,KU Leuven,Master of Chemical Engineering,Engineering – Chemical,English,2 yrs,€1000–7000 (check),1000,University scholarships for non-EEA students,Partial,1 Mar 2027 (non-EEA; check),kuleuven.be,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+248,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Environmental Engineering and Sustainable Infrastructure,Engineering – Environmental Protection,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+249,Finland,Helsinki,Aalto University,Master's Programme in Automation and Electrical Engineering,Engineering – Electronics/Automation,English,2 yrs,€10000–15000 (check),950,University scholarship 50–100%,Partial to full,Jan 2027,aalto.fi,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+250,Sweden,Gothenburg,Chalmers University of Technology,Master's Programme in Applied Mechanics,Engineering – Mechanics/Metals,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),chalmers.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+251,Sweden,Gothenburg,Chalmers University of Technology,Master's Programme in Automotive Engineering,Engineering – Motor Vehicles,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),chalmers.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+252,Sweden,Gothenburg,Chalmers University of Technology,Master's Programme in Naval Architecture and Ocean Engineering,Engineering – Ships,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),chalmers.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+253,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Aerospace Engineering,Engineering – Aircraft,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+254,Germany,Clausthal,Clausthal University of Technology,M.Sc. Mining Engineering,Manufacturing – Mining/Extraction,English,2 yrs,€0–3000 (check),950,DAAD; university scholarships,Partial,Jan 2027 – Mar 2027,tu-clausthal.de,Needs a BSc in mining engineering or a closely related field.,Not started,Low
+255,Italy,Milan,Politecnico di Milano,M.Sc. Urban Planning and Policy Design,Architecture – Town Planning,English,2 yrs,€2000–4000 (check),950,University merit scholarships; regional grants,Partial,Jan 2027 – Mar 2027,polimi.it,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+256,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Civil and Architectural Engineering,Engineering – Building/Civil,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+257,Sweden,Karlstad,Karlstad University,Master's Programme in Nursing (specialisations),Health – Nursing/Midwifery,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kau.se,Usually needs a nursing degree and licence; midwifery not confirmed.,Not started,Low
+258,Sweden,Jönköping,Jönköping University,Master's Programme in Occupational Therapy (web-based; part-time),Health – Therapy/Rehabilitation,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),ju.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+259,Sweden,Linköping,Linköping University,Master's Programme in Ageing and Social Change,Health – Elderly Care (Welfare),English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),liu.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+260,Netherlands,Delft,IHE Delft Institute for Water Education,M.Sc. Municipal Water and Infrastructure (sanitation),Services – Community Sanitation,English,2 yrs,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),un-ihe.org,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+261,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Technology; Work and Health,Services – Occupational Health and Safety,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Medium
+262,Netherlands,Maastricht,Maastricht University,M.Sc. Occupational Health and Sustainable Work,Services – Occupational Health and Safety,English,1 yr,€18000–22000 (check),1150,Holland Scholarship; university scholarship (limited),Partial,1 Feb 2027 (scholarship round),maastrichtuniversity.nl,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+263,United Kingdom,London,King's College London,MA War Studies,Services – Military/Defence,English,1 yr,£25000–30000 (check),1700,Chevening and Commonwealth (2027/28 rounds closed); university scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,kcl.ac.uk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+264,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Transport and Geoinformation Technology,Services – Transport,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
+265,United States,Davis,University of California Davis,M.S. Horticulture and Agronomy (assistantships),Agriculture – Plant Science (Horticulture),English,2 yrs,Funded for assistantship holders,1800,Research or teaching assistantship,Full,Dec 2026 – Jan 2027,ucdavis.edu,Contact a professor first; funding depends on a faculty member.,Not started,Low
+266,Switzerland,Lausanne,EHL Hospitality Business School,M.Sc. Global Hospitality Business,Services – Hotel/Restaurants/Catering,English,1.5 yrs,CHF 40000+ (check),2200,EHL scholarships,Partial,Rolling (check),ehl.edu,Private school; expensive. Hotel and catering Masters are mostly private.,Not started,Low`;
 
 function parseCSV(text){
   const rows=[]; let row=[], cur='', q=false;
@@ -558,13 +547,23 @@ const RAW=parseCSV(CSV).map(r=>{
   };
 });
 const DATA=RAW;
-const REG={'Hong Kong':'Asia','South Korea':'Asia',Japan:'Asia',China:'Asia',Taiwan:'Asia',Thailand:'Asia',Singapore:'Asia',Australia:'Oceania','New Zealand':'Oceania',Canada:'North America',USA:'North America','Global (multi-country)':'Global'};
-DATA.forEach(d=>d.region=REG[d.country]||'Europe');
 const STAT=['Not started','Preparing','Applied','Offer','Rejected'];
 let ST={}; try{ST=JSON.parse(localStorage.getItem('trk_status')||'{}');}catch(e){}
 DATA.forEach(d=>{ if(ST[d.no]) d.status=ST[d.no]; });
 const stCls=x=>({Applied:'s-applied',Offer:'s-offer',Preparing:'s-prep',Rejected:'s-rej'}[x]||'');
-const grp=d=>/Social Science/.test(d.field)?'Social Science':/Public Health/.test(d.field)?'Public Health':/Business|Finance|Management/.test(d.field)?'Business':'CS / Data / AI';
+const GROUPS=['Generic programmes','Education','Arts and Humanities','Social Sciences, Journalism, Information','Business, Admin and Law','Natural Sciences, Maths, Statistics','Information and Communication Technologies','Engineering, Manufacturing, Construction','Agriculture, Forestry, Fisheries, Veterinary','Health and Welfare','Services'];
+const grp=d=>{const f=d.field;
+ if(/^Various/.test(f)) return GROUPS[0];
+ if(/^Education|Social Science – Education/.test(f)) return GROUPS[1];
+ if(/^(Arts|Humanities|Languages)/.test(f)) return GROUPS[2];
+ if(/^Law|Business|Finance|Management/.test(f)) return GROUPS[4];
+ if(/Public Health|Social Work|^Health/.test(f)) return GROUPS[9];
+ if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food)/.test(f)) return GROUPS[8];
+ if(/^(Engineering|Architecture|Manufacturing)|Environment – Engineering/.test(f)) return GROUPS[7];
+ if(/Environment|Life Science|Bioscience|^Natural Science/.test(f)) return GROUPS[5];
+ if(/^Services/.test(f)) return GROUPS[10];
+ if(/Social Science|Journalism|Public Policy/.test(f)) return GROUPS[3];
+ return GROUPS[6];};
 const rowCls=d=>d.fundLevel==='Full'?'rf':/Full/.test(d.fundLevel)?'rm':'';
 
 const TODAY=new Date(2026,10,14);
@@ -587,10 +586,9 @@ const fC=document.getElementById('fCountry'), fF=document.getElementById('fField
 [...new Set(DATA.map(d=>d.country))].sort().forEach(c=>fC.add(new Option(c,c)));
 [...new Set(DATA.map(d=>d.field))].sort().forEach(c=>fF.add(new Option(c,c)));
 
-let state={q:'',region:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
+let state={q:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
 
 function matches(d){
-  if(state.region && d.region!==state.region) return false;
   if(state.country && d.country!==state.country) return false;
   if(state.field && d.field!==state.field) return false;
   if(state.group && grp(d)!==state.group) return false;
@@ -618,7 +616,7 @@ function sortRows(rows){
 }
 
 /* ---------- table ---------- */
-const fundClass=l=> l==='Full'?'p-full' : l==='Partial'?'p-part' : /Full/.test(l)?'p-mix' : 'p-low';
+const fundClass=l=> l==='Full'?'p-full' : l==='Partial'?'p-part' : 'p-part';
 const prioClass=p=> p==='High'?'p-high' : p==='Medium'?'p-med' : 'p-low';
 
 function fmtDate(d){
@@ -631,6 +629,9 @@ function fmtDate(d){
 /* ---------- details ---------- */
 const OPEN=new Set();
 const CD={
+ 'United Kingdom':{e:'IELTS 6.5 (6.0 per band); some courses need IELTS for UKVI',r:'Direct to the university (rolling offers); apply early for scholarships',f:'£0–100',v:'Student visa (CAS from the university); health surcharge; proof of funds; ATAS for some subjects'},
+ 'United States':{e:'TOEFL 90–100 / IELTS 6.5–7.0',r:'University portal; GRE required or optional; 2–3 recommendation letters; for PhD contact professors first',f:'US$50–120',v:'F-1 visa with an I-20 (J-1 for Fulbright); strong proof of funds'},
+ Australia:{e:'IELTS 6.5 (6.0 per band) / PTE 58',r:'Direct to the university; Australia Awards use the OASIS portal',f:'AUD 0–150',v:'Student visa (subclass 500) with a Genuine Student statement; health cover (OSHC); proof of funds'},
  'EU (multi-country)':{e:'Usually IELTS 6.5 / TOEFL 90 (varies per programme)',r:'Apply on each consortium website and tick the EMJM scholarship box',f:'€0–100 per programme',v:'Each partner country issues its own permit; plan the mobility semesters early'},
  Germany:{e:'IELTS 6.5 / TOEFL 90 (some accept a medium-of-instruction certificate)',r:'uni-assist or the university portal; some CS/Data programmes add an aptitude check',f:'uni-assist ~€75 first application (~€30 each extra); many universities charge nothing',v:'National study visa; blocked-account proof of funds; health insurance; embassy slots fill early'},
  Netherlands:{e:'IELTS 6.5 (about 6.0 per band) / TOEFL 90',r:'Studielink plus the university portal; some run a credential check',f:'€0–100',v:'University sponsors the residence permit (IND); proof of funds'},
@@ -653,21 +654,27 @@ const CD={
  Lithuania:{e:'IELTS 5.5–6.0',r:'University portal or LAMA BPO',f:'€0–100',v:'National visa'},
  Greece:{e:'IELTS 6.0',r:'University portal; few English places',f:'€0',v:'National visa'},
  Luxembourg:{e:'IELTS 6.5',r:'University portal',f:'€50',v:'Authorisation to stay; high proof of funds'},
- Turkey:{e:'IELTS 6.0 or the university English exam',r:'Türkiye Bursları portal plus the university',f:'€0',v:'Student visa; scholarship covers insurance'},
- 'South Korea':{e:'IELTS 6.0–6.5 / TOEFL 80 (GKS also asks for Korean or English proof)',r:'GKS: Study in Korea portal via the embassy or a designated university; other awards via the university',f:'KRW 50,000–100,000 per university (GKS itself is free)',v:'D-2 student visa; GKS scholars get a Korean language year first'},
- Japan:{e:'IELTS 6.5 / TOEFL 80 for English programmes (MEXT adds a written exam and interview)',r:'MEXT embassy track via the Embassy of Japan in Dhaka; otherwise direct to the university',f:'¥0–30,000 per university',v:'Certificate of Eligibility (COE) then a student visa; MEXT arranges travel'},
- China:{e:'IELTS 6.0–6.5 for English programmes; HSK for Chinese-taught',r:'CSC Type A via the Chinese Embassy; Type B or university awards via the CSC online system and the university portal',f:'CNY 0–800',v:'X1 visa, then a residence permit; physical exam required'},
- Singapore:{e:'IELTS 6.5–7.0 / TOEFL 90–100',r:'University graduate portal; research master\'s need a proposal and supervisor contact',f:'SGD 20–100',v:'Student\'s Pass via the university (ICA)'},
- Taiwan:{e:'IELTS 6.0 / TOEFL 80 or proof of English instruction',r:'MOE Taiwan Scholarship through the university; ICDF has its own portal',f:'NT$0–1,500',v:'Resident visa issued after admission'},
- Thailand:{e:'IELTS 6.0 / TOEFL 80 or the university test',r:'University online application plus the scholarship form',f:'USD 25–50',v:'Non-Immigrant ED visa'},
- Australia:{e:'IELTS 6.5 (6.0 per band) / PTE 58–64',r:'Australia Awards through the Bangladesh portal; otherwise the university portal plus a scholarship form',f:'AUD 0–150',v:'Student visa (subclass 500); health cover and GTE/financial proof'},
- 'New Zealand':{e:'IELTS 6.5 (6.0 per band)',r:'Manaaki via the MFAT portal and the university; direct application for other awards',f:'NZD 0–100',v:'Student visa; medical and police checks'},
- Canada:{e:'IELTS 6.5–7.0 / TOEFL 90–100',r:'University graduate portal; departments often want a statement and writing sample',f:'CAD 100–150',v:'Study permit plus proof of funds; biometrics'},
- USA:{e:'TOEFL 90–100 / IELTS 7.0; GRE sometimes optional',r:'Fulbright via USEF Bangladesh; otherwise the university portal with a funding form',f:'USD 75–120 per university (Fulbright is free)',v:'F-1 or J-1 visa; I-20 or DS-2019 from the university or Fulbright'},
- 'Hong Kong':{e:'IELTS 6.5 / TOEFL 80–90 (varies)',r:'University graduate portal; research master\'s need a proposal',f:'HKD 0–450',v:'Student visa via the university; proof of funds'},
- 'Global (multi-country)':{e:'Usually IELTS 6.5 / TOEFL 90',r:'Apply on the scholarship provider\'s portal, then the university',f:'Usually free',v:'Depends on the host country'}
+ Turkey:{e:'IELTS 6.0 or the university English exam',r:'Türkiye Bursları portal plus the university',f:'€0',v:'Student visa; scholarship covers insurance'}
 };
 const FC=[
+ [/Library/,['Information organisation and retrieval','Digital libraries and archives','Research methods','Specialisation electives','Master thesis']],
+ [/^Education/,['Educational theory and policy','Research methods','Comparative or higher education','Specialisation electives','Master thesis']],
+ [/^(Arts|Humanities|Languages)/,['Core theory and history','Research methods','Specialisation electives','Studio or practice project','Master thesis']],
+ [/^Journalism/,['Journalism and media theory','Reporting and production','Research methods','Specialisation city electives','Thesis or media project']],
+ [/^Law/,['Core legal theory','Comparative and international law','Legal research methods','Specialisation electives','Master thesis']],
+ [/^Natural Science/,['Advanced core theory','Computational or statistical methods','Laboratory or project work','Electives','Master thesis']],
+ [/^(Engineering|Architecture|Manufacturing)/,['Advanced engineering fundamentals','Modelling and design','Specialisation electives','Project or studio work','Master thesis']],
+ [/^Veterinary/,['Epidemiology and disease control','Biostatistics','Animal and public health policy','Research project','Thesis']],
+ [/^Health/,['Biomedical or nutrition fundamentals','Research methods and statistics','Specialisation electives','Lab or internship','Master thesis']],
+ [/^Services/,['Core management theory','Industry and policy modules','Research methods','Internship or case work','Master thesis']],
+ [/Life Science – Biotech/,['Molecular biology and genetics','Plant or industrial biotechnology','Bioinformatics and statistics','Lab project','Thesis']],
+ [/Life Science|Environment –/,['Ecology and environmental science','Statistics and modelling','Field and lab methods','Specialisation electives','Thesis']],
+ [/Agriculture – Plant/,['Plant physiology and genetics','Crop science and breeding','Plant pathology and protection','Statistics and experimental design','Thesis (lab or field research)']],
+ [/Forestry/,['Forest ecology and management','Remote sensing and GIS','Forest policy and economics','Research methods','Thesis or internship']],
+ [/Animal|Aquaculture/,['Animal or aquatic biology','Genetics and breeding','Production systems','Statistics','Thesis (lab or field research)']],
+ [/Agriculture – Food/,['Food chemistry and microbiology','Food processing technology','Nutrition and safety','Statistics','Thesis']],
+ [/Agriculture – Environment/,['Climate and environmental science','Sustainability and policy','GIS and modelling','Research methods','Thesis']],
+ [/Agriculture/,['Agronomy and soil science','Farming and cropping systems','Agricultural economics and rural development','Statistics and research methods','Thesis or fieldwork']],
  [/Sociology/,['Social theory','Quantitative and qualitative research methods','Inequality and stratification','Applied statistics (R/Stata)','Master thesis']],
  [/Development/,['Development theory and political economy','Policy analysis; monitoring and evaluation','Research methods','Governance and poverty','Internship or fieldwork; thesis']],
  [/Political Science|IR/,['International relations theory','Comparative politics','Quantitative methods','Security and conflict electives','Master thesis']],
@@ -680,7 +687,6 @@ const FC=[
  [/Gender|Migration|Peace|Human Rights|Urban|Environment|Social Work|Education|Psychology/,['Core theory courses','Research methods','Specialisation electives','Internship or practice','Master thesis']],
  [/Computational/,['Statistics and programming (Python/R)','Machine learning for social data','Research design','Electives','Master thesis']],
  [/Business|Finance|Management/,['Core management courses','Quantitative methods','Specialisation electives','Internship or project','Master thesis']],
- [/Social Science/,['Core theory courses','Research methods','Specialisation electives','Fieldwork or internship','Master thesis']],
  [/./,['Advanced algorithms and theory','Machine learning or systems','Seminars and lab projects','Electives','Master thesis (strong maths and programming expected)']]
 ];
 const fmtS=d=>d.getDate()+' '+MONTHNAME[d.getMonth()].slice(0,3)+' '+d.getFullYear();
@@ -698,7 +704,7 @@ function detailRow(d){
   const url=/^https?:/.test(d.site)?d.site:'https://'+d.site;
   return `<tr class="dtr"><td colspan="12"><div class="dgrid">
     <div><h4>What you need to apply</h4><ul>
-      <li>4-year bachelor in a related field (a strong CGPA is expected; top programmes want about 3.5/4.0)</li>
+      <li>${/Agriculture/.test(d.field)?'4-year BSc in agriculture; botany; biology or a related life science (lab and field experience helps)':'4-year bachelor in a related field'} (a strong CGPA is expected; top programmes want about 3.5/4.0)</li>
       <li>Transcripts and certificates, attested by your university and the Ministry of Foreign Affairs</li>
       <li>English: ${c.e}</li>
       <li>CV, statement of purpose, 2–3 recommendation letters</li>
@@ -723,7 +729,7 @@ function renderTable(){
   document.getElementById('tbody').innerHTML=rows.map(d=>`
     <tr class="${rowCls(d)}">
       <td>${d.no}</td>
-      <td class="cty"><span class="rg rg-${d.region.replace(/ /g,'').toLowerCase()}">${d.region}</span><br>${d.city? d.city+', ':''}${d.country}</td>
+      <td class="cty">${d.city? d.city+', ':''}${d.country}</td>
       <td><div class="uni">${d.university}</div><div class="prog">${d.programme}</div>
           <div class="note">${d.note}</div><button class="dbtn" data-no="${d.no}">${OPEN.has(d.no)?'Hide details ▴':'Details ▾'}</button></td>
       <td>${d.field}</td>
@@ -796,9 +802,9 @@ function renderCountry(){
 
 /* ---------- wiring ---------- */
 function renderChips(){
-  const gs=['All','Social Science','Public Health','CS / Data / AI','Business'];
+  const gs=['All'].concat(GROUPS);
   document.getElementById('chips').innerHTML=gs.map(g=>{
-    const c=g==='All'?DATA.length:DATA.filter(d=>grp(d)===g).length;
+    const c=g==='All'?DATA.length:DATA.filter(d=>grp(d)===g).length; if(!c) return '';
     const on=(g==='All'&&!state.group)||g===state.group;
     return `<button class="chip${on?' on':''}" data-g="${g}">${g}<span class="n">${c}</span></button>`;
   }).join('');
@@ -817,16 +823,14 @@ document.getElementById('tbody').addEventListener('change',e=>{
   try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}
   sel.className='stsel '+stCls(sel.value);
 });
-function renderAll(){ renderChips(); renderRegion(); renderTable(); renderTimeline(); renderCountry(); }
+function renderAll(){ renderChips(); renderTable(); renderTimeline(); renderCountry(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
-document.getElementById('fRegion').addEventListener('change',e=>{state.region=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
 fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
 document.getElementById('fFund').addEventListener('change',e=>{state.fund=e.target.value;renderAll();});
 document.getElementById('fPrio').addEventListener('change',e=>{state.prio=e.target.value;renderAll();});
 document.getElementById('reset').addEventListener('click',()=>{
-  state={q:'',region:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
-  document.getElementById('fRegion').value='';
+  state={q:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
   document.getElementById('q').value=''; fC.value=''; fF.value='';
   document.getElementById('fFund').value=''; document.getElementById('fPrio').value='';
   renderAll();
@@ -837,31 +841,13 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
   t.classList.add('on');
   document.getElementById('p-'+t.dataset.p).classList.add('on');
 }));
-document.getElementById('dl').addEventListener('click',async()=>{
-  try{
-    const dls=await claude.use('downloads');
-    if(dls) await dls.save({filename:'Masters_Scholarship_Tracker_186.csv',data:"\uFEFF"+CSV});
-  }catch(err){}
+document.getElementById('dl').addEventListener('click',()=>{
+  const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='Europe_Masters_Scholarship_Tracker_266.csv';
+  a.click(); URL.revokeObjectURL(a.href);
 });
-(async()=>{ try{ const d=await claude.use('downloads'); if(!d) document.getElementById('dl').style.display='none'; }catch(e){ document.getElementById('dl').style.display='none'; } })();
-
-const RCOL={Europe:'#2c5aa0',Asia:'#c2410c',Oceania:'#0f766e','North America':'#6d3fc0',Global:'#5a6578'};
-function renderRegion(){
-  const el=document.getElementById('rchips');
-  const regs=['Europe','Asia','Oceania','North America','Global'].filter(r=>DATA.some(d=>d.region===r));
-  el.innerHTML=`<button class="rc ${state.region?'':'on'}" data-r=""><i></i>All regions <em>${DATA.length}</em></button>`+
-    regs.map(r=>`<button class="rc ${state.region===r?'on':''}" data-r="${r}" style="--c:${RCOL[r]}"><i></i>${r} <em>${DATA.filter(d=>d.region===r).length}</em></button>`).join('');
-  el.querySelectorAll('.rc').forEach(b=>b.addEventListener('click',()=>{
-    state.region=b.dataset.r; document.getElementById('fRegion').value=state.region; renderAll();
-  }));
-}
-(function(){
-  const up=DATA.filter(d=>d.date&&days(d.date,TODAY)>=0).sort((a,b)=>a.date-b.date).slice(0,3);
-  document.getElementById('next').innerHTML=up.length?'<div class="nl">Next deadlines</div>'+up.map(d=>{
-    const g=days(d.date,TODAY);
-    return `<div class="nx ${g<=30?'hot':''}"><b>${d.university}</b><span>${fmtS(d.date)} · ${g===0?'today':'in '+g+' days'} · ${d.country}</span></div>`;
-  }).join(''):'';
-})();
 
 renderAll();
 </script>
