@@ -998,3 +998,43 @@ document.getElementById('exportFav').addEventListener('click',()=>{
   const lines=[head.map(q).join(',')].concat(rows.map(d=>[d.no,d.country,d.university,d.programme,d.field,d.dur,d.tuition,d.living,d.fundText,d.deadline,d.site,d.status].map(q).join(',')));
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv'}));a.download='My_shortlist.csv';a.click();
 });
+document.getElementById('contact').innerHTML='<strong>Contact:</strong> '+(CONFIG.OWNER_NAME?CONFIG.OWNER_NAME+' · ':'')+'<a href="mailto:'+CONFIG.FEEDBACK_EMAIL+'" style="color:var(--accent)">'+CONFIG.FEEDBACK_EMAIL+'</a> — corrections and new programme suggestions are welcome.';
+function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards(); renderTable(); renderTimeline(); renderCountry(); }
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
+fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
+fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
+document.getElementById('fFund').addEventListener('change',e=>{state.fund=e.target.value;renderAll();});
+document.getElementById('fPrio').addEventListener('change',e=>{state.prio=e.target.value;renderAll();});
+document.getElementById('reset').addEventListener('click',()=>{
+  state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
+  document.getElementById('q').value=''; fC.value=''; fF.value='';
+  document.getElementById('fFund').value=''; document.getElementById('fPrio').value=''; document.getElementById('fSort').value='no'; document.getElementById('fFav').checked=false;
+  renderAll();
+});
+document.body.dataset.tab='cards';
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.body.dataset.tab=t.dataset.p;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  document.getElementById('p-'+t.dataset.p).classList.add('on');
+}));
+document.getElementById('dl').addEventListener('click',()=>{
+  const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='Masters_Scholarship_Tracker_'+DATA.length+'.csv';
+  a.click(); URL.revokeObjectURL(a.href);
+});
+
+renderAll();
+setUpd('Built-in data last updated '+CONFIG.UPDATED+'. Dates and countdowns use today’s date.');
+if(CONFIG.DATA_URL){
+  fetch(CONFIG.DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
+    const rows=parseCSV(t).map(mapRow);
+    if(rows.length>20){DATA.splice(0,DATA.length,...rows);DATA.forEach(d=>{if(ST[d.no])d.status=ST[d.no];});fillFilters();renderAll();setUpd('Live data loaded '+new Date().toLocaleString());}
+  }).catch(()=>setUpd('Live source unreachable; showing built-in data from '+CONFIG.UPDATED+'.'));
+}
+</script>
+</body>
+</html>
