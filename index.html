@@ -3,172 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Master's Scholarship Tracker — 266 Programmes</title>
+<title>Global Master’s Scholarship Tracker</title>
+<meta name="description" content="Searchable tracker of master’s programmes, scholarships and deadlines for applicants from Bangladesh.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M10 24 32 14l22 10-22 10z M18 32v10c0 4 7 8 14 8s14-4 14-8V32l-14 6z' fill='white'/%3E%3C/svg%3E">
 <style>
   :root{
-    color-scheme: light;
-    --ink:#161a23; --ink-soft:#5b6272; --line:#dde2ec; --paper:#f3f5fa;
-    --card:#ffffff; --accent:#3547c9; --accent-soft:#e7eafb;
-    --green:#11704a; --green-soft:#ddf3e8;
-    --amber:#8f5a00; --amber-soft:#fcefd0;
-    --grey:#596070; --grey-soft:#eaedf3;
-    --blue:#1d5ca6; --blue-soft:#dfecf9;
+    color-scheme:light;
+    --paper:#f4f6fa; --card:#fff; --ink:#151a2c; --ink-soft:#5d6580; --line:#e0e5f0; --head:#eef1fa;
+    --accent:#1f4fd8; --accent-soft:#e5ecfc;
+    --green:#0f7a52; --green-soft:#d9f4e6; --amber:#935f00; --amber-soft:#fdeeca;
+    --grey:#5d6580; --grey-soft:#eceff6; --blue:#1d62b3; --blue-soft:#dcebfb;
+    --red:#b4233a; --red-soft:#fde3e7; --shadow:0 1px 2px rgba(20,25,60,.06),0 6px 20px rgba(20,25,60,.06);
+  }
+  :root[data-theme=dark]{
+    color-scheme:dark;
+    --paper:#0e1120; --card:#171b30; --ink:#e9ebf8; --ink-soft:#9aa2c4; --line:#2a3050; --head:#1d2240;
+    --accent:#7ea3ff; --accent-soft:#1d2a52;
+    --green:#4fd69c; --green-soft:#12392d; --amber:#f2c05a; --amber-soft:#3b2f10;
+    --grey:#9aa2c4; --grey-soft:#232845; --blue:#78b4ff; --blue-soft:#142a48;
+    --red:#ff8a9a; --red-soft:#43202a; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
   }
   *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif;
-    font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1400px;margin:0 auto;padding:28px 22px 80px}
-  header{border-bottom:3px solid var(--accent);padding-bottom:16px;margin-bottom:22px}
-  h1{
-    font-family:Georgia,"Times New Roman",serif;font-weight:600;
-    font-size:31px;line-height:1.15;margin:0 0 6px;letter-spacing:-.4px;
-  }
-  .sub{color:var(--ink-soft);font-size:13.5px;max-width:760px}
-  .kicker{
-    text-transform:uppercase;letter-spacing:1.6px;font-size:10.5px;
-    font-weight:700;color:var(--accent);margin-bottom:8px;
-  }
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:20px 0 24px}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
-  .stat .n{font-family:Georgia,serif;font-size:26px;line-height:1.1;font-weight:600}
-  .stat .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;color:var(--ink-soft);margin-top:4px;font-weight:600}
-  .controls{
-    background:var(--card);border:1px solid var(--line);border-radius:4px;
-    padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px;
-  }
-  .controls input,.controls select{
-    font-family:inherit;font-size:13px;padding:7px 9px;border:1px solid var(--line);
-    border-radius:3px;background:#fff;color:var(--ink);min-width:0;
-  }
-  .controls input[type=search]{flex:1 1 200px;min-width:180px}
-  .controls select{flex:0 1 auto;max-width:190px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1440px;margin:0 auto;padding:0 22px 80px}
+  .hero{margin:0 -22px 0;padding:30px 22px 72px;background:linear-gradient(135deg,#0a1b45 0%,#12327f 60%,#1d4fb8 100%);color:#fff}
+  .heroin{max-width:1440px;margin:0 auto;display:flex;justify-content:center;text-align:center;position:relative}
+  .kicker{text-transform:uppercase;letter-spacing:1.6px;font-size:11px;font-weight:700;color:#cfd0ff;margin-bottom:10px}
+  h1{font-size:34px;line-height:1.1;margin:0 0 8px;letter-spacing:-.8px;font-weight:800}
+  .sub{color:#e3e4ff;font-size:14px;max-width:720px;margin:0 auto}
+  .upd{margin-top:10px;font-size:11.5px;color:#cfd0ff}
+  #theme{position:absolute;right:0;top:0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:8px 12px;font-size:15px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:-46px 0 14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .stat .n{font-size:28px;line-height:1.1;font-weight:800;color:var(--accent)}
+  .stat .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;color:var(--ink-soft);margin-top:4px;font-weight:700}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .chip{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:600}
+  .chip .n{color:var(--ink-soft);font-weight:500;margin-left:6px}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .chip.on .n{color:#e3e2ff}
+  .controls{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px;box-shadow:var(--shadow)}
+  .controls input,.controls select{font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);min-width:0}
+  .controls input[type=search]{flex:1 1 220px;min-width:180px}
+  .controls select{flex:0 1 auto;max-width:180px}
   .controls input:focus,.controls select:focus{outline:2px solid var(--accent);outline-offset:-1px}
-  button{
-    font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:3px;
-    border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;
-  }
-  button.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
-  button:hover{opacity:.88}
-  .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:16px;flex-wrap:wrap}
-  .tab{
-    background:none;border:none;border-bottom:2px solid transparent;border-radius:0;
-    color:var(--ink-soft);font-size:13px;font-weight:600;padding:9px 14px;cursor:pointer;
-  }
-  .tab.on{color:var(--accent);border-bottom-color:var(--accent)}
-  .tab .c{font-weight:400;color:var(--ink-soft);font-size:11.5px;margin-left:5px}
-  .panel{display:none}
-  .panel.on{display:block}
-
-  /* table */
-  .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--card)}
-  table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:1180px}
-  thead th{
-    position:sticky;top:0;background:#eaeefa;text-align:left;font-size:10.5px;
-    text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:700;
-    padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
-  }
-  thead th:hover{background:#dde4f5}
-  thead th.sorted{color:var(--accent)}
-  thead th .ar{opacity:.5;font-size:9px;margin-left:3px}
-  tbody td{padding:9px 10px;border-bottom:1px solid #e9edf5;vertical-align:top}
-  tbody tr:hover{background:#f5f7fd}
-  tbody tr:last-child td{border-bottom:none}
-  .uni{font-weight:600}
-  .prog{color:var(--ink-soft);font-size:11.5px;margin-top:1px}
-  .cty{font-size:11px;color:var(--ink-soft);white-space:nowrap}
-  .pill{
-    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;
-    padding:2px 7px;border-radius:2px;white-space:nowrap;text-transform:uppercase;
-  }
-  .p-full{background:var(--green-soft);color:var(--green)}
-  .p-part{background:var(--amber-soft);color:var(--amber)}
-  .p-mix{background:var(--blue-soft);color:var(--blue)}
-  .p-low{background:var(--grey-soft);color:var(--grey)}
-  .p-high{background:var(--accent-soft);color:var(--accent)}
-  .p-med{background:var(--blue-soft);color:var(--blue)}
-  .money{white-space:nowrap;font-variant-numeric:tabular-nums}
-  .dl{white-space:nowrap;font-variant-numeric:tabular-nums}
-  .dl .m{display:block;font-size:10.5px;color:var(--ink-soft)}
-  .fund{font-size:11.5px;line-height:1.4;max-width:280px}
-  .stsel{
-    font-family:inherit;font-size:11px;padding:3px 4px;border-radius:2px;
-    border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;max-width:112px;
-  }
-  .stsel.s-applied{background:var(--blue-soft);border-color:#c3d3e4;color:var(--blue);font-weight:600}
-  .stsel.s-offer{background:var(--green-soft);border-color:#c2d8cb;color:var(--green);font-weight:600}
-  .stsel.s-prep{background:var(--amber-soft);border-color:#e6d9b4;color:var(--amber);font-weight:600}
-  .stsel.s-rej{background:var(--grey-soft);color:var(--grey)}
-  .note{font-size:11.5px;color:var(--ink-soft);max-width:300px}
+  .chk{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink-soft);padding:0 6px;cursor:pointer}
+  .chk input{min-width:0;accent-color:var(--accent)}
+  button{font-family:inherit;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:transform .08s,opacity .15s}
+  button.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  button:hover{opacity:.9} button:active{transform:scale(.97)}
+  .tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{background:transparent;border:1px solid transparent;color:var(--ink-soft);font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px}
+  .tab.on{background:var(--accent-soft);color:var(--accent)}
+  .tab .c{font-weight:500;font-size:11.5px;margin-left:6px;opacity:.8}
+  .panel{display:none} .panel.on{display:block}
   .empty{padding:40px;text-align:center;color:var(--ink-soft)}
 
-  /* timeline */
-  .tl{display:grid;gap:14px}
-  .tlmonth{border:1px solid var(--line);border-radius:4px;background:var(--card);overflow:hidden}
-  .tlhead{
-    display:flex;justify-content:space-between;align-items:baseline;gap:10px;
-    padding:10px 14px;background:#eaeefa;border-bottom:1px solid var(--line);
-  }
-  .tlhead .mn{font-family:Georgia,serif;font-size:15px;font-weight:600}
-  .tlhead .cd{font-size:11px;color:var(--ink-soft);font-weight:600;letter-spacing:.4px}
-  .tlhead .cd.soon{color:var(--accent)}
-  .tlrow{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #e9edf5;align-items:baseline}
-  .tlrow:last-child{border-bottom:none}
-  .tlrow .day{font-variant-numeric:tabular-nums;font-size:11px;color:var(--ink-soft);width:52px;flex:none;font-weight:600}
-  .tlrow .body{flex:1;min-width:0}
-  .tlrow .t{font-weight:600;font-size:12.5px}
-  .tlrow .s{font-size:11.5px;color:var(--ink-soft)}
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;align-items:start}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .15s}
+  .card:hover{transform:translateY(-2px)}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--line)}
+  .card.rf::before{background:var(--green)} .card.rm::before{background:var(--amber)}
+  .ct{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .star{background:transparent;border:none;color:var(--line);font-size:20px;padding:0 2px;line-height:1}
+  .star.on{color:#f5b301}
+  .card h3{margin:6px 0 2px;font-size:16px;line-height:1.25;font-weight:800}
+  .pg{margin:0 0 10px;color:var(--ink-soft);font-size:12.5px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--grey-soft);color:var(--ink-soft)}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 10px;background:var(--paper);border-radius:12px;padding:10px}
+  .facts div{min-width:0} .facts dt{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:700}
+  .facts dd{margin:2px 0 0;font-size:12.5px;font-weight:700;word-break:break-word}
+  .sch{margin:0 0 10px;font-size:12px;color:var(--ink-soft)}
+  .dlr{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:8px 11px;border-radius:10px;background:var(--grey-soft);color:var(--ink-soft)}
+  .dlr.warm{background:var(--amber-soft);color:var(--amber)} .dlr.hot{background:var(--red-soft);color:var(--red)} .dlr.late{opacity:.6}
+  .cf{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+  .cnote{font-size:11.5px;color:var(--ink-soft);margin-top:10px}
+  .cdet{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
 
-  /* country view */
-  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-  .ccard{border:1px solid var(--line);border-radius:4px;background:var(--card);padding:13px 15px}
-  .ccard h3{margin:0 0 2px;font-family:Georgia,serif;font-size:17px;font-weight:600}
-  .ccard .meta{font-size:11px;color:var(--ink-soft);margin-bottom:8px}
-  .ccard ul{list-style:none;margin:0;padding:0}
-  .ccard li{padding:4px 0;border-top:1px solid #e9edf5;font-size:12px;display:flex;justify-content:space-between;gap:8px}
-  .ccard li .u{font-weight:600}
-  .ccard li .f{color:var(--ink-soft);font-size:10.5px;white-space:nowrap}
-  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-soft)}
-  footer p{margin:0 0 8px}
-  @media (max-width:640px){
-    h1{font-size:25px}
-    .wrap{padding:18px 12px 60px}
-  }
-  .stat{border-top:3px solid var(--accent)}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
-  .chip{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:12.5px}
-  .chip .n{color:var(--ink-soft);font-weight:400;margin-left:5px}
-  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
-  .chip.on .n{color:#dfe3ff}
-  tr.rf td:first-child{box-shadow:inset 4px 0 0 var(--green)}
-  tr.rm td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
+  /* table */
+  .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:1180px}
+  thead th{position:sticky;top:0;background:var(--head);text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:800;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th.sorted{color:var(--accent)} thead th .ar{opacity:.6;font-size:9px;margin-left:3px}
+  tbody td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:var(--paper)}
   tbody td:nth-child(3){min-width:260px}
-  .stsel{max-width:120px}
-  .dbtn{margin-top:6px;padding:3px 9px;font-size:11px;background:#fff;color:var(--accent);border:1px solid var(--accent)}
-  tr.dtr td{background:#f7f9ff;padding:14px 16px;border-bottom:2px solid var(--line)}
-  .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;white-space:normal}
+  tr.rf td:first-child{box-shadow:inset 4px 0 0 var(--green)} tr.rm td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
+  .uni{font-weight:700} .prog{color:var(--ink-soft);font-size:11.5px;margin-top:1px}
+  .cty{font-size:11.5px;color:var(--ink-soft);white-space:nowrap}
+  .pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:999px;white-space:nowrap;text-transform:uppercase}
+  .p-full{background:var(--green-soft);color:var(--green)} .p-part{background:var(--amber-soft);color:var(--amber)}
+  .p-low{background:var(--grey-soft);color:var(--grey)} .p-high{background:var(--accent-soft);color:var(--accent)} .p-med{background:var(--blue-soft);color:var(--blue)}
+  .money,.dl{white-space:nowrap;font-variant-numeric:tabular-nums} .dl .m{display:block;font-size:10.5px;color:var(--ink-soft)}
+  .fund{font-size:11.5px;line-height:1.4;max-width:280px} .note{font-size:11.5px;color:var(--ink-soft);max-width:300px}
+  .stsel{font-family:inherit;font-size:11.5px;padding:5px 7px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;max-width:125px}
+  .stsel.s-applied{background:var(--blue-soft);color:var(--blue);font-weight:700} .stsel.s-offer{background:var(--green-soft);color:var(--green);font-weight:700}
+  .stsel.s-prep{background:var(--amber-soft);color:var(--amber);font-weight:700} .stsel.s-rej{background:var(--grey-soft);color:var(--grey)}
+  .dbtn{margin-top:6px;padding:3px 10px;font-size:11px;background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  tr.dtr td{background:var(--head);padding:14px 16px;border-bottom:2px solid var(--line)}
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;white-space:normal;font-weight:400}
   .dgrid h4{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:var(--accent)}
-  .dgrid ul{margin:0;padding-left:16px}
-  .dgrid li{margin:2px 0;font-size:12px}
-  .dgrid p{margin:0 0 5px;font-size:12px}
-  .dgrid .tip{grid-column:1/-1;font-size:11px;color:var(--ink-soft)}
-  .dgrid a{color:var(--accent)}
+  .dgrid ul{margin:0;padding-left:16px} .dgrid li{margin:2px 0;font-size:12px} .dgrid p{margin:0 0 5px;font-size:12px}
+  .dgrid .tip{grid-column:1/-1;font-size:11px;color:var(--ink-soft)} .dgrid a{color:var(--accent)}
+
+  /* timeline + country */
+  .tl{display:grid;gap:14px}
+  .tlmonth{border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
+  .tlhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 16px;background:var(--head)}
+  .tlhead .mn{font-size:16px;font-weight:800} .tlhead .cd{font-size:11px;color:var(--ink-soft);font-weight:700} .tlhead .cd.soon{color:var(--accent)}
+  .tlrow{display:flex;gap:12px;padding:9px 16px;border-top:1px solid var(--line);align-items:baseline}
+  .tlrow .day{font-variant-numeric:tabular-nums;font-size:11px;color:var(--ink-soft);width:54px;flex:none;font-weight:700}
+  .tlrow .t{font-weight:700;font-size:12.5px} .tlrow .s{font-size:11.5px;color:var(--ink-soft)}
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .ccard{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:15px 16px;box-shadow:var(--shadow)}
+  .ccard h3{margin:0 0 2px;font-size:18px;font-weight:800} .ccard .meta{font-size:11.5px;color:var(--ink-soft);margin-bottom:8px}
+  .ccard ul{list-style:none;margin:0;padding:0}
+  .ccard li{padding:5px 0;border-top:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between;gap:8px}
+  .ccard li .u{font-weight:700} .ccard li .f{color:var(--ink-soft);font-size:10.5px;text-align:right}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-soft)} footer p{margin:0 0 8px}
+    .notice{margin:0 0 16px;padding:11px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--card);font-size:12.5px;color:var(--ink-soft)}
+  .notice strong{color:var(--ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media print{
+    .hero{background:#fff!important;color:#000!important;padding:0 0 10px!important;margin:0!important}
+    .hero *{color:#000!important} #theme,.controls,.chips,.tabs,.fab,.modal,.dbtn,.rep,.star,.cf select,.notice,.upd{display:none!important}
+    .stats{margin:10px 0!important} body{background:#fff!important} .card{break-inside:avoid;box-shadow:none!important}
+    .cards{grid-template-columns:repeat(2,1fr)!important} .panel{display:none!important} #p-cards{display:block!important}
+  }
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .chip{flex:none;white-space:nowrap}
+  .controls input[type=search]{flex:1 1 100%}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:first-child{grid-column:1/-1}
+  .notice{margin:0 0 18px}
+  .cbtns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  tbody td:first-child{white-space:nowrap}
+  body[data-tab=schol] .chips,body[data-tab=schol] #chips+details,body[data-tab=schol] .controls select,body[data-tab=schol] .chk,body[data-tab=schol] .cbtns{display:none}
+  :root[data-theme=dark] button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip),:root[data-theme=dark] .chip.on{color:#0a1230}
+  :root[data-theme=dark] .chip.on .n{color:#233a78}
+  .fab{padding:9px 16px;font-size:12px}
+  .fab{position:fixed;right:18px;bottom:18px;z-index:20;border-radius:999px;padding:11px 18px;box-shadow:var(--shadow)}
+  .modal{position:fixed;inset:0;background:rgba(10,12,30,.55);z-index:30;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal[hidden]{display:none}
+  .mbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;width:min(480px,100%);box-shadow:var(--shadow)}
+  .mbox h3{margin:0 0 12px;font-size:18px}
+  .mbox label{display:block;font-size:12px;font-weight:700;color:var(--ink-soft);margin-bottom:10px}
+  .mbox input,.mbox select,.mbox textarea{display:block;width:100%;margin-top:4px;font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+  .mrow{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap} .mnote{font-size:11.5px;color:var(--ink-soft);margin:10px 0 0}
+  .rep{padding:3px 8px;font-size:12px;margin-top:6px}
+  .sc{border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+  .sc.ok{background:var(--green-soft);color:var(--green)} .sc.closed{background:var(--red-soft);color:var(--red)} .sc.wait{background:var(--amber-soft);color:var(--amber)} .sc.rep{background:var(--blue-soft);color:var(--blue)}
+  @media (max-width:640px){
+    .heroin{flex-direction:column;align-items:center} #theme{position:static;order:-1;margin-bottom:12px}
+    .stats{grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-40px} .stat{padding:10px} .stat .n{font-size:20px} .stat .l{font-size:9px}
+    .fab{right:12px;bottom:12px;padding:8px 14px}
+h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12px 70px}.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="kicker">Bangladesh → Europe &amp; selected global destinations · 2027 entry</div>
-    <h1>Master's Scholarship Tracker</h1>
-    <div class="sub">266 programmes across 25 countries plus multi-country consortia, covering all 11 broad fields (ISCED). The list is Europe-focused, with selected opportunities in Australia and the United States.</div>
-  </header>
+  <header class="hero"><div class="heroin"><div>
+    <div class="kicker">Programmes · Scholarships · Deadlines · For applicants from Bangladesh · 2027 entry</div>
+    <h1>Global Master’s Scholarship Tracker</h1>
+    <div class="sub" id="sub"></div><div class="upd" id="upd"></div></div>
+    <button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
 
   <div class="stats" id="stats"></div>
+  <div class="notice"><strong>Please note:</strong> dates, fees and funding shown here are indicative and compiled from public sources. Entries marked “unconfirmed” or “check” have not been verified. Always confirm on the official programme or scholarship page before applying or paying any fee.</div>
 
-  <details style="margin:0 0 12px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
   <div class="chips" id="chips"></div>
+  <details style="margin:-6px 0 14px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
 
   <div class="controls">
     <input type="search" id="q" placeholder="Search university, country, programme…">
@@ -186,17 +192,24 @@
       <option value="Medium">Medium priority</option>
       <option value="Low">Low priority</option>
     </select>
-    <button class="ghost" id="reset">Reset</button>
-    <button id="dl">Download CSV</button>
+    <select id="fSort"><option value="no">Sort: default</option><option value="deadline">Sort: deadline soonest</option><option value="priority">Sort: priority</option><option value="living">Sort: cheapest living</option></select>
+    <label class="chk"><input type="checkbox" id="fFav"> ★ Shortlist only</label>
+    <span class="cbtns"><button class="ghost" id="reset">Reset</button>
+    <button class="ghost" id="exportFav">Shortlist CSV</button>
+    <button class="ghost" id="printBtn">Print</button>
+    <button id="dl">All data CSV</button></span>
   </div>
 
   <div class="tabs">
-    <button class="tab on" data-p="table">Table <span class="c" id="cTable"></span></button>
+    <button class="tab on" data-p="cards">Cards <span class="c" id="cCards"></span></button>
+    <button class="tab" data-p="table">Table <span class="c" id="cTable"></span></button>
+    <button class="tab" data-p="schol">Scholarships <span class="c" id="cSchol"></span></button>
     <button class="tab" data-p="timeline">Deadline timeline <span class="c" id="cTimeline"></span></button>
     <button class="tab" data-p="country">By country <span class="c" id="cCountry"></span></button>
   </div>
 
-  <div class="panel on" id="p-table">
+  <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
+  <div class="panel" id="p-table">
     <div class="tablebox">
       <table id="tbl">
         <thead><tr>
@@ -219,20 +232,31 @@
     </div>
   </div>
 
+  <div class="panel" id="p-schol"><div class="cards" id="scholCards"></div></div>
   <div class="panel" id="p-timeline"><div class="tl" id="tl"></div></div>
   <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
 
   <footer>
     <p><strong>How to use this:</strong> filter by “Full funding only” when you need a full ride, or by country when an application portal costs money. The timeline tab sorts every deadline chronologically so you can work backwards — scholarship deadlines are usually 1–4 months before the programme's own deadline.</p>
     <p>Tuition, living costs and deadlines are indicative for the 2027 intake and move every year — always confirm on the university's own admissions page before you pay an application fee. Living-cost figures are a planning estimate, not a quote. “Full” means tuition plus a stipend is available through at least one of the listed schemes.</p>
-  </footer>
+    <p><strong>How updates work:</strong> countdowns and “passed” flags use today's date, so they refresh every time you open the page. New programmes and scholarships come from the data source: either the built-in list, or a live CSV link you set in <code>CONFIG.DATA_URL</code> (for example a Google Sheet published as CSV with the same columns as “Download CSV”).</p>
+  <p id="contact"></p>
+</footer>
+<button class="fab" id="fab">Feedback</button>
+<div class="modal" id="fbm" hidden><div class="mbox"><h3>Send feedback</h3>
+  <label>Type<select id="fbType"><option>Suggestion</option><option>Wrong or outdated information</option><option>Add a programme or scholarship</option><option>Bug or display problem</option></select></label>
+  <label>Programme number (optional)<input id="fbNo" placeholder="e.g. 42"></label>
+  <label>Your message<textarea id="fbMsg" rows="5" placeholder="What should be fixed or added?"></textarea></label>
+  <div class="mrow"><button class="ghost" id="fbCancel">Cancel</button><button class="ghost" id="fbCopy">Copy</button><button id="fbSend">Send by email</button></div>
+  <p class="mnote" id="fbNote"></p></div></div>
 </div>
 
 <script>
+const CONFIG={DATA_URL:'',FEEDBACK_EMAIL:'imdmominul196@gmail.com',OWNER_NAME:'',UPDATED:'15 Nov 2026'};
 const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuition (non-EU/yr),Living cost (EUR/mo),Funding scheme(s),Funding level,Intake and deadline (2027 entry),Website,Notes,My status,Priority
 1,EU (multi-country),Multiple,Erasmus Mundus consortium,Erasmus Mundus Joint Master (100+ programmes),Various,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Oct 2026 – Jan 2027 (varies per programme),erasmus-plus.ec.europa.eu,Easiest full-funding route for Bangladeshi students. You may apply to max 3 programmes. Check the EMJM catalogue every October.,Not started,High
 2,Germany,Munich,Technical University of Munich (TUM),M.Sc. Computer Science,Computer Science,English/German,2 yrs,€0 + ~€150/semester fee,1000,DAAD Study Scholarship; Deutschlandstipendium (€300/mo); TUM merit awards,Partial,Winter: 15 Jan 2027 / Summer: 30 Nov 2026,tum.de,No tuition for any student — only semester fee which includes public transport pass.,Not started,High
-3,Germany,Munich,TUM,M.Sc. Data Engineering and Analytics,Data Science,English,2 yrs,€0 + fees,1000,DAAD; Deutschlandstipendium,Partial,15 Jan 2027,tum.de,Strong ML/data programme; very competitive GPA requirement.,Not started,High
+3,Germany,Munich,Technical University of Munich (TUM),M.Sc. Data Engineering and Analytics,Data Science,English,2 yrs,€0 + fees,1000,DAAD; Deutschlandstipendium,Partial,15 Jan 2027,tum.de,Strong ML/data programme; very competitive GPA requirement.,Not started,High
 4,Germany,Aachen,RWTH Aachen,M.Sc. Computer Science,Computer Science,English/German,2 yrs,€0 + ~€300/semester fee,950,DAAD; RWTH scholarship programmes,Partial,1 Mar 2027 (non-EU),rwth-aachen.de,Top engineering school; semester fee includes NRW transit ticket.,Not started,Medium
 5,Germany,Berlin,TU Berlin,M.Sc. Computer Science,Computer Science,English/German,2 yrs,€0 + ~€320/semester fee,1000,DAAD; Erasmus Mundus,Partial,15 Jan – 15 Mar 2027,tu.berlin,Cheap living for a capital city; big startup scene.,Not started,Medium
 6,Germany,Stuttgart,University of Stuttgart,M.Sc. Computer Science,Computer Science,English,2 yrs,€3000 (Baden-Württemberg non-EU fee),1000,DAAD; Landesstipendium,Partial,15 Jan 2027,uni-stuttgart.de,Baden-Württemberg charges non-EU students €1500/semester.,Not started,Medium
@@ -242,7 +266,7 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 10,Germany,Bonn,University of Bonn,M.Sc. Computer Science,Computer Science,English,2 yrs,€0 + ~€330/semester fee,950,DAAD; Bonn Excellence Scholarship,Partial,15 Jan – 31 Mar 2027,uni-bonn.de,Top ML/CS research (Lamarr Institute); excellent for AI.,Not started,High
 11,Germany,Dresden,TU Dresden,M.Sc. Computational Modeling and Simulation,Computational Science,English,2 yrs,€0 + fees,850,DAAD; Erasmus Mundus,Partial,15 Jan 2027,tu-dresden.de,Very affordable city; strong simulation/engineering.,Not started,Low
 12,Germany,Mannheim,University of Mannheim,Mannheim Master in Management,Business/Management,English,2 yrs,€3000,1000,DAAD; Mannheim scholarship fund,Partial,31 Mar 2027,uni-mannheim.de,Best business school in Germany; BW fees apply.,Not started,Medium
-13,Netherlands,Delft,TU Delft,M.Sc. Computer Science,Computer Science,English,2 yrs,€20000–22000,1200,Holland Scholarship (€5000); Justus and Louise van Effen Excellence; Erasmus Mundus,Partial,Scholarship 1 Dec 2026 / programme 1 Apr 2027,tudelft.nl,Excellent reputation but tuition is high — needs a scholarship.,Not started,High
+13,Netherlands,Delft,Delft University of Technology (TU Delft),M.Sc. Computer Science,Computer Science,English,2 yrs,€20000–22000,1200,Holland Scholarship (€5000); Justus and Louise van Effen Excellence; Erasmus Mundus,Partial,Scholarship 1 Dec 2026 / programme 1 Apr 2027,tudelft.nl,Excellent reputation but tuition is high — needs a scholarship.,Not started,High
 14,Netherlands,Eindhoven,TU Eindhoven,M.Sc. Data Science and Artificial Intelligence,Data Science,English,2 yrs,€18000–20000,1100,Holland Scholarship; TU/e Excellence Scholarship; ALSP,Partial,1 Feb 2027,tue.nl,Industry-linked; Brainport region jobs.,Not started,High
 15,Netherlands,Amsterdam,University of Amsterdam,M.Sc. Artificial Intelligence,Artificial Intelligence,English,2 yrs,€18000–22000,1300,Amsterdam Merit Scholarship (full tuition); Holland Scholarship,Full or partial,1 Feb 2027,uva.nl,AMS is one of the few full-tuition awards in NL.,Not started,High
 16,Netherlands,Amsterdam,VU Amsterdam,M.Sc. Computer Science,Computer Science,English,2 yrs,€16000–19000,1300,VU Fellowship Programme (VUFP – full tuition); Holland Scholarship,Full or partial,1 Feb 2027,vu.nl,VUFP is genuinely full-tuition for strong non-EU students.,Not started,High
@@ -264,7 +288,7 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 32,Finland,Lappeenranta,LUT University,M.Sc. Software Engineering,Software Engineering,English,2 yrs,€13500,800,LUT scholarship 30–100%,Partial,Jan 2027,lut.fi,Cheapest Finnish option with decent scholarship odds.,Not started,Medium
 33,Finland,Tampere,Tampere University,M.Sc. Computer Science,Computer Science,English,2 yrs,€14000,850,Tampere scholarship 50–100%,Partial,Jan 2027,tuni.fi,Good signal processing and HCI groups.,Not started,Medium
 34,Finland,Turku,University of Turku,M.Sc. Computer Science,Computer Science,English,2 yrs,€14000,850,UTU scholarship 50–100%,Partial,Jan 2027,utu.fi,Smaller city; lower living cost.,Not started,Low
-35,Norway,Trondheim,NTNU,M.Sc. Computer Science,Computer Science,English,2 yrs,NOK 150000 (~€13000),1300,Limited: Erasmus Mundus only; NTNU fee waivers are rare,Low,1 Dec 2026,ntnu.edu,Norway introduced tuition for non-EU in 2023 — funding is now very scarce. Think twice.,Not started,Low
+35,Norway,Trondheim,Norwegian University of Science and Technology (NTNU),M.Sc. Computer Science,Computer Science,English,2 yrs,NOK 150000 (~€13000),1300,Limited: Erasmus Mundus only; NTNU fee waivers are rare,Low,1 Dec 2026,ntnu.edu,Norway introduced tuition for non-EU in 2023 — funding is now very scarce. Think twice.,Not started,Low
 36,Norway,Oslo,University of Oslo,M.Sc. Informatics,Computer Science,English,2 yrs,NOK 140000 (~€12000),1350,Erasmus Mundus; no automatic scholarship,None,1 Dec 2026,uio.no,Only worth it if fully funded elsewhere or self-funded.,Not started,Low
 37,Denmark,Lyngby,Technical University of Denmark (DTU),M.Sc. Computer Science,Computer Science,English,2 yrs,€13000–15000,1200,Danish Government Scholarship (tuition waiver + ~€800/mo); DTU merit,Partial to full,15 Jan 2027,dtu.dk,Strong engineering brand; DGS is competitive but real.,Not started,Medium
 38,Denmark,Copenhagen,University of Copenhagen,M.Sc. Computer Science,Computer Science,English,2 yrs,€13000–16000,1250,Danish Government Scholarship,Partial to full,15 Jan 2027,ku.dk,Living cost is the main burden.,Not started,Medium
@@ -275,12 +299,12 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 43,Belgium,Brussels,Vrije Universiteit Brussel (VUB),M.Sc. Computer Science,Computer Science,English,2 yrs,€5000–6500,1000,VLIR-UOS; VUB merit,Partial,1 Mar 2027,vub.be,English-taught; Brussels job market.,Not started,Medium
 44,Belgium,Louvain-la-Neuve,UCLouvain,M.Sc. Computer Science,Computer Science,English/French,2 yrs,€4500–6000,950,ARES-CCD (full; development cooperation); UCLouvain merit,Full or partial,1 Mar 2027,uclouvain.be,ARES is the French-speaking counterpart of VLIR-UOS.,Not started,Medium
 45,Belgium,Antwerp,University of Antwerp,M.Sc. Computer Science,Computer Science,English,2 yrs,€6000,1000,VLIR-UOS; Antwerp merit,Partial,1 Mar 2027,uantwerpen.be,Safe city; good data science groups.,Not started,Low
-46,Austria,Vienna,TU Wien,M.Sc. Data Science,Data Science,English,2 yrs,€1500,1100,OeAD Ernst Mach Grant (€1150/mo); Austrian Government Scholarship,Partial to full,5 Mar 2027 (Ernst Mach: 1 Feb 2027),tuwien.ac.at,Very low tuition; Vienna is repeatedly ranked the world's most liveable city.,Not started,High
+46,Austria,Vienna,TU Wien (Vienna University of Technology),M.Sc. Data Science,Data Science,English,2 yrs,€1500,1100,OeAD Ernst Mach Grant (€1150/mo); Austrian Government Scholarship,Partial to full,5 Mar 2027 (Ernst Mach: 1 Feb 2027),tuwien.ac.at,Very low tuition; Vienna is repeatedly ranked the world's most liveable city.,Not started,High
 47,Austria,Vienna,University of Vienna,M.Sc. Computer Science,Computer Science,English,2 yrs,€1500,1100,OeAD Ernst Mach; university merit,Partial,5 Mar 2027,univie.ac.at,Largest university in the German-speaking world.,Not started,Medium
-48,Austria,Graz,TU Graz,M.Sc. Computer Science,Computer Science,English,2 yrs,€1500,1000,OeAD Ernst Mach; TU Graz merit,Partial,Mar – May 2027,tugraz.at,Cheaper living than Vienna.,Not started,Medium
-49,Austria,Linz,JKU Linz,M.Sc. Artificial Intelligence,Artificial Intelligence,English,2 yrs,€1500,1000,OeAD Ernst Mach,Partial,Mar – May 2027,jku.at,One of Europe's oldest dedicated AI master's programmes.,Not started,Medium
+48,Austria,Graz,Graz University of Technology (TU Graz),M.Sc. Computer Science,Computer Science,English,2 yrs,€1500,1000,OeAD Ernst Mach; TU Graz merit,Partial,Mar – May 2027,tugraz.at,Cheaper living than Vienna.,Not started,Medium
+49,Austria,Linz,Johannes Kepler University Linz (JKU),M.Sc. Artificial Intelligence,Artificial Intelligence,English,2 yrs,€1500,1000,OeAD Ernst Mach,Partial,Mar – May 2027,jku.at,One of Europe's oldest dedicated AI master's programmes.,Not started,Medium
 50,Switzerland,Zurich,ETH Zurich,M.Sc. Computer Science,Computer Science,English,2 yrs,CHF 1460 (~€1550),2000,ETH Excellence Scholarship (ESOP – full tuition + CHF 12000/semester); Swiss Government Excellence (ESKAS),Full,15 Dec 2026,ethz.ch,World top-5 CS. Living cost is brutal but ESOP is generous.,Not started,High
-51,Switzerland,Lausanne,EPFL,M.Sc. Computer Science,Computer Science,English,2 yrs,CHF 1560 (~€1650),1900,EPFL Excellence Fellowship (CHF 10000/semester); ESKAS,Full,15 Dec 2026 / 15 Apr 2027 (round 2),epfl.ch,Fellowship deadline is earlier than admission — apply early.,Not started,High
+51,Switzerland,Lausanne,EPFL (Lausanne),M.Sc. Computer Science,Computer Science,English,2 yrs,CHF 1560 (~€1650),1900,EPFL Excellence Fellowship (CHF 10000/semester); ESKAS,Full,15 Dec 2026 / 15 Apr 2027 (round 2),epfl.ch,Fellowship deadline is earlier than admission — apply early.,Not started,High
 52,Switzerland,Zurich,University of Zurich,M.Sc. Informatics,Computer Science,English,2 yrs,CHF 1600 (~€1700),2000,ESKAS; UZH merit,Partial,Feb – Apr 2027,uzh.ch,Cheaper than ETH with many shared courses.,Not started,Low
 53,Switzerland,St. Gallen,University of St. Gallen (HSG),M.Sc. Strategy and International Management,Business/Management,English,2 yrs,CHF 3600 (~€3800),2100,HSG merit scholarships; ESKAS,Partial,Jan – Apr 2027,unisg.ch,Top European business school; SIM is world-ranked.,Not started,Low
 54,France,Palaiseau,École Polytechnique,M.Sc. Data Science for Business (with HEC),Data Science,English,2 yrs,€15000–22000,1300,Eiffel Excellence (full); X-HEC merit,Full or partial,Jan 2027 (Eiffel via school) / Mar 2027,polytechnique.edu,Elite brand; Eiffel is the key funding route.,Not started,Medium
@@ -314,9 +338,9 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 82,Czechia,Prague,Charles University,M.Sc. Computer Science,Computer Science,English,2 yrs,€4000–6000 (free if studied in Czech),700,Czech Government Scholarship; Charles University merit,Full or partial,Feb – Apr 2027 (government scheme Jan – Mar),cuni.cz,Studying in Czech is free but needs B2 Czech.,Not started,Medium
 83,Czechia,Prague,Czech Technical University (CTU),M.Sc. Computer Science,Computer Science,English,2 yrs,€3000–5000,700,Czech Government Scholarship; CTU merit,Full or partial,Feb – Apr 2027,cvut.cz,Strong engineering; Prague living cost is rising.,Not started,Medium
 84,Czechia,Brno,Brno University of Technology,M.Sc. Information Technology,Information Technology,English,2 yrs,€3000–4500,650,Czech Government Scholarship; BUT merit,Full or partial,Feb – Apr 2027,vut.cz,Cheaper city; good industry links (Red Hat; IBM).,Not started,Low
-85,Hungary,Budapest,Budapest University of Technology and Economics (BME),M.Sc. Computer Engineering,Computer Engineering,English,2 yrs,€4000–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing); Erasmus Mundus,Full,15 Jan 2027,bme.hu,Stipendium Hungaricum is one of the easiest full rides for Bangladeshi students.,Not started,High
-86,Hungary,Budapest,Eötvös Loránd University (ELTE),M.Sc. Computer Science,Computer Science,English,2 yrs,€4000–6000,650,Stipendium Hungaricum,Full,15 Jan 2027,elte.hu,Same scholarship; strong theoretical CS.,Not started,High
-87,Hungary,Debrecen,University of Debrecen,M.Sc. Computer Science,Computer Science,English,2 yrs,€4000–5500,550,Stipendium Hungaricum,Full,15 Jan 2027,unideb.hu,Lowest living cost in Hungary.,Not started,Medium
+85,Hungary,Budapest,Budapest University of Technology and Economics (BME),M.Sc. Computer Engineering,Computer Engineering,English,2 yrs,€4000–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing); Erasmus Mundus,Full,Jan 2027 (expected; 2027/28 call not yet published as of 10 Nov 2026),bme.hu,Stipendium Hungaricum is one of the easiest full rides for Bangladeshi students.,Not started,High
+86,Hungary,Budapest,Eötvös Loránd University (ELTE),M.Sc. Computer Science,Computer Science,English,2 yrs,€4000–6000,650,Stipendium Hungaricum,Full,Jan 2027 (expected; 2027/28 call not yet published as of 10 Nov 2026),elte.hu,Same scholarship; strong theoretical CS.,Not started,High
+87,Hungary,Debrecen,University of Debrecen,M.Sc. Computer Science,Computer Science,English,2 yrs,€4000–5500,550,Stipendium Hungaricum,Full,Jan 2027 (expected; 2027/28 call not yet published as of 10 Nov 2026),unideb.hu,Lowest living cost in Hungary.,Not started,Medium
 88,Estonia,Tartu,University of Tartu,M.Sc. Computer Science,Computer Science,English,2 yrs,€6000 (tuition waivers available),700,Estonian Government Scholarship; UT tuition waiver,Partial to full,Feb – Mar 2027,ut.ee,Estonia is Europe's e-government hub; strong startup scene.,Not started,Medium
 89,Estonia,Tallinn,Tallinn University of Technology (TalTech),M.Sc. Computer Science,Computer Science,English,2 yrs,€5000–6000,750,Estonian Government Scholarship; TalTech tuition waiver,Partial to full,Feb – Mar 2027,taltech.ee,Confirm exact programme title on the admissions page.,Not started,Low
 90,Lithuania,Vilnius,Vilnius University,M.Sc. Computer Science,Computer Science,English,2 yrs,€3500–5000,650,Lithuanian State Scholarship; VU merit,Partial,Mar – May 2027,vu.lt,Very low cost; EU degree.,Not started,Low
@@ -341,7 +365,7 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 109,Italy,Padova,University of Padova,M.Sc. Human Rights and Multi-level Governance,Social Science – Human Rights/Governance,English,2 yrs,€1000–3000,850,Unipd merit scholarships; MAECI,Partial,Jan 2027 – Mar 2027,unipd.it,Well-known human rights centre; cheap city.,Not started,Medium
 110,Italy,Milan,Bocconi University,M.Sc. Economics,Social Science – Economics,English,2 yrs,€16000–17000,1300,Bocconi merit (full or partial) + need-based,Full or partial,Rounds Nov 2026 – Mar 2027,unibocconi.it,Top European economics school; apply in early rounds.,Not started,Medium
 111,Spain,Barcelona,Barcelona School of Economics (BSE),M.Sc. Economics,Social Science – Economics,English,1 yr,€15000–18000,1000,BSE scholarships; MAEC-AECID,Partial,Jan 2027 – Mar 2027,bse.eu,1-year programme; strong economics research reputation.,Not started,Low
-112,Hungary,Budapest,Corvinus University of Budapest,M.A. International Relations,Social Science – Political Science/IR,English,2 yrs,€4500–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing),Full,15 Jan 2027,uni-corvinus.hu,Same Stipendium Hungaricum route as rows 85–87; check programme availability.,Not started,High
+112,Hungary,Budapest,Corvinus University of Budapest,M.A. International Relations,Social Science – Political Science/IR,English,2 yrs,€4500–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing),Full,Jan 2027 (expected; 2027/28 call not yet published as of 10 Nov 2026),uni-corvinus.hu,Same Stipendium Hungaricum route as rows 85–87; check programme availability.,Not started,High
 113,Ireland,Dublin,Trinity College Dublin,M.Sc. Economics,Social Science – Economics,English,1 yr,€20000–25000,1500,Government of Ireland International Education Scholarship (€10000 + fee waiver); Trinity merit,Full or partial,Jan 2027 – Mar 2027,tcd.ie,1-year degree; same GOI-IES scheme as row 74.,Not started,Medium
 114,EU (multi-country),Multiple,Erasmus Mundus consortium,EMJM health and society programmes (Public Health; Global Health; Health Policy etc.),Public Health/Global Health,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Oct 2026 – Jan 2027 (varies per programme),erasmus-plus.ec.europa.eu,Filter the EMJM catalogue by health. Counts toward the same 3-application limit as rows 1 and 95.,Not started,High
 115,Netherlands,Amsterdam,University of Amsterdam,M.Sc. Sociology,Social Science – Sociology,English,1 yr,€18000–22000,1300,Amsterdam Merit Scholarship (full tuition); Holland Scholarship,Full or partial,1 Feb 2027,uva.nl,Same AMS award as row 15.,Not started,Medium
@@ -404,7 +428,7 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 172,Austria,Vienna,University of Natural Resources and Life Sciences (BOKU),M.Sc. Organic Agricultural Systems and Agroecology,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€1500,1100,OeAD Ernst Mach Grant (€1150/mo),Partial,1 Feb 2027 (Ernst Mach) / check BOKU deadline,boku.ac.at,Agroecology; very low tuition.,Not started,Medium
 173,Switzerland,Zurich,ETH Zurich,M.Sc. Agricultural Sciences,Agriculture – Plant Science,English,1.5 yrs,CHF 1500 (~€1600),2200,ETH Excellence Scholarship (ESOP); ESKAS,Full or partial,15 Dec 2026 (ESOP),ethz.ch,Very selective; best with a strong CGPA and research record.,Not started,Low
 174,Denmark,Copenhagen,University of Copenhagen,M.Sc. Agricultural Science,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€13000–16000,1250,Danish Government Scholarship,Partial to full,Jan 2027 – Mar 2027,ku.dk,Confirm track names (plant; soil; animal) on the programme page.,Not started,Low
-175,Hungary,Gödöllő / Budapest,Hungarian University of Agriculture and Life Sciences (MATE),M.Sc. programmes in Plant Protection; Agricultural Biotechnology; Agricultural Engineering,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€4000–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing),Full,15 Jan 2027,uni-mate.hu,Same Stipendium Hungaricum route as rows 85–87; choose the programme in the application.,Not started,High
+175,Hungary,Gödöllő / Budapest,Hungarian University of Agriculture and Life Sciences (MATE),M.Sc. programmes in Plant Protection; Agricultural Biotechnology; Agricultural Engineering,Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€4000–6000 (covered by scholarship),650,Stipendium Hungaricum (tuition + monthly stipend + housing),Full,Jan 2027 (expected; 2027/28 call not yet published as of 10 Nov 2026),uni-mate.hu,Same Stipendium Hungaricum route as rows 85–87; choose the programme in the application.,Not started,High
 176,Czechia,Prague,Czech University of Life Sciences Prague,M.Sc. programmes in Tropical Agrobiology; Sustainable Agriculture (English tracks),Agriculture – Agronomy/Sustainable Agriculture,English,2 yrs,€4000–6000,700,Czech Government Scholarship; CZU merit,Full or partial,Feb 2027 – Apr 2027,czu.cz,Confirm English tracks and deadline.,Not started,Medium
 177,United Kingdom,London,London School of Economics,MSc Development Studies,Social Science – Development Studies,English,1 yr,£30000,1900,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships,Partial,Jan 2027 (LSE funding round; check),lse.ac.uk,Very competitive and expensive; 2027 entry needs LSE's own funding or savings.,Not started,Medium
 178,United Kingdom,Brighton,University of Sussex (IDS),MA Development Studies,Social Science – Development Studies,English,1 yr,£24000,1200,Chevening (closed 6 Oct 2026; next round opens about Aug 2027); Commonwealth (closed 20 Oct 2026); university scholarships; Sussex scholarships,Partial,Jan 2027 – Apr 2027 (funding rounds; rolling offers),sussex.ac.uk,Institute of Development Studies is based here.,Not started,Medium
@@ -424,9 +448,9 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 192,Netherlands,Wageningen,Wageningen University,M.Sc. Biology,Life Science – Biology/Ecology,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Ecology and evolution specialisations; suits botany graduates.,Not started,Medium
 193,Netherlands,Wageningen,Wageningen University,M.Sc. Environmental Sciences,Environment – Sciences,English,2 yrs,€18000–20000,1150,Holland Scholarship; WUR scholarship (limited),Partial,1 Feb 2027 (scholarship round),wur.nl,Environmental policy and natural-science tracks.,Not started,Medium
 194,EU (multi-country),Multiple,Mundus Journalism consortium (Aarhus; others),Erasmus Mundus MA Journalism; Media and Globalisation,Journalism – Media,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,10 Jan 2027,erasmus-plus.ec.europa.eu,Start in Aarhus. 2027 round closes 10 Jan 2027; about 10–15 scholarships.,Not started,High
-195,EU (multi-country),Multiple,Mundus MAPP consortium,Erasmus Mundus MA Public Policy (Mundus MAPP),Social Science – Public Policy,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,2027–29 intake; scholarship plus tuition covered.,Not started,Medium
+195,EU (multi-country),Multiple,Mundus MAPP consortium,Erasmus Mundus MA Public Policy (Mundus MAPP),Social Science – Public Policy,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,1 Dec 2026 (EMJM scholarship round; 23:59 CET),erasmus-plus.ec.europa.eu,Up to €33600 plus full tuition for scholarship holders; apply by 1 Dec 2026.,Not started,High
 196,EU (multi-country),Multiple,EMTM consortium (SDU; Ljubljana; Girona),Erasmus Mundus European Master in Tourism Management (EMTM),Services – Tourism/Hospitality,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (last round closed 31 Jan 2026; check),erasmus-plus.ec.europa.eu,Southern Denmark; Ljubljana; Girona.,Not started,Medium
-197,EU (multi-country),Multiple,MARIHE consortium (ELTE; others),Erasmus Mundus MA Research and Innovation in Higher Education (MARIHE),Education – Higher Education,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (applications opened 3 Jul 2026; check),erasmus-plus.ec.europa.eu,Higher education policy and management.,Not started,Medium
+197,EU (multi-country),Multiple,MARIHE consortium (ELTE; others),Erasmus Mundus MA Research and Innovation in Higher Education (MARIHE),Education – Higher Education,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,21 Sep 2026 (scholarship round reported; passed),erasmus-plus.ec.europa.eu,Scholarship deadline reportedly passed; check for self-funded dates.,Not started,Medium
 198,EU (multi-country),Multiple,EDU_MIG consortium,Erasmus Mundus MA Education; Migration and Diversity (EDU_MIG),Education – Migration/Diversity,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Feb 2027 (last round closed 28 Feb 2026; check),erasmus-plus.ec.europa.eu,Education and migration studies; check the exact deadline.,Not started,Medium
 199,EU (multi-country),Multiple,MAiSI consortium,Erasmus Mundus MA Sports Ethics and Integrity (MAiSI),Services – Sport,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Check that Bangladeshi applicants are eligible for the scholarship.,Not started,Low
 200,EU (multi-country),Multiple,IMSISS consortium,Erasmus Mundus MA Security; Intelligence and Strategic Studies (IMSISS),Services – Security,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,Check that the programme is running for 2027.,Not started,Low
@@ -495,7 +519,50 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 263,United Kingdom,London,King's College London,MA War Studies,Services – Military/Defence,English,1 yr,£25000–30000 (check),1700,Chevening and Commonwealth (2027/28 rounds closed); university scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,kcl.ac.uk,Confirm programme name; fee and deadline on the programme page.,Not started,Low
 264,Sweden,Stockholm,KTH Royal Institute of Technology,Master's Programme in Transport and Geoinformation Technology,Services – Transport,English,2 yrs,SEK 140000 (~€12500; check),950,SISGP (full); university scholarship,Full or partial,15 Jan 2027 (national portal),kth.se,Confirm programme name; fee and deadline on the programme page.,Not started,Low
 265,United States,Davis,University of California Davis,M.S. Horticulture and Agronomy (assistantships),Agriculture – Plant Science (Horticulture),English,2 yrs,Funded for assistantship holders,1800,Research or teaching assistantship,Full,Dec 2026 – Jan 2027,ucdavis.edu,Contact a professor first; funding depends on a faculty member.,Not started,Low
-266,Switzerland,Lausanne,EHL Hospitality Business School,M.Sc. Global Hospitality Business,Services – Hotel/Restaurants/Catering,English,1.5 yrs,CHF 40000+ (check),2200,EHL scholarships,Partial,Rolling (check),ehl.edu,Private school; expensive. Hotel and catering Masters are mostly private.,Not started,Low`;
+266,Switzerland,Lausanne,EHL Hospitality Business School,M.Sc. Global Hospitality Business,Services – Hotel/Restaurants/Catering,English,1.5 yrs,CHF 40000+ (check),2200,EHL scholarships,Partial,Rolling (check),ehl.edu,Private school; expensive. Hotel and catering Masters are mostly private.,Not started,Low
+267,Switzerland,Geneva,Geneva Graduate Institute,MA Development Studies,Social Science – Development Studies,English,2 yrs,CHF 15000–17000 (check),2400,Graduate Institute scholarships and fellowships,Partial,Jan 2027 (check),graduateinstitute.ch,Strong development and policy school; check fee and aid rounds.,Not started,Low
+268,United Kingdom,London,SOAS University of London,MSc Development Studies,Social Science – Development Studies,English,1 yr,£26000 (check),1700,Chevening and Commonwealth (2027/28 rounds closed); SOAS scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,soas.ac.uk,Confirm fee and funding rounds.,Not started,Low
+269,Australia,Sydney,University of Sydney,Master of Public Health,Public Health/Global Health,English,1.5–2 yrs,AUD 50000 (check),2100,Australia Awards; University of Sydney scholarships,Partial,Rolling; scholarship rounds Jan 2027 – Apr 2027,sydney.edu.au,Check scholarship round dates.,Not started,Low
+270,Netherlands,Leiden,Leiden University,MSc Political Science,Social Science – Political Science/IR,English,1 yr,€19000–21000 (check),1250,Leiden Excellence Scholarship (full); NL Scholarship,Full or partial,1 Feb 2027 (scholarship round),universiteitleiden.nl,Same LExS award as row 17.,Not started,Low
+271,EU (multi-country),Multiple,EuroPubHealth+ consortium (EHESP Rennes coordinator; Sheffield; others),Erasmus Mundus European Master in Public Health (EuroPubHealth+),Public Health/Global Health,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,8 Jan 2027 (1 pm CET; EMJM scholarship round),erasmus-plus.ec.europa.eu,Scholarship only in the January round; results mid-March; seven specialisations.,Not started,High
+272,EU (multi-country),Multiple,GrEnFIn consortium (Paris Dauphine–PSL and partners),Erasmus Mundus Joint Master Greening Energy Market and Finance (GrEnFIn),Business – Energy Finance,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,7 Jan 2027,erasmus-plus.ec.europa.eu,Energy markets and finance; same deadline for EU and non-EU candidates.,Not started,Medium
+273,EU (multi-country),Multiple,Smart Cities and Communities consortium,Erasmus Mundus Joint Master in Smart Cities and Communities,Engineering – Smart Cities,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,1 Feb 2027,erasmus-plus.ec.europa.eu,Urban technology and planning; applications before the first deadline are considered for the scholarship.,Not started,Medium
+274,EU (multi-country),Multiple,NOHA consortium (humanitarian action),Erasmus Mundus Joint Master in International Humanitarian Action,Social Science – Humanitarian Action,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Jan 2027 (check programme site),erasmus-plus.ec.europa.eu,2027–29 intake; confirm the deadline on the programme site.,Not started,Medium
+275,South Korea,Daejeon,KAIST,M.S. Computer Science,Computer Science,English,2 yrs,KRW 0 with KAIST Scholarship,900,KAIST Scholarship (full tuition + stipend + insurance); GKS,Full,Apr 2027 – May 2027 (Fall 2027 intake; check),kaist.ac.kr,Research-heavy; contact a professor first; KAIST scholarship reported for graduate applicants.,Not started,Medium
+276,South Korea,Sejong,KDI School of Public Policy and Management,Master of Public Policy / Development Policy,Social Science – Public Policy,English,1–2 yrs,KRW 10000000+ (check),900,KDI School scholarships; GKS,Partial to full,Feb 2027 – Apr 2027 (check),kdischool.ac.kr,Fully English-taught; good for development and public policy.,Not started,High
+277,South Korea,Seoul,Seoul National University (GSIS),MA International Studies,Social Science – Political Science/IR,English,2 yrs,KRW 6000000 (check),1000,GKS; SNU scholarships,Partial to full,Feb 2027 – Apr 2027 (check),gsis.snu.ac.kr,Check the English-taught tracks and intake months.,Not started,Low
+278,South Korea,Various,Korean universities (GKS graduate placement),Global Korea Scholarship – Graduate (Embassy Track; Bangladesh),Various (any field),English,2–3 yrs,Covered by GKS,900,GKS (tuition + monthly allowance + airfare + health insurance; includes Korean language year),Full,Feb 2027 (expected; 2026 call ran 12–25 Feb 2026; 2027 call not yet published),studyinkorea.go.kr,Graduate applicants must be under 40 with a high GPA; apply through the Korean Embassy in Dhaka.,Not started,High
+279,Rwanda,Kigali,Carnegie Mellon University Africa,M.S. Information Technology,Information Technology,English,2 yrs,US$20000+ (check),700,CMU-Africa scholarships; partner scholarships,Partial,Jan 2027 – Mar 2027 (check),africa.engineering.cmu.edu,Check whether non-African applicants qualify for funding.,Not started,Low
+280,Rwanda,Kigali,African Institute for Mathematical Sciences (AIMS),AIMS Structured Master's in Mathematical Sciences,Natural Science – Mathematics,English,1 yr,Often covered by scholarship,600,AIMS scholarships,Full or partial,Check programme site,nexteinstein.org,Funding mainly for African nationals; check non-African eligibility.,Not started,Low
+281,South Africa,Cape Town,University of Cape Town,Master of Public Health,Public Health/Global Health,English,2 yrs,ZAR 120000–160000 (check),850,UCT scholarships (limited),Partial,Rolling; scholarship rounds Aug 2026 – Sep 2026 (check),uct.ac.za,International fees are high; funding is limited.,Not started,Low
+282,Morocco,Benguerir,Mohammed VI Polytechnic University (UM6P),M.Sc. programmes in sciences and engineering,Natural Science – Applied Sciences,English,2 yrs,Often covered by UM6P scholarship,600,UM6P scholarship (tuition + stipend),Full or partial,Mar 2027 – May 2027 (check),um6p.ma,Check the programme list and fully funded places.,Not started,Medium
+283,Egypt,Cairo,Al-Azhar University,Master's programmes (Islamic studies; Arabic; others),Humanities – Religion/Theology,Arabic (some English),2 yrs,Covered by Al-Azhar scholarship,450,Al-Azhar scholarship (via embassy nomination),Full,Check embassy call,azhar.eg,Arabic is usually required; apply through your embassy or ministry notice.,Not started,Low
+284,Brazil,São Paulo,Instituto Brasileiro de Direito Tributário (IBDT),Professional Master's in International and Comparative Tax Law,Law – Tax,English and Portuguese,2 yrs,Free for PEC-PG scholarship holders,750,PEC-PG/CAPES (monthly stipend BRL 2100 + insurance BRL 400),Full,Check PEC-PG call (usually Aug – Sep),mestrado.ibdt.org.br,PEC-PG places are for partner countries; check Bangladesh is eligible.,Not started,Low
+285,Brazil,São Paulo,University of São Paulo (USP),Master's (mestrado) programmes; some taught in English,Various (any field),Portuguese (some English),2 yrs,€0 (public university),750,PEC-PG/CAPES; university scholarships,Full or partial,Check each programme (many in Aug – Nov),usp.br,Free tuition; Portuguese (Celpe-Bras) usually needed.,Not started,Low
+286,Brazil,Campinas,University of Campinas (UNICAMP),Master's (mestrado) programmes,Various (any field),Portuguese (some English),2 yrs,€0 (public university),700,PEC-PG/CAPES; CNPq,Full or partial,Check each programme,unicamp.br,Applications can be made from abroad; confirm language rules.,Not started,Low
+287,Brazil,Various,Brazilian public universities (PEC-PG placement),PEC-PG scholarship (master's or PhD),Various (any field),Portuguese (some English),2 yrs,Free (public university),700,PEC-PG (CAPES / MRE / CNPq): about 650 scholarships,Full,Window usually mid-Aug – end Sep; next about Aug 2027 (check),gov.br/capes,Only for countries with an agreement with Brazil; check the current eligible list.,Not started,Medium
+288,South Korea,Seoul,Yonsei University – Korean Language Institute,Korean language programme (4 terms),Foundation – Language (Korean),Korean,1 yr,KRW 7000000 (~€4800; check),900,GKS includes a language year; some university grants,Partial,Terms start Mar; Jun; Sep; Dec (apply 2–3 months before),yskli.com,Needed before many Korean-taught degrees; GKS covers language training.,Not started,Low
+289,South Korea,Seoul,Seoul National University – Language Education Institute,Korean language programme,Foundation – Language (Korean),Korean,1 yr,KRW 6000000 (check),1000,GKS language year,Partial,Rolling; terms start Mar; Jun; Sep; Dec,lei.snu.ac.kr,Check current fees and intake dates.,Not started,Low
+290,Turkey,Ankara,Ankara University TÖMER,Turkish language course,Foundation – Language (Turkish),Turkish,1 yr,Covered by Türkiye Bursları,450,Türkiye Bursları (includes language year),Full,10 Jan 2027 – 20 Feb 2027 (Türkiye Bursları; reported),tomer.ankara.edu.tr,Language year is part of the Türkiye Bursları package.,Not started,Low
+291,Brazil,São Paulo,University of São Paulo (USP) – language centre,Portuguese for foreigners (Celpe-Bras preparation),Foundation – Language (Portuguese),Portuguese,6–12 months,Check (low),700,None (self-funded),Partial,Rolling (check),usp.br,Many Brazilian programmes ask for Celpe-Bras or equivalent.,Not started,Low
+292,Germany,Various,State Studienkolleg (e.g. Hamburg; Munich),Studienkolleg foundation year (bachelor entry only),Foundation – Bachelor prep (not for Master's),German,1 yr,€0–300 (semester fee),950,None (self-funded); some DAAD options,Partial,Varies by Studienkolleg (summer and winter intakes),studienkolleg.de,For bachelor applicants only; Master's applicants do not need it.,Not started,Low
+293,United Kingdom,Manchester,INTO Manchester (University of Manchester),International Foundation / Pre-Master's,Foundation – Pre-Master's,English,1 yr,£17000–20000 (check),1500,University pathway scholarships,Partial,Rolling; intakes Jan; Mar; Sep (check),intostudy.com,Guaranteed progression if you pass; check each pathway provider.,Not started,Low
+294,Netherlands,Various,Dutch research universities (e.g. Radboud; Maastricht),Pre-Master's bridging programme,Foundation – Pre-Master's,English,6–12 months,€2000–5000 (check),1150,None (self-funded),Partial,Varies by university (many 1 Apr – 1 May),studyinnl.org,Only for applicants who lack required background courses.,Not started,Low
+295,Australia,Brisbane,UQ College,Pre-Masters Program,Foundation – Pre-Master's,English,6–12 months,AUD 25000 (check),1800,UQ College scholarships,Partial,Rolling; intakes Feb; Jul (check),uq.edu.au,Pathway into UQ master's; confirm eligibility and fee.,Not started,Low
+296,United States,Various,ELS Language Centers (US university campuses),Intensive English and graduate pathway,Foundation – Language (English),English,3–12 months,US$9000–12000 (check),1800,None (self-funded),Partial,Rolling,els.edu,Can lead to conditional admission at partner universities.,Not started,Low
+297,Japan,Tokyo,University of Tokyo,Graduate programmes in AI and Machine Learning (English),Computer Science,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),u-tokyo.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Medium
+298,Japan,Kyoto,Kyoto University,Graduate programmes in Electrical Engineering (English),Engineering – Electrical,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),kyoto-u.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Medium
+299,Japan,Osaka,Osaka University,Graduate programmes in Electrical Engineering (English),Engineering – Electrical,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),osaka-u.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Low
+300,Japan,Sendai,Tohoku University,Graduate programmes in AI and Machine Learning (English),Computer Science,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),tohoku.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Medium
+301,Japan,Fukuoka,Kyushu University,Graduate programmes in AI and Machine Learning (English),Computer Science,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),kyushu-u.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Medium
+302,Japan,Sapporo,Hokkaido University,Graduate programmes in AI and Machine Learning (English),Computer Science,English,2 yrs,JPY 535800/yr (~€3300; national university),1000,MEXT (Embassy or University recommendation); JASSO; university tuition waivers,Full or partial,Apr 2027 – Jun 2027 (next MEXT embassy call; 2026 round closed 12 May 2026),hokudai.ac.jp,English-taught Master’s and PhD level; check the lab and supervisor first.,Not started,Low
+303,China,Hangzhou,Zhejiang University,Master's programmes taught in English (CSC Type B),Various (any field),English,2–3 yrs,Covered by CSC,500,CSC (tuition + accommodation + insurance + CNY 3000/month),Full,Dec 2026 – Apr 2027 (university deadline; check),zju.edu.cn,Check the English-taught list and the university agency number.,Not started,Medium
+304,China,Shanghai,Shanghai Jiao Tong University,Master's programmes taught in English (CSC Type B),Various (any field),English,2–3 yrs,Covered by CSC,600,CSC (tuition + accommodation + insurance + CNY 3000/month),Full,Dec 2026 – Apr 2027 (university deadline; check),isc.sjtu.edu.cn,Same CSC route; apply early to top universities.,Not started,Medium
+305,China,Beijing,Tsinghua University,Master's programmes taught in English (CSC Type B),Various (any field),English,2–3 yrs,Covered by CSC,650,CSC (tuition + accommodation + insurance + CNY 3000/month),Full,Dec 2026 – Mar 2027 (check),tsinghua.edu.cn,Highly selective; CSC places through the university channel.,Not started,Low
+306,China,Beijing,Peking University (Yenching Academy),Master in China Studies (Yenching Academy),Social Science – Area Studies,English,2 yrs,Covered by scholarship,650,Yenching Academy scholarship (full),Full,Dec 2026 (check),yenchingacademy.pku.edu.cn,Interdisciplinary programme with full funding; confirm the current round.,Not started,Medium
+307,Canada,Vancouver,University of British Columbia,M.Sc. Computer Science (thesis-based),Computer Science,English,2 yrs,CAD 9000–10000/yr (check),1900,Supervisor funding; UBC graduate awards,Partial to full,Dec 2026 – Jan 2027 (check),cs.ubc.ca,Contact a supervisor before applying; funding comes through the lab.,Not started,Medium
+308,Canada,Montreal,McGill University,M.Sc. Plant Science (thesis-based),Agriculture – Plant Science,English,2 yrs,CAD 10000–20000/yr (check),1700,Supervisor funding; McGill graduate awards,Partial to full,Jan 2027 – Mar 2027 (check),mcgill.ca,Thesis-based; supervisor funding is the main route.,Not started,Low
+309,Canada,Toronto,University of Toronto (Dalla Lana),M.Sc. Epidemiology,Public Health/Global Health,English,2 yrs,CAD 25000–30000/yr (check),2000,Ontario Graduate Scholarship; supervisor funding,Partial,Dec 2026 – Jan 2027 (check),dlsph.utoronto.ca,Research-oriented; confirm the programme name.,Not started,Low`;
 
 function parseCSV(text){
   const rows=[]; let row=[], cur='', q=false;
@@ -523,32 +590,19 @@ const MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:1
 // timeline always shows the first thing you have to act on (often the scholarship,
 // not the programme deadline). Falls back to the 15th when no day is given.
 function keyDate(s){
-  // Ignore historical parenthetical references and application opening dates;
-  // the timeline should show the earliest actionable deadline, not an old round
-  // or the date an application window opens.
-  const clean=String(s||'')
-    .replace(/\((?=[^)]*(?:last round|closed|reportedly|applications opened|previous round|prior round|ran\b))[^)]*\)/gi,' ')
-    .replace(/\bopens?\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b(?:\s+\d{4})?/gi,' ');
-  const re=/(\d{1,2})?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b\s*(\d{4})?/gi;
-  const matches=[...clean.matchAll(re)];
-  if(!matches.length) return null;
-  const explicit=matches.map((m,i)=>m[3]?{i,year:parseInt(m[3],10)}:null).filter(Boolean);
-  if(!explicit.length) return null;
-  const dates=[];
-  matches.forEach((m,i)=>{
-    const next=explicit.find(x=>x.i>i);
-    const prev=[...explicit].reverse().find(x=>x.i<i);
-    const year=m[3]?parseInt(m[3],10):(next?.year??prev?.year);
-    if(!year) return;
-    const month=MONTHS[m[2].toLowerCase().slice(0,3)];
+  const re=/(\d{1,2})?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s*(\d{4})/gi;
+  let m, best=null;
+  while((m=re.exec(s))!==null){
+    const mon=MONTHS[m[2].toLowerCase().slice(0,3)];
+    const yr=parseInt(m[3],10);
     const day=m[1]?parseInt(m[1],10):15;
-    const d=new Date(year,month-1,day);
-    if(d.getFullYear()===year && d.getMonth()===month-1 && d.getDate()===day) dates.push(d);
-  });
-  return dates.length?new Date(Math.min(...dates.map(d=>d.getTime()))):null;
+    const d=new Date(yr,mon-1,Math.min(day,28));
+    if(!best || d<best) best=d;
+  }
+  return best;
 }
 
-const RAW=parseCSV(CSV).map(r=>{
+const mapRow=r=>{
   const d=keyDate(r['Intake and deadline (2027 entry)']);
   return {
     no:+r['No'], country:r['Country'], city:r['City'], university:r['University'],
@@ -559,54 +613,48 @@ const RAW=parseCSV(CSV).map(r=>{
     note:r['Notes'], status:r['My status'], priority:r['Priority'],
     date:d
   };
-});
-const DATA=RAW;
+};
+const DATA=parseCSV(CSV).map(mapRow);
 const STAT=['Not started','Preparing','Applied','Offer','Rejected'];
 let ST={}; try{ST=JSON.parse(localStorage.getItem('trk_status')||'{}');}catch(e){}
 DATA.forEach(d=>{ if(ST[d.no]) d.status=ST[d.no]; });
 const stCls=x=>({Applied:'s-applied',Offer:'s-offer',Preparing:'s-prep',Rejected:'s-rej'}[x]||'');
 const GROUPS=['Generic programmes','Education','Arts and Humanities','Social Sciences, Journalism, Information','Business, Admin and Law','Natural Sciences, Maths, Statistics','Information and Communication Technologies','Engineering, Manufacturing, Construction','Agriculture, Forestry, Fisheries, Veterinary','Health and Welfare','Services'];
 const grp=d=>{const f=d.field;
- if(/^Various/.test(f)) return GROUPS[0];
+ if(/^Various|^Foundation/.test(f)) return GROUPS[0];
  if(/^Education|Social Science – Education/.test(f)) return GROUPS[1];
  if(/^(Arts|Humanities|Languages)/.test(f)) return GROUPS[2];
  if(/^Law|Business|Finance|Management/.test(f)) return GROUPS[4];
  if(/Public Health|Social Work|^Health/.test(f)) return GROUPS[9];
- if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food|Environment)/.test(f)) return GROUPS[8];
- if(/^(Engineering|Architecture|Manufacturing|Computer Engineering)|Environment – Engineering/.test(f)) return GROUPS[7];
- if(/^(Environment\/Sustainability|Environment – Sciences|Life Science|Bioscience|Natural Science)/.test(f)) return GROUPS[5];
+ if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food)/.test(f)) return GROUPS[8];
+ if(/^(Engineering|Architecture|Manufacturing)|Environment – Engineering/.test(f)) return GROUPS[7];
+ if(/Environment|Life Science|Bioscience|^Natural Science/.test(f)) return GROUPS[5];
  if(/^Services/.test(f)) return GROUPS[10];
  if(/Social Science|Journalism|Public Policy/.test(f)) return GROUPS[3];
  return GROUPS[6];};
 const rowCls=d=>d.fundLevel==='Full'?'rf':/Full/.test(d.fundLevel)?'rm':'';
 
-const TODAY=new Date();
-TODAY.setHours(0,0,0,0);
+const TODAY=(()=>{const t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate());})();
 const days=(a,b)=>Math.round((a-b)/86400000);
 const MONTHNAME=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 /* ---------- stats ---------- */
 const fullCount=DATA.filter(d=>d.fundLevel==='Full').length;
-const countries=new Set(DATA.map(d=>d.country).filter(c=>c!=='EU (multi-country)')).size;
+const countries=new Set(DATA.map(d=>d.country)).size;
 const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
-document.getElementById('stats').innerHTML=[
-  [DATA.length,'Programmes'],
-  [countries,'Countries'],
-  [fullCount,'Full funding (explicit)'],
-  [soon,'Deadlines in 120 days']
-].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
 
 /* ---------- filters ---------- */
 const fC=document.getElementById('fCountry'), fF=document.getElementById('fField');
-[...new Set(DATA.map(d=>d.country))].sort().forEach(c=>fC.add(new Option(c,c)));
-[...new Set(DATA.map(d=>d.field))].sort().forEach(c=>fF.add(new Option(c,c)));
+function fillFilters(){[[fC,'country'],[fF,'field']].forEach(([el,k])=>{const keep=el.value;while(el.options.length>1)el.remove(1);[...new Set(DATA.map(d=>d[k]))].sort().forEach(v=>el.add(new Option(v,v)));el.value=keep;});}
+fillFilters();
 
-let state={q:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
+let state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
 
 function matches(d){
   if(state.country && d.country!==state.country) return false;
   if(state.field && d.field!==state.field) return false;
   if(state.group && grp(d)!==state.group) return false;
+  if(state.fav && !FAV.has(d.no)) return false;
   if(state.prio && d.priority!==state.prio) return false;
   if(state.fund){
     if(state.fund==='Full' && d.fundLevel!=='Full') return false;
@@ -625,13 +673,14 @@ function sortRows(rows){
   return rows.slice().sort((a,b)=>{
     let x=a[k], y=b[k];
     if(k==='deadline'){ x=a.date? a.date.getTime():Infinity; y=b.date? b.date.getTime():Infinity; }
+    if(k==='priority'){const r={High:0,Medium:1,Low:2};x=r[a.priority];y=r[b.priority];}
     if(typeof x==='number' && typeof y==='number') return (x-y)*dir;
     return String(x).localeCompare(String(y))*dir;
   });
 }
 
 /* ---------- table ---------- */
-const fundClass=l=> l==='Full'?'p-full' : /Full/.test(l)?'p-mix' : l==='Partial'?'p-part' : 'p-low';
+const fundClass=l=> l==='Full'?'p-full' : l==='Partial'?'p-part' : 'p-part';
 const prioClass=p=> p==='High'?'p-high' : p==='Medium'?'p-med' : 'p-low';
 
 function fmtDate(d){
@@ -644,13 +693,22 @@ function fmtDate(d){
 /* ---------- details ---------- */
 const OPEN=new Set();
 const CD={
+ Japan:{e:'IELTS 6.0–6.5 / TOEFL 80+ (many accept a medium-of-instruction certificate)',r:'University portals; MEXT Embassy track runs through the Bangladesh Ministry of Education and the Embassy of Japan in Dhaka',f:'JPY 30000 (about €180)',v:'Certificate of Eligibility from the university, then a student visa at the Embassy of Japan in Dhaka'},
+ China:{e:'IELTS 6.0 / TOEFL 80 for English-taught programmes',r:'CSC portal (campuschina.org); Type A via the Embassy of China in Dhaka (agency number 0601); Type B via the university agency number',f:'CNY 400–800',v:'X1 visa with a JW201 or JW202 form; physical examination form'},
+ Canada:{e:'IELTS 6.5–7.0 (writing 6.5) / TOEFL 90+',r:'University portal; contact a supervisor first for thesis-based master’s',f:'CAD 100–150',v:'Study permit with an acceptance letter; proof of funds'},
+ 'South Korea':{e:'IELTS 6.0–6.5 / TOEFL 80+ (many accept a medium-of-instruction certificate)',r:'University portals; GKS has an Embassy Track (via the Korean Embassy in Dhaka) and a University Track; GKS includes a Korean language year',f:'KRW 50000–150000 (about €35–100)',v:'D-2 student visa; apostilled documents'},
+ 'South Africa':{e:'IELTS 6.5 or the university English test',r:'University portal; postgraduate fees and funding vary; apply early',f:'ZAR 0–1000',v:'Study visa through VFS; proof of funds and medical cover'},
+ Rwanda:{e:'IELTS 6.5 / TOEFL 80+',r:'Programme portal (CMU-Africa; AIMS); check scholarship eligibility for non-African students',f:'US$0–100 (check)',v:'Student pass / visa'},
+ Morocco:{e:'IELTS 6.0; French is useful',r:'University portal (UM6P)',f:'€0–50',v:'Student visa'},
+ Egypt:{e:'Arabic required for most programmes; IELTS for English tracks',r:'Embassy or ministry nomination for Al-Azhar scholarships; AUC has its own portal',f:'€0–100',v:'Student visa'},
+ Brazil:{e:'English test (IELTS 6.0) and often Portuguese (Celpe-Bras)',r:'Direct to the programme; PEC-PG scholarships use the CAPES system',f:'€0',v:'Temporary student visa (VITEM IV)'},
  'United Kingdom':{e:'IELTS 6.5 (6.0 per band); some courses need IELTS for UKVI',r:'Direct to the university (rolling offers); apply early for scholarships',f:'£0–100',v:'Student visa (CAS from the university); health surcharge; proof of funds; ATAS for some subjects'},
  'United States':{e:'TOEFL 90–100 / IELTS 6.5–7.0',r:'University portal; GRE required or optional; 2–3 recommendation letters; for PhD contact professors first',f:'US$50–120',v:'F-1 visa with an I-20 (J-1 for Fulbright); strong proof of funds'},
  Australia:{e:'IELTS 6.5 (6.0 per band) / PTE 58',r:'Direct to the university; Australia Awards use the OASIS portal',f:'AUD 0–150',v:'Student visa (subclass 500) with a Genuine Student statement; health cover (OSHC); proof of funds'},
  'EU (multi-country)':{e:'Usually IELTS 6.5 / TOEFL 90 (varies per programme)',r:'Apply on each consortium website and tick the EMJM scholarship box',f:'€0–100 per programme',v:'Each partner country issues its own permit; plan the mobility semesters early'},
  Germany:{e:'IELTS 6.5 / TOEFL 90 (some accept a medium-of-instruction certificate)',r:'uni-assist or the university portal; some CS/Data programmes add an aptitude check',f:'uni-assist ~€75 first application (~€30 each extra); many universities charge nothing',v:'National study visa; blocked-account proof of funds; health insurance; embassy slots fill early'},
  Netherlands:{e:'IELTS 6.5 (about 6.0 per band) / TOEFL 90',r:'Studielink plus the university portal; some run a credential check',f:'€0–100',v:'University sponsors the residence permit (IND); proof of funds'},
- Sweden:{e:'IELTS 6.5 (no band below 5.5) / TOEFL 90',r:'universityadmissions.se: one portal, up to 4 choices',f:'SEK 900 (~€80–90), paid once',v:'Residence permit from the Migration Agency; apply right after admission'},
+ Sweden:{e:'IELTS 6.5 (no band below 5.5) / TOEFL 90',r:'universityadmissions.se (16 Oct 2026 – 15 Jan 2027; up to 4 choices). For the SI scholarship you must also apply to SI separately in Feb 2027; both steps are required',f:'SEK 900 (~€80–90), paid once',v:'Residence permit from the Migration Agency; apply right after admission'},
  Finland:{e:'IELTS 6.5 / TOEFL 92',r:'Studyinfo joint application (Dec–Jan) or the university portal',f:'€100 (non-EU)',v:'Residence permit (Migri); proof of funds'},
  Norway:{e:'IELTS 6.5',r:'University portal (Søknadsweb)',f:'€0',v:'Residence permit (UDI); proof of funds'},
  Denmark:{e:'IELTS 6.5 / TOEFL 83–90',r:'Optagelse.dk or the university portal',f:'€0–100',v:'Residence permit (SIRI); limited work hours'},
@@ -672,6 +730,7 @@ const CD={
  Turkey:{e:'IELTS 6.0 or the university English exam',r:'Türkiye Bursları portal plus the university',f:'€0',v:'Student visa; scholarship covers insurance'}
 };
 const FC=[
+ [/^Foundation/,['Academic English or the local language','Study skills and academic writing','Subject bridging modules (pre-Master’s)','Assessment for progression','Pathway into a degree programme']],
  [/Library/,['Information organisation and retrieval','Digital libraries and archives','Research methods','Specialisation electives','Master thesis']],
  [/^Education/,['Educational theory and policy','Research methods','Comparative or higher education','Specialisation electives','Master thesis']],
  [/^(Arts|Humanities|Languages)/,['Core theory and history','Research methods','Specialisation electives','Studio or practice project','Master thesis']],
@@ -719,7 +778,7 @@ function detailRow(d){
   const url=/^https?:/.test(d.site)?d.site:'https://'+d.site;
   return `<tr class="dtr"><td colspan="12"><div class="dgrid">
     <div><h4>What you need to apply</h4><ul>
-      <li>${/Agriculture/.test(d.field)?'4-year BSc in agriculture; botany; biology or a related life science (lab and field experience helps)':'4-year bachelor in a related field'} (a strong CGPA is expected; top programmes want about 3.5/4.0)</li>
+      <li>${/Agriculture/.test(d.field)?'4-year BSc in agriculture; botany; biology or a related life science (lab and field experience helps)':(/^Foundation/.test(d.field)?'Entry rules differ by course: language courses need no degree; pre-Master’s needs a completed bachelor':'4-year bachelor in a related field')} (a strong CGPA is expected; top programmes want about 3.5/4.0)</li>
       <li>Transcripts and certificates, attested by your university and the Ministry of Foreign Affairs</li>
       <li>English: ${c.e}</li>
       <li>CV, statement of purpose, 2–3 recommendation letters</li>
@@ -743,8 +802,8 @@ function renderTable(){
   document.getElementById('empty').style.display=rows.length?'none':'block';
   document.getElementById('tbody').innerHTML=rows.map(d=>`
     <tr class="${rowCls(d)}">
-      <td>${d.no}</td>
-      <td class="cty">${d.city? d.city+', ':''}${d.country}</td>
+      <td><button class="star${FAV.has(d.no)?' on':''}" data-fav="${d.no}">★</button> ${d.no}</td>
+      <td class="cty">${flag(d.country)} ${d.city? d.city+', ':''}${d.country}</td>
       <td><div class="uni">${d.university}</div><div class="prog">${d.programme}</div>
           <div class="note">${d.note}</div><button class="dbtn" data-no="${d.no}">${OPEN.has(d.no)?'Hide details ▴':'Details ▾'}</button></td>
       <td>${d.field}</td>
@@ -808,7 +867,7 @@ function renderCountry(){
     const full=list.filter(d=>d.fundLevel==='Full').length;
     const liv=Math.round(list.reduce((s,d)=>s+d.living,0)/list.length);
     return `<div class="ccard">
-      <h3>${c}</h3>
+      <h3>${flag(c)} ${c}</h3>
       <div class="meta">${list.length} programme${list.length>1?'s':''} · ${full} full-funding · living ≈ €${liv}/mo</div>
       <ul>${list.map(d=>`<li><span class="u">${d.university}</span><span class="f">${d.field}</span></li>`).join('')}</ul>
     </div>`;
@@ -828,43 +887,114 @@ document.getElementById('chips').addEventListener('click',e=>{
   const b=e.target.closest('.chip'); if(!b) return;
   state.group=b.dataset.g==='All'?'':b.dataset.g; renderAll();
 });
-document.getElementById('tbody').addEventListener('click',e=>{
+
+/* ---------- cards, stats, shortlist, theme ---------- */
+const FLAG={'EU (multi-country)':'🇪🇺',Germany:'🇩🇪',Netherlands:'🇳🇱',Sweden:'🇸🇪',Finland:'🇫🇮',Norway:'🇳🇴',Denmark:'🇩🇰',Belgium:'🇧🇪',Austria:'🇦🇹',Switzerland:'🇨🇭',France:'🇫🇷',Italy:'🇮🇹',Spain:'🇪🇸',Portugal:'🇵🇹',Ireland:'🇮🇪',Poland:'🇵🇱',Czechia:'🇨🇿',Hungary:'🇭🇺',Estonia:'🇪🇪',Lithuania:'🇱🇹',Greece:'🇬🇷',Luxembourg:'🇱🇺',Turkey:'🇹🇷',Canada:'🇨🇦','South Africa':'🇿🇦',Rwanda:'🇷🇼',Morocco:'🇲🇦',Egypt:'🇪🇬',Brazil:'🇧🇷','South Korea':'🇰🇷',Japan:'🇯🇵',China:'🇨🇳','United Kingdom':'🇬🇧','United States':'🇺🇸',Australia:'🇦🇺'};
+const flag=c=>FLAG[c]||'🌍';
+let FAV=new Set(); try{FAV=new Set(JSON.parse(localStorage.getItem('trk_fav')||'[]'));}catch(e){}
+const saveFav=()=>{try{localStorage.setItem('trk_fav',JSON.stringify([...FAV]));}catch(e){}};
+const detailBox=d=>detailRow(d).replace(/^<tr class="dtr"><td colspan="12">/,'').replace(/<\/td><\/tr>$/,'');
+function renderStats(){
+  const countries=new Set(DATA.map(d=>d.country)).size;
+  const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
+  const applied=DATA.filter(d=>d.status==='Applied'||d.status==='Offer').length;
+  document.getElementById('sub').textContent=DATA.length+' programmes across '+countries+' countries, covering all 11 ISCED broad fields. Tuition, living cost, funding and the deadline that matters.';
+  document.getElementById('stats').innerHTML=[
+    [DATA.length,'Programmes'],[countries,'Countries'],[DATA.filter(d=>d.fundLevel==='Full').length,'Full-funding options'],
+    [soon,'Deadlines in 120 days'],[FAV.size,'Shortlisted'],[applied,'Applied or offered']
+  ].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+function renderCards(){
+  const rows=sortRows(DATA.filter(matches));
+  document.getElementById('cCards').textContent=rows.length;
+  document.getElementById('emptyC').style.display=rows.length?'none':'block';
+  document.getElementById('cards').innerHTML=rows.map(d=>{
+    const gap=d.date?days(d.date,TODAY):null;
+    const urg=gap===null?'':gap<0?'late':gap<=30?'hot':gap<=90?'warm':'';
+    const when=d.date?fmtS(d.date)+(/expected|check|rolling/i.test(d.deadline)?' (unconfirmed)':''):'Check programme site';
+    const cnt=gap===null?'':gap<0?'passed':'in '+gap+' days';
+    return `<article class="card ${rowCls(d)}">
+      <div class="ct"><span>${flag(d.country)} ${d.city?d.city+' · ':''}${d.country}</span><button class="star${FAV.has(d.no)?' on':''}" data-fav="${d.no}" title="Shortlist">★</button></div>
+      <h3>${d.university}</h3><p class="pg">${d.programme}</p>
+      <div class="tags"><span class="tag">${d.field}</span><span class="pill ${prioClass(d.priority)}">${d.priority}</span><span class="pill ${fundClass(d.fundLevel)}">${d.fundLevel}</span></div>
+      <dl class="facts"><div><dt>Tuition</dt><dd>${d.tuition}</dd></div><div><dt>Living</dt><dd>€${d.living}/mo</dd></div><div><dt>Duration</dt><dd>${d.dur}</dd></div></dl>
+      <p class="sch">${d.fundText}</p>
+      <div class="dlr ${urg}" title="${d.deadline.replace(/"/g,'')}"><span>Deadline: ${when}</span><span>${cnt}</span></div>
+      <div class="cnote">${d.note}</div>
+      <div class="cf"><select class="stsel ${stCls(d.status)}" data-no="${d.no}">${STAT.map(o=>`<option${o===d.status?' selected':''}>${o}</option>`).join('')}</select>
+        <span><button class="ghost rep" data-rep="${d.no}" title="Report an issue">Report</button> <button class="dbtn" data-no="${d.no}">${OPEN.has(d.no)?'Hide details ▴':'Details ▾'}</button></span></div>
+      ${OPEN.has(d.no)?'<div class="cdet">'+detailBox(d)+'</div>':''}
+    </article>`;}).join('');
+}
+document.addEventListener('click',e=>{
+  const rp=e.target.closest('[data-rep]'); if(rp){openFB(rp.dataset.rep,'Wrong or outdated information'); return;}
+  const f=e.target.closest('[data-fav]');
+  if(f){const n=+f.dataset.fav; FAV.has(n)?FAV.delete(n):FAV.add(n); saveFav(); renderAll(); return;}
   const b=e.target.closest('.dbtn'); if(!b) return;
-  const n=+b.dataset.no; OPEN.has(n)?OPEN.delete(n):OPEN.add(n); renderTable();
+  const n=+b.dataset.no; OPEN.has(n)?OPEN.delete(n):OPEN.add(n); renderAll();
 });
-document.getElementById('tbody').addEventListener('change',e=>{
+document.addEventListener('change',e=>{
   const sel=e.target.closest('.stsel'); if(!sel) return;
   const d=DATA.find(x=>x.no===+sel.dataset.no); d.status=sel.value; ST[d.no]=sel.value;
   try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}
-  sel.className='stsel '+stCls(sel.value);
-});
-function renderAll(){ renderChips(); renderTable(); renderTimeline(); renderCountry(); }
-document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
-fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
-fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
-document.getElementById('fFund').addEventListener('change',e=>{state.fund=e.target.value;renderAll();});
-document.getElementById('fPrio').addEventListener('change',e=>{state.prio=e.target.value;renderAll();});
-document.getElementById('reset').addEventListener('click',()=>{
-  state={q:'',country:'',field:'',fund:'',prio:'',group:'',sort:'no',dir:1};
-  document.getElementById('q').value=''; fC.value=''; fF.value='';
-  document.getElementById('fFund').value=''; document.getElementById('fPrio').value='';
   renderAll();
 });
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
-  t.classList.add('on');
-  document.getElementById('p-'+t.dataset.p).classList.add('on');
-}));
-document.getElementById('dl').addEventListener('click',()=>{
-  const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='Masters_Scholarship_Tracker_266.csv';
-  a.click(); URL.revokeObjectURL(a.href);
-});
+document.getElementById('fSort').addEventListener('change',e=>{state.sort=e.target.value;state.dir=1;renderAll();});
+document.getElementById('fFav').addEventListener('change',e=>{state.fav=e.target.checked;renderAll();});
+const root=document.documentElement;
+try{const t=localStorage.getItem('trk_theme'); if(t) root.dataset.theme=t; else if(matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme='dark';}catch(e){}
+document.getElementById('theme').addEventListener('click',()=>{const t=root.dataset.theme==='dark'?'light':'dark'; root.dataset.theme=t; try{localStorage.setItem('trk_theme',t);}catch(e){} setThemeLabel();});
 
-renderAll();
-</script>
-</body>
-</html>
+const SCHOL=[
+ ['Erasmus Mundus Joint Masters','EU (multi-country)','Full: tuition + €1400/month + travel (up to €33600 in total)','Any nationality; apply to each programme directly; max 3','No single deadline: Mundus MAPP 1 Dec 2026; GrEnFIn 7 Jan; EuroPubHealth+ 8 Jan; Mundus Journalism 10 Jan; Smart Cities 1 Feb 2027','Open now','erasmus-plus.ec.europa.eu'],
+ ['Swedish Institute (SISGP)','Sweden','Full: tuition + SEK 12000/month + SEK 15000 travel','Bangladesh is eligible; only SI-listed fields and programmes qualify (governance; public health; entrepreneurship; STEM). Two steps required','Step 1: programme application 16 Oct 2026 – 15 Jan 2027. Step 2: SI application about 8–25 Feb 2027 (confirm dates); results about 22 Apr 2027','Open now','si.se'],
+ ['DAAD EPOS','Germany','Full: monthly stipend + tuition support','Development-related Master’s; at least 2 years’ work experience; apply directly to the course; up to 3 courses','No single deadline: each course sets its own for 2027/28. Many closed Aug–Oct 2026 (e.g. MEG 15 Oct). Check the official list for later ones','Check list','daad.de'],
+ ['Eiffel Excellence','France','Monthly allowance + travel + insurance','Your university nominates you; Master’s or PhD','8 Jan 2027 (reported)','Reported','campusfrance.org'],
+ ['Stipendium Hungaricum','Hungary','Tuition + stipend + housing','Nomination via Bangladesh Ministry of Education','2027/28 call not published (as of 10 Nov 2026); last cycle closed 15 Jan 2026','Not announced','stipendiumhungaricum.hu'],
+ ['Türkiye Bursları','Turkey','Tuition + stipend + housing + insurance','Free online application','10 Jan – 20 Feb 2027 (reported)','Reported','turkiyeburslari.gov.tr'],
+ ['NL Scholarship','Netherlands','One-off contribution for the first year','Non-EEA; apply through your university','Feb – May 2027 (many universities use 1 Feb)','Reported','studyinnl.org'],
+ ['VLIR-UOS scholarships','Belgium','Full (ICP programmes)','Eligible-country list applies','About 1 Feb 2027; 2027/28 dates not fully published','Not announced','vliruos.be'],
+ ['ETH Excellence (ESOP)','Switzerland','Full or partial','For ETH Master’s programmes','15 Dec 2026','Reported','ethz.ch'],
+ ['Danish Government Scholarship','Denmark','Partial tuition support','Universities nominate; confirm eligibility','Jan 2027 – Mar 2027 (check)','Not announced','studyindenmark.dk'],
+ ['OeAD Ernst Mach Grant','Austria','Monthly grant','Non-EU Master’s students; confirm eligibility','1 Feb 2027 (check)','Not announced','oead.at'],
+ ['Chevening','United Kingdom','Full: tuition + living + flights','Bangladesh eligible; work experience required','Closed 6 Oct 2026; next round opens about Aug 2027','Closed','chevening.org'],
+ ['Commonwealth Master’s','United Kingdom','Full','Low and middle income countries','Closed 20 Oct 2026','Closed','cscuk.fcdo.gov.uk'],
+ ['Australia Awards','Australia','Full: tuition + living + airfare + health cover','Bangladesh eligible; return-home condition','1 Feb – 30 Apr 2027 (for study from 2028)','Opens soon','australiaawardsbangladesh.org'],
+ ['Fulbright Foreign Student','United States','Tuition + stipend + travel','Bangladesh via the US Embassy','2027/28 round reportedly closed 11 Jul 2026; next about mid-2027','Closed','bd.usembassy.gov'],
+ ['Global Korea Scholarship (GKS)','South Korea','Full: tuition + monthly allowance + airfare + insurance; includes a Korean language year','Graduate: under 40 with a high GPA; Bangladesh Embassy Track','Graduate call: 2026 round ran 12–25 Feb 2026; 2027 call not yet published. Undergraduate embassy track closed 30 Sep 2026','Not announced','studyinkorea.go.kr'], ['Brazil PEC-PG (CAPES)','Brazil','Full: monthly stipend BRL 2100 + insurance; free tuition at public universities','Partner countries only (check Bangladesh); Portuguese often needed','Window usually mid-Aug to end-Sep; next about Aug 2027 (check)','Not announced','gov.br/capes'],
+ ['JDS Bangladesh (Japan)','Japan','Full: tuition + living + travel','Mid-career civil servants and academics; about 25–30 awards a year (reported)','Check the annual notice (usually autumn)','Not announced','jds-scholarship.org'],
+ ['MEXT (Japan)','Japan','Full: tuition + allowance + airfare','Embassy track via the Ministry of Education Bangladesh; University track directly','2027 embassy round closed 12 May 2026; next call expected Apr – May 2027','Closed','studyinjapan.go.jp'],
+ ['Chinese Government Scholarship (CSC)','China','Full: tuition + accommodation + insurance + CNY 3000/month (Master’s)','Type A via the Embassy of China in Dhaka; Type B via the university','2027/28 call announced by Chinese embassies on 27 Oct 2026. University (Type B) deadlines Dec – Apr; last Bangladesh Type A deadline was 10 Jan 2026','Open now','campuschina.org']
+];
+const scCls=x=>/Closed/.test(x)?'closed':/Check/.test(x)?'wait':/Open|Opens/.test(x)?'ok':/Not/.test(x)?'wait':'rep';
+function renderSchol(){
+  const q=state.q.toLowerCase();
+  const rows=SCHOL.filter(r=>!q||r.join(' ').toLowerCase().includes(q));
+  document.getElementById('cSchol').textContent=rows.length;
+  document.getElementById('scholCards').innerHTML=rows.map(r=>`<article class="card">
+    <div class="ct"><span>${flag(r[1])} ${r[1]}</span><span class="sc ${scCls(r[5])}">${r[5]}</span></div>
+    <h3>${r[0]}</h3><p class="pg">${r[2]}</p>
+    <dl class="facts" style="grid-template-columns:1fr"><div><dt>Who can apply</dt><dd>${r[3]}</dd></div><div><dt>Deadline</dt><dd>${r[4]}</dd></div></dl>
+    <div class="cf"><span class="cnote">Confirm on the official page</span><a class="dbtn" style="text-decoration:none;padding:5px 12px;border-radius:10px" href="https://${r[6]}" target="_blank" rel="noopener">Official site ↗</a></div></article>`).join('')||'<div class="empty">No scholarship matches.</div>';
+}
+/* feedback */
+const fbm=document.getElementById('fbm');
+function openFB(no,type){document.getElementById('fbNo').value=no||'';if(type)document.getElementById('fbType').value=type;document.getElementById('fbNote').textContent=CONFIG.FEEDBACK_EMAIL?'':'Tip: put your email in CONFIG.FEEDBACK_EMAIL at the top of the script so messages go straight to your inbox. Until then, use Copy or send from your own mail app.';fbm.hidden=false;}
+function fbText(){const no=document.getElementById('fbNo').value.trim();return {subj:"Tracker feedback: "+document.getElementById('fbType').value+(no?' (programme #'+no+')':''),body:document.getElementById('fbMsg').value+(no?'\n\nProgramme #'+no:'')+'\n\n— sent from the Scholarship Tracker'};}
+document.getElementById('fab').addEventListener('click',()=>openFB('',''));
+document.getElementById('fbCancel').addEventListener('click',()=>{fbm.hidden=true;});
+fbm.addEventListener('click',e=>{if(e.target===fbm)fbm.hidden=true;});
+document.getElementById('fbSend').addEventListener('click',()=>{const t=fbText();location.href='mailto:'+CONFIG.FEEDBACK_EMAIL+'?subject='+encodeURIComponent(t.subj)+'&body='+encodeURIComponent(t.body);});
+document.getElementById('fbCopy').addEventListener('click',()=>{const t=fbText();const txt=t.subj+'\n\n'+t.body;try{navigator.clipboard.writeText(txt);document.getElementById('fbNote').textContent='Copied.';}catch(e){document.getElementById('fbNote').textContent='Copy failed: select the text manually.';}});
+const setUpd=t=>{document.getElementById('upd').textContent=t;};
+function setThemeLabel(){document.getElementById('theme').textContent=document.documentElement.dataset.theme==='dark'?'Light mode':'Dark mode';}
+setThemeLabel();
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+document.getElementById('exportFav').addEventListener('click',()=>{
+  const rows=DATA.filter(d=>FAV.has(d.no));
+  if(!rows.length){alert('Shortlist is empty. Tap the star on a programme first.');return;}
+  const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+  const head=['No','Country','University','Programme','Field','Duration','Tuition','Living (EUR/month)','Funding','Deadline','Website','Status'];
+  const lines=[head.map(q).join(',')].concat(rows.map(d=>[d.no,d.country,d.university,d.programme,d.field,d.dur,d.tuition,d.living,d.fundText,d.deadline,d.site,d.status].map(q).join(',')));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv'}));a.download='My_shortlist.csv';a.click();
+});
