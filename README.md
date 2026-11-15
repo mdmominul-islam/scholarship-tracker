@@ -1,58 +1,59 @@
-# Master’s Scholarship Tracker
+# Global Master’s Scholarship Tracker
 
-A public scholarship-planning dashboard for students exploring master’s opportunities for the **2027 intake**.
+A public scholarship-planning dashboard for students from Bangladesh exploring master’s opportunities for **2027 entry**.
 
 **Live website:** https://mdmominul-islam.github.io/scholarship-tracker/  
 **Source code:** https://github.com/mdmominul-islam/scholarship-tracker
 
-## Project owner
-
-**Mominul Islam**  
-*Sociology Researcher | Public Health & Climate Justice | Data Analysis & Social Research*
-
 ## What the tracker includes
 
-The tracker currently lists **266 programmes across 25 countries plus multi-country consortia**. It is Europe-focused, with selected opportunities in Australia and the United States, and covers all 11 broad ISCED field groups.
+The current dataset contains **309 master’s programme entries across 35 country/region labels**, including multi-country opportunities. It covers all 11 broad ISCED field groups and includes selected scholarship schemes for applicants from Bangladesh.
 
 Features include:
 
 - Search across universities, countries, programmes, fields, funding schemes, and notes.
-- Filter by country, individual field, broad ISCED field group, funding level, and priority.
-- Sort the programme table by its columns.
-- Review deadlines in a month-by-month timeline.
-- Browse a country-based summary of the listed programmes.
-- Export the full dataset as a CSV file.
+- Filter by country, field, funding level, and priority.
+- Browse programme cards and a sortable comparison table.
+- View dedicated scholarship opportunities and eligibility/deadline notes.
+- Review key dates in a deadline timeline.
+- Browse a country-based summary.
+- Shortlist programmes and export the shortlist as CSV.
+- Export the full programme dataset as CSV.
 - Track application status (Not started, Preparing, Applied, Offer, and Rejected) in the current browser.
+- Switch between light and dark themes.
+- Print the programme cards.
 
 ## How to use
 
 1. Open the [live tracker](https://mdmominul-islam.github.io/scholarship-tracker/).
-2. Search by university, country, or programme.
-3. Use the field-group chips and filters to narrow the list.
-4. Sort the table or review the deadline timeline and country view.
-5. Export the list as CSV if you want to work with it offline.
-6. Confirm each opportunity on the official provider website before applying.
+2. Search by university, country, programme, field, or scholarship.
+3. Use the filters and field-group chips to narrow the programme list.
+4. Compare entries in Cards or Table view.
+5. Use the Scholarships and Deadline timeline tabs to review funding schemes and dates.
+6. Shortlist relevant programmes and export your shortlist or the full dataset.
+7. Update each programme’s application status as you progress.
 
 ## Important information
 
-- Tuition, living-cost, and deadline information is indicative for the 2027 intake and may change.
-- Some deadlines are approximate, expected, rolling, or not yet confirmed. The timeline only includes rows where a date can be extracted from the deadline text.
-- Funding labels describe the schemes included in the tracker; check each award's exact conditions and whether the award is available to Bangladeshi applicants.
-- Always verify eligibility, required documents, funding coverage, application fees, and current deadlines on the university's or scholarship provider's official website before you pay any fee.
+- Tuition, living-cost, funding, and deadline information is indicative and compiled from public sources.
+- Entries marked as reported, expected, unconfirmed, or check require confirmation.
+- Scholarship eligibility and award conditions can change; verify whether each scheme is open to Bangladeshi applicants.
+- Always confirm eligibility, required documents, funding coverage, application fees, and current deadlines on the university’s or scholarship provider’s official website before paying any fee.
 - Living-cost figures are planning estimates, not official quotations.
+- The tracker is an independent planning resource and is not an official university, government, or scholarship-provider website.
 
-## Application-status privacy
+## Application-status and shortlist privacy
 
-The **My status** field is saved in your browser's local storage. It is specific to the browser/device where you use the tracker; it is not a shared account or central database. Clearing that browser's site data may remove those saved statuses.
+Application status, shortlist selections, and theme preferences are saved in your browser’s local storage. They are specific to the browser/device where you use the tracker; they are not synced to a central account or shared database. Clearing that browser’s site data may remove those saved settings.
 
 ## Technology
 
-The website is a standalone HTML application with embedded CSS and JavaScript, published using GitHub Pages.
+The website is a standalone HTML application with embedded CSS, JavaScript, and programme data, published using GitHub Pages. It does not require an external JavaScript framework.
 
 ## Feedback and corrections
 
-If you notice an outdated deadline, incorrect funding detail, or broken official link, open an issue in this repository with the programme name and a supporting official source.
+Use the feedback form in the tracker to report incorrect or outdated information. Include the programme name and, where possible, a supporting official source.
 
 ---
 
-*This tracker is an independent information and planning resource. It is not an official university, government, or scholarship-provider website.*
+*This tracker is an independent information and planning resource. Always verify details with the official provider before applying.*
