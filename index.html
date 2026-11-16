@@ -1,102 +1,258 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f5f7fb">
-<meta name="description" content="A simple scholarship and master's programme finder with an IELTS band calculator for students from Bangladesh.">
-<title>Scholarship Tracker | 2027 Intake</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Master’s Scholarship Tracker</title>
+<meta name="description" content="Searchable tracker of master’s programmes, scholarships and deadlines for applicants from Bangladesh.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M10 24 32 14l22 10-22 10z M18 32v10c0 4 7 8 14 8s14-4 14-8V32l-14 6z' fill='white'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#f5f7fb;--surface:#fff;--ink:#172033;--muted:#65718a;--line:#e4e9f1;--blue:#3157d5;--blue2:#eaf0ff;--green:#16794b;--greenbg:#e8f7ef;--amber:#946200;--amberbg:#fff4d6;--shadow:0 8px 28px rgba(25,42,78,.07)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{max-width:1120px;margin:auto;padding:0 22px 56px}.hero{padding:38px 0 22px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--blue)}h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.04em;margin:8px 0 10px}.lead{color:var(--muted);max-width:680px;margin:0}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 24px}.stat,.panel,.program{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.stat{padding:15px 18px}.stat strong{display:block;font-size:25px;letter-spacing:-.03em}.stat span{font-size:12px;color:var(--muted)}
-.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start}.panel{padding:20px;margin-bottom:16px}.panel h2{font-size:18px;margin:0 0 5px}.hint{font-size:12px;color:var(--muted);margin:0 0 14px}
-.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px}.field input,.filters input,.filters select,.status{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit;padding:10px 11px;min-width:0}.field input:focus,.filters input:focus,.filters select:focus,.status:focus{outline:2px solid #c9d5ff;border-color:var(--blue)}
-.overall{display:flex;align-items:center;justify-content:space-between;background:var(--blue2);border-radius:12px;padding:12px 14px;margin-top:13px}.overall span{font-size:12px;color:#344b9d;font-weight:700}.overall strong{font-size:26px;color:#203d9f}.saved{font-size:11px;color:var(--muted);margin:9px 0 0}
-.filters{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:9px;margin-bottom:14px}.filters input,.filters select{font-size:13px}
-.resultbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px}.resultbar strong{font-size:14px}.resultbar span{font-size:12px;color:var(--muted)}
-.programs{display:grid;gap:12px}.program{padding:17px}.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.country{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--blue)}.program h3{font-size:17px;line-height:1.3;margin:4px 0}.uni{font-size:13px;color:var(--muted)}.tag{flex:none;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:var(--greenbg);color:var(--green)}.tag.partial{background:var(--amberbg);color:var(--amber)}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.fact{background:#f7f8fc;border-radius:10px;padding:9px}.fact span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.05em}.fact strong{display:block;font-size:12px;margin-top:2px;overflow-wrap:anywhere}
-.detail{font-size:12px;color:#48536a;margin:8px 0}.detail b{color:var(--ink)}.note{border-left:3px solid #d4defd;padding:7px 10px;background:#f8faff;border-radius:0 8px 8px 0;color:#4c5870;font-size:12px;margin:10px 0}
-.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.cardfoot a{color:var(--blue);font-size:12px;font-weight:800;text-decoration:none}.cardfoot a:hover{text-decoration:underline}.status{width:auto;min-width:145px;font-size:12px;padding:7px 9px}.ielts-check{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:12px}.ielts-check label{font-size:12px;font-weight:700;color:var(--muted)}.ielts-check input{width:88px;border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}.ielts-result{font-size:12px;font-weight:700;padding:5px 2px}.ielts-result.good{color:var(--green)}.ielts-result.low{color:#a04a25}.ielts-result.neutral{color:var(--muted)}
-button{border:0;border-radius:10px;background:var(--blue);color:#fff;font:inherit;font-weight:700;font-size:13px;padding:10px 14px;cursor:pointer}button:hover{filter:brightness(.95)}button:focus-visible,a:focus-visible{outline:3px solid #a9baff;outline-offset:2px}.more{display:block;margin:18px auto 0}.empty{background:#fff;border:1px dashed #cbd3e1;padding:28px;border-radius:14px;text-align:center;color:var(--muted)}
-.feedback{margin-top:24px}.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feedback input,.feedback textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}.feedback textarea{min-height:100px;resize:vertical;grid-column:1/-1}.feedback button{margin-top:10px}.fineprint{font-size:11px;color:var(--muted);margin:10px 0 0}.footer{font-size:11px;color:var(--muted);padding:18px 0 0}.footer a{color:var(--blue)}
-@media(max-width:850px){.layout{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}}
-@media(max-width:520px){.wrap{padding:0 13px 40px}.hero{padding-top:26px}.stats{grid-template-columns:repeat(3,1fr)}.stat span{font-size:10px}.stat strong{font-size:18px}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.panel{padding:16px}.facts{grid-template-columns:1fr 1fr}.facts .fact:last-child{grid-column:1/-1}.topline{gap:7px}.program{padding:14px}.tag{font-size:10px}}
-@media(prefers-reduced-motion:no-preference){.program{transition:transform .15s ease,box-shadow .15s ease}.program:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(25,42,78,.1)}}
+  :root{
+    color-scheme:light;
+    --paper:#f4f6fa; --card:#fff; --ink:#151a2c; --ink-soft:#5d6580; --line:#e0e5f0; --head:#eef1fa;
+    --accent:#1f4fd8; --accent-soft:#e5ecfc;
+    --green:#0f7a52; --green-soft:#d9f4e6; --amber:#935f00; --amber-soft:#fdeeca;
+    --grey:#5d6580; --grey-soft:#eceff6; --blue:#1d62b3; --blue-soft:#dcebfb;
+    --red:#b4233a; --red-soft:#fde3e7; --shadow:0 1px 2px rgba(20,25,60,.06),0 6px 20px rgba(20,25,60,.06);
+  }
+  :root[data-theme=dark]{
+    color-scheme:dark;
+    --paper:#0e1120; --card:#171b30; --ink:#e9ebf8; --ink-soft:#9aa2c4; --line:#2a3050; --head:#1d2240;
+    --accent:#7ea3ff; --accent-soft:#1d2a52;
+    --green:#4fd69c; --green-soft:#12392d; --amber:#f2c05a; --amber-soft:#3b2f10;
+    --grey:#9aa2c4; --grey-soft:#232845; --blue:#78b4ff; --blue-soft:#142a48;
+    --red:#ff8a9a; --red-soft:#43202a; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1440px;margin:0 auto;padding:0 22px 80px}
+  .hero{margin:0 -22px 0;padding:30px 22px 72px;background:linear-gradient(135deg,#0a1b45 0%,#12327f 60%,#1d4fb8 100%);color:#fff}
+  .heroin{max-width:1440px;margin:0 auto;display:flex;justify-content:center;text-align:center;position:relative}
+  .kicker{text-transform:uppercase;letter-spacing:1.6px;font-size:11px;font-weight:700;color:#cfd0ff;margin-bottom:10px}
+  h1{font-size:34px;line-height:1.1;margin:0 0 8px;letter-spacing:-.8px;font-weight:800}
+  .sub{color:#e3e4ff;font-size:14px;max-width:720px;margin:0 auto}
+  .upd{margin-top:10px;font-size:11.5px;color:#cfd0ff}
+  #theme{position:absolute;right:0;top:0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:8px 12px;font-size:15px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:-46px 0 14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .stat .n{font-size:28px;line-height:1.1;font-weight:800;color:var(--accent)}
+  .stat .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;color:var(--ink-soft);margin-top:4px;font-weight:700}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .chip{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:600}
+  .chip .n{color:var(--ink-soft);font-weight:500;margin-left:6px}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .chip.on .n{color:#e3e2ff}
+  .controls{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px;box-shadow:var(--shadow)}
+  .controls input,.controls select{font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);min-width:0}
+  .controls input[type=search]{flex:1 1 220px;min-width:180px}
+  .controls select{flex:0 1 auto;max-width:180px}
+  .controls input:focus,.controls select:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .chk{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink-soft);padding:0 6px;cursor:pointer}
+  .chk input{min-width:0;accent-color:var(--accent)}
+  button{font-family:inherit;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:transform .08s,opacity .15s}
+  button.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  button:hover{opacity:.9} button:active{transform:scale(.97)}
+  .tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{background:transparent;border:1px solid transparent;color:var(--ink-soft);font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px}
+  .tab.on{background:var(--accent-soft);color:var(--accent)}
+  .tab .c{font-weight:500;font-size:11.5px;margin-left:6px;opacity:.8}
+  .panel{display:none} .panel.on{display:block}
+  .empty{padding:40px;text-align:center;color:var(--ink-soft)}
+
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;align-items:start}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .15s}
+  .card:hover{transform:translateY(-2px)}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--line)}
+  .card.rf::before{background:var(--green)} .card.rm::before{background:var(--amber)}
+  .ct{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .star{background:transparent;border:none;color:var(--line);font-size:20px;padding:0 2px;line-height:1}
+  .star.on{color:#f5b301}
+  .card h3{margin:6px 0 2px;font-size:16px;line-height:1.25;font-weight:800}
+  .pg{margin:0 0 10px;color:var(--ink-soft);font-size:12.5px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--grey-soft);color:var(--ink-soft)}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 10px;background:var(--paper);border-radius:12px;padding:10px}
+  .facts div{min-width:0} .facts dt{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:700}
+  .facts dd{margin:2px 0 0;font-size:12.5px;font-weight:700;word-break:break-word}
+  .sch{margin:0 0 10px;font-size:12px;color:var(--ink-soft)}
+  .dlr{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;padding:8px 11px;border-radius:10px;background:var(--grey-soft);color:var(--ink-soft)}
+  .dlr.warm{background:var(--amber-soft);color:var(--amber)} .dlr.hot{background:var(--red-soft);color:var(--red)} .dlr.late{opacity:.6}
+  .cf{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+  .cnote{font-size:11.5px;color:var(--ink-soft);margin-top:10px}
+  .cdet{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+
+  /* table */
+  .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:1180px}
+  thead th{position:sticky;top:0;background:var(--head);text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:800;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th.sorted{color:var(--accent)} thead th .ar{opacity:.6;font-size:9px;margin-left:3px}
+  tbody td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:var(--paper)}
+  tbody td:nth-child(3){min-width:260px}
+  tr.rf td:first-child{box-shadow:inset 4px 0 0 var(--green)} tr.rm td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
+  .uni{font-weight:700} .prog{color:var(--ink-soft);font-size:11.5px;margin-top:1px}
+  .cty{font-size:11.5px;color:var(--ink-soft);white-space:nowrap}
+  .pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:999px;white-space:nowrap;text-transform:uppercase}
+  .p-full{background:var(--green-soft);color:var(--green)} .p-part{background:var(--amber-soft);color:var(--amber)}
+  .p-low{background:var(--grey-soft);color:var(--grey)} .p-high{background:var(--accent-soft);color:var(--accent)} .p-med{background:var(--blue-soft);color:var(--blue)}
+  .money,.dl{white-space:nowrap;font-variant-numeric:tabular-nums} .dl .m{display:block;font-size:10.5px;color:var(--ink-soft)}
+  .fund{font-size:11.5px;line-height:1.4;max-width:280px} .note{font-size:11.5px;color:var(--ink-soft);max-width:300px}
+  .stsel{font-family:inherit;font-size:11.5px;padding:5px 7px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;max-width:125px}
+  .stsel.s-applied{background:var(--blue-soft);color:var(--blue);font-weight:700} .stsel.s-offer{background:var(--green-soft);color:var(--green);font-weight:700}
+  .stsel.s-prep{background:var(--amber-soft);color:var(--amber);font-weight:700} .stsel.s-rej{background:var(--grey-soft);color:var(--grey)}
+  .dbtn{margin-top:6px;padding:3px 10px;font-size:11px;background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  tr.dtr td{background:var(--head);padding:14px 16px;border-bottom:2px solid var(--line)}
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;white-space:normal;font-weight:400}
+  .dgrid h4{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:var(--accent)}
+  .dgrid ul{margin:0;padding-left:16px} .dgrid li{margin:2px 0;font-size:12px} .dgrid p{margin:0 0 5px;font-size:12px}
+  .dgrid .tip{grid-column:1/-1;font-size:11px;color:var(--ink-soft)} .dgrid a{color:var(--accent)}
+
+  /* timeline + country */
+  .tl{display:grid;gap:14px}
+  .tlmonth{border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
+  .tlhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 16px;background:var(--head)}
+  .tlhead .mn{font-size:16px;font-weight:800} .tlhead .cd{font-size:11px;color:var(--ink-soft);font-weight:700} .tlhead .cd.soon{color:var(--accent)}
+  .tlrow{display:flex;gap:12px;padding:9px 16px;border-top:1px solid var(--line);align-items:baseline}
+  .tlrow .day{font-variant-numeric:tabular-nums;font-size:11px;color:var(--ink-soft);width:54px;flex:none;font-weight:700}
+  .tlrow .t{font-weight:700;font-size:12.5px} .tlrow .s{font-size:11.5px;color:var(--ink-soft)}
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .ccard{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:15px 16px;box-shadow:var(--shadow)}
+  .ccard h3{margin:0 0 2px;font-size:18px;font-weight:800} .ccard .meta{font-size:11.5px;color:var(--ink-soft);margin-bottom:8px}
+  .ccard ul{list-style:none;margin:0;padding:0}
+  .ccard li{padding:5px 0;border-top:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between;gap:8px}
+  .ccard li .u{font-weight:700} .ccard li .f{color:var(--ink-soft);font-size:10.5px;text-align:right}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-soft)} footer p{margin:0 0 8px}
+    .notice{margin:0 0 16px;padding:11px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--card);font-size:12.5px;color:var(--ink-soft)}
+  .notice strong{color:var(--ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media print{
+    .hero{background:#fff!important;color:#000!important;padding:0 0 10px!important;margin:0!important}
+    .hero *{color:#000!important} #theme,.controls,.chips,.tabs,.fab,.modal,.dbtn,.rep,.star,.cf select,.notice,.upd{display:none!important}
+    .stats{margin:10px 0!important} body{background:#fff!important} .card{break-inside:avoid;box-shadow:none!important}
+    .cards{grid-template-columns:repeat(2,1fr)!important} .panel{display:none!important} #p-cards{display:block!important}
+  }
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .chip{flex:none;white-space:nowrap}
+  .controls input[type=search]{flex:1 1 100%}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:first-child{grid-column:1/-1}
+  .notice{margin:0 0 18px}
+  .cbtns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  tbody td:first-child{white-space:nowrap}
+  body[data-tab=schol] .chips,body[data-tab=schol] #chips+details,body[data-tab=schol] .controls select,body[data-tab=schol] .chk,body[data-tab=schol] .cbtns{display:none}
+  :root[data-theme=dark] button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip),:root[data-theme=dark] .chip.on{color:#0a1230}
+  :root[data-theme=dark] .chip.on .n{color:#233a78}
+  .fab{padding:9px 16px;font-size:12px}
+  .fab{position:fixed;right:18px;bottom:18px;z-index:20;border-radius:999px;padding:11px 18px;box-shadow:var(--shadow)}
+  .modal{position:fixed;inset:0;background:rgba(10,12,30,.55);z-index:30;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal[hidden]{display:none}
+  .mbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;width:min(480px,100%);box-shadow:var(--shadow)}
+  .mbox h3{margin:0 0 12px;font-size:18px}
+  .mbox label{display:block;font-size:12px;font-weight:700;color:var(--ink-soft);margin-bottom:10px}
+  .mbox input,.mbox select,.mbox textarea{display:block;width:100%;margin-top:4px;font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+  .mrow{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap} .mnote{font-size:11.5px;color:var(--ink-soft);margin:10px 0 0}
+  .rep{padding:3px 8px;font-size:12px;margin-top:6px}
+  .sc{border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+  .sc.ok{background:var(--green-soft);color:var(--green)} .sc.closed{background:var(--red-soft);color:var(--red)} .sc.wait{background:var(--amber-soft);color:var(--amber)} .sc.rep{background:var(--blue-soft);color:var(--blue)}
+  @media (max-width:640px){
+    .heroin{flex-direction:column;align-items:center} #theme{position:static;order:-1;margin-bottom:12px}
+    .stats{grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-40px} .stat{padding:10px} .stat .n{font-size:20px} .stat .l{font-size:9px}
+    .fab{right:12px;bottom:12px;padding:8px 14px}
+h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12px 70px}.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<main class="wrap">
-<header class="hero">
-  <div class="eyebrow">For students from Bangladesh · 2027 intake</div>
-  <h1>Scholarship Tracker</h1>
-  <p class="lead">Find master's programmes, compare subjects and funding, calculate your IELTS band, and keep your application status in one simple place.</p>
-</header>
-<section class="stats" aria-label="Tracker overview">
-  <div class="stat"><strong id="totalCount">309</strong><span>Programmes listed</span></div>
-  <div class="stat"><strong id="countryCount">—</strong><span>Countries / regions</span></div>
-  <div class="stat"><strong id="fundedCount">—</strong><span>Full or partial funding</span></div>
-</section>
-<div class="layout">
-  <aside>
-    <section class="panel">
-      <h2>IELTS Score Calculator</h2>
-      <p class="hint">Enter your four section scores. Your overall band is calculated automatically. In each programme card, enter its published overall IELTS minimum to compare your score.</p>
-      <div class="score-grid">
-        <div class="field"><label for="listening">Listening</label><input id="listening" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
-        <div class="field"><label for="reading">Reading</label><input id="reading" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
-        <div class="field"><label for="writing">Writing</label><input id="writing" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
-        <div class="field"><label for="speaking">Speaking</label><input id="speaking" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
-      </div>
-      <div class="overall"><span>Overall IELTS band</span><strong id="overall">—</strong></div>
-      <p class="saved" id="scoreMessage">Your score is saved only in this browser on this device. No account or login is needed. Programme IELTS minimums must be checked on official university pages and entered manually; section minimums may also apply.</p>
-    </section>
-    <section class="panel">
-      <h2>How to use</h2>
-      <p class="hint">Search by university, programme, country or subject. Filter by funding and update each programme's application status.</p>
-      <p class="fineprint">IELTS minimum requirements are not included in this dataset. Always check the official programme page before applying.</p>
-    </section>
-  </aside>
-  <section>
-    <div class="filters" aria-label="Programme filters">
-      <input id="search" type="search" placeholder="Search university, subject, country…">
-      <select id="country"><option value="">All countries</option></select>
-      <select id="field"><option value="">All subjects</option></select>
-      <select id="funding"><option value="">Any funding</option><option value="Full">Full funding</option><option value="Full or partial">Full or partial</option><option value="Partial">Partial funding</option><option value="Partial to full">Partial to full</option><option value="Low">Limited funding</option><option value="None">No funding listed</option></select>
-      <select id="ieltsFit"><option value="">All IELTS matches</option><option value="meets">Meets requirement</option><option value="below">Below requirement</option><option value="unset">Requirement not set</option></select>
+<div class="wrap">
+  <header class="hero"><div class="heroin"><div>
+    <div class="kicker">Programmes · Scholarships · Deadlines · For applicants from Bangladesh · 2027 entry</div>
+    <h1>Global Master’s Scholarship Tracker</h1>
+    <div class="sub" id="sub"></div><div class="upd" id="upd"></div></div>
+    <button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
+
+  <div class="stats" id="stats"></div>
+  <div class="notice"><strong>Please note:</strong> dates, fees and funding shown here are indicative and compiled from public sources. Entries marked “unconfirmed” or “check” have not been verified. Always confirm on the official programme or scholarship page before applying or paying any fee.</div>
+
+  <div class="chips" id="chips"></div>
+  <details style="margin:-6px 0 14px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search university, country, programme…">
+    <select id="fCountry"><option value="">All countries</option></select>
+    <select id="fField"><option value="">All fields</option></select>
+    <select id="fFund">
+      <option value="">Any funding</option>
+      <option value="Full">Full funding only</option>
+      <option value="Full or partial">Full or partial</option>
+      <option value="Partial">Partial only</option>
+    </select>
+    <select id="fPrio">
+      <option value="">Any priority</option>
+      <option value="High">High priority</option>
+      <option value="Medium">Medium priority</option>
+      <option value="Low">Low priority</option>
+    </select>
+    <select id="fSort"><option value="no">Sort: default</option><option value="deadline">Sort: deadline soonest</option><option value="priority">Sort: priority</option><option value="living">Sort: cheapest living</option></select>
+    <label class="chk"><input type="checkbox" id="fFav"> ★ Shortlist only</label>
+    <span class="cbtns"><button class="ghost" id="reset">Reset</button>
+    <button class="ghost" id="exportFav">Shortlist CSV</button>
+    <button class="ghost" id="printBtn">Print</button>
+    <button id="dl">All data CSV</button></span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-p="cards">Cards <span class="c" id="cCards"></span></button>
+    <button class="tab" data-p="table">Table <span class="c" id="cTable"></span></button>
+    <button class="tab" data-p="schol">Scholarships <span class="c" id="cSchol"></span></button>
+    <button class="tab" data-p="timeline">Deadline timeline <span class="c" id="cTimeline"></span></button>
+    <button class="tab" data-p="country">By country <span class="c" id="cCountry"></span></button>
+  </div>
+
+  <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
+  <div class="panel" id="p-table">
+    <div class="tablebox">
+      <table id="tbl">
+        <thead><tr>
+          <th data-k="no">#<span class="ar">▲</span></th>
+          <th data-k="country">Country<span class="ar"></span></th>
+          <th data-k="university">University / programme<span class="ar"></span></th>
+          <th data-k="field">Field<span class="ar"></span></th>
+          <th data-k="dur">Duration<span class="ar"></span></th>
+          <th data-k="tuition" class="num">Tuition (non-EU)<span class="ar"></span></th>
+          <th data-k="living" class="num">Living €/mo<span class="ar"></span></th>
+          <th data-k="fundLevel">Funding<span class="ar"></span></th>
+          <th data-k="fundText">Schemes<span class="ar"></span></th>
+          <th data-k="deadline">Key deadline<span class="ar"></span></th>
+          <th data-k="priority">Priority<span class="ar"></span></th>
+          <th data-k="status">My status<span class="ar"></span></th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="empty" style="display:none">No programme matches those filters.</div>
     </div>
-    <div class="resultbar"><strong id="resultCount">Loading programmes…</strong><span>2027 entry · Verify deadlines</span></div>
-    <div class="programs" id="programs"></div>
-    <div class="empty" id="empty" hidden>No programmes match these filters. Try another search.</div>
-    <button class="more" id="more" type="button" hidden>Show more programmes</button>
-  </section>
-</div>
-<section class="panel feedback">
-  <h2>Send feedback</h2>
-  <p class="hint">Report incorrect information or suggest a programme to add.</p>
-  <form action="https://formsubmit.co/imdmominul196@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="Scholarship Tracker feedback">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://mdmominul-islam.github.io/scholarship-tracker/?feedback=sent">
-    <div class="feedback-grid">
-      <input name="name" type="text" placeholder="Your name (optional)">
-      <input name="email" type="email" placeholder="Your email (optional)">
-      <textarea name="message" required placeholder="Write your feedback or programme suggestion…"></textarea>
-    </div>
-    <button type="submit">Send feedback</button>
-  </form>
-  <p class="fineprint">Feedback is delivered to the site owner's email through FormSubmit. The first submission may require a one-time email activation by the owner.</p>
-</section>
-<footer class="footer">
-  Programme fees, funding and deadlines are indicative and may change. Confirm all details on the university or scholarship provider's official website. Application status and IELTS scores are stored locally in your browser; they are not public and are not synced between devices. No login is required.
-  <p>Contact: <a href="mailto:imdmominul196@gmail.com">imdmominul196@gmail.com</a> · Data updated 16 November 2026.</p>
+  </div>
+
+  <div class="panel" id="p-schol"><div class="cards" id="scholCards"></div></div>
+  <div class="panel" id="p-timeline"><div class="tl" id="tl"></div></div>
+  <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
+
+  <footer>
+    <p><strong>How to use this:</strong> filter by “Full funding only” when you need a full ride, or by country when an application portal costs money. The timeline tab sorts every deadline chronologically so you can work backwards — scholarship deadlines are usually 1–4 months before the programme's own deadline.</p>
+    <p>Tuition, living costs and deadlines are indicative for the 2027 intake and move every year — always confirm on the university's own admissions page before you pay an application fee. Living-cost figures are a planning estimate, not a quote. “Full” means tuition plus a stipend is available through at least one of the listed schemes.</p>
+    <p><strong>How updates work:</strong> countdowns and “passed” flags use today's date, so they refresh every time you open the page. New programmes and scholarships come from the data source: either the built-in list, or a live CSV link you set in <code>CONFIG.DATA_URL</code> (for example a Google Sheet published as CSV with the same columns as “Download CSV”).</p>
+  <p id="contact"></p>
 </footer>
-</main>
+<button class="fab" id="fab">Feedback</button>
+<div class="modal" id="fbm" hidden><div class="mbox"><h3>Send feedback</h3>
+  <label>Type<select id="fbType"><option>Suggestion</option><option>Wrong or outdated information</option><option>Add a programme or scholarship</option><option>Bug or display problem</option></select></label>
+  <label>Programme number (optional)<input id="fbNo" placeholder="e.g. 42"></label>
+  <label>Your message<textarea id="fbMsg" rows="5" placeholder="What should be fixed or added?"></textarea></label>
+  <div class="mrow"><button class="ghost" id="fbCancel">Cancel</button><button class="ghost" id="fbCopy">Copy</button><button id="fbSend">Send by email</button></div>
+  <p class="mnote" id="fbNote"></p></div></div>
+</div>
+
 <script>
-const CONFIG={email:"imdmominul196@gmail.com",pageSize:24};
+const CONFIG={DATA_URL:'',FEEDBACK_EMAIL:'imdmominul196@gmail.com',OWNER_NAME:'',UPDATED:'15 Nov 2026'};
 const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuition (non-EU/yr),Living cost (EUR/mo),Funding scheme(s),Funding level,Intake and deadline (2027 entry),Website,Notes,My status,Priority
 1,EU (multi-country),Multiple,Erasmus Mundus consortium,Erasmus Mundus Joint Master (100+ programmes),Various,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Oct 2026 – Jan 2027 (varies per programme),erasmus-plus.ec.europa.eu,Easiest full-funding route for Bangladeshi students. You may apply to max 3 programmes. Check the EMJM catalogue every October.,Not started,High
 2,Germany,Munich,Technical University of Munich (TUM),M.Sc. Computer Science,Computer Science,English/German,2 yrs,€0 + ~€150/semester fee,1000,DAAD Study Scholarship; Deutschlandstipendium (€300/mo); TUM merit awards,Partial,Winter: 15 Jan 2027 / Summer: 30 Nov 2026,tum.de,No tuition for any student — only semester fee which includes public transport pass.,Not started,High
@@ -406,112 +562,479 @@ const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuitio
 306,China,Beijing,Peking University (Yenching Academy),Master in China Studies (Yenching Academy),Social Science – Area Studies,English,2 yrs,Covered by scholarship,650,Yenching Academy scholarship (full),Full,Dec 2026 (check),yenchingacademy.pku.edu.cn,Interdisciplinary programme with full funding; confirm the current round.,Not started,Medium
 307,Canada,Vancouver,University of British Columbia,M.Sc. Computer Science (thesis-based),Computer Science,English,2 yrs,CAD 9000–10000/yr (check),1900,Supervisor funding; UBC graduate awards,Partial to full,Dec 2026 – Jan 2027 (check),cs.ubc.ca,Contact a supervisor before applying; funding comes through the lab.,Not started,Medium
 308,Canada,Montreal,McGill University,M.Sc. Plant Science (thesis-based),Agriculture – Plant Science,English,2 yrs,CAD 10000–20000/yr (check),1700,Supervisor funding; McGill graduate awards,Partial to full,Jan 2027 – Mar 2027 (check),mcgill.ca,Thesis-based; supervisor funding is the main route.,Not started,Low
-309,Canada,Toronto,University of Toronto (Dalla Lana),M.Sc. Epidemiology,Public Health/Global Health,English,2 yrs,CAD 25000–30000/yr (check),2000,Ontario Graduate Scholarship; supervisor funding,Partial,Dec 2026 – Jan 2027 (check),dlsph.utoronto.ca,Research-oriented; confirm the programme name.,Not started,Low;`;
-function parseCSV(input){
-  const rows=[];let row=[],value="",quoted=false;
-  for(let i=0;i<input.length;i++){
-    const c=input[i];
-    if(quoted){if(c==='"'){if(input[i+1]==='"'){value+='"';i++;}else quoted=false;}else value+=c;}
-    else if(c==='"')quoted=true;
-    else if(c===','){row.push(value);value="";}
-    else if(c==='\n'){row.push(value);value="";if(row.length>1)rows.push(row);row=[];}
-    else if(c!=='\r')value+=c;
+309,Canada,Toronto,University of Toronto (Dalla Lana),M.Sc. Epidemiology,Public Health/Global Health,English,2 yrs,CAD 25000–30000/yr (check),2000,Ontario Graduate Scholarship; supervisor funding,Partial,Dec 2026 – Jan 2027 (check),dlsph.utoronto.ca,Research-oriented; confirm the programme name.,Not started,Low`;
+
+function parseCSV(text){
+  const rows=[]; let row=[], cur='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; }
+      else cur+=c;
+    } else {
+      if(c==='"') q=true;
+      else if(c===','){ row.push(cur); cur=''; }
+      else if(c==='\n'){ row.push(cur); cur=''; if(row.length>1) rows.push(row); row=[]; }
+      else if(c==='\r'){}
+      else cur+=c;
+    }
   }
-  if(value!==""||row.length){row.push(value);if(row.length>1)rows.push(row);}
-  const headers=rows.shift()||[];
-  return rows.map(r=>{const o={};headers.forEach((h,i)=>o[h]=(r[i]||"").trim());return o;});
+  if(cur!==''||row.length){ row.push(cur); if(row.length>1) rows.push(row); }
+  const head=rows.shift();
+  return rows.map(r=>{ const o={}; head.forEach((h,i)=>o[h]=(r[i]||'').trim()); return o; });
 }
-const DATA=parseCSV(CSV);
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const unique=key=>[...new Set(DATA.map(x=>x[key]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-$("totalCount").textContent=DATA.length;
-$("countryCount").textContent=unique("Country").length;
-$("fundedCount").textContent=DATA.filter(x=>x["Funding level"]==="Full"||x["Funding level"]==="Full or partial").length;
-function fillSelect(id,values){const el=$(id);values.forEach(v=>{const op=document.createElement("option");op.value=v;op.textContent=v;el.appendChild(op);});}
-fillSelect("country",unique("Country"));fillSelect("field",unique("Field"));
-let page=1;
-let statuses={};
-let ieltsRequirements={};
-try{statuses=JSON.parse(localStorage.getItem("scholarship_status_v2")||"{}")||{};}catch(e){statuses={};}
-try{ieltsRequirements=JSON.parse(localStorage.getItem("scholarship_ielts_requirements_v1")||"{}")||{};}catch(e){ieltsRequirements={};}
-function statusFor(no){return statuses[no]||"Not started";}
-function saveStatus(no,value){statuses[no]=value;try{localStorage.setItem("scholarship_status_v2",JSON.stringify(statuses));}catch(e){}}
-function currentOverall(){const vals=scoreFields.map(k=>$(k).value.trim()===""?NaN:Number($(k).value));if(!vals.every(v=>Number.isFinite(v)&&v>=0&&v<=9&&Math.round(v*2)===v*2))return null;return Math.round((vals.reduce((a,b)=>a+b,0)/4)*2)/2;}
-function requirementFor(no){const v=ieltsRequirements[no];return v===undefined||v===null||v===""?null:Number(v);}
-function saveRequirement(no,value){if(value==="")delete ieltsRequirements[no];else{const n=Number(value);if(!Number.isFinite(n)||n<0||n>9||Math.round(n*2)!==n*2)return;ieltsRequirements[no]=n;}try{localStorage.setItem("scholarship_ielts_requirements_v1",JSON.stringify(ieltsRequirements));}catch(e){}}
-function safeUrl(raw){
-  let s=String(raw||"").trim();
-  if(!s)return "";
-  if(!/^https?:\/\//i.test(s))s="https://"+s;
-  try{const u=new URL(s);return (u.protocol==="https:"||u.protocol==="http:")?u.href:"";}catch(e){return "";}
+
+const MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+
+// Pull the EARLIEST date mentioned out of the free-text deadline column, so the
+// timeline always shows the first thing you have to act on (often the scholarship,
+// not the programme deadline). Falls back to the 15th when no day is given.
+function keyDate(s){
+  const re=/(\d{1,2})?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s*(\d{4})/gi;
+  let m, best=null;
+  while((m=re.exec(s))!==null){
+    const mon=MONTHS[m[2].toLowerCase().slice(0,3)];
+    const yr=parseInt(m[3],10);
+    const day=m[1]?parseInt(m[1],10):15;
+    const d=new Date(yr,mon-1,Math.min(day,28));
+    if(!best || d<best) best=d;
+  }
+  return best;
 }
-function card(d){
-  const funding=d["Funding level"]||"Funding details";
-  const full=funding==="Full"||funding==="Full or partial";
-  const link=safeUrl(d.Website);
-  const options=["Not started","Preparing","Applied","Interview","Offer","Rejected","Withdrawn"].map(s=>'<option value="'+s+'" '+(statusFor(d.No)===s?"selected":"")+'">'+s+"</option>").join("");
-  const requirement=requirementFor(d.No),overall=currentOverall();
-  const result=requirement===null?"Enter the official minimum band":overall===null?"Enter your IELTS scores above":overall>=requirement?"Your band "+overall.toFixed(1)+" meets the "+requirement.toFixed(1)+" minimum":"Your band "+overall.toFixed(1)+" is below the "+requirement.toFixed(1)+" minimum";
-  const resultClass=requirement===null||overall===null?"neutral":overall>=requirement?"good":"low";
-  return '<article class="program">'+
-    '<div class="topline"><div><div class="country">'+esc(d.Country)+' · '+esc(d.City)+'</div><h3>'+esc(d.Programme)+'</h3><div class="uni">'+esc(d.University)+'</div></div>'+
-    '<span class="tag '+(full?"":"partial")+'">'+esc(funding)+'</span></div>'+
-    '<div class="facts">'+
-      '<div class="fact"><span>Subject</span><strong>'+esc(d.Field)+'</strong></div>'+
-      '<div class="fact"><span>Language</span><strong>'+esc(d.Language)+'</strong></div>'+
-      '<div class="fact"><span>Duration</span><strong>'+esc(d.Duration)+'</strong></div>'+
-      '<div class="fact"><span>Tuition</span><strong>'+esc(d["Tuition (non-EU/yr)"])+'</strong></div>'+
-      '<div class="fact"><span>Living cost / month</span><strong>€'+esc(d["Living cost (EUR/mo)"]||"—")+'</strong></div>'+
-      '<div class="fact"><span>Priority</span><strong>'+esc(d.Priority||"—")+'</strong></div>'+
-    '</div>'+
-    '<p class="detail"><b>Scholarships:</b> '+esc(d["Funding scheme(s)"]||"Not specified")+'</p>'+
-    '<p class="detail"><b>Deadline / intake:</b> '+esc(d["Intake and deadline (2027 entry)"]||"Check official website")+'</p>'+
-    (d.Notes?'<p class="note">'+esc(d.Notes)+'</p>':"")+
-    '<div class="ielts-check"><label for="ielts-req-'+esc(d.No)+'">IELTS minimum overall band</label><input id="ielts-req-'+esc(d.No)+'" type="number" min="0" max="9" step=".5" placeholder="e.g. 6.5" value="'+(requirement===null?"":requirement.toFixed(1))+'" data-ielts-no="'+esc(d.No)+'" aria-label="Published IELTS overall minimum for '+esc(d.Programme)+'"></div>'+
-    '<div class="ielts-result '+resultClass+'" data-ielts-result="'+esc(d.No)+'">'+esc(result)+'</div>'+
-    '<div class="cardfoot">'+(link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Official programme website ↗</a>':'<span class="fineprint">Official link not provided</span>')+
-    '<select class="status" data-no="'+esc(d.No)+'" aria-label="Application status for '+esc(d.Programme)+'">'+options+'</select></div>'+
-    '</article>';
+
+const mapRow=r=>{
+  const d=keyDate(r['Intake and deadline (2027 entry)']);
+  return {
+    no:+r['No'], country:r['Country'], city:r['City'], university:r['University'],
+    programme:r['Programme'], field:r['Field'], language:r['Language'], dur:r['Duration'],
+    tuition:r['Tuition (non-EU/yr)'], living:+r['Living cost (EUR/mo)'],
+    fundText:r['Funding scheme(s)'], fundLevel:r['Funding level'],
+    deadline:r['Intake and deadline (2027 entry)'], site:r['Website'],
+    note:r['Notes'], status:r['My status'], priority:r['Priority'],
+    date:d
+  };
+};
+const DATA=parseCSV(CSV).map(mapRow);
+const STAT=['Not started','Preparing','Applied','Offer','Rejected'];
+let ST={}; try{ST=JSON.parse(localStorage.getItem('trk_status')||'{}');}catch(e){}
+DATA.forEach(d=>{ if(ST[d.no]) d.status=ST[d.no]; });
+const stCls=x=>({Applied:'s-applied',Offer:'s-offer',Preparing:'s-prep',Rejected:'s-rej'}[x]||'');
+const GROUPS=['Generic programmes','Education','Arts and Humanities','Social Sciences, Journalism, Information','Business, Admin and Law','Natural Sciences, Maths, Statistics','Information and Communication Technologies','Engineering, Manufacturing, Construction','Agriculture, Forestry, Fisheries, Veterinary','Health and Welfare','Services'];
+const grp=d=>{const f=d.field;
+ if(/^Various|^Foundation/.test(f)) return GROUPS[0];
+ if(/^Education|Social Science – Education/.test(f)) return GROUPS[1];
+ if(/^(Arts|Humanities|Languages)/.test(f)) return GROUPS[2];
+ if(/^Law|Business|Finance|Management/.test(f)) return GROUPS[4];
+ if(/Public Health|Social Work|^Health/.test(f)) return GROUPS[9];
+ if(/^Veterinary|^Agriculture – (Agronomy|Animal|Aquaculture|Forestry|Plant|Food)/.test(f)) return GROUPS[8];
+ if(/^(Engineering|Architecture|Manufacturing)|Environment – Engineering/.test(f)) return GROUPS[7];
+ if(/Environment|Life Science|Bioscience|^Natural Science/.test(f)) return GROUPS[5];
+ if(/^Services/.test(f)) return GROUPS[10];
+ if(/Social Science|Journalism|Public Policy/.test(f)) return GROUPS[3];
+ return GROUPS[6];};
+const rowCls=d=>d.fundLevel==='Full'?'rf':/Full/.test(d.fundLevel)?'rm':'';
+
+const TODAY=(()=>{const t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate());})();
+const days=(a,b)=>Math.round((a-b)/86400000);
+const MONTHNAME=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+/* ---------- stats ---------- */
+const fullCount=DATA.filter(d=>d.fundLevel==='Full').length;
+const countries=new Set(DATA.map(d=>d.country)).size;
+const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
+
+/* ---------- filters ---------- */
+const fC=document.getElementById('fCountry'), fF=document.getElementById('fField');
+function fillFilters(){[[fC,'country'],[fF,'field']].forEach(([el,k])=>{const keep=el.value;while(el.options.length>1)el.remove(1);[...new Set(DATA.map(d=>d[k]))].sort().forEach(v=>el.add(new Option(v,v)));el.value=keep;});}
+fillFilters();
+
+let state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
+
+function matches(d){
+  if(state.country && d.country!==state.country) return false;
+  if(state.field && d.field!==state.field) return false;
+  if(state.group && grp(d)!==state.group) return false;
+  if(state.fav && !FAV.has(d.no)) return false;
+  if(state.prio && d.priority!==state.prio) return false;
+  if(state.fund){
+    if(state.fund==='Full' && d.fundLevel!=='Full') return false;
+    if(state.fund==='Partial' && d.fundLevel!=='Partial') return false;
+    if(state.fund==='Full or partial' && !/Full/.test(d.fundLevel)) return false;
+  }
+  if(state.q){
+    const s=(d.university+' '+d.country+' '+d.city+' '+d.programme+' '+d.field+' '+d.fundText+' '+d.note).toLowerCase();
+    if(!s.includes(state.q.toLowerCase())) return false;
+  }
+  return true;
 }
-function getFiltered(){
-  const q=$("search").value.trim().toLowerCase(),country=$("country").value,field=$("field").value,funding=$("funding").value,fit=$("ieltsFit").value,overall=currentOverall();
-  return DATA.filter(d=>{
-    const hay=[d.Country,d.City,d.University,d.Programme,d.Field,d.Language,d["Funding scheme(s)"],d.Notes].join(" ").toLowerCase();
-    const req=requirementFor(d.No);
-    const fitOK=!fit||(fit==="unset"?req===null:fit==="meets"?req!==null&&overall!==null&&overall>=req:fit==="below"?req!==null&&overall!==null&&overall<req:false);
-    return (!q||hay.includes(q))&&(!country||d.Country===country)&&(!field||d.Field===field)&&(!funding||d["Funding level"]===funding)&&fitOK;
+
+function sortRows(rows){
+  const k=state.sort, dir=state.dir;
+  return rows.slice().sort((a,b)=>{
+    let x=a[k], y=b[k];
+    if(k==='deadline'){ x=a.date? a.date.getTime():Infinity; y=b.date? b.date.getTime():Infinity; }
+    if(k==='priority'){const r={High:0,Medium:1,Low:2};x=r[a.priority];y=r[b.priority];}
+    if(typeof x==='number' && typeof y==='number') return (x-y)*dir;
+    return String(x).localeCompare(String(y))*dir;
   });
 }
-function render(){
-  const list=getFiltered(),shown=list.slice(0,page*CONFIG.pageSize);
-  $("resultCount").textContent=list.length+" programme"+(list.length===1?"":"s")+" found";
-  $("programs").innerHTML=shown.map(card).join("");
-  $("empty").hidden=list.length!==0;
-  $("more").hidden=shown.length>=list.length||list.length===0;
+
+/* ---------- table ---------- */
+const fundClass=l=> l==='Full'?'p-full' : l==='Partial'?'p-part' : 'p-part';
+const prioClass=p=> p==='High'?'p-high' : p==='Medium'?'p-med' : 'p-low';
+
+function fmtDate(d){
+  if(!d) return '<span class="m">—</span>';
+  return d.getDate()+' '+MONTHNAME[d.getMonth()].slice(0,3)+' '+d.getFullYear()
+    +`<span class="m">${days(d,TODAY)>=0? 'in '+days(d,TODAY)+' days' : 'passed'}</span>`;
 }
-["search","country","field","funding","ieltsFit"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{page=1;render();}));
-$("more").addEventListener("click",()=>{page++;render();});
-$("programs").addEventListener("change",e=>{
-  if(e.target.matches(".status"))saveStatus(e.target.dataset.no,e.target.value);
-  if(e.target.matches("[data-ielts-no]")){const no=e.target.dataset.ieltsNo,value=e.target.value.trim();if(value!==""&&(Number(value)<0||Number(value)>9||Math.round(Number(value)*2)!==Number(value)*2)){e.target.setCustomValidity("Enter a band from 0 to 9 in 0.5 steps.");e.target.reportValidity();return;}e.target.setCustomValidity("");saveRequirement(no,value);render();}
+
+
+/* ---------- details ---------- */
+const OPEN=new Set();
+const CD={
+ Japan:{e:'IELTS 6.0–6.5 / TOEFL 80+ (many accept a medium-of-instruction certificate)',r:'University portals; MEXT Embassy track runs through the Bangladesh Ministry of Education and the Embassy of Japan in Dhaka',f:'JPY 30000 (about €180)',v:'Certificate of Eligibility from the university, then a student visa at the Embassy of Japan in Dhaka'},
+ China:{e:'IELTS 6.0 / TOEFL 80 for English-taught programmes',r:'CSC portal (campuschina.org); Type A via the Embassy of China in Dhaka (agency number 0601); Type B via the university agency number',f:'CNY 400–800',v:'X1 visa with a JW201 or JW202 form; physical examination form'},
+ Canada:{e:'IELTS 6.5–7.0 (writing 6.5) / TOEFL 90+',r:'University portal; contact a supervisor first for thesis-based master’s',f:'CAD 100–150',v:'Study permit with an acceptance letter; proof of funds'},
+ 'South Korea':{e:'IELTS 6.0–6.5 / TOEFL 80+ (many accept a medium-of-instruction certificate)',r:'University portals; GKS has an Embassy Track (via the Korean Embassy in Dhaka) and a University Track; GKS includes a Korean language year',f:'KRW 50000–150000 (about €35–100)',v:'D-2 student visa; apostilled documents'},
+ 'South Africa':{e:'IELTS 6.5 or the university English test',r:'University portal; postgraduate fees and funding vary; apply early',f:'ZAR 0–1000',v:'Study visa through VFS; proof of funds and medical cover'},
+ Rwanda:{e:'IELTS 6.5 / TOEFL 80+',r:'Programme portal (CMU-Africa; AIMS); check scholarship eligibility for non-African students',f:'US$0–100 (check)',v:'Student pass / visa'},
+ Morocco:{e:'IELTS 6.0; French is useful',r:'University portal (UM6P)',f:'€0–50',v:'Student visa'},
+ Egypt:{e:'Arabic required for most programmes; IELTS for English tracks',r:'Embassy or ministry nomination for Al-Azhar scholarships; AUC has its own portal',f:'€0–100',v:'Student visa'},
+ Brazil:{e:'English test (IELTS 6.0) and often Portuguese (Celpe-Bras)',r:'Direct to the programme; PEC-PG scholarships use the CAPES system',f:'€0',v:'Temporary student visa (VITEM IV)'},
+ 'United Kingdom':{e:'IELTS 6.5 (6.0 per band); some courses need IELTS for UKVI',r:'Direct to the university (rolling offers); apply early for scholarships',f:'£0–100',v:'Student visa (CAS from the university); health surcharge; proof of funds; ATAS for some subjects'},
+ 'United States':{e:'TOEFL 90–100 / IELTS 6.5–7.0',r:'University portal; GRE required or optional; 2–3 recommendation letters; for PhD contact professors first',f:'US$50–120',v:'F-1 visa with an I-20 (J-1 for Fulbright); strong proof of funds'},
+ Australia:{e:'IELTS 6.5 (6.0 per band) / PTE 58',r:'Direct to the university; Australia Awards use the OASIS portal',f:'AUD 0–150',v:'Student visa (subclass 500) with a Genuine Student statement; health cover (OSHC); proof of funds'},
+ 'EU (multi-country)':{e:'Usually IELTS 6.5 / TOEFL 90 (varies per programme)',r:'Apply on each consortium website and tick the EMJM scholarship box',f:'€0–100 per programme',v:'Each partner country issues its own permit; plan the mobility semesters early'},
+ Germany:{e:'IELTS 6.5 / TOEFL 90 (some accept a medium-of-instruction certificate)',r:'uni-assist or the university portal; some CS/Data programmes add an aptitude check',f:'uni-assist ~€75 first application (~€30 each extra); many universities charge nothing',v:'National study visa; blocked-account proof of funds; health insurance; embassy slots fill early'},
+ Netherlands:{e:'IELTS 6.5 (about 6.0 per band) / TOEFL 90',r:'Studielink plus the university portal; some run a credential check',f:'€0–100',v:'University sponsors the residence permit (IND); proof of funds'},
+ Sweden:{e:'IELTS 6.5 (no band below 5.5) / TOEFL 90',r:'universityadmissions.se (16 Oct 2026 – 15 Jan 2027; up to 4 choices). For the SI scholarship you must also apply to SI separately in Feb 2027; both steps are required',f:'SEK 900 (~€80–90), paid once',v:'Residence permit from the Migration Agency; apply right after admission'},
+ Finland:{e:'IELTS 6.5 / TOEFL 92',r:'Studyinfo joint application (Dec–Jan) or the university portal',f:'€100 (non-EU)',v:'Residence permit (Migri); proof of funds'},
+ Norway:{e:'IELTS 6.5',r:'University portal (Søknadsweb)',f:'€0',v:'Residence permit (UDI); proof of funds'},
+ Denmark:{e:'IELTS 6.5 / TOEFL 83–90',r:'Optagelse.dk or the university portal',f:'€0–100',v:'Residence permit (SIRI); limited work hours'},
+ Belgium:{e:'IELTS 6.5 / TOEFL 80–90',r:'University portal; degrees often need legalisation; VLIR-UOS/ARES have separate forms',f:'€0–100',v:'Type D visa; legalised documents'},
+ Austria:{e:'IELTS 6.0–6.5 / TOEFL 80',r:'University portal (uni:portal / Uniport); legalised documents',f:'€0–150',v:'Student residence permit; proof of funds'},
+ Switzerland:{e:'IELTS 6.5–7.0 or C1',r:'Direct to the university; ESKAS/ESOP have their own earlier deadlines',f:'CHF 100–150',v:'National D visa; high proof of funds'},
+ France:{e:'IELTS 6.0–6.5 / TOEFL 80 (French may be required for some)',r:'Campus France (Études en France) for Bangladesh, then the university portal',f:'Campus France fee applies',v:'Long-stay student visa (VLS-TS)'},
+ Italy:{e:'IELTS 6.0–6.5',r:'Universitaly pre-enrolment plus the university portal; a credential statement (CIMEA) may be needed',f:'€30–100',v:'National visa D; pre-enrolment is required'},
+ Spain:{e:'B2 / IELTS 6.0–6.5',r:'University portal; legalised documents; degree recognition later',f:'€0–100',v:'Student visa via the Spanish embassy'},
+ Portugal:{e:'B2 / IELTS 6.0',r:'University portal (eCandidaturas); apostilled documents',f:'€50–100',v:'Student visa'},
+ Ireland:{e:'IELTS 6.5 (6.0 per band) / TOEFL 90',r:'PAC portal or the university portal',f:'€50',v:'Student visa; proof of funds'},
+ Poland:{e:'B2 / IELTS 5.5–6.0',r:'University portal (IRK); NAWA applications are separate',f:'€0–100',v:'National student visa'},
+ Czechia:{e:'B2 / IELTS 5.5–6.0',r:'University e-application; the government scholarship scheme is separate; some run entrance tests',f:'€0–50',v:'Long-term student visa'},
+ Hungary:{e:'IELTS 5.5–6.0 or medium-of-instruction proof',r:'Tempus Public Foundation (Stipendium Hungaricum) portal, then the university',f:'€0',v:'Residence permit; housing included in the scholarship'},
+ Estonia:{e:'IELTS 6.0',r:'DreamApply / university portal',f:'€0–100',v:'D-visa or temporary residence permit'},
+ Lithuania:{e:'IELTS 5.5–6.0',r:'University portal or LAMA BPO',f:'€0–100',v:'National visa'},
+ Greece:{e:'IELTS 6.0',r:'University portal; few English places',f:'€0',v:'National visa'},
+ Luxembourg:{e:'IELTS 6.5',r:'University portal',f:'€50',v:'Authorisation to stay; high proof of funds'},
+ Turkey:{e:'IELTS 6.0 or the university English exam',r:'Türkiye Bursları portal plus the university',f:'€0',v:'Student visa; scholarship covers insurance'}
+};
+const FC=[
+ [/^Foundation/,['Academic English or the local language','Study skills and academic writing','Subject bridging modules (pre-Master’s)','Assessment for progression','Pathway into a degree programme']],
+ [/Library/,['Information organisation and retrieval','Digital libraries and archives','Research methods','Specialisation electives','Master thesis']],
+ [/^Education/,['Educational theory and policy','Research methods','Comparative or higher education','Specialisation electives','Master thesis']],
+ [/^(Arts|Humanities|Languages)/,['Core theory and history','Research methods','Specialisation electives','Studio or practice project','Master thesis']],
+ [/^Journalism/,['Journalism and media theory','Reporting and production','Research methods','Specialisation city electives','Thesis or media project']],
+ [/^Law/,['Core legal theory','Comparative and international law','Legal research methods','Specialisation electives','Master thesis']],
+ [/^Natural Science/,['Advanced core theory','Computational or statistical methods','Laboratory or project work','Electives','Master thesis']],
+ [/^(Engineering|Architecture|Manufacturing)/,['Advanced engineering fundamentals','Modelling and design','Specialisation electives','Project or studio work','Master thesis']],
+ [/^Veterinary/,['Epidemiology and disease control','Biostatistics','Animal and public health policy','Research project','Thesis']],
+ [/^Health/,['Biomedical or nutrition fundamentals','Research methods and statistics','Specialisation electives','Lab or internship','Master thesis']],
+ [/^Services/,['Core management theory','Industry and policy modules','Research methods','Internship or case work','Master thesis']],
+ [/Life Science – Biotech/,['Molecular biology and genetics','Plant or industrial biotechnology','Bioinformatics and statistics','Lab project','Thesis']],
+ [/Life Science|Environment –/,['Ecology and environmental science','Statistics and modelling','Field and lab methods','Specialisation electives','Thesis']],
+ [/Agriculture – Plant/,['Plant physiology and genetics','Crop science and breeding','Plant pathology and protection','Statistics and experimental design','Thesis (lab or field research)']],
+ [/Forestry/,['Forest ecology and management','Remote sensing and GIS','Forest policy and economics','Research methods','Thesis or internship']],
+ [/Animal|Aquaculture/,['Animal or aquatic biology','Genetics and breeding','Production systems','Statistics','Thesis (lab or field research)']],
+ [/Agriculture – Food/,['Food chemistry and microbiology','Food processing technology','Nutrition and safety','Statistics','Thesis']],
+ [/Agriculture – Environment/,['Climate and environmental science','Sustainability and policy','GIS and modelling','Research methods','Thesis']],
+ [/Agriculture/,['Agronomy and soil science','Farming and cropping systems','Agricultural economics and rural development','Statistics and research methods','Thesis or fieldwork']],
+ [/Sociology/,['Social theory','Quantitative and qualitative research methods','Inequality and stratification','Applied statistics (R/Stata)','Master thesis']],
+ [/Development/,['Development theory and political economy','Policy analysis; monitoring and evaluation','Research methods','Governance and poverty','Internship or fieldwork; thesis']],
+ [/Political Science|IR/,['International relations theory','Comparative politics','Quantitative methods','Security and conflict electives','Master thesis']],
+ [/Economics/,['Advanced micro and macro','Econometrics','Maths for economists','Field electives','Master thesis']],
+ [/Public Policy/,['Policy analysis','Economics for policy','Statistics','Political institutions','Capstone or thesis']],
+ [/Public Health|Global Health/,['Epidemiology','Biostatistics','Health systems and policy','Global health','Thesis or internship']],
+ [/Anthropology/,['Ethnographic methods','Anthropological theory','Regional electives','Fieldwork','Master thesis']],
+ [/Demography/,['Demographic methods','Population processes','Statistics and modelling','Social inequality','Master thesis']],
+ [/Research Master/,['Philosophy of science','Advanced research methods','Research seminars','Research internship','Research thesis; publications help']],
+ [/Gender|Migration|Peace|Human Rights|Urban|Environment|Social Work|Education|Psychology/,['Core theory courses','Research methods','Specialisation electives','Internship or practice','Master thesis']],
+ [/Computational/,['Statistics and programming (Python/R)','Machine learning for social data','Research design','Electives','Master thesis']],
+ [/Business|Finance|Management/,['Core management courses','Quantitative methods','Specialisation electives','Internship or project','Master thesis']],
+ [/./,['Advanced algorithms and theory','Machine learning or systems','Seminars and lab projects','Electives','Master thesis (strong maths and programming expected)']]
+];
+const fmtS=d=>d.getDate()+' '+MONTHNAME[d.getMonth()].slice(0,3)+' '+d.getFullYear();
+const addD=(d,n)=>new Date(d.getTime()-n*86400000);
+function detailRow(d){
+  const c=CD[d.country]||CD['EU (multi-country)'];
+  const mod=(FC.find(x=>x[0].test(d.field))||FC[FC.length-1])[1];
+  const research=/Research|Demography|Epidemiology/.test(d.field+d.programme);
+  const tl=d.date?`<ul>
+    <li>Book IELTS by <b>${fmtS(addD(d.date,75))}</b></li>
+    <li>Start document attestation by <b>${fmtS(addD(d.date,60))}</b></li>
+    <li>Ask referees by <b>${fmtS(addD(d.date,45))}</b></li>
+    <li>Finish SOP and CV by <b>${fmtS(addD(d.date,14))}</b></li>
+    <li>Submit by <b>${fmtS(d.date)}</b> (earliest deadline listed)</li></ul>`:'<p>Deadline not confirmed; check the programme page.</p>';
+  const url=/^https?:/.test(d.site)?d.site:'https://'+d.site;
+  return `<tr class="dtr"><td colspan="12"><div class="dgrid">
+    <div><h4>What you need to apply</h4><ul>
+      <li>${/Agriculture/.test(d.field)?'4-year BSc in agriculture; botany; biology or a related life science (lab and field experience helps)':(/^Foundation/.test(d.field)?'Entry rules differ by course: language courses need no degree; pre-Master’s needs a completed bachelor':'4-year bachelor in a related field')} (a strong CGPA is expected; top programmes want about 3.5/4.0)</li>
+      <li>Transcripts and certificates, attested by your university and the Ministry of Foreign Affairs</li>
+      <li>English: ${c.e}</li>
+      <li>CV, statement of purpose, 2–3 recommendation letters</li>
+      <li>Passport valid 18+ months; medium-of-instruction certificate from your university</li>
+      ${research?'<li>Research proposal or writing sample; list of publications and research work</li>':'<li>Work or research experience helps for scholarships</li>'}
+    </ul></div>
+    <div><h4>Typical course content</h4><ul>${mod.map(m=>`<li>${m}</li>`).join('')}</ul></div>
+    <div><h4>Route, cost and visa</h4>
+      <p><b>Apply via:</b> ${c.r}</p>
+      <p><b>Application fee:</b> ${c.f}</p>
+      <p><b>Funding:</b> ${d.fundText}</p>
+      <p><b>Visa:</b> ${c.v}</p></div>
+    <div><h4>Prep timeline (working back)</h4>${tl}</div>
+    <div class="tip">Programme page: <a href="${url}" target="_blank" rel="noopener">${d.site}</a>. Admission, course content, fees and deadlines shown here are typical for the country and field, not verified for this exact programme. Confirm everything on the programme page before paying a fee.</div>
+  </div></td></tr>`;
+}
+
+function renderTable(){
+  const rows=sortRows(DATA.filter(matches));
+  document.getElementById('cTable').textContent=rows.length;
+  document.getElementById('empty').style.display=rows.length?'none':'block';
+  document.getElementById('tbody').innerHTML=rows.map(d=>`
+    <tr class="${rowCls(d)}">
+      <td><button class="star${FAV.has(d.no)?' on':''}" data-fav="${d.no}">★</button> ${d.no}</td>
+      <td class="cty">${flag(d.country)} ${d.city? d.city+', ':''}${d.country}</td>
+      <td><div class="uni">${d.university}</div><div class="prog">${d.programme}</div>
+          <div class="note">${d.note}</div><button class="dbtn" data-no="${d.no}">${OPEN.has(d.no)?'Hide details ▴':'Details ▾'}</button></td>
+      <td>${d.field}</td>
+      <td class="cty">${d.dur}</td>
+      <td class="money">${d.tuition}</td>
+      <td class="money">€${d.living}</td>
+      <td><span class="pill ${fundClass(d.fundLevel)}">${d.fundLevel}</span></td>
+      <td class="fund">${d.fundText}</td>
+      <td class="dl">${fmtDate(d.date)}</td>
+      <td><span class="pill ${prioClass(d.priority)}">${d.priority}</span></td>
+      <td><select class="stsel ${stCls(d.status)}" data-no="${d.no}">${STAT.map(o=>`<option${o===d.status?' selected':''}>${o}</option>`).join('')}</select></td>
+    </tr>${OPEN.has(d.no)?detailRow(d):''}`).join('');
+}
+
+document.querySelectorAll('#tbl thead th').forEach(th=>{
+  th.addEventListener('click',()=>{
+    const k=th.dataset.k;
+    if(state.sort===k) state.dir*=-1; else {state.sort=k; state.dir=1;}
+    document.querySelectorAll('#tbl thead th').forEach(t=>{t.classList.remove('sorted');t.querySelector('.ar').textContent='';});
+    th.classList.add('sorted'); th.querySelector('.ar').textContent=state.dir>0?'▲':'▼';
+    renderTable();
+  });
 });
-const scoreFields=["listening","reading","writing","speaking"];
-function loadScore(){
-  try{const saved=JSON.parse(localStorage.getItem("scholarship_ielts_v2")||"null");if(saved)scoreFields.forEach(k=>{if(saved[k]!==undefined)$(k).value=saved[k];});}catch(e){}
+
+/* ---------- timeline ---------- */
+function renderTimeline(){
+  const rows=DATA.filter(matches).filter(d=>d.date);
+  document.getElementById('cTimeline').textContent=rows.length;
+  const groups={};
+  rows.forEach(d=>{
+    const k=d.date.getFullYear()+'-'+String(d.date.getMonth()).padStart(2,'0');
+    (groups[k]=groups[k]||[]).push(d);
+  });
+  const keys=Object.keys(groups).sort();
+  document.getElementById('tl').innerHTML=keys.length?keys.map(k=>{
+    const list=groups[k].sort((a,b)=>a.date-b.date);
+    const dd=list[0].date;
+    const gap=days(dd,TODAY);
+    const cd=gap<0?'passed':'in '+gap+' days';
+    return `<div class="tlmonth">
+      <div class="tlhead"><div class="mn">${MONTHNAME[dd.getMonth()]} ${dd.getFullYear()}</div>
+        <div class="cd ${gap>=0&&gap<120?'soon':''}">${list.length} deadline${list.length>1?'s':''} · ${cd}</div></div>
+      ${list.map(d=>`<div class="tlrow">
+        <div class="day">${d.date.getDate()} ${MONTHNAME[d.date.getMonth()].slice(0,3)}</div>
+        <div class="body"><div class="t">${d.university} — ${d.programme}</div>
+          <div class="s">${d.country} · <span class="pill ${fundClass(d.fundLevel)}">${d.fundLevel}</span> · ${d.fundText.split(';')[0]}</div></div>
+      </div>`).join('')}
+    </div>`;
+  }).join(''):'<div class="empty">No programme matches those filters.</div>';
 }
-function calculateScore(){
-  const vals=scoreFields.map(k=>$(k).value.trim()===""?NaN:Number($(k).value));
-  const valid=vals.every(v=>Number.isFinite(v)&&v>=0&&v<=9&&Math.round(v*2)===v*2);
-  if(!valid){$("overall").textContent="—";$("scoreMessage").textContent="Enter all four section scores (0–9, in 0.5 steps).";return;}
-  const overall=Math.round((vals.reduce((a,b)=>a+b,0)/4)*2)/2;
-  $("overall").textContent=overall.toFixed(1);
-  $("scoreMessage").textContent="Saved on this device · Listening "+vals[0].toFixed(1)+" · Reading "+vals[1].toFixed(1)+" · Writing "+vals[2].toFixed(1)+" · Speaking "+vals[3].toFixed(1);
-  try{const obj={};scoreFields.forEach((k,i)=>obj[k]=vals[i]);obj.overall=overall;localStorage.setItem("scholarship_ielts_v2",JSON.stringify(obj));}catch(e){}
-  if(typeof render==="function")render();
+
+/* ---------- country view ---------- */
+function renderCountry(){
+  const rows=DATA.filter(matches);
+  document.getElementById('cCountry').textContent=rows.length;
+  const by={};
+  rows.forEach(d=>(by[d.country]=by[d.country]||[]).push(d));
+  const keys=Object.keys(by).sort((a,b)=>by[b].length-by[a].length||a.localeCompare(b));
+  document.getElementById('cgrid').innerHTML=keys.map(c=>{
+    const list=by[c];
+    const full=list.filter(d=>d.fundLevel==='Full').length;
+    const liv=Math.round(list.reduce((s,d)=>s+d.living,0)/list.length);
+    return `<div class="ccard">
+      <h3>${flag(c)} ${c}</h3>
+      <div class="meta">${list.length} programme${list.length>1?'s':''} · ${full} full-funding · living ≈ €${liv}/mo</div>
+      <ul>${list.map(d=>`<li><span class="u">${d.university}</span><span class="f">${d.field}</span></li>`).join('')}</ul>
+    </div>`;
+  }).join('') || '<div class="empty">No programme matches those filters.</div>';
 }
-loadScore();scoreFields.forEach(k=>$(k).addEventListener("input",calculateScore));calculateScore();render();
-if(new URLSearchParams(location.search).get("feedback")==="sent"){$("scoreMessage").textContent="Your feedback was submitted. Thank you.";}
+
+/* ---------- wiring ---------- */
+function renderChips(){
+  const gs=['All'].concat(GROUPS);
+  document.getElementById('chips').innerHTML=gs.map(g=>{
+    const c=g==='All'?DATA.length:DATA.filter(d=>grp(d)===g).length; if(!c) return '';
+    const on=(g==='All'&&!state.group)||g===state.group;
+    return `<button class="chip${on?' on':''}" data-g="${g}">${g}<span class="n">${c}</span></button>`;
+  }).join('');
+}
+document.getElementById('chips').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  state.group=b.dataset.g==='All'?'':b.dataset.g; renderAll();
+});
+
+/* ---------- cards, stats, shortlist, theme ---------- */
+const FLAG={'EU (multi-country)':'🇪🇺',Germany:'🇩🇪',Netherlands:'🇳🇱',Sweden:'🇸🇪',Finland:'🇫🇮',Norway:'🇳🇴',Denmark:'🇩🇰',Belgium:'🇧🇪',Austria:'🇦🇹',Switzerland:'🇨🇭',France:'🇫🇷',Italy:'🇮🇹',Spain:'🇪🇸',Portugal:'🇵🇹',Ireland:'🇮🇪',Poland:'🇵🇱',Czechia:'🇨🇿',Hungary:'🇭🇺',Estonia:'🇪🇪',Lithuania:'🇱🇹',Greece:'🇬🇷',Luxembourg:'🇱🇺',Turkey:'🇹🇷',Canada:'🇨🇦','South Africa':'🇿🇦',Rwanda:'🇷🇼',Morocco:'🇲🇦',Egypt:'🇪🇬',Brazil:'🇧🇷','South Korea':'🇰🇷',Japan:'🇯🇵',China:'🇨🇳','United Kingdom':'🇬🇧','United States':'🇺🇸',Australia:'🇦🇺'};
+const flag=c=>FLAG[c]||'🌍';
+let FAV=new Set(); try{FAV=new Set(JSON.parse(localStorage.getItem('trk_fav')||'[]'));}catch(e){}
+const saveFav=()=>{try{localStorage.setItem('trk_fav',JSON.stringify([...FAV]));}catch(e){}};
+const detailBox=d=>detailRow(d).replace(/^<tr class="dtr"><td colspan="12">/,'').replace(/<\/td><\/tr>$/,'');
+function renderStats(){
+  const countries=new Set(DATA.map(d=>d.country)).size;
+  const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
+  const applied=DATA.filter(d=>d.status==='Applied'||d.status==='Offer').length;
+  document.getElementById('sub').textContent=DATA.length+' programmes across '+countries+' countries, covering all 11 ISCED broad fields. Tuition, living cost, funding and the deadline that matters.';
+  document.getElementById('stats').innerHTML=[
+    [DATA.length,'Programmes'],[countries,'Countries'],[DATA.filter(d=>d.fundLevel==='Full').length,'Full-funding options'],
+    [soon,'Deadlines in 120 days'],[FAV.size,'Shortlisted'],[applied,'Applied or offered']
+  ].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+function renderCards(){
+  const rows=sortRows(DATA.filter(matches));
+  document.getElementById('cCards').textContent=rows.length;
+  document.getElementById('emptyC').style.display=rows.length?'none':'block';
+  document.getElementById('cards').innerHTML=rows.map(d=>{
+    const gap=d.date?days(d.date,TODAY):null;
+    const urg=gap===null?'':gap<0?'late':gap<=30?'hot':gap<=90?'warm':'';
+    const when=d.date?fmtS(d.date)+(/expected|check|rolling/i.test(d.deadline)?' (unconfirmed)':''):'Check programme site';
+    const cnt=gap===null?'':gap<0?'passed':'in '+gap+' days';
+    return `<article class="card ${rowCls(d)}">
+      <div class="ct"><span>${flag(d.country)} ${d.city?d.city+' · ':''}${d.country}</span><button class="star${FAV.has(d.no)?' on':''}" data-fav="${d.no}" title="Shortlist">★</button></div>
+      <h3>${d.university}</h3><p class="pg">${d.programme}</p>
+      <div class="tags"><span class="tag">${d.field}</span><span class="pill ${prioClass(d.priority)}">${d.priority}</span><span class="pill ${fundClass(d.fundLevel)}">${d.fundLevel}</span></div>
+      <dl class="facts"><div><dt>Tuition</dt><dd>${d.tuition}</dd></div><div><dt>Living</dt><dd>€${d.living}/mo</dd></div><div><dt>Duration</dt><dd>${d.dur}</dd></div></dl>
+      <p class="sch">${d.fundText}</p>
+      <div class="dlr ${urg}" title="${d.deadline.replace(/"/g,'')}"><span>Deadline: ${when}</span><span>${cnt}</span></div>
+      <div class="cnote">${d.note}</div>
+      <div class="cf"><select class="stsel ${stCls(d.status)}" data-no="${d.no}">${STAT.map(o=>`<option${o===d.status?' selected':''}>${o}</option>`).join('')}</select>
+        <span><button class="ghost rep" data-rep="${d.no}" title="Report an issue">Report</button> <button class="dbtn" data-no="${d.no}">${OPEN.has(d.no)?'Hide details ▴':'Details ▾'}</button></span></div>
+      ${OPEN.has(d.no)?'<div class="cdet">'+detailBox(d)+'</div>':''}
+    </article>`;}).join('');
+}
+document.addEventListener('click',e=>{
+  const rp=e.target.closest('[data-rep]'); if(rp){openFB(rp.dataset.rep,'Wrong or outdated information'); return;}
+  const f=e.target.closest('[data-fav]');
+  if(f){const n=+f.dataset.fav; FAV.has(n)?FAV.delete(n):FAV.add(n); saveFav(); renderAll(); return;}
+  const b=e.target.closest('.dbtn'); if(!b) return;
+  const n=+b.dataset.no; OPEN.has(n)?OPEN.delete(n):OPEN.add(n); renderAll();
+});
+document.addEventListener('change',e=>{
+  const sel=e.target.closest('.stsel'); if(!sel) return;
+  const d=DATA.find(x=>x.no===+sel.dataset.no); d.status=sel.value; ST[d.no]=sel.value;
+  try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}
+  renderAll();
+});
+document.getElementById('fSort').addEventListener('change',e=>{state.sort=e.target.value;state.dir=1;renderAll();});
+document.getElementById('fFav').addEventListener('change',e=>{state.fav=e.target.checked;renderAll();});
+const root=document.documentElement;
+try{const t=localStorage.getItem('trk_theme'); if(t) root.dataset.theme=t; else if(matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme='dark';}catch(e){}
+document.getElementById('theme').addEventListener('click',()=>{const t=root.dataset.theme==='dark'?'light':'dark'; root.dataset.theme=t; try{localStorage.setItem('trk_theme',t);}catch(e){} setThemeLabel();});
+
+const SCHOL=[
+ ['Erasmus Mundus Joint Masters','EU (multi-country)','Full: tuition + €1400/month + travel (up to €33600 in total)','Any nationality; apply to each programme directly; max 3','No single deadline: Mundus MAPP 1 Dec 2026; GrEnFIn 7 Jan; EuroPubHealth+ 8 Jan; Mundus Journalism 10 Jan; Smart Cities 1 Feb 2027','Open now','erasmus-plus.ec.europa.eu'],
+ ['Swedish Institute (SISGP)','Sweden','Full: tuition + SEK 12000/month + SEK 15000 travel','Bangladesh is eligible; only SI-listed fields and programmes qualify (governance; public health; entrepreneurship; STEM). Two steps required','Step 1: programme application 16 Oct 2026 – 15 Jan 2027. Step 2: SI application about 8–25 Feb 2027 (confirm dates); results about 22 Apr 2027','Open now','si.se'],
+ ['DAAD EPOS','Germany','Full: monthly stipend + tuition support','Development-related Master’s; at least 2 years’ work experience; apply directly to the course; up to 3 courses','No single deadline: each course sets its own for 2027/28. Many closed Aug–Oct 2026 (e.g. MEG 15 Oct). Check the official list for later ones','Check list','daad.de'],
+ ['Eiffel Excellence','France','Monthly allowance + travel + insurance','Your university nominates you; Master’s or PhD','8 Jan 2027 (reported)','Reported','campusfrance.org'],
+ ['Stipendium Hungaricum','Hungary','Tuition + stipend + housing','Nomination via Bangladesh Ministry of Education','2027/28 call not published (as of 10 Nov 2026); last cycle closed 15 Jan 2026','Not announced','stipendiumhungaricum.hu'],
+ ['Türkiye Bursları','Turkey','Tuition + stipend + housing + insurance','Free online application','10 Jan – 20 Feb 2027 (reported)','Reported','turkiyeburslari.gov.tr'],
+ ['NL Scholarship','Netherlands','One-off contribution for the first year','Non-EEA; apply through your university','Feb – May 2027 (many universities use 1 Feb)','Reported','studyinnl.org'],
+ ['VLIR-UOS scholarships','Belgium','Full (ICP programmes)','Eligible-country list applies','About 1 Feb 2027; 2027/28 dates not fully published','Not announced','vliruos.be'],
+ ['ETH Excellence (ESOP)','Switzerland','Full or partial','For ETH Master’s programmes','15 Dec 2026','Reported','ethz.ch'],
+ ['Danish Government Scholarship','Denmark','Partial tuition support','Universities nominate; confirm eligibility','Jan 2027 – Mar 2027 (check)','Not announced','studyindenmark.dk'],
+ ['OeAD Ernst Mach Grant','Austria','Monthly grant','Non-EU Master’s students; confirm eligibility','1 Feb 2027 (check)','Not announced','oead.at'],
+ ['Chevening','United Kingdom','Full: tuition + living + flights','Bangladesh eligible; work experience required','Closed 6 Oct 2026; next round opens about Aug 2027','Closed','chevening.org'],
+ ['Commonwealth Master’s','United Kingdom','Full','Low and middle income countries','Closed 20 Oct 2026','Closed','cscuk.fcdo.gov.uk'],
+ ['Australia Awards','Australia','Full: tuition + living + airfare + health cover','Bangladesh eligible; return-home condition','1 Feb – 30 Apr 2027 (for study from 2028)','Opens soon','australiaawardsbangladesh.org'],
+ ['Fulbright Foreign Student','United States','Tuition + stipend + travel','Bangladesh via the US Embassy','2027/28 round reportedly closed 11 Jul 2026; next about mid-2027','Closed','bd.usembassy.gov'],
+ ['Global Korea Scholarship (GKS)','South Korea','Full: tuition + monthly allowance + airfare + insurance; includes a Korean language year','Graduate: under 40 with a high GPA; Bangladesh Embassy Track','Graduate call: 2026 round ran 12–25 Feb 2026; 2027 call not yet published. Undergraduate embassy track closed 30 Sep 2026','Not announced','studyinkorea.go.kr'], ['Brazil PEC-PG (CAPES)','Brazil','Full: monthly stipend BRL 2100 + insurance; free tuition at public universities','Partner countries only (check Bangladesh); Portuguese often needed','Window usually mid-Aug to end-Sep; next about Aug 2027 (check)','Not announced','gov.br/capes'],
+ ['JDS Bangladesh (Japan)','Japan','Full: tuition + living + travel','Mid-career civil servants and academics; about 25–30 awards a year (reported)','Check the annual notice (usually autumn)','Not announced','jds-scholarship.org'],
+ ['MEXT (Japan)','Japan','Full: tuition + allowance + airfare','Embassy track via the Ministry of Education Bangladesh; University track directly','2027 embassy round closed 12 May 2026; next call expected Apr – May 2027','Closed','studyinjapan.go.jp'],
+ ['Chinese Government Scholarship (CSC)','China','Full: tuition + accommodation + insurance + CNY 3000/month (Master’s)','Type A via the Embassy of China in Dhaka; Type B via the university','2027/28 call announced by Chinese embassies on 27 Oct 2026. University (Type B) deadlines Dec – Apr; last Bangladesh Type A deadline was 10 Jan 2026','Open now','campuschina.org']
+];
+const scCls=x=>/Closed/.test(x)?'closed':/Check/.test(x)?'wait':/Open|Opens/.test(x)?'ok':/Not/.test(x)?'wait':'rep';
+function renderSchol(){
+  const q=state.q.toLowerCase();
+  const rows=SCHOL.filter(r=>!q||r.join(' ').toLowerCase().includes(q));
+  document.getElementById('cSchol').textContent=rows.length;
+  document.getElementById('scholCards').innerHTML=rows.map(r=>`<article class="card">
+    <div class="ct"><span>${flag(r[1])} ${r[1]}</span><span class="sc ${scCls(r[5])}">${r[5]}</span></div>
+    <h3>${r[0]}</h3><p class="pg">${r[2]}</p>
+    <dl class="facts" style="grid-template-columns:1fr"><div><dt>Who can apply</dt><dd>${r[3]}</dd></div><div><dt>Deadline</dt><dd>${r[4]}</dd></div></dl>
+    <div class="cf"><span class="cnote">Confirm on the official page</span><a class="dbtn" style="text-decoration:none;padding:5px 12px;border-radius:10px" href="https://${r[6]}" target="_blank" rel="noopener">Official site ↗</a></div></article>`).join('')||'<div class="empty">No scholarship matches.</div>';
+}
+/* feedback */
+const fbm=document.getElementById('fbm');
+function openFB(no,type){document.getElementById('fbNo').value=no||'';if(type)document.getElementById('fbType').value=type;document.getElementById('fbNote').textContent=CONFIG.FEEDBACK_EMAIL?'':'Tip: put your email in CONFIG.FEEDBACK_EMAIL at the top of the script so messages go straight to your inbox. Until then, use Copy or send from your own mail app.';fbm.hidden=false;}
+function fbText(){const no=document.getElementById('fbNo').value.trim();return {subj:"Tracker feedback: "+document.getElementById('fbType').value+(no?' (programme #'+no+')':''),body:document.getElementById('fbMsg').value+(no?'\n\nProgramme #'+no:'')+'\n\n— sent from the Scholarship Tracker'};}
+document.getElementById('fab').addEventListener('click',()=>openFB('',''));
+document.getElementById('fbCancel').addEventListener('click',()=>{fbm.hidden=true;});
+fbm.addEventListener('click',e=>{if(e.target===fbm)fbm.hidden=true;});
+document.getElementById('fbSend').addEventListener('click',()=>{const t=fbText();location.href='mailto:'+CONFIG.FEEDBACK_EMAIL+'?subject='+encodeURIComponent(t.subj)+'&body='+encodeURIComponent(t.body);});
+document.getElementById('fbCopy').addEventListener('click',()=>{const t=fbText();const txt=t.subj+'\n\n'+t.body;try{navigator.clipboard.writeText(txt);document.getElementById('fbNote').textContent='Copied.';}catch(e){document.getElementById('fbNote').textContent='Copy failed: select the text manually.';}});
+const setUpd=t=>{document.getElementById('upd').textContent=t;};
+function setThemeLabel(){document.getElementById('theme').textContent=document.documentElement.dataset.theme==='dark'?'Light mode':'Dark mode';}
+setThemeLabel();
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+document.getElementById('exportFav').addEventListener('click',()=>{
+  const rows=DATA.filter(d=>FAV.has(d.no));
+  if(!rows.length){alert('Shortlist is empty. Tap the star on a programme first.');return;}
+  const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+  const head=['No','Country','University','Programme','Field','Duration','Tuition','Living (EUR/month)','Funding','Deadline','Website','Status'];
+  const lines=[head.map(q).join(',')].concat(rows.map(d=>[d.no,d.country,d.university,d.programme,d.field,d.dur,d.tuition,d.living,d.fundText,d.deadline,d.site,d.status].map(q).join(',')));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv'}));a.download='My_shortlist.csv';a.click();
+});
+document.getElementById('contact').innerHTML='<strong>Contact:</strong> '+(CONFIG.OWNER_NAME?CONFIG.OWNER_NAME+' · ':'')+'<a href="mailto:'+CONFIG.FEEDBACK_EMAIL+'" style="color:var(--accent)">'+CONFIG.FEEDBACK_EMAIL+'</a> — corrections and new programme suggestions are welcome.';
+function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards(); renderTable(); renderTimeline(); renderCountry(); }
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
+fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
+fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
+document.getElementById('fFund').addEventListener('change',e=>{state.fund=e.target.value;renderAll();});
+document.getElementById('fPrio').addEventListener('change',e=>{state.prio=e.target.value;renderAll();});
+document.getElementById('reset').addEventListener('click',()=>{
+  state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
+  document.getElementById('q').value=''; fC.value=''; fF.value='';
+  document.getElementById('fFund').value=''; document.getElementById('fPrio').value=''; document.getElementById('fSort').value='no'; document.getElementById('fFav').checked=false;
+  renderAll();
+});
+document.body.dataset.tab='cards';
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.body.dataset.tab=t.dataset.p;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  document.getElementById('p-'+t.dataset.p).classList.add('on');
+}));
+document.getElementById('dl').addEventListener('click',()=>{
+  const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='Masters_Scholarship_Tracker_'+DATA.length+'.csv';
+  a.click(); URL.revokeObjectURL(a.href);
+});
+
+renderAll();
+setUpd('Built-in data last updated '+CONFIG.UPDATED+'. Dates and countdowns use today’s date.');
+if(CONFIG.DATA_URL){
+  fetch(CONFIG.DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
+    const rows=parseCSV(t).map(mapRow);
+    if(rows.length>20){DATA.splice(0,DATA.length,...rows);DATA.forEach(d=>{if(ST[d.no])d.status=ST[d.no];});fillFilters();renderAll();setUpd('Live data loaded '+new Date().toLocaleString());}
+  }).catch(()=>setUpd('Live source unreachable; showing built-in data from '+CONFIG.UPDATED+'.'));
+}
 </script>
 </body>
 </html>
