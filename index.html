@@ -185,6 +185,44 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
   .ielts-footnote{margin:14px 0 0;line-height:1.55}
   @media(max-width:760px){.ielts-grid{grid-template-columns:1fr}}
   @media(max-width:420px){.ielts-score-inputs{gap:8px}.ielts-overall strong{font-size:25px}}
+
+/* My Planner */
+.planner-head h2{font-size:21px;margin:0 0 3px}.planner-head p{margin:0;color:var(--ink-soft);font-size:12px}
+.subtabs{display:flex;gap:6px;overflow-x:auto;padding:3px 0 11px;margin-bottom:14px;scrollbar-width:thin}
+.subtab{flex:none;background:var(--card);color:var(--ink-soft);border:1px solid var(--line);padding:7px 11px;font-size:11.5px}
+.subtab.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.subpanel{display:none}.subpanel.on{display:block}
+.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:14px}
+.module-card,.module-item,.app-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);min-width:0}
+.module-card h3,.app-card h3{font-size:15px;margin:0 0 8px}.module-card p,.module-item p{font-size:12px;color:var(--ink-soft);margin:5px 0}
+.module-card .big{font-size:26px;font-weight:850;color:var(--accent);line-height:1.2}.module-card .small{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-soft);font-weight:800}
+.module-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0}
+.module-label{display:block;font-size:11px;font-weight:800;color:var(--ink-soft);margin:0 0 5px}
+.module-input,.module-select,.module-textarea{font:inherit;font-size:12.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 10px;width:100%;min-width:0}
+.module-textarea{min-height:85px;resize:vertical}.module-actions,.module-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.module-note{font-size:11px;color:var(--ink-soft);line-height:1.55;margin:9px 0 0}
+.module-list{display:grid;gap:9px}.module-item h4{font-size:13px;margin:0 0 4px}
+.module-item a,.planner-link{color:var(--accent);font-weight:800;font-size:11.5px;text-decoration:none}
+.progress-track{height:8px;background:var(--grey-soft);border-radius:99px;overflow:hidden;margin:8px 0}.progress-track span{display:block;height:100%;background:var(--accent)}
+.checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:8px}
+.checkrow,.app-check{display:flex;gap:8px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px;font-size:11.5px}
+.checkrow input,.app-check input{margin-top:2px;accent-color:var(--accent)}
+.app-card{margin-bottom:11px}.app-meta{font-size:11px;color:var(--ink-soft);margin:3px 0 10px}
+.app-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px;margin:10px 0}
+.app-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.calendar-week{text-align:center;font-size:10px;font-weight:800;color:var(--ink-soft);padding:5px}
+.calendar-day{min-height:88px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px}
+.calendar-day.other{opacity:.35}.calendar-day.today{border:2px solid var(--accent)}.calendar-day .num{font-size:11px;font-weight:800}
+.calendar-event{display:block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;border:0;border-radius:5px;padding:3px 4px;margin-top:4px;background:var(--accent-soft);color:var(--accent);font-size:9px}
+.compare-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.compare-table{border-collapse:collapse;width:100%;min-width:680px;background:var(--card);font-size:12px}
+.compare-table th,.compare-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.compare-table th{background:var(--head);font-size:10px;color:var(--ink-soft);text-transform:uppercase}
+.compare-table td:first-child{font-weight:800;width:140px}
+.output-preview{min-height:210px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;white-space:pre-wrap}
+@media(max-width:640px){.module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-card{padding:11px}.module-card .big{font-size:22px}.calendar-day{min-height:66px;padding:3px}.calendar-event{font-size:8px}}
+
 </style>
 </head>
 <body>
@@ -232,6 +270,7 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
     <button class="tab" data-p="timeline">Deadline timeline <span class="c" id="cTimeline"></span></button>
     <button class="tab" data-p="country">By country <span class="c" id="cCountry"></span></button>
     <button class="tab" data-p="ielts">IELTS Scoreboard</button>
+    <button class="tab" data-p="planner">My Planner</button>
   </div>
 
   <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
@@ -295,6 +334,61 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
       </article>
     </div>
     <p class="ielts-footnote">Important: the tracker does not have verified programme-specific IELTS requirements for every course. Enter the minimum from the official university page. This comparison checks the overall band only; some programmes also require minimum Listening, Reading, Writing or Speaking scores. Your scores and entered requirements stay in this browser and are not shared publicly.</p>
+    <article class="card" style="margin-top:16px"><h3>IELTS Test History</h3><p class="ielts-help">Save each mock or official test result to review your progress over time.</p><div class="module-row"><input class="module-input" id="ieltsAttemptDate" type="date" style="max-width:190px"><button id="ieltsSaveAttempt" type="button">Save current score to history</button></div><div id="ieltsHistory" class="module-list" style="margin-top:12px"></div></article>
+  </div>
+
+
+  <div class="panel" id="p-planner">
+    <div class="planner-head"><h2>My Study Abroad Planner</h2><p>Plan applications, deadlines, documents, costs and your next steps — privately in this browser.</p></div>
+    <div class="subtabs" id="plannerTabs">
+      <button class="subtab on" data-sub="dashboard">Dashboard</button><button class="subtab" data-sub="shortlist">My Shortlist</button><button class="subtab" data-sub="applications">My Applications</button><button class="subtab" data-sub="calendar">Calendar</button><button class="subtab" data-sub="compare">Compare</button><button class="subtab" data-sub="profile">Profile Match</button><button class="subtab" data-sub="cost">Cost Planner</button><button class="subtab" data-sub="documents">Documents</button><button class="subtab" data-sub="writing">SOP & CV</button><button class="subtab" data-sub="guide">Country Guide</button><button class="subtab" data-sub="map">University Map</button><button class="subtab" data-sub="alerts">Scholarship Alerts</button><button class="subtab" data-sub="backup">Backup & Restore</button>
+    </div>
+    <section class="subpanel on" id="sp-dashboard"><div class="module-grid" id="dashStats"></div><div class="module-grid"><article class="module-card"><h3>Upcoming deadlines</h3><div id="dashDeadlines" class="module-list"></div></article><article class="module-card"><h3>Application progress</h3><div id="dashProgress"></div></article><article class="module-card"><h3>Suggested next steps</h3><div id="dashNext"></div></article></div></section>
+    <section class="subpanel" id="sp-shortlist"><article class="module-card"><h3>My shortlisted programmes</h3><p class="module-note">Tap the star on any programme card to add or remove it. Choose Compare to add a programme to the comparison table.</p><div id="shortlistList" class="module-list"></div></article></section>
+    <section class="subpanel" id="sp-applications"><article class="module-card"><h3>Add a programme to My Applications</h3><div class="module-row"><select class="module-select" id="appAddSelect" style="flex:1"><option value="">Choose a programme</option></select><button id="appAddBtn" type="button">Add to tracker</button></div><p class="module-note">Shortlisted programmes and programmes with an updated status also appear below. Status changes sync with the existing Cards and Table views.</p></article><div id="applicationsList" class="module-list" style="margin-top:12px"></div></section>
+    <section class="subpanel" id="sp-calendar"><article class="module-card"><div class="module-row" style="justify-content:space-between"><div><h3>Application deadline calendar</h3><p class="module-note">Calendar dates are extracted from deadline text and may be approximate. Confirm exact dates on official programme pages.</p></div><input class="module-input" id="calendarMonth" type="month" style="max-width:180px"></div><div id="calendarGrid" class="calendar-grid"></div><div id="calendarList" class="module-list" style="margin-top:12px"></div></article></section>
+    <section class="subpanel" id="sp-compare"><article class="module-card"><h3>Compare up to four programmes</h3><div class="module-fields" id="compareSelects"></div><div id="compareResult"></div><p class="module-note">Figures are indicative dataset values. Check each official programme page before deciding.</p></article></section>
+    <section class="subpanel" id="sp-profile"><article class="module-card"><h3>Student profile & programme finder</h3><p class="module-note">Filter by subject, English-taught option, funding and living-cost budget. This is a planning match, not an official admission or scholarship eligibility decision.</p><div class="module-fields">
+      <div><label class="module-label" for="profileField">Preferred subject</label><select class="module-select" id="profileField"><option value="">Any subject</option></select></div>
+      <div><label class="module-label" for="profileDegree">Previous degree / background</label><input class="module-input" id="profileDegree" placeholder="e.g. BSc in Computer Science"></div>
+      <div><label class="module-label" for="profileCGPA">Your CGPA</label><input class="module-input" id="profileCGPA" type="number" min="0" max="10" step=".01" placeholder="e.g. 3.45"></div>
+      <div><label class="module-label" for="profileScale">CGPA scale</label><select class="module-select" id="profileScale"><option value="4">4.00</option><option value="5">5.00</option><option value="10">10.00</option></select></div>
+      <div><label class="module-label" for="profileIELTS">IELTS overall (optional)</label><input class="module-input" id="profileIELTS" type="number" min="0" max="9" step=".5" placeholder="e.g. 6.5"></div>
+      <div><label class="module-label" for="profileLiving">Monthly living budget (€)</label><input class="module-input" id="profileLiving" type="number" min="0" step="50" placeholder="e.g. 900"></div>
+      <div><label class="module-label" for="profileFunding">Funding preference</label><select class="module-select" id="profileFunding"><option value="any">Any funding</option><option value="full">Full funding / includes full</option><option value="partial">Partial or better</option></select></div>
+      <div><label class="module-label" for="profileLanguage">Teaching language</label><select class="module-select" id="profileLanguage"><option value="any">Any language</option><option value="English">English only</option></select></div>
+    </div><button id="profileSave" type="button">Save profile & find matches</button></article><div id="profileResults" class="module-list" style="margin-top:12px"></div></section>
+    <section class="subpanel" id="sp-cost"><article class="module-card"><h3>Study abroad cost calculator</h3><p class="module-note">Totals are estimates in EUR. For non-EUR tuition, enter your own EUR conversion. Check current exchange rates, university invoices and visa costs.</p><div class="module-fields">
+      <div><label class="module-label" for="costProgramme">Programme</label><select class="module-select" id="costProgramme"></select></div>
+      <div><label class="module-label" for="costTuition">Tuition per year (€)</label><input class="module-input" id="costTuition" type="number" min="0" step="100" placeholder="Enter annual tuition in EUR"></div>
+      <div><label class="module-label" for="costLiving">Living cost per month (€)</label><input class="module-input" id="costLiving" type="number" min="0" step="25"></div>
+      <div><label class="module-label" for="costMonths">Study duration (months)</label><input class="module-input" id="costMonths" type="number" min="1" max="72" value="24"></div>
+      <div><label class="module-label" for="costTravel">Travel / flight (€)</label><input class="module-input" id="costTravel" type="number" min="0" value="700"></div>
+      <div><label class="module-label" for="costVisa">Visa / residence (€)</label><input class="module-input" id="costVisa" type="number" min="0" value="150"></div>
+      <div><label class="module-label" for="costInsurance">Insurance / setup (€)</label><input class="module-input" id="costInsurance" type="number" min="0" value="500"></div>
+      <div><label class="module-label" for="costOther">Other one-time costs (€)</label><input class="module-input" id="costOther" type="number" min="0" value="300"></div>
+    </div><div class="module-grid" id="costSummary"></div></article></section>
+    <section class="subpanel" id="sp-documents"><article class="module-card"><h3>Master application document checklist</h3><p class="module-note">This general checklist can be different from a university's actual requirements.</p><div class="progress-track"><span id="docProgress" style="width:0%"></span></div><p id="docCount" class="module-note">0 completed</p><div class="checklist" id="documentChecklist"></div></article></section>
+    <section class="subpanel" id="sp-writing"><div class="module-grid">
+      <article class="module-card"><h3>SOP organizer</h3><div class="module-fields">
+        <div><label class="module-label" for="sopName">Your name</label><input class="module-input" id="sopName"></div><div><label class="module-label" for="sopProgramme">Target programme / university</label><input class="module-input" id="sopProgramme"></div>
+        <div><label class="module-label" for="sopBackground">Academic background</label><textarea class="module-textarea" id="sopBackground" placeholder="Degree, courses and academic strengths"></textarea></div><div><label class="module-label" for="sopExperience">Experience / projects</label><textarea class="module-textarea" id="sopExperience"></textarea></div>
+        <div><label class="module-label" for="sopMotivation">Why this programme?</label><textarea class="module-textarea" id="sopMotivation"></textarea></div><div><label class="module-label" for="sopGoals">Career goals</label><textarea class="module-textarea" id="sopGoals"></textarea></div>
+      </div><div class="module-actions"><button id="sopGenerate" type="button">Build SOP outline</button><button class="ghost" id="sopDownload" type="button">Download draft</button></div><textarea class="module-textarea output-preview" id="sopOutput" placeholder="Your editable SOP outline appears here."></textarea></article>
+      <article class="module-card"><h3>Academic CV builder</h3><div class="module-fields">
+        <div><label class="module-label" for="cvName">Full name</label><input class="module-input" id="cvName"></div><div><label class="module-label" for="cvContact">Email / phone / location</label><input class="module-input" id="cvContact"></div>
+        <div><label class="module-label" for="cvEducation">Education</label><textarea class="module-textarea" id="cvEducation"></textarea></div><div><label class="module-label" for="cvExperience">Experience</label><textarea class="module-textarea" id="cvExperience"></textarea></div>
+        <div><label class="module-label" for="cvSkills">Skills</label><textarea class="module-textarea" id="cvSkills"></textarea></div><div><label class="module-label" for="cvProjects">Projects / research / publications</label><textarea class="module-textarea" id="cvProjects"></textarea></div>
+        <div><label class="module-label" for="cvAwards">Awards / volunteering / certifications</label><textarea class="module-textarea" id="cvAwards"></textarea></div>
+      </div><div class="module-actions"><button id="cvGenerate" type="button">Build CV draft</button><button class="ghost" id="cvDownload" type="button">Download CV</button></div><textarea class="module-textarea output-preview" id="cvOutput" placeholder="Your editable CV draft appears here."></textarea></article>
+    </div><p class="module-note">These are editable organizers and templates, not automatically verified application documents. Review and tailor everything before submitting.</p></section>
+    <section class="subpanel" id="sp-guide"><article class="module-card"><h3>Country guide</h3><label class="module-label" for="guideCountry">Choose a country</label><select class="module-select" id="guideCountry"></select><div id="guideContent"></div></article></section>
+    <section class="subpanel" id="sp-map"><article class="module-card"><h3>University location finder</h3><p class="module-note">Searches university and city text in Google Maps. Confirm the exact campus before travelling.</p><label class="module-label" for="mapProgramme">Select programme</label><select class="module-select" id="mapProgramme"></select><div id="mapResult"></div></article></section>
+    <section class="subpanel" id="sp-alerts"><article class="module-card"><h3>Scholarship alerts & official sources</h3><p class="module-note">This is a directory of scholarship calls already listed in the tracker, not a live news feed. Verify dates and status on the provider's official page.</p><div id="scholarshipAlerts" class="module-list"></div></article></section>
+    <section class="subpanel" id="sp-backup"><div class="module-grid">
+      <article class="module-card"><h3>Export personal data</h3><p>Back up application statuses, shortlist, IELTS scores and requirements, checklists, profile, comparison list, cost settings, SOP and CV drafts, and theme.</p><button id="backupExport" type="button">Download backup (JSON)</button></article>
+      <article class="module-card"><h3>Restore from backup</h3><p>Restoring replaces the saved personal data in this browser.</p><input class="module-input" type="file" id="backupFile" accept=".json,application/json"><button id="backupImport" type="button" style="margin-top:10px">Restore selected backup</button></article>
+    </div><p class="module-note">No login or cloud sync is used. Data stays in this browser. Export a backup before clearing browser data or changing devices. Avoid using a shared computer for private drafts.</p><p id="backupMessage" class="module-note"></p></section>
   </div>
 
   <footer>
@@ -676,7 +770,7 @@ const mapRow=r=>{
   };
 };
 const DATA=parseCSV(CSV).map(mapRow);
-const STAT=['Not started','Preparing','Applied','Offer','Rejected'];
+const STAT=['Not started','Preparing','Applied','Interview','Offer','Rejected','Withdrawn'];
 let IELTS_SCORES={}; try{IELTS_SCORES=JSON.parse(localStorage.getItem('trk_ielts_scores')||'{}')||{};}catch(e){}
 let IELTS_REQUIREMENTS={}; try{IELTS_REQUIREMENTS=JSON.parse(localStorage.getItem('trk_ielts_requirements')||'{}')||{};}catch(e){}
 let IELTS_SELECTED=localStorage.getItem('trk_ielts_selected')||'';
@@ -1165,7 +1259,147 @@ function initIELTS(){
   refreshIELTSProgramOptions();
 }
 
-function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards(); renderTable(); renderTimeline(); renderCountry(); }
+
+/* ---------- My Planner: local-only personal workspace ---------- */
+const PX='trk_planner_v1',DOCS=['Passport / national ID','Bachelor degree certificate','Academic transcripts','Academic CV','Statement of Purpose','Recommendation letter 1','Recommendation letter 2','IELTS / English test certificate','Medium of Instruction certificate (if accepted)','Research proposal / portfolio (if required)','Financial documents','Passport photographs'],APPDOCS=['Application form','SOP / motivation letter','Academic CV','Transcripts','Degree certificate','Recommendation letters','IELTS / English proof','Passport copy','Application fee','Submission confirmation'];
+let PXDATA={};try{PXDATA=JSON.parse(localStorage.getItem(PX)||'{}')||{};}catch(e){}
+PXDATA.apps=PXDATA.apps||{};PXDATA.docs=PXDATA.docs||{};PXDATA.attempts=Array.isArray(PXDATA.attempts)?PXDATA.attempts:[];PXDATA.compare=Array.isArray(PXDATA.compare)?PXDATA.compare:[];PXDATA.profile=PXDATA.profile||{};PXDATA.cost=PXDATA.cost||{};PXDATA.sop=PXDATA.sop||{};PXDATA.cv=PXDATA.cv||{};
+const pxSave=()=>{try{localStorage.setItem(PX,JSON.stringify(PXDATA));}catch(e){}};
+const pxEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pxMoney=n=>'€'+Number(n||0).toLocaleString('en-GB',{maximumFractionDigits:0});
+const pxOptions=()=>DATA.map(d=>'<option value="'+d.no+'">'+pxEsc(d.university)+' — '+pxEsc(d.programme)+' ('+pxEsc(d.country)+')</option>').join('');
+function pxTab(name){document.querySelectorAll('.subtab').forEach(b=>b.classList.toggle('on',b.dataset.sub===name));document.querySelectorAll('.subpanel').forEach(p=>p.classList.toggle('on',p.id==='sp-'+name));try{localStorage.setItem('trk_planner_tab',name);}catch(e){}}
+function pxTracked(){return DATA.filter(d=>d.status!=='Not started'||FAV.has(d.no)||PXDATA.apps[d.no]);}
+function pxRenderDashboard(){
+ const counts={};STAT.forEach(s=>counts[s]=DATA.filter(d=>d.status===s).length);
+ const tracked=pxTracked(),done=tracked.filter(d=>['Applied','Interview','Offer'].includes(d.status)).length,docs=DOCS.filter(x=>PXDATA.docs[x]).length;
+ const stats=[[DATA.length,'Programmes'],[FAV.size,'Shortlisted'],[tracked.length,'Tracked applications'],[counts.Applied||0,'Submitted'],[counts.Offer||0,'Offers'],[docs+'/'+DOCS.length,'Documents ready']];
+ document.getElementById('dashStats').innerHTML=stats.map(x=>'<div class="module-card"><div class="big">'+x[0]+'</div><div class="small">'+x[1]+'</div></div>').join('');
+ const upcoming=DATA.filter(d=>d.date&&days(d.date,TODAY)>=0).sort((a,b)=>a.date-b.date).slice(0,6);
+ document.getElementById('dashDeadlines').innerHTML=upcoming.length?upcoming.map(d=>'<div class="module-item"><h4>'+pxEsc(d.university)+'</h4><p>'+pxEsc(d.programme)+'</p><p><strong>'+pxEsc(fmtS(d.date))+'</strong> · '+days(d.date,TODAY)+' days left</p></div>').join(''):'<p>No future dates extracted. Confirm deadlines on official sites.</p>';
+ const pct=tracked.length?Math.round(done/tracked.length*100):0;
+ document.getElementById('dashProgress').innerHTML='<div class="big">'+pct+'%</div><p>Tracked applications submitted or beyond</p><div class="progress-track"><span style="width:'+pct+'%"></span></div>'+STAT.map(k=>'<p>'+pxEsc(k)+': <strong>'+counts[k]+'</strong></p>').join('');
+ const todo=[];if(!FAV.size)todo.push('Star programmes to create a shortlist.');if(!PXDATA.profile.field&&!PXDATA.profile.degree)todo.push('Complete your student profile.');if(!PXDATA.docs['Passport / national ID'])todo.push('Start your document checklist.');if(!PXDATA.attempts.length)todo.push('Save an IELTS test result to track progress.');if(!tracked.length)todo.push('Add a programme to My Applications.');
+ document.getElementById('dashNext').innerHTML=(todo.length?todo:['Your planner is set up. Check upcoming deadlines and official requirements.']).map(x=>'<div class="module-item"><p>'+pxEsc(x)+'</p></div>').join('');
+}
+function pxRenderShortlist(){
+ const rows=DATA.filter(d=>FAV.has(d.no));
+ document.getElementById('shortlistList').innerHTML=rows.length?rows.map(d=>'<div class="module-item"><div class="module-row" style="justify-content:space-between"><div><h4>'+pxEsc(d.university)+'</h4><p>'+pxEsc(d.programme)+' · '+pxEsc(d.country)+' · '+pxEsc(d.field)+'</p><p>'+pxEsc(d.fundLevel)+' · '+pxEsc(d.priority)+' priority · €'+d.living+'/month living estimate</p></div><div><button class="ghost" data-px-compare="'+d.no+'">Compare</button> <button class="ghost" data-px-unstar="'+d.no+'">Remove ★</button></div></div><a href="https://'+pxEsc(d.site)+'" target="_blank" rel="noopener">Official website ↗</a></div>').join(''):'<div class="empty">No saved programmes yet. Tap the star on a programme card to add it.</div>';
+}
+function pxEnsureApp(no){if(!PXDATA.apps[no])PXDATA.apps[no]={check:{},notes:'',date:''};PXDATA.apps[no].check=PXDATA.apps[no].check||{};}
+function pxRenderApps(){
+ const sel=document.getElementById('appAddSelect');if(sel.options.length<=1)sel.innerHTML='<option value="">Choose a programme</option>'+pxOptions();
+ const rows=pxTracked();
+ document.getElementById('applicationsList').innerHTML=rows.length?rows.map(d=>{
+  const a=PXDATA.apps[d.no]||{check:{},notes:'',date:''},checks=a.check||{};
+  return '<article class="app-card"><h3>'+pxEsc(d.university)+'</h3><div class="app-meta">'+pxEsc(d.programme)+' · '+pxEsc(d.country)+' · '+pxEsc(d.field)+'</div><div class="app-tools"><div><label class="module-label">Application status</label><select class="module-select" data-px-status="'+d.no+'">'+STAT.map(x=>'<option'+(x===d.status?' selected':'')+'>'+pxEsc(x)+'</option>').join('')+'</select></div><div><label class="module-label">Date submitted</label><input class="module-input" type="date" value="'+pxEsc(a.date||'')+'" data-px-date="'+d.no+'"></div></div><label class="module-label">Application checklist</label><div class="app-checks">'+APPDOCS.map(x=>'<label class="app-check"><input type="checkbox" data-px-check="'+d.no+'" data-px-item="'+pxEsc(x)+'" '+(checks[x]?'checked':'')+'> '+pxEsc(x)+'</label>').join('')+'</div><div style="margin-top:10px"><label class="module-label">Private notes</label><textarea class="module-textarea" rows="2" data-px-note="'+d.no+'" placeholder="Portal, contact person, follow-up...">'+pxEsc(a.notes||'')+'</textarea></div><div class="module-actions"><a class="planner-link" href="https://'+pxEsc(d.site)+'" target="_blank" rel="noopener">Official website ↗</a><button class="ghost" data-px-remove="'+d.no+'">Remove tracking details</button></div></article>';
+ }).join(''):'<div class="empty">No applications tracked yet. Choose a programme above, star one in Cards, or change its status in Cards / Table.</div>';
+}
+function pxRenderCalendar(){
+ const input=document.getElementById('calendarMonth');if(!input.value){const t=new Date();input.value=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0');}
+ const p=input.value.split('-').map(Number),y=p[0],m=p[1]-1,first=new Date(y,m,1),last=new Date(y,m+1,0),events=DATA.filter(d=>d.date&&d.date.getFullYear()===y&&d.date.getMonth()===m),by={};
+ events.forEach(d=>(by[d.date.getDate()]=by[d.date.getDate()]||[]).push(d));
+ let html=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>'<div class="calendar-week">'+x+'</div>').join('');
+ for(let i=0;i<first.getDay();i++)html+='<div class="calendar-day other"></div>';
+ for(let day=1;day<=last.getDate();day++){const today=y===TODAY.getFullYear()&&m===TODAY.getMonth()&&day===TODAY.getDate(),list=by[day]||[];html+='<div class="calendar-day'+(today?' today':'')+'"><div class="num">'+day+'</div>'+list.slice(0,3).map(d=>'<button class="calendar-event" data-px-cal="'+d.no+'" title="'+pxEsc(d.university)+'">'+pxEsc(d.university)+'</button>').join('')+(list.length>3?'<small>+'+(list.length-3)+' more</small>':'')+'</div>';}
+ document.getElementById('calendarGrid').innerHTML=html;
+ document.getElementById('calendarList').innerHTML=events.length?events.sort((a,b)=>a.date-b.date).map(d=>'<div class="module-item"><h4>'+pxEsc(fmtS(d.date))+' · '+pxEsc(d.university)+'</h4><p>'+pxEsc(d.programme)+' · '+pxEsc(d.country)+'</p><p>'+pxEsc(d.deadline)+'</p></div>').join(''):'<div class="empty">No parsed deadlines in this month. See the original deadline text in Cards / Table.</div>';
+}
+function pxRenderCompare(){
+ const box=document.getElementById('compareSelects');if(!box.dataset.ready){box.innerHTML=[0,1,2,3].map(i=>'<div><label class="module-label">Programme '+(i+1)+'</label><select class="module-select" data-px-compare="'+i+'"><option value="">Choose programme</option>'+pxOptions()+'</select></div>').join('');box.dataset.ready='1';}
+ box.querySelectorAll('[data-px-compare]').forEach(el=>el.value=PXDATA.compare[Number(el.dataset.pxCompare)]||'');
+ const rows=PXDATA.compare.map(n=>DATA.find(d=>d.no===Number(n))).filter(Boolean);
+ if(!rows.length){document.getElementById('compareResult').innerHTML='<div class="empty">Choose programmes above to compare side by side.</div>';return;}
+ const fields=[['University',d=>d.university],['Programme',d=>d.programme],['Country / city',d=>d.country+' · '+d.city],['Subject',d=>d.field],['Language',d=>d.language],['Duration',d=>d.dur],['Tuition',d=>d.tuition],['Living / month','€'],['Funding',d=>d.fundLevel],['Scholarships',d=>d.fundText],['Deadline',d=>d.deadline],['Priority',d=>d.priority]];
+ document.getElementById('compareResult').innerHTML='<div class="compare-wrap"><table class="compare-table"><thead><tr><th>Compare</th>'+rows.map(d=>'<th>'+pxEsc(d.university)+'</th>').join('')+'</tr></thead><tbody>'+fields.map(f=>'<tr><td>'+f[0]+'</td>'+rows.map(d=>'<td>'+pxEsc(f[0]==='Living / month'?'€'+d.living:f[1](d))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
+}
+function pxRenderProfile(){
+ const p=PXDATA.profile||{},field=document.getElementById('profileField').value||p.field||'',budget=Number(document.getElementById('profileLiving').value||p.living||0),fund=document.getElementById('profileFunding').value||p.funding||'any',lang=document.getElementById('profileLanguage').value||p.language||'any',ielts=Number(document.getElementById('profileIELTS').value||p.ielts||0);
+ let rows=DATA.filter(d=>{if(field&&d.field!==field)return false;if(budget&&d.living>budget)return false;if(fund==='full'&&!/Full/.test(d.fundLevel))return false;if(fund==='partial'&&d.fundLevel==='None')return false;if(lang==='English'&&!/English/i.test(d.language))return false;const req=IELTS_REQUIREMENTS[d.no];if(ielts&&req!==undefined&&ielts<Number(req))return false;return true;});
+ rows.sort((a,b)=>(a.priority==='High'?0:a.priority==='Medium'?1:2)-(b.priority==='High'?0:b.priority==='Medium'?1:2)||a.living-b.living);rows=rows.slice(0,30);
+ document.getElementById('profileResults').innerHTML='<div class="module-card"><h3>'+rows.length+' possible matches (up to 30 shown)</h3><p class="module-note">CGPA is saved for reference only because verified minimum GPA requirements are not in the dataset. These filters do not establish admission or scholarship eligibility.</p></div>'+(rows.length?rows.map(d=>'<div class="module-item"><h4>'+pxEsc(d.university)+' — '+pxEsc(d.programme)+'</h4><p>'+pxEsc(d.country)+' · '+pxEsc(d.field)+' · '+pxEsc(d.language)+'</p><p>Living estimate €'+d.living+'/month · '+pxEsc(d.fundLevel)+' funding · '+pxEsc(d.priority)+' priority</p><a href="https://'+pxEsc(d.site)+'" target="_blank" rel="noopener">Official site ↗</a></div>').join(''):'<div class="empty">No results. Try a wider budget or another subject.</div>');
+}
+function pxTuition(text){if(!/€/.test(text))return '';const m=String(text).match(/€\s*([\d,]+)/);if(!m)return '';const n=Number(m[1].replace(/,/g,''));return n>0?n:'';}
+function pxMonths(text){const m=String(text).match(/(\d+(?:\.\d+)?)/);return m?Math.round(Number(m[1])*12):24;}
+function pxRenderCost(){
+ const t=Number(document.getElementById('costTuition').value||0),l=Number(document.getElementById('costLiving').value||0),mo=Number(document.getElementById('costMonths').value||0),flight=Number(document.getElementById('costTravel').value||0),visa=Number(document.getElementById('costVisa').value||0),ins=Number(document.getElementById('costInsurance').value||0),other=Number(document.getElementById('costOther').value||0),tuition=t*mo/12,living=l*mo,total=tuition+living+flight+visa+ins+other;
+ const items=[['Tuition estimate',tuition],['Living estimate',living],['Travel / flight',flight],['Visa / residence',visa],['Insurance / setup',ins],['Other costs',other],['Estimated total',total]];
+ document.getElementById('costSummary').innerHTML=items.map((x,i)=>'<div class="module-card"><div class="big">'+pxMoney(x[1])+'</div><div class="small">'+x[0]+'</div></div>').join('');
+}
+function pxRenderDocs(){
+ const done=DOCS.filter(x=>PXDATA.docs[x]).length;document.getElementById('docProgress').style.width=Math.round(done/DOCS.length*100)+'%';document.getElementById('docCount').textContent=done+' of '+DOCS.length+' documents marked ready';
+ document.getElementById('documentChecklist').innerHTML=DOCS.map(x=>'<label class="checkrow"><input type="checkbox" data-px-doc="'+pxEsc(x)+'" '+(PXDATA.docs[x]?'checked':'')+'> '+pxEsc(x)+'</label>').join('');
+}
+function pxRenderGuide(){
+ const c=document.getElementById('guideCountry').value;if(!c){document.getElementById('guideContent').innerHTML='<p class="module-note">Choose a country to view programme counts, average living estimates and the country guidance stored in this tracker.</p>';return;}
+ const rows=DATA.filter(d=>d.country===c),avg=rows.length?Math.round(rows.reduce((a,d)=>a+d.living,0)/rows.length):0,info=CD[c]||{},unis=[...new Set(rows.map(d=>d.university))].slice(0,12);
+ document.getElementById('guideContent').innerHTML='<div class="module-grid"><div class="module-card"><div class="big">'+rows.length+'</div><div class="small">Programmes listed</div></div><div class="module-card"><div class="big">'+pxMoney(avg)+'</div><div class="small">Average monthly living estimate</div></div><div class="module-card"><div class="big">'+rows.filter(d=>d.fundLevel==='Full').length+'</div><div class="small">Full-funding entries</div></div></div><div class="module-card"><h3>English language</h3><p>'+pxEsc(info.e||'Requirements vary by programme. Check the official course page.')+'</p><h3>Application route</h3><p>'+pxEsc(info.r||'Apply through the university or official scholarship provider.')+'</p><h3>Application fee</h3><p>'+pxEsc(info.f||'Check the university application page for fees and waivers.')+'</p><h3>Student visa</h3><p>'+pxEsc(info.v||'Check the destination government immigration website for current rules.')+'</p><p><a class="planner-link" target="_blank" rel="noopener" href="https://www.google.com/search?q='+encodeURIComponent(c+' official government student visa international students')+'">Find official visa information ↗</a> · <a class="planner-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(c+' universities')+'">View universities on map ↗</a></p></div><div class="module-card"><h3>Universities listed</h3><p>'+unis.map(pxEsc).join(' · ')+'</p></div>';
+}
+function pxRenderMap(){
+ const d=DATA.find(x=>x.no===Number(document.getElementById('mapProgramme').value));document.getElementById('mapResult').innerHTML=d?'<div class="module-card"><h3>'+pxEsc(d.university)+'</h3><p>'+pxEsc(d.city)+', '+pxEsc(d.country)+'</p><a class="planner-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(d.university+' '+d.city+' '+d.country)+'">Open location in Google Maps ↗</a><p class="module-note">Confirm the exact campus address with the university.</p></div>':'<p class="module-note">Choose a programme to search its university location.</p>';
+}
+function pxRenderAlerts(){
+ document.getElementById('scholarshipAlerts').innerHTML=SCHOL.map(r=>'<div class="module-item"><div class="module-row" style="justify-content:space-between"><h4>'+pxEsc(r[0])+'</h4><span class="sc '+scCls(r[5])+'">'+pxEsc(r[5])+'</span></div><p>'+pxEsc(r[1])+' · '+pxEsc(r[2])+'</p><p><strong>Deadline:</strong> '+pxEsc(r[4])+'</p><a href="https://'+pxEsc(r[6])+'" target="_blank" rel="noopener">Official scholarship source ↗</a></div>').join('');
+}
+function pxRenderWriting(){
+ ['sopName','sopProgramme','sopBackground','sopExperience','sopMotivation','sopGoals','sopOutput'].forEach(id=>{const el=document.getElementById(id),k=id.slice(3);if(PXDATA.sop[k]!==undefined)el.value=PXDATA.sop[k];});
+ ['cvName','cvContact','cvEducation','cvExperience','cvSkills','cvProjects','cvAwards','cvOutput'].forEach(id=>{const el=document.getElementById(id),k=id.slice(2);if(PXDATA.cv[k]!==undefined)el.value=PXDATA.cv[k];});
+}
+function pxSaveWriting(prefix,ids){const obj={};ids.forEach(id=>obj[id.slice(prefix.length)]=document.getElementById(id).value);PXDATA[prefix]=obj;pxSave();}
+function pxDownload(name,text){const u=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+function pxRenderIELTSHistory(){
+ const el=document.getElementById('ieltsHistory');if(!el)return;const rows=PXDATA.attempts.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+ el.innerHTML=rows.length?rows.map(x=>'<div class="module-item"><div class="module-row" style="justify-content:space-between"><div><h4>'+pxEsc(x.date)+' · Overall '+Number(x.overall).toFixed(1)+'</h4><p>L '+x.l+' · R '+x.r+' · W '+x.w+' · S '+x.s+'</p></div><button class="ghost" data-px-ielts-delete="'+pxEsc(x.id)+'">Delete</button></div></div>').join(''):'<div class="empty">No IELTS test results saved yet.</div>';
+}
+function pxRenderAll(){
+ pxRenderDashboard();pxRenderShortlist();pxRenderApps();pxRenderCalendar();pxRenderCompare();pxRenderProfile();pxRenderCost();pxRenderDocs();pxRenderGuide();pxRenderMap();pxRenderAlerts();pxRenderIELTSHistory();
+}
+function initPlanner(){
+ const opts=pxOptions();['appAddSelect','costProgramme','mapProgramme'].forEach(id=>document.getElementById(id).innerHTML='<option value="">Choose programme</option>'+opts);
+ const fields=[...new Set(DATA.map(d=>d.field))].sort();document.getElementById('profileField').innerHTML='<option value="">Any subject</option>'+fields.map(x=>'<option>'+pxEsc(x)+'</option>').join('');
+ const countries=[...new Set(DATA.map(d=>d.country))].sort();document.getElementById('guideCountry').innerHTML='<option value="">Choose country</option>'+countries.map(x=>'<option>'+pxEsc(x)+'</option>').join('');
+ const pmap={field:'profileField',degree:'profileDegree',cgpa:'profileCGPA',scale:'profileScale',ielts:'profileIELTS',living:'profileLiving',funding:'profileFunding',language:'profileLanguage'};
+ Object.keys(PXDATA.profile).forEach(k=>{const el=document.getElementById(pmap[k]||'');if(el)el.value=PXDATA.profile[k];});
+ document.getElementById('costProgramme').value=PXDATA.cost.programme||'';['tuition','living','months','travel','visa','insurance','other'].forEach(k=>{const el=document.getElementById('cost'+k[0].toUpperCase()+k.slice(1));if(el&&PXDATA.cost[k]!==undefined)el.value=PXDATA.cost[k];});
+ document.getElementById('guideCountry').value=PXDATA.guideCountry||'';document.getElementById('mapProgramme').value=PXDATA.mapProgramme||'';
+ const now=new Date();document.getElementById('calendarMonth').value=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+ const ad=document.getElementById('ieltsAttemptDate');ad.value=now.toISOString().slice(0,10);
+ document.getElementById('plannerTabs').addEventListener('click',e=>{const b=e.target.closest('[data-sub]');if(b){pxTab(b.dataset.sub);pxRenderAll();}});
+ document.getElementById('appAddBtn').addEventListener('click',()=>{const no=Number(document.getElementById('appAddSelect').value);if(!no)return;if(!PXDATA.apps[no])PXDATA.apps[no]={check:{},notes:'',date:''};const d=DATA.find(x=>x.no===no);if(d&&d.status==='Not started'){d.status='Preparing';ST[no]='Preparing';try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(e){}}pxSave();renderAll();pxTab('applications');});
+ document.getElementById('applicationsList').addEventListener('change',e=>{
+  const st=e.target.closest('[data-px-status]');if(st){const no=Number(st.dataset.pxStatus),d=DATA.find(x=>x.no===no);if(d){d.status=st.value;ST[no]=st.value;try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}renderAll();}return;}
+  const dt=e.target.closest('[data-px-date]');if(dt){if(!PXDATA.apps[dt.dataset.pxDate])PXDATA.apps[dt.dataset.pxDate]={check:{},notes:''};PXDATA.apps[dt.dataset.pxDate].date=dt.value;pxSave();return;}
+  const ck=e.target.closest('[data-px-check]');if(ck){const no=ck.dataset.pxCheck;if(!PXDATA.apps[no])PXDATA.apps[no]={check:{},notes:''};PXDATA.apps[no].check[ck.dataset.pxItem]=ck.checked;pxSave();pxRenderDashboard();}
+ });
+ document.getElementById('applicationsList').addEventListener('input',e=>{const n=e.target.closest('[data-px-note]');if(n){if(!PXDATA.apps[n.dataset.pxNote])PXDATA.apps[n.dataset.pxNote]={check:{}};PXDATA.apps[n.dataset.pxNote].notes=n.value;pxSave();}});
+ document.getElementById('applicationsList').addEventListener('click',e=>{const b=e.target.closest('[data-px-remove]');if(!b)return;const no=Number(b.dataset.pxRemove);delete PXDATA.apps[no];if(ST[no]){delete ST[no];const d=DATA.find(x=>x.no===no);if(d)d.status='Not started';}try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}pxSave();renderAll();});
+ document.getElementById('shortlistList').addEventListener('click',e=>{const u=e.target.closest('[data-px-unstar]');if(u){FAV.delete(Number(u.dataset.pxUnstar));saveFav();renderAll();return;}const c=e.target.closest('[data-px-compare]');if(c){const n=Number(c.dataset.pxCompare);if(!PXDATA.compare.includes(n)){if(PXDATA.compare.length>=4)PXDATA.compare.shift();PXDATA.compare.push(n);}pxSave();pxTab('compare');pxRenderCompare();}});
+ document.getElementById('calendarMonth').addEventListener('change',pxRenderCalendar);
+ document.getElementById('calendarGrid').addEventListener('click',e=>{const b=e.target.closest('[data-px-cal]');if(!b)return;const d=DATA.find(x=>x.no===Number(b.dataset.pxCal));if(!d)return;document.getElementById('q').value=d.university;state.q=d.university;document.querySelector('.tab[data-p="cards"]').click();renderAll();});
+ document.getElementById('compareSelects').addEventListener('change',e=>{const el=e.target.closest('[data-px-compare]');if(!el)return;PXDATA.compare[Number(el.dataset.pxCompare)]=el.value?Number(el.value):'';PXDATA.compare=PXDATA.compare.filter(Boolean).slice(0,4);pxSave();pxRenderCompare();});
+ document.getElementById('profileSave').addEventListener('click',()=>{PXDATA.profile={field:document.getElementById('profileField').value,degree:document.getElementById('profileDegree').value,cgpa:document.getElementById('profileCGPA').value,scale:document.getElementById('profileScale').value,ielts:document.getElementById('profileIELTS').value,living:document.getElementById('profileLiving').value,funding:document.getElementById('profileFunding').value,language:document.getElementById('profileLanguage').value};pxSave();pxRenderProfile();});
+ document.getElementById('costProgramme').addEventListener('change',()=>{const d=DATA.find(x=>x.no===Number(document.getElementById('costProgramme').value));if(!d)return;document.getElementById('costLiving').value=d.living||0;document.getElementById('costMonths').value=pxMonths(d.dur);document.getElementById('costTuition').value=pxTuition(d.tuition);PXDATA.cost.programme=d.no;['tuition','living','months'].forEach(k=>PXDATA.cost[k]=document.getElementById('cost'+k[0].toUpperCase()+k.slice(1)).value);pxSave();pxRenderCost();});
+ ['costTuition','costLiving','costMonths','costTravel','costVisa','costInsurance','costOther'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{PXDATA.cost[id.slice(4).toLowerCase()]=document.getElementById(id).value;pxSave();pxRenderCost();}));
+ document.getElementById('documentChecklist').addEventListener('change',e=>{const el=e.target.closest('[data-px-doc]');if(!el)return;PXDATA.docs[el.dataset.pxDoc]=el.checked;pxSave();pxRenderDocs();pxRenderDashboard();});
+ document.getElementById('guideCountry').addEventListener('change',e=>{PXDATA.guideCountry=e.target.value;pxSave();pxRenderGuide();});
+ document.getElementById('mapProgramme').addEventListener('change',e=>{PXDATA.mapProgramme=e.target.value;pxSave();pxRenderMap();});
+ const sop=['sopName','sopProgramme','sopBackground','sopExperience','sopMotivation','sopGoals','sopOutput'],cv=['cvName','cvContact','cvEducation','cvExperience','cvSkills','cvProjects','cvAwards','cvOutput'];
+ sop.concat(cv).forEach(id=>document.getElementById(id).addEventListener('input',()=>{const isS=id.startsWith('sop');const list=isS?sop:cv;const obj={};list.forEach(k=>obj[k.slice(isS?3:2)]=document.getElementById(k).value);PXDATA[isS?'sop':'cv']=obj;pxSave();}));
+ pxRenderWriting();
+ document.getElementById('sopGenerate').addEventListener('click',()=>{const v=id=>document.getElementById(id).value.trim();document.getElementById('sopOutput').value='STATEMENT OF PURPOSE — WORKING OUTLINE\n\nApplicant: '+v('sopName')+'\nTarget: '+v('sopProgramme')+'\n\n1. Academic background\n'+(v('sopBackground')||'[Describe your degree, relevant courses and academic strengths.]')+'\n\n2. Relevant experience\n'+(v('sopExperience')||'[Explain relevant projects, research, work or volunteering.]')+'\n\n3. Programme motivation\n'+(v('sopMotivation')||'[Explain why this programme and university fit your goals.]')+'\n\n4. Future goals\n'+(v('sopGoals')||'[Describe realistic career goals and how this degree supports them.]')+'\n\n5. Closing\n[Summarise your preparation and intended contribution.]';const o={};sop.forEach(k=>o[k.slice(3)]=document.getElementById(k).value);PXDATA.sop=o;pxSave();});
+ document.getElementById('cvGenerate').addEventListener('click',()=>{const v=id=>document.getElementById(id).value.trim();document.getElementById('cvOutput').value=v('cvName')+'\n'+v('cvContact')+'\n\nEDUCATION\n'+(v('cvEducation')||'[Degree, institution, dates, CGPA]')+'\n\nEXPERIENCE\n'+(v('cvExperience')||'[Role, organisation, dates and achievements]')+'\n\nSKILLS\n'+(v('cvSkills')||'[Relevant skills]')+'\n\nPROJECTS / RESEARCH\n'+(v('cvProjects')||'[Projects, publications or research]')+'\n\nAWARDS / CERTIFICATIONS / VOLUNTEERING\n'+(v('cvAwards')||'[Relevant awards and certifications]');const o={};cv.forEach(k=>o[k.slice(2)]=document.getElementById(k).value);PXDATA.cv=o;pxSave();});
+ document.getElementById('sopDownload').addEventListener('click',()=>pxDownload('SOP_Working_Draft.txt',document.getElementById('sopOutput').value));
+ document.getElementById('cvDownload').addEventListener('click',()=>pxDownload('Academic_CV_Draft.txt',document.getElementById('cvOutput').value));
+ document.getElementById('ieltsSaveAttempt').addEventListener('click',()=>{const overall=getIELTSOverall();if(overall===null){document.getElementById('ieltsSaveNote').textContent='Enter all four valid scores before saving.';return;}const vals=IELTS_FIELDS.map(id=>Number(document.getElementById(id).value));PXDATA.attempts.push({id:Date.now().toString(36),date:document.getElementById('ieltsAttemptDate').value||new Date().toISOString().slice(0,10),l:vals[0],r:vals[1],w:vals[2],s:vals[3],overall:overall});pxSave();pxRenderIELTSHistory();});
+ document.getElementById('ieltsHistory').addEventListener('click',e=>{const b=e.target.closest('[data-px-ielts-delete]');if(!b)return;PXDATA.attempts=PXDATA.attempts.filter(x=>x.id!==b.dataset.pxIeltsDelete);pxSave();pxRenderIELTSHistory();});
+ document.getElementById('backupExport').addEventListener('click',()=>{const payload={app:'Scholarship Tracker',version:1,exportedAt:new Date().toISOString(),storage:{}};['trk_status','trk_fav','trk_ielts_scores','trk_ielts_requirements','trk_ielts_selected','trk_theme',PX].forEach(k=>{payload.storage[k]=localStorage.getItem(k);});const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='Scholarship_Tracker_Backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.getElementById('backupMessage').textContent='Backup downloaded. Store it somewhere private.';});
+ document.getElementById('backupImport').addEventListener('click',async()=>{const file=document.getElementById('backupFile').files[0];if(!file){document.getElementById('backupMessage').textContent='Choose a JSON backup first.';return;}try{const p=JSON.parse(await file.text());if(p.app!=='Scholarship Tracker'||p.version!==1||!p.storage)throw new Error('Unsupported backup file.');['trk_status','trk_fav','trk_ielts_scores','trk_ielts_requirements','trk_ielts_selected','trk_theme',PX].forEach(k=>{if(Object.prototype.hasOwnProperty.call(p.storage,k)){if(p.storage[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,p.storage[k]);}});location.reload();}catch(err){document.getElementById('backupMessage').textContent='Restore failed: '+err.message;}});
+ document.getElementById('plannerTabs').addEventListener('click',e=>{const b=e.target.closest('[data-sub]');if(b){pxTab(b.dataset.sub);pxRenderAll();}});
+ pxTab(localStorage.getItem('trk_planner_tab')||'dashboard');pxRenderAll();
+}
+function pxRenderAll(){pxRenderDashboard();pxRenderShortlist();pxRenderApps();pxRenderCalendar();pxRenderCompare();pxRenderProfile();pxRenderCost();pxRenderDocs();pxRenderGuide();pxRenderMap();pxRenderAlerts();pxRenderIELTSHistory();}
+
+function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards(); renderTable(); renderTimeline(); renderCountry(); pxRenderAll(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
 fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
@@ -1194,6 +1428,7 @@ document.getElementById('dl').addEventListener('click',()=>{
 });
 
 initIELTS();
+initPlanner();
 renderAll();
 setUpd('Built-in data last updated '+CONFIG.UPDATED+'. Dates and countdowns use today’s date.');
 if(CONFIG.DATA_URL){
