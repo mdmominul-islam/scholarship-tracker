@@ -187,7 +187,7 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
   @media(max-width:420px){.ielts-score-inputs{gap:8px}.ielts-overall strong{font-size:25px}}
 
 /* My Planner */
-.planner-head h2{font-size:21px;margin:0 0 3px}.planner-head p{margin:0;color:var(--ink-soft);font-size:12px}
+.planner-launch{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:11px 18px;border:1px solid rgba(255,255,255,.65);border-radius:11px;background:#fff;color:#12327f;font-size:13px;font-weight:850;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.14)}.planner-launch:hover{transform:translateY(-1px)}.planner-tab{border:1px solid var(--accent)!important;color:var(--accent)!important;font-weight:850!important;background:var(--accent-soft)!important}.planner-head h2{font-size:21px;margin:0 0 3px}.planner-head p{margin:0;color:var(--ink-soft);font-size:12px}
 .subtabs{display:flex;gap:6px;overflow-x:auto;padding:3px 0 11px;margin-bottom:14px;scrollbar-width:thin}
 .subtab{flex:none;background:var(--card);color:var(--ink-soft);border:1px solid var(--line);padding:7px 11px;font-size:11.5px}
 .subtab.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
@@ -230,7 +230,7 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
   <header class="hero"><div class="heroin"><div>
     <div class="kicker">Programmes · Scholarships · Deadlines · For applicants from Bangladesh · 2027 entry</div>
     <h1>Global Master’s Scholarship Tracker</h1>
-    <div class="sub" id="sub"></div><div class="upd" id="upd"></div></div>
+    <div class="sub" id="sub"></div><div class="upd" id="upd"></div><button class="planner-launch" id="plannerLaunch" type="button">Open My Study Abroad Planner →</button></div>
     <button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
 
   <div class="stats" id="stats"></div>
@@ -264,13 +264,13 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
   </div>
 
   <div class="tabs">
+    <button class="tab planner-tab" data-p="planner">★ My Planner</button>
     <button class="tab on" data-p="cards">Cards <span class="c" id="cCards"></span></button>
     <button class="tab" data-p="table">Table <span class="c" id="cTable"></span></button>
     <button class="tab" data-p="schol">Scholarships <span class="c" id="cSchol"></span></button>
     <button class="tab" data-p="timeline">Deadline timeline <span class="c" id="cTimeline"></span></button>
     <button class="tab" data-p="country">By country <span class="c" id="cCountry"></span></button>
     <button class="tab" data-p="ielts">IELTS Scoreboard</button>
-    <button class="tab" data-p="planner">My Planner</button>
   </div>
 
   <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
@@ -1355,6 +1355,8 @@ function pxRenderAll(){
  pxRenderDashboard();pxRenderShortlist();pxRenderApps();pxRenderCalendar();pxRenderCompare();pxRenderProfile();pxRenderCost();pxRenderDocs();pxRenderGuide();pxRenderMap();pxRenderAlerts();pxRenderIELTSHistory();
 }
 function initPlanner(){
+ document.getElementById('plannerLaunch').addEventListener('click',()=>document.querySelector('.tab[data-p="planner"]').click());
+ document.getElementById('plannerTabs').addEventListener('click',e=>{const b=e.target.closest('[data-sub]');if(b){pxTab(b.dataset.sub);pxRenderAll();}});
  const opts=pxOptions();['appAddSelect','costProgramme','mapProgramme'].forEach(id=>document.getElementById(id).innerHTML='<option value="">Choose programme</option>'+opts);
  const fields=[...new Set(DATA.map(d=>d.field))].sort();document.getElementById('profileField').innerHTML='<option value="">Any subject</option>'+fields.map(x=>'<option>'+pxEsc(x)+'</option>').join('');
  const countries=[...new Set(DATA.map(d=>d.country))].sort();document.getElementById('guideCountry').innerHTML='<option value="">Choose country</option>'+countries.map(x=>'<option>'+pxEsc(x)+'</option>').join('');
@@ -1364,7 +1366,6 @@ function initPlanner(){
  document.getElementById('guideCountry').value=PXDATA.guideCountry||'';document.getElementById('mapProgramme').value=PXDATA.mapProgramme||'';
  const now=new Date();document.getElementById('calendarMonth').value=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
  const ad=document.getElementById('ieltsAttemptDate');ad.value=now.toISOString().slice(0,10);
- document.getElementById('plannerTabs').addEventListener('click',e=>{const b=e.target.closest('[data-sub]');if(b){pxTab(b.dataset.sub);pxRenderAll();}});
  document.getElementById('appAddBtn').addEventListener('click',()=>{const no=Number(document.getElementById('appAddSelect').value);if(!no)return;if(!PXDATA.apps[no])PXDATA.apps[no]={check:{},notes:'',date:''};const d=DATA.find(x=>x.no===no);if(d&&d.status==='Not started'){d.status='Preparing';ST[no]='Preparing';try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(e){}}pxSave();renderAll();pxTab('applications');});
  document.getElementById('applicationsList').addEventListener('change',e=>{
   const st=e.target.closest('[data-px-status]');if(st){const no=Number(st.dataset.pxStatus),d=DATA.find(x=>x.no===no);if(d){d.status=st.value;ST[no]=st.value;try{localStorage.setItem('trk_status',JSON.stringify(ST));}catch(err){}renderAll();}return;}
