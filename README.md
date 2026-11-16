@@ -1,40 +1,57 @@
-# Scholarship Tracker
+# Global Master's Scholarship Tracker
 
-A simple master's programme and scholarship finder for students planning applications for the 2027 intake.
+A free, login-free study-abroad planning tool for applicants exploring master's programmes and scholarships for the 2027 intake.
 
 **Live website:** https://mdmominul-islam.github.io/scholarship-tracker/  
 **Source code:** https://github.com/mdmominul-islam/scholarship-tracker
 
-## Features
+## Explore programmes
 
-- Search 309 programme records across 35 country/region labels.
-- Filter by country, subject, funding level, and IELTS match.
-- View university, programme, language, duration, tuition, living-cost estimate, funding information, deadlines, and notes.
-- Open official programme websites.
-- Track application status: Not started, Preparing, Applied, Interview, Offer, Rejected, or Withdrawn.
-- Calculate an IELTS overall band from Listening, Reading, Writing, and Speaking.
-- Enter each programme's published IELTS overall minimum and compare it with your score.
-- Send corrections and programme suggestions through the feedback form.
-- No account or login required.
+- Search and filter the built-in programme directory.
+- Browse country, subject, funding, priority, tuition, living-cost and deadline information.
+- View programme cards, a sortable table, scholarship listings, deadline timeline and country summaries.
+- Open official university and scholarship links.
+- Star programmes to build a shortlist.
+- Export shortlist or programme data as CSV and print filtered results.
 
-## Local storage and privacy
+## My Planner
 
-IELTS scores, application statuses, and manually entered programme IELTS minimums are stored in the current browser on the current device. They are not synced to a central account and are not shared between users or devices. Clearing browser site data may remove them. No images, audio, or video are required.
+- Overview dashboard and application progress.
+- Shortlist and application status tracking.
+- Deadline calendar and programme comparison.
+- Student profile matching filters.
+- Study-abroad cost estimate calculator.
+- Document checklist.
+- SOP outline and academic CV draft organisers.
+- Country guide and university location search.
+- Scholarship source directory.
+- JSON backup and restore.
 
-## IELTS note
+The most-used Planner sections are shown first. Additional tools are grouped under **More tools**.
 
-The programme dataset does not include verified IELTS requirements for every course. Enter the overall minimum from the official programme page before using the IELTS match filter. Some universities also require minimum individual section scores; this simple comparison checks overall band only.
+## IELTS Scoreboard
 
-The calculator uses the standard overall-band rounding method. It does not assess writing or speaking responses and does not replace an official IELTS result.
+- Enter Listening, Reading, Writing and Speaking scores.
+- Calculate the overall band using standard IELTS rounding.
+- Save test attempts in a personal score history.
+- Compare an overall score with a programme's entered overall minimum.
 
-## Programme information
+IELTS requirements are not verified for every programme. Enter the minimum from the official course page. Some programmes also require minimum component scores; the simple comparison here checks the overall band only.
 
-Tuition, living-cost estimates, funding details, eligibility, and deadlines can change. Treat the listings as a starting point, not a guarantee of admission or funding. Confirm current requirements, award coverage, application fees, and deadlines with the university or scholarship provider before applying or paying.
+## Privacy and storage
+
+- No login or account is required.
+- Application status, shortlist, IELTS scores, profile, checklists and drafts are stored in local browser storage on the current device.
+- Personal data is not synced to a central account or shared between devices.
+- Export a JSON backup before clearing browser data or changing devices.
+- Avoid saving private drafts on a shared computer.
 
 ## Feedback
 
-Use the feedback form on the website. Messages are routed to the site owner's email through FormSubmit. The first submission may require a one-time activation from the mailbox owner's inbox.
+Use the **Feedback** button to send suggestions, corrections, programme additions or bug reports to **imdmominul196@gmail.com** through FormSubmit. The first submission may require the mailbox owner to confirm a one-time activation email before messages are delivered. A reply email can be included optionally.
 
----
+## Data accuracy
 
-This is an independent planning resource and is not an official university, government, or scholarship-provider website.
+Tuition, living-cost estimates, funding details, eligibility and deadlines can change. Treat listings as a starting point, not a guarantee of admission or funding. Confirm current requirements, award coverage, application fees and deadlines with the official university or scholarship provider before applying or paying.
+
+This is an independent planning resource and is not an official university, government or scholarship-provider website.
