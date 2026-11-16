@@ -160,6 +160,31 @@
     .stats{grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-40px} .stat{padding:10px} .stat .n{font-size:20px} .stat .l{font-size:9px}
     .fab{right:12px;bottom:12px;padding:8px 14px}
 h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12px 70px}.cards{grid-template-columns:1fr}}
+  /* IELTS scoreboard — matches the existing tracker card style */
+  .ielts-intro{margin:0 0 14px}
+  .ielts-intro h2{font-size:20px;margin:0 0 4px}
+  .ielts-intro p{font-size:12.5px;color:var(--ink-soft);margin:0}
+  .ielts-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+  .ielts-card{min-width:0}
+  .ielts-card h3{margin:0 0 4px;font-size:16px}
+  .ielts-help{font-size:11.5px;color:var(--ink-soft);margin:0 0 14px}
+  .ielts-score-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .ielts-score-inputs label,.ielts-program-label{display:block;font-size:11px;font-weight:800;color:var(--ink-soft)}
+  .ielts-score-inputs input,.ielts-program-search,.ielts-program-select,.ielts-minimum{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--paper);color:var(--ink);font:inherit;font-size:13px}
+  .ielts-overall{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--accent-soft);color:var(--accent)}
+  .ielts-overall span{font-size:12px;font-weight:800}
+  .ielts-overall strong{font-size:29px;line-height:1;font-variant-numeric:tabular-nums}
+  .ielts-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .ielts-actions small,.ielts-footnote{font-size:11px;color:var(--ink-soft)}
+  .ielts-program-meta{margin:12px 0;padding:11px 12px;border-radius:11px;background:var(--paper);border:1px solid var(--line);font-size:12px;line-height:1.6;color:var(--ink-soft);min-height:68px}
+  .ielts-program-meta strong{color:var(--ink)}
+  .ielts-match{margin-top:12px;padding:11px 12px;border-radius:11px;background:var(--grey-soft);font-size:12px;font-weight:800;color:var(--ink-soft)}
+  .ielts-match.good{background:var(--green-soft);color:var(--green)}
+  .ielts-match.low{background:var(--red-soft);color:var(--red)}
+  .ielts-match.wait{background:var(--amber-soft);color:var(--amber)}
+  .ielts-footnote{margin:14px 0 0;line-height:1.55}
+  @media(max-width:760px){.ielts-grid{grid-template-columns:1fr}}
+  @media(max-width:420px){.ielts-score-inputs{gap:8px}.ielts-overall strong{font-size:25px}}
 </style>
 </head>
 <body>
@@ -206,6 +231,7 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
     <button class="tab" data-p="schol">Scholarships <span class="c" id="cSchol"></span></button>
     <button class="tab" data-p="timeline">Deadline timeline <span class="c" id="cTimeline"></span></button>
     <button class="tab" data-p="country">By country <span class="c" id="cCountry"></span></button>
+    <button class="tab" data-p="ielts">IELTS Scoreboard</button>
   </div>
 
   <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
@@ -235,6 +261,41 @@ h1{font-size:26px}.wrap{padding:0 12px 60px}.hero{margin:0 -12px;padding:26px 12
   <div class="panel" id="p-schol"><div class="cards" id="scholCards"></div></div>
   <div class="panel" id="p-timeline"><div class="tl" id="tl"></div></div>
   <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
+
+  <div class="panel" id="p-ielts">
+    <div class="ielts-intro">
+      <h2>IELTS Scoreboard</h2>
+      <p>Save your IELTS result and compare it with the overall English requirement of a selected Master's programme.</p>
+    </div>
+    <div class="ielts-grid">
+      <article class="card ielts-card">
+        <h3>My IELTS score</h3>
+        <p class="ielts-help">Enter your Listening, Reading, Writing and Speaking band scores.</p>
+        <div class="ielts-score-inputs">
+          <label for="ieltsListening">Listening<input id="ieltsListening" type="number" min="0" max="9" step="0.5" placeholder="e.g. 7.0"></label>
+          <label for="ieltsReading">Reading<input id="ieltsReading" type="number" min="0" max="9" step="0.5" placeholder="e.g. 6.5"></label>
+          <label for="ieltsWriting">Writing<input id="ieltsWriting" type="number" min="0" max="9" step="0.5" placeholder="e.g. 6.0"></label>
+          <label for="ieltsSpeaking">Speaking<input id="ieltsSpeaking" type="number" min="0" max="9" step="0.5" placeholder="e.g. 6.5"></label>
+        </div>
+        <div class="ielts-overall"><span>Overall band score</span><strong id="ieltsOverall">—</strong></div>
+        <div class="ielts-actions"><small id="ieltsSaveNote">Saved privately in this browser.</small><button class="ghost" type="button" id="ieltsClear">Clear scores</button></div>
+      </article>
+
+      <article class="card ielts-card">
+        <h3>Check a university programme</h3>
+        <p class="ielts-help">Search the programme list, then enter the overall IELTS minimum published by that university.</p>
+        <label class="ielts-program-label" for="ieltsProgramSearch">Search university, programme or subject</label>
+        <input class="ielts-program-search" id="ieltsProgramSearch" type="search" placeholder="e.g. Computer Science, Germany…">
+        <label class="ielts-program-label" for="ieltsProgram" style="margin-top:10px">Select programme</label>
+        <select class="ielts-program-select" id="ieltsProgram"><option value="">Choose a programme</option></select>
+        <div class="ielts-program-meta" id="ieltsProgramMeta">Select a programme to see its university, country, subject and general English-language guidance.</div>
+        <label class="ielts-program-label" for="ieltsMinimum">Official overall IELTS minimum</label>
+        <input class="ielts-minimum" id="ieltsMinimum" type="number" min="0" max="9" step="0.5" placeholder="Enter the programme's minimum, e.g. 6.5">
+        <div class="ielts-match wait" id="ieltsMatch">Select a programme and enter its official minimum to compare your score.</div>
+      </article>
+    </div>
+    <p class="ielts-footnote">Important: the tracker does not have verified programme-specific IELTS requirements for every course. Enter the minimum from the official university page. This comparison checks the overall band only; some programmes also require minimum Listening, Reading, Writing or Speaking scores. Your scores and entered requirements stay in this browser and are not shared publicly.</p>
+  </div>
 
   <footer>
     <p><strong>How to use this:</strong> filter by “Full funding only” when you need a full ride, or by country when an application portal costs money. The timeline tab sorts every deadline chronologically so you can work backwards — scholarship deadlines are usually 1–4 months before the programme's own deadline.</p>
@@ -616,6 +677,9 @@ const mapRow=r=>{
 };
 const DATA=parseCSV(CSV).map(mapRow);
 const STAT=['Not started','Preparing','Applied','Offer','Rejected'];
+let IELTS_SCORES={}; try{IELTS_SCORES=JSON.parse(localStorage.getItem('trk_ielts_scores')||'{}')||{};}catch(e){}
+let IELTS_REQUIREMENTS={}; try{IELTS_REQUIREMENTS=JSON.parse(localStorage.getItem('trk_ielts_requirements')||'{}')||{};}catch(e){}
+let IELTS_SELECTED=localStorage.getItem('trk_ielts_selected')||'';
 let ST={}; try{ST=JSON.parse(localStorage.getItem('trk_status')||'{}');}catch(e){}
 DATA.forEach(d=>{ if(ST[d.no]) d.status=ST[d.no]; });
 const stCls=x=>({Applied:'s-applied',Offer:'s-offer',Preparing:'s-prep',Rejected:'s-rej'}[x]||'');
@@ -999,6 +1063,108 @@ document.getElementById('exportFav').addEventListener('click',()=>{
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv'}));a.download='My_shortlist.csv';a.click();
 });
 document.getElementById('contact').innerHTML='<strong>Contact:</strong> '+(CONFIG.OWNER_NAME?CONFIG.OWNER_NAME+' · ':'')+'<a href="mailto:'+CONFIG.FEEDBACK_EMAIL+'" style="color:var(--accent)">'+CONFIG.FEEDBACK_EMAIL+'</a> — corrections and new programme suggestions are welcome.';
+
+/* ---------- IELTS scoreboard ---------- */
+const IELTS_FIELDS=['ieltsListening','ieltsReading','ieltsWriting','ieltsSpeaking'];
+const ieltsEsc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function getIELTSOverall(){
+  const values=IELTS_FIELDS.map(id=>{const raw=document.getElementById(id).value.trim();return raw===''?NaN:Number(raw);});
+  if(!values.every(v=>Number.isFinite(v)&&v>=0&&v<=9&&Math.round(v*2)===v*2)) return null;
+  return Math.round((values.reduce((a,b)=>a+b,0)/4)*2)/2;
+}
+function renderIELTSComparison(){
+  const overall=getIELTSOverall();
+  document.getElementById('ieltsOverall').textContent=overall===null?'—':overall.toFixed(1);
+  const no=Number(document.getElementById('ieltsProgram').value);
+  const d=DATA.find(x=>x.no===no);
+  const meta=document.getElementById('ieltsProgramMeta');
+  const match=document.getElementById('ieltsMatch');
+  if(!d){
+    meta.textContent='Select a programme to see its university, country, subject and general English-language guidance.';
+    match.className='ielts-match wait';
+    match.textContent='Select a programme and enter its official minimum to compare your score.';
+    return;
+  }
+  const countryInfo=CD[d.country]||CD['EU (multi-country)'];
+  meta.innerHTML='<strong>'+ieltsEsc(d.university)+'</strong><br>'+ieltsEsc(d.programme)+'<br>'+ieltsEsc(d.country)+' · '+ieltsEsc(d.field)+'<br><span>General country guidance: '+ieltsEsc(countryInfo.e)+'</span>';
+  const requirement=IELTS_REQUIREMENTS[d.no];
+  if(requirement===undefined||requirement===null||requirement===''){
+    match.className='ielts-match wait';
+    match.textContent=overall===null?'Enter all four IELTS scores, then add the programme’s official overall minimum.':'Your overall band is '+overall.toFixed(1)+'. Enter the official programme minimum above to compare.';
+  }else if(overall===null){
+    match.className='ielts-match wait';
+    match.textContent='Programme minimum saved: '+Number(requirement).toFixed(1)+'. Enter all four of your IELTS scores to see the comparison.';
+  }else if(overall>=Number(requirement)){
+    match.className='ielts-match good';
+    match.textContent='Meets overall requirement · Your '+overall.toFixed(1)+' is at or above the '+Number(requirement).toFixed(1)+' minimum.';
+  }else{
+    match.className='ielts-match low';
+    match.textContent='Below overall requirement · Your '+overall.toFixed(1)+' is below the '+Number(requirement).toFixed(1)+' minimum.';
+  }
+}
+function refreshIELTSProgramOptions(){
+  const search=document.getElementById('ieltsProgramSearch').value.trim().toLowerCase();
+  const select=document.getElementById('ieltsProgram');
+  const previous=select.value||IELTS_SELECTED;
+  const rows=DATA.filter(d=>!search||[d.university,d.programme,d.country,d.field,d.city].join(' ').toLowerCase().includes(search));
+  select.innerHTML='<option value="">Choose a programme ('+rows.length+' found)</option>'+rows.map(d=>'<option value="'+d.no+'">'+ieltsEsc(d.university)+' — '+ieltsEsc(d.programme)+' ('+ieltsEsc(d.country)+')</option>').join('');
+  if(rows.some(d=>String(d.no)===String(previous))) select.value=String(previous);
+  else select.value='';
+  const chosen=select.value;
+  document.getElementById('ieltsMinimum').value=chosen&&IELTS_REQUIREMENTS[chosen]!==undefined?IELTS_REQUIREMENTS[chosen]:'';
+  IELTS_SELECTED=chosen;
+  try{localStorage.setItem('trk_ielts_selected',IELTS_SELECTED);}catch(e){}
+  renderIELTSComparison();
+}
+function initIELTS(){
+  IELTS_FIELDS.forEach(id=>{
+    const el=document.getElementById(id);
+    const key=id.replace('ielts','').toLowerCase();
+    if(IELTS_SCORES[key]!==undefined) el.value=IELTS_SCORES[key];
+    el.addEventListener('input',()=>{
+      const data={};
+      IELTS_FIELDS.forEach(fid=>{data[fid.replace('ielts','').toLowerCase()]=document.getElementById(fid).value;});
+      IELTS_SCORES=data;
+      try{localStorage.setItem('trk_ielts_scores',JSON.stringify(data));}catch(e){}
+      const overall=getIELTSOverall();
+      document.getElementById('ieltsSaveNote').textContent=overall===null?'Enter all four valid scores (0–9, in 0.5 steps).':'Your score is saved in this browser · Overall '+overall.toFixed(1);
+      renderIELTSComparison();
+    });
+  });
+  const search=document.getElementById('ieltsProgramSearch');
+  const select=document.getElementById('ieltsProgram');
+  const min=document.getElementById('ieltsMinimum');
+  search.addEventListener('input',refreshIELTSProgramOptions);
+  select.addEventListener('change',()=>{
+    IELTS_SELECTED=select.value;
+    try{localStorage.setItem('trk_ielts_selected',IELTS_SELECTED);}catch(e){}
+    min.value=IELTS_SELECTED&&IELTS_REQUIREMENTS[IELTS_SELECTED]!==undefined?IELTS_REQUIREMENTS[IELTS_SELECTED]:'';
+    renderIELTSComparison();
+  });
+  min.addEventListener('change',()=>{
+    const no=select.value,value=min.value.trim();
+    if(!no)return;
+    if(value!==''&&(Number(value)<0||Number(value)>9||Math.round(Number(value)*2)!==Number(value)*2)){
+      min.setCustomValidity('Enter an IELTS band from 0 to 9 in 0.5 steps.');min.reportValidity();return;
+    }
+    min.setCustomValidity('');
+    if(value==='')delete IELTS_REQUIREMENTS[no];else IELTS_REQUIREMENTS[no]=Number(value);
+    try{localStorage.setItem('trk_ielts_requirements',JSON.stringify(IELTS_REQUIREMENTS));}catch(e){}
+    renderIELTSComparison();
+  });
+  document.getElementById('ieltsClear').addEventListener('click',()=>{
+    IELTS_FIELDS.forEach(id=>document.getElementById(id).value='');
+    IELTS_SCORES={};
+    try{localStorage.removeItem('trk_ielts_scores');}catch(e){}
+    document.getElementById('ieltsSaveNote').textContent='IELTS scores cleared from this browser.';
+    renderIELTSComparison();
+  });
+  IELTS_FIELDS.forEach(id=>{const v=document.getElementById(id).value.trim();if(v!==''&&(!Number.isFinite(Number(v))||Number(v)<0||Number(v)>9||Math.round(Number(v)*2)!==Number(v)*2))document.getElementById(id).value='';});
+  const overall=getIELTSOverall();
+  document.getElementById('ieltsSaveNote').textContent=overall===null?'Saved privately in this browser.':'Your score is saved in this browser · Overall '+overall.toFixed(1);
+  refreshIELTSProgramOptions();
+}
+
 function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards(); renderTable(); renderTimeline(); renderCountry(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
@@ -1027,12 +1193,13 @@ document.getElementById('dl').addEventListener('click',()=>{
   a.click(); URL.revokeObjectURL(a.href);
 });
 
+initIELTS();
 renderAll();
 setUpd('Built-in data last updated '+CONFIG.UPDATED+'. Dates and countdowns use today’s date.');
 if(CONFIG.DATA_URL){
   fetch(CONFIG.DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
     const rows=parseCSV(t).map(mapRow);
-    if(rows.length>20){DATA.splice(0,DATA.length,...rows);DATA.forEach(d=>{if(ST[d.no])d.status=ST[d.no];});fillFilters();renderAll();setUpd('Live data loaded '+new Date().toLocaleString());}
+    if(rows.length>20){DATA.splice(0,DATA.length,...rows);DATA.forEach(d=>{if(ST[d.no])d.status=ST[d.no];});fillFilters();refreshIELTSProgramOptions();renderAll();setUpd('Live data loaded '+new Date().toLocaleString());}
   }).catch(()=>setUpd('Live source unreachable; showing built-in data from '+CONFIG.UPDATED+'.'));
 }
 </script>
