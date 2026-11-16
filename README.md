@@ -1,59 +1,35 @@
-# Global Master’s Scholarship Tracker
+# Scholarship Tracker
 
-A public scholarship-planning dashboard for students from Bangladesh exploring master’s opportunities for **2027 entry**.
+A simple master's scholarship and programme finder for students from Bangladesh planning for the **2027 intake**.
 
 **Live website:** https://mdmominul-islam.github.io/scholarship-tracker/  
 **Source code:** https://github.com/mdmominul-islam/scholarship-tracker
 
-## What the tracker includes
+## Features
 
-The current dataset contains **309 master’s programme entries across 35 country/region labels**, including multi-country opportunities. It covers all 11 broad ISCED field groups and includes selected scholarship schemes for applicants from Bangladesh.
+- Search 309 master's programme entries across 35 country/region labels.
+- Filter by country, subject, and funding level.
+- View tuition, estimated living costs, language, duration, scholarships, deadlines, and notes.
+- Open the programme's official website when a link is available.
+- Track application status (Not started, Preparing, Applied, Offer, Rejected) in the current browser.
+- Calculate an IELTS overall band from Listening, Reading, Writing, and Speaking scores.
+- Send corrections and programme suggestions through the feedback form.
+- No account or login required.
 
-Features include:
+## Privacy and storage
 
-- Search across universities, countries, programmes, fields, funding schemes, and notes.
-- Filter by country, field, funding level, and priority.
-- Browse programme cards and a sortable comparison table.
-- View dedicated scholarship opportunities and eligibility/deadline notes.
-- Review key dates in a deadline timeline.
-- Browse a country-based summary.
-- Shortlist programmes and export the shortlist as CSV.
-- Export the full programme dataset as CSV.
-- Track application status (Not started, Preparing, Applied, Offer, and Rejected) in the current browser.
-- Switch between light and dark themes.
-- Print the programme cards.
-
-## How to use
-
-1. Open the [live tracker](https://mdmominul-islam.github.io/scholarship-tracker/).
-2. Search by university, country, programme, field, or scholarship.
-3. Use the filters and field-group chips to narrow the programme list.
-4. Compare entries in Cards or Table view.
-5. Use the Scholarships and Deadline timeline tabs to review funding schemes and dates.
-6. Shortlist relevant programmes and export your shortlist or the full dataset.
-7. Update each programme’s application status as you progress.
+IELTS scores and application statuses are saved in the current browser using local storage. They are not synced to a central account or shared database. Clearing browser site data may remove them. No images, audio, or video are required by the tracker.
 
 ## Important information
 
-- Tuition, living-cost, funding, and deadline information is indicative and compiled from public sources.
-- Entries marked as reported, expected, unconfirmed, or check require confirmation.
-- Scholarship eligibility and award conditions can change; verify whether each scheme is open to Bangladeshi applicants.
-- Always confirm eligibility, required documents, funding coverage, application fees, and current deadlines on the university’s or scholarship provider’s official website before paying any fee.
-- Living-cost figures are planning estimates, not official quotations.
-- The tracker is an independent planning resource and is not an official university, government, or scholarship-provider website.
+Tuition, living-cost estimates, funding details, and deadlines are indicative and may change. Scholarship eligibility varies by programme and year. Confirm eligibility, required documents, award coverage, application fees, and current deadlines on the university or scholarship provider's official website before applying or paying.
 
-## Application-status and shortlist privacy
+The IELTS calculator applies the standard overall-band rounding method to the four entered section scores. It does not assess writing or speaking responses and does not replace an official IELTS result.
 
-Application status, shortlist selections, and theme preferences are saved in your browser’s local storage. They are specific to the browser/device where you use the tracker; they are not synced to a central account or shared database. Clearing that browser’s site data may remove those saved settings.
+## Feedback
 
-## Technology
-
-The website is a standalone HTML application with embedded CSS, JavaScript, and programme data, published using GitHub Pages. It does not require an external JavaScript framework.
-
-## Feedback and corrections
-
-Use the feedback form in the tracker to report incorrect or outdated information. Include the programme name and, where possible, a supporting official source.
+Use the feedback form on the website to report an error or suggest a programme. Feedback is routed to the existing site contact email through FormSubmit. The first form submission may require a one-time activation from the mailbox owner.
 
 ---
 
-*This tracker is an independent information and planning resource. Always verify details with the official provider before applying.*
+This is an independent planning resource and is not an official university, government, or scholarship-provider website.
