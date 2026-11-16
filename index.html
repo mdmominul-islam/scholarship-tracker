@@ -19,7 +19,7 @@
 .programs{display:grid;gap:12px}.program{padding:17px}.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.country{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--blue)}.program h3{font-size:17px;line-height:1.3;margin:4px 0}.uni{font-size:13px;color:var(--muted)}.tag{flex:none;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:var(--greenbg);color:var(--green)}.tag.partial{background:var(--amberbg);color:var(--amber)}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.fact{background:#f7f8fc;border-radius:10px;padding:9px}.fact span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.05em}.fact strong{display:block;font-size:12px;margin-top:2px;overflow-wrap:anywhere}
 .detail{font-size:12px;color:#48536a;margin:8px 0}.detail b{color:var(--ink)}.note{border-left:3px solid #d4defd;padding:7px 10px;background:#f8faff;border-radius:0 8px 8px 0;color:#4c5870;font-size:12px;margin:10px 0}
-.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.cardfoot a{color:var(--blue);font-size:12px;font-weight:800;text-decoration:none}.cardfoot a:hover{text-decoration:underline}.status{width:auto;min-width:145px;font-size:12px;padding:7px 9px}
+.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}.cardfoot a{color:var(--blue);font-size:12px;font-weight:800;text-decoration:none}.cardfoot a:hover{text-decoration:underline}.status{width:auto;min-width:145px;font-size:12px;padding:7px 9px}.ielts-check{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;background:#f7f8fc;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:12px}.ielts-check label{font-size:12px;font-weight:700;color:var(--muted)}.ielts-check input{width:88px;border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit}.ielts-result{font-size:12px;font-weight:700;padding:5px 2px}.ielts-result.good{color:var(--green)}.ielts-result.low{color:#a04a25}.ielts-result.neutral{color:var(--muted)}
 button{border:0;border-radius:10px;background:var(--blue);color:#fff;font:inherit;font-weight:700;font-size:13px;padding:10px 14px;cursor:pointer}button:hover{filter:brightness(.95)}button:focus-visible,a:focus-visible{outline:3px solid #a9baff;outline-offset:2px}.more{display:block;margin:18px auto 0}.empty{background:#fff;border:1px dashed #cbd3e1;padding:28px;border-radius:14px;text-align:center;color:var(--muted)}
 .feedback{margin-top:24px}.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feedback input,.feedback textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}.feedback textarea{min-height:100px;resize:vertical;grid-column:1/-1}.feedback button{margin-top:10px}.fineprint{font-size:11px;color:var(--muted);margin:10px 0 0}.footer{font-size:11px;color:var(--muted);padding:18px 0 0}.footer a{color:var(--blue)}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}}
@@ -43,7 +43,7 @@ button{border:0;border-radius:10px;background:var(--blue);color:#fff;font:inheri
   <aside>
     <section class="panel">
       <h2>IELTS Score Calculator</h2>
-      <p class="hint">Enter your four section scores. Your overall band is calculated automatically.</p>
+      <p class="hint">Enter your four section scores. Your overall band is calculated automatically. In each programme card, enter its published overall IELTS minimum to compare your score.</p>
       <div class="score-grid">
         <div class="field"><label for="listening">Listening</label><input id="listening" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
         <div class="field"><label for="reading">Reading</label><input id="reading" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
@@ -51,7 +51,7 @@ button{border:0;border-radius:10px;background:var(--blue);color:#fff;font:inheri
         <div class="field"><label for="speaking">Speaking</label><input id="speaking" type="number" min="0" max="9" step=".5" placeholder="0–9"></div>
       </div>
       <div class="overall"><span>Overall IELTS band</span><strong id="overall">—</strong></div>
-      <p class="saved" id="scoreMessage">Your score is saved only in this browser on this device. No account or login is needed.</p>
+      <p class="saved" id="scoreMessage">Your score is saved only in this browser on this device. No account or login is needed. Programme IELTS minimums must be checked on official university pages and entered manually; section minimums may also apply.</p>
     </section>
     <section class="panel">
       <h2>How to use</h2>
@@ -64,7 +64,8 @@ button{border:0;border-radius:10px;background:var(--blue);color:#fff;font:inheri
       <input id="search" type="search" placeholder="Search university, subject, country…">
       <select id="country"><option value="">All countries</option></select>
       <select id="field"><option value="">All subjects</option></select>
-      <select id="funding"><option value="">Any funding</option><option value="Full">Full funding</option><option value="Full or partial">Full or partial</option><option value="Partial">Partial funding</option></select>
+      <select id="funding"><option value="">Any funding</option><option value="Full">Full funding</option><option value="Full or partial">Full or partial</option><option value="Partial">Partial funding</option><option value="Partial to full">Partial to full</option><option value="Low">Limited funding</option><option value="None">No funding listed</option></select>
+      <select id="ieltsFit"><option value="">All IELTS matches</option><option value="meets">Meets requirement</option><option value="below">Below requirement</option><option value="unset">Requirement not set</option></select>
     </div>
     <div class="resultbar"><strong id="resultCount">Loading programmes…</strong><span>2027 entry · Verify deadlines</span></div>
     <div class="programs" id="programs"></div>
@@ -431,9 +432,14 @@ function fillSelect(id,values){const el=$(id);values.forEach(v=>{const op=docume
 fillSelect("country",unique("Country"));fillSelect("field",unique("Field"));
 let page=1;
 let statuses={};
+let ieltsRequirements={};
 try{statuses=JSON.parse(localStorage.getItem("scholarship_status_v2")||"{}")||{};}catch(e){statuses={};}
+try{ieltsRequirements=JSON.parse(localStorage.getItem("scholarship_ielts_requirements_v1")||"{}")||{};}catch(e){ieltsRequirements={};}
 function statusFor(no){return statuses[no]||"Not started";}
 function saveStatus(no,value){statuses[no]=value;try{localStorage.setItem("scholarship_status_v2",JSON.stringify(statuses));}catch(e){}}
+function currentOverall(){const vals=scoreFields.map(k=>$(k).value.trim()===""?NaN:Number($(k).value));if(!vals.every(v=>Number.isFinite(v)&&v>=0&&v<=9&&Math.round(v*2)===v*2))return null;return Math.round((vals.reduce((a,b)=>a+b,0)/4)*2)/2;}
+function requirementFor(no){const v=ieltsRequirements[no];return v===undefined||v===null||v===""?null:Number(v);}
+function saveRequirement(no,value){if(value==="")delete ieltsRequirements[no];else{const n=Number(value);if(!Number.isFinite(n)||n<0||n>9||Math.round(n*2)!==n*2)return;ieltsRequirements[no]=n;}try{localStorage.setItem("scholarship_ielts_requirements_v1",JSON.stringify(ieltsRequirements));}catch(e){}}
 function safeUrl(raw){
   let s=String(raw||"").trim();
   if(!s)return "";
@@ -444,7 +450,10 @@ function card(d){
   const funding=d["Funding level"]||"Funding details";
   const full=funding==="Full"||funding==="Full or partial";
   const link=safeUrl(d.Website);
-  const options=["Not started","Preparing","Applied","Offer","Rejected"].map(s=>'<option value="'+s+'" '+(statusFor(d.No)===s?"selected":"")+'>'+s+"</option>").join("");
+  const options=["Not started","Preparing","Applied","Interview","Offer","Rejected","Withdrawn"].map(s=>'<option value="'+s+'" '+(statusFor(d.No)===s?"selected":"")+'">'+s+"</option>").join("");
+  const requirement=requirementFor(d.No),overall=currentOverall();
+  const result=requirement===null?"Enter the official minimum band":overall===null?"Enter your IELTS scores above":overall>=requirement?"Your band "+overall.toFixed(1)+" meets the "+requirement.toFixed(1)+" minimum":"Your band "+overall.toFixed(1)+" is below the "+requirement.toFixed(1)+" minimum";
+  const resultClass=requirement===null||overall===null?"neutral":overall>=requirement?"good":"low";
   return '<article class="program">'+
     '<div class="topline"><div><div class="country">'+esc(d.Country)+' · '+esc(d.City)+'</div><h3>'+esc(d.Programme)+'</h3><div class="uni">'+esc(d.University)+'</div></div>'+
     '<span class="tag '+(full?"":"partial")+'">'+esc(funding)+'</span></div>'+
@@ -459,15 +468,19 @@ function card(d){
     '<p class="detail"><b>Scholarships:</b> '+esc(d["Funding scheme(s)"]||"Not specified")+'</p>'+
     '<p class="detail"><b>Deadline / intake:</b> '+esc(d["Intake and deadline (2027 entry)"]||"Check official website")+'</p>'+
     (d.Notes?'<p class="note">'+esc(d.Notes)+'</p>':"")+
+    '<div class="ielts-check"><label for="ielts-req-'+esc(d.No)+'">IELTS minimum overall band</label><input id="ielts-req-'+esc(d.No)+'" type="number" min="0" max="9" step=".5" placeholder="e.g. 6.5" value="'+(requirement===null?"":requirement.toFixed(1))+'" data-ielts-no="'+esc(d.No)+'" aria-label="Published IELTS overall minimum for '+esc(d.Programme)+'"></div>'+
+    '<div class="ielts-result '+resultClass+'" data-ielts-result="'+esc(d.No)+'">'+esc(result)+'</div>'+
     '<div class="cardfoot">'+(link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Official programme website ↗</a>':'<span class="fineprint">Official link not provided</span>')+
     '<select class="status" data-no="'+esc(d.No)+'" aria-label="Application status for '+esc(d.Programme)+'">'+options+'</select></div>'+
     '</article>';
 }
 function getFiltered(){
-  const q=$("search").value.trim().toLowerCase(),country=$("country").value,field=$("field").value,funding=$("funding").value;
+  const q=$("search").value.trim().toLowerCase(),country=$("country").value,field=$("field").value,funding=$("funding").value,fit=$("ieltsFit").value,overall=currentOverall();
   return DATA.filter(d=>{
     const hay=[d.Country,d.City,d.University,d.Programme,d.Field,d.Language,d["Funding scheme(s)"],d.Notes].join(" ").toLowerCase();
-    return (!q||hay.includes(q))&&(!country||d.Country===country)&&(!field||d.Field===field)&&(!funding||d["Funding level"]===funding);
+    const req=requirementFor(d.No);
+    const fitOK=!fit||(fit==="unset"?req===null:fit==="meets"?req!==null&&overall!==null&&overall>=req:fit==="below"?req!==null&&overall!==null&&overall<req:false);
+    return (!q||hay.includes(q))&&(!country||d.Country===country)&&(!field||d.Field===field)&&(!funding||d["Funding level"]===funding)&&fitOK;
   });
 }
 function render(){
@@ -477,10 +490,11 @@ function render(){
   $("empty").hidden=list.length!==0;
   $("more").hidden=shown.length>=list.length||list.length===0;
 }
-["search","country","field","funding"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{page=1;render();}));
+["search","country","field","funding","ieltsFit"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{page=1;render();}));
 $("more").addEventListener("click",()=>{page++;render();});
 $("programs").addEventListener("change",e=>{
   if(e.target.matches(".status"))saveStatus(e.target.dataset.no,e.target.value);
+  if(e.target.matches("[data-ielts-no]")){const no=e.target.dataset.ieltsNo,value=e.target.value.trim();if(value!==""&&(Number(value)<0||Number(value)>9||Math.round(Number(value)*2)!==Number(value)*2)){e.target.setCustomValidity("Enter a band from 0 to 9 in 0.5 steps.");e.target.reportValidity();return;}e.target.setCustomValidity("");saveRequirement(no,value);render();}
 });
 const scoreFields=["listening","reading","writing","speaking"];
 function loadScore(){
@@ -494,6 +508,7 @@ function calculateScore(){
   $("overall").textContent=overall.toFixed(1);
   $("scoreMessage").textContent="Saved on this device · Listening "+vals[0].toFixed(1)+" · Reading "+vals[1].toFixed(1)+" · Writing "+vals[2].toFixed(1)+" · Speaking "+vals[3].toFixed(1);
   try{const obj={};scoreFields.forEach((k,i)=>obj[k]=vals[i]);obj.overall=overall;localStorage.setItem("scholarship_ielts_v2",JSON.stringify(obj));}catch(e){}
+  if(typeof render==="function")render();
 }
 loadScore();scoreFields.forEach(k=>$(k).addEventListener("input",calculateScore));calculateScore();render();
 if(new URLSearchParams(location.search).get("feedback")==="sent"){$("scoreMessage").textContent="Your feedback was submitted. Thank you.";}
