@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readFile } from 'node:fs/promises';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
-const catalogue = JSON.parse(await readFile(new URL('../../public/data/programme-catalogue.json', import.meta.url), 'utf8'));
+const catalogue = JSON.parse(await readFile(new URL('../../../public/data/programme-catalogue.json', import.meta.url), 'utf8'));
 const records = catalogue.programmes || [];
 const initialRecords = records.slice(0, 30);
 ---
