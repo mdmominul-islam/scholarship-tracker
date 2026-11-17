@@ -343,6 +343,155 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   .fab{right:12px;bottom:12px;padding:10px 15px}
 }
 
+
+/* ===== Readable theme, simpler search and accessible controls ===== */
+:root{
+  --ink-soft:#58647e;
+}
+:root[data-theme=dark]{
+  color-scheme:dark;
+  --paper:#0b1220;
+  --card:#141f33;
+  --ink:#f2f5ff;
+  --ink-soft:#c2cde2;
+  --line:#35445f;
+  --head:#1d2b45;
+  --accent:#b7aaff;
+  --accent-soft:#302d5b;
+  --green:#75e2bd;
+  --green-soft:#153e36;
+  --amber:#ffd27c;
+  --amber-soft:#49371b;
+  --grey:#c2cde2;
+  --grey-soft:#26354f;
+  --blue:#91caff;
+  --blue-soft:#1b3b5c;
+  --red:#ffa4b2;
+  --red-soft:#4a2735;
+  --shadow:0 3px 12px rgba(0,0,0,.25),0 16px 38px rgba(0,0,0,.22);
+}
+:root[data-theme=dark] body{background:var(--paper);color:var(--ink)}
+:root[data-theme=dark] .ink-soft,
+:root[data-theme=dark] .pg,
+:root[data-theme=dark] .sch,
+:root[data-theme=dark] .cnote,
+:root[data-theme=dark] .ct,
+:root[data-theme=dark] .cty,
+:root[data-theme=dark] .prog,
+:root[data-theme=dark] .module-note,
+:root[data-theme=dark] .module-card p,
+:root[data-theme=dark] .module-item p,
+:root[data-theme=dark] .app-meta,
+:root[data-theme=dark] .mnote,
+:root[data-theme=dark] footer,
+:root[data-theme=dark] .ielts-help,
+:root[data-theme=dark] .ielts-intro p,
+:root[data-theme=dark] .planner-head p,
+:root[data-theme=dark] .tlrow .s,
+:root[data-theme=dark] .tlrow .day{color:var(--ink-soft)!important}
+:root[data-theme=dark] .notice{background:var(--card);color:var(--ink-soft);border-color:var(--line);border-left-color:var(--accent)}
+:root[data-theme=dark] .notice strong,
+:root[data-theme=dark] .card h3,
+:root[data-theme=dark] .module-card h3,
+:root[data-theme=dark] .app-card h3,
+:root[data-theme=dark] .module-item h4,
+:root[data-theme=dark] .facts dd,
+:root[data-theme=dark] tbody td{color:var(--ink)}
+:root[data-theme=dark] .hero{color:#fff}
+:root[data-theme=dark] .hero .sub{color:#f0f2ff}
+:root[data-theme=dark] .hero .upd{color:#e0e6ff}
+:root[data-theme=dark] .hero .kicker{color:#e0e4ff}
+:root[data-theme=dark] .hero-meta span{color:#f5f6ff}
+:root[data-theme=dark] #theme{color:#fff!important;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35)}
+:root[data-theme=dark] .planner-launch{background:#fff;color:#25205f!important}
+:root[data-theme=dark] button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip):not(#theme){color:#17203b}
+:root[data-theme=dark] button.ghost{background:var(--card);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .tab{color:var(--ink-soft)}
+:root[data-theme=dark] .tab.on,
+:root[data-theme=dark] .subtab.on{background:var(--accent-soft);color:var(--accent)}
+:root[data-theme=dark] .planner-tab{background:var(--accent-soft);color:var(--accent)!important;border-color:var(--line)!important}
+:root[data-theme=dark] .subtab{background:var(--card);color:var(--ink-soft);border-color:var(--line)}
+:root[data-theme=dark] .planner-more summary{background:var(--head);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .planner-more-menu .subtab{background:var(--card)}
+:root[data-theme=dark] input,
+:root[data-theme=dark] select,
+:root[data-theme=dark] textarea{color:var(--ink);background:var(--card);border-color:var(--line);color-scheme:dark}
+:root[data-theme=dark] input::placeholder,
+:root[data-theme=dark] textarea::placeholder{color:#aab8d2;opacity:1}
+:root[data-theme=dark] select option{background:#141f33;color:#f2f5ff}
+:root[data-theme=dark] .controls,
+:root[data-theme=dark] .advanced-filters,
+:root[data-theme=dark] .tablebox,
+:root[data-theme=dark] .tlmonth,
+:root[data-theme=dark] .ccard,
+:root[data-theme=dark] .ielts-card,
+:root[data-theme=dark] .module-card,
+:root[data-theme=dark] .module-item,
+:root[data-theme=dark] .app-card{background:var(--card);border-color:var(--line)}
+:root[data-theme=dark] .facts,
+:root[data-theme=dark] .dlr,
+:root[data-theme=dark] .checkrow,
+:root[data-theme=dark] .app-check{background:var(--grey-soft);border-color:var(--line)}
+:root[data-theme=dark] .tlhead{background:var(--head)}
+:root[data-theme=dark] tbody tr:hover{background:var(--head)}
+:root[data-theme=dark] a,
+:root[data-theme=dark] .module-item a,
+:root[data-theme=dark] .planner-link{color:var(--blue)}
+:root[data-theme=dark] .tag{background:var(--grey-soft);color:var(--ink-soft)}
+:root[data-theme=dark] .pill,
+:root[data-theme=dark] .sc{font-weight:800}
+:root[data-theme=dark] .output-preview{background:var(--paper);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .calendar-event{background:var(--accent-soft);color:var(--accent)}
+:root[data-theme=dark] .star.on{color:#ffd166}
+:root[data-theme=dark] .modal{background:rgba(0,0,0,.72)}
+:root[data-theme=dark] .mbox{background:var(--card);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .empty{color:var(--ink-soft)}
+:root[data-theme=dark] ::selection{background:#5446a8;color:#fff}
+:root[data-theme=dark] :focus-visible{outline-color:#d0c7ff}
+
+/* Search first; optional filters stay tucked away until needed. */
+.controls{position:relative;top:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:14px;margin:0 0 16px;border-radius:18px}
+.search-label{grid-column:1/-1;display:block;color:var(--ink-soft);font-size:11px;font-weight:800;letter-spacing:.35px}
+.search-label input{display:block;width:100%;margin-top:5px;min-height:46px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font-size:14px}
+.search-label input:focus{outline:3px solid color-mix(in srgb,var(--accent) 28%,transparent);border-color:var(--accent)}
+.advanced-filters{grid-column:1/-1;min-width:0}
+.advanced-filters summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;border:1px solid var(--line);border-radius:11px;padding:9px 13px;background:var(--head);color:var(--ink);font-size:12px;font-weight:800}
+.advanced-filters summary::-webkit-details-marker{display:none}
+.advanced-filters[open] summary{border-color:var(--accent);color:var(--accent)}
+.filter-icon{font-size:16px;line-height:1}
+.filter-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:12px 2px 3px}
+.filter-field{display:block;min-width:0;color:var(--ink-soft);font-size:10.5px;font-weight:800}
+.filter-field select{display:block;width:100%;max-width:none;min-width:0;margin-top:5px;padding:10px 9px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font-size:12px}
+.filter-grid .chk{grid-column:1/-1;padding:5px 0;color:var(--ink)}
+.cbtns{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:0}
+.cbtns button{min-height:39px}
+body[data-tab=schol] .advanced-filters{display:none}
+.tabs{gap:7px;padding:7px;border:1px solid var(--line);border-radius:15px;background:var(--card);box-shadow:var(--shadow)}
+.tab{padding:9px 13px}
+.cards{gap:15px}
+.card,.module-card,.app-card,.ielts-card,.tlmonth,.ccard{box-shadow:var(--shadow)}
+.card h3{line-height:1.35}
+button,a,summary,input,select,textarea{touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 48%,transparent);outline-offset:2px}
+@media(max-width:900px){
+ .filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:640px){
+ .wrap{padding-left:12px;padding-right:12px}
+ .hero{margin-left:-12px;margin-right:-12px;padding-left:14px;padding-right:14px}
+ .controls{display:grid;grid-template-columns:1fr;padding:11px;gap:9px}
+ .search-label,.advanced-filters,.cbtns{grid-column:1}
+ .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .filter-grid .chk{grid-column:1/-1}
+ .cbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+ .cbtns button{width:100%;font-size:11px;padding:9px 7px}
+ .tabs{margin-bottom:14px}
+ .tab{font-size:11.5px;padding:8px 10px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cards{grid-template-columns:1fr}
+ .planner-more{margin-left:0}
+}
+
 </style>
 </head>
 <body>
@@ -359,28 +508,43 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   <div class="chips" id="chips"></div>
   <details style="margin:-6px 0 14px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
 
-  <div class="controls">
-    <input type="search" id="q" placeholder="Search university, country, programme…">
-    <select id="fCountry"><option value="">All countries</option></select>
-    <select id="fField"><option value="">All fields</option></select>
-    <select id="fFund">
-      <option value="">Any funding</option>
-      <option value="Full">Full funding only</option>
-      <option value="Full or partial">Full or partial</option>
-      <option value="Partial">Partial only</option>
-    </select>
-    <select id="fPrio">
-      <option value="">Any priority</option>
-      <option value="High">High priority</option>
-      <option value="Medium">Medium priority</option>
-      <option value="Low">Low priority</option>
-    </select>
-    <select id="fSort"><option value="no">Sort: default</option><option value="deadline">Sort: deadline soonest</option><option value="priority">Sort: priority</option><option value="living">Sort: cheapest living</option></select>
-    <label class="chk"><input type="checkbox" id="fFav"> ★ Shortlist only</label>
-    <span class="cbtns"><button class="ghost" id="reset">Reset</button>
-    <button class="ghost" id="exportFav">Shortlist CSV</button>
-    <button class="ghost" id="printBtn">Print</button>
-    <button id="dl">All data CSV</button></span>
+  <div class="controls" aria-label="Programme search and filters">
+    <label class="search-label" for="q">Find a programme
+      <input type="search" id="q" placeholder="Search university, programme, country or subject…" autocomplete="off">
+    </label>
+    <details class="advanced-filters">
+      <summary><span class="filter-icon" aria-hidden="true">☷</span> Filters & sort</summary>
+      <div class="filter-grid">
+        <label class="filter-field">Country<select id="fCountry"><option value="">All countries</option></select></label>
+        <label class="filter-field">Subject<select id="fField"><option value="">All fields</option></select></label>
+        <label class="filter-field">Funding
+          <select id="fFund">
+            <option value="">Any funding</option>
+            <option value="Full">Full funding only</option>
+            <option value="Full or partial">Full or partial</option>
+            <option value="Partial">Partial only</option>
+          </select>
+        </label>
+        <label class="filter-field">Priority
+          <select id="fPrio">
+            <option value="">Any priority</option>
+            <option value="High">High priority</option>
+            <option value="Medium">Medium priority</option>
+            <option value="Low">Low priority</option>
+          </select>
+        </label>
+        <label class="filter-field">Sort by
+          <select id="fSort"><option value="no">Default order</option><option value="deadline">Deadline soonest</option><option value="priority">Priority</option><option value="living">Lowest living cost</option></select>
+        </label>
+        <label class="chk"><input type="checkbox" id="fFav"> ★ Show shortlist only</label>
+      </div>
+    </details>
+    <span class="cbtns">
+      <button class="ghost" id="reset">Clear filters</button>
+      <button class="ghost" id="exportFav">Download shortlist</button>
+      <button class="ghost" id="printBtn">Print results</button>
+      <button id="dl">Download all data</button>
+    </span>
   </div>
 
   <div class="tabs">
@@ -1269,7 +1433,7 @@ fbm.addEventListener('click',e=>{if(e.target===fbm)fbm.hidden=true;});
 document.getElementById('fbSend').addEventListener('click',async()=>{const btn=document.getElementById('fbSend'),msg=document.getElementById('fbMsg').value.trim(),email=document.getElementById('fbEmail').value.trim(),note=document.getElementById('fbNote');if(!msg){note.textContent='Please write a message before sending.';document.getElementById('fbMsg').focus();return;}if(email&&!document.getElementById('fbEmail').checkValidity()){note.textContent='Please enter a valid email address, or leave it blank.';return;}const t=fbText();btn.disabled=true;btn.textContent='Sending…';note.textContent='Sending your feedback securely…';try{const response=await fetch('https://formsubmit.co/ajax/'+CONFIG.FEEDBACK_EMAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:email||'Scholarship Tracker visitor',email:email,message:t.body,_subject:t.subj,_template:'table',_captcha:'false'})});const data=await response.json().catch(()=>({}));if(!response.ok||!(data.success===true||data.success==='true'))throw new Error(data.message||'Email service did not accept the message.');note.textContent='Feedback submitted. If this is the first submission, the site owner must confirm the activation email before messages can arrive.';document.getElementById('fbMsg').value='';}catch(err){note.textContent='Automatic sending failed. Use Copy, or email '+CONFIG.FEEDBACK_EMAIL+' directly. '+(err&&err.message?err.message:'');}finally{btn.disabled=false;btn.textContent='Send feedback';}});
 document.getElementById('fbCopy').addEventListener('click',()=>{const t=fbText();const txt=t.subj+'\n\n'+t.body;try{navigator.clipboard.writeText(txt);document.getElementById('fbNote').textContent='Copied.';}catch(e){document.getElementById('fbNote').textContent='Copy failed: select the text manually.';}});
 const setUpd=t=>{document.getElementById('upd').textContent=t;};
-function setThemeLabel(){document.getElementById('theme').textContent=document.documentElement.dataset.theme==='dark'?'Light mode':'Dark mode';}
+function setThemeLabel(){const dark=document.documentElement.dataset.theme==='dark',btn=document.getElementById('theme');btn.textContent=dark?'Light mode':'Dark mode';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');btn.setAttribute('aria-pressed',dark?'true':'false');}
 setThemeLabel();
 document.getElementById('printBtn').addEventListener('click',()=>window.print());
 document.getElementById('exportFav').addEventListener('click',()=>{
