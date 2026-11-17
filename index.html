@@ -1225,6 +1225,10 @@ footer{color:var(--ink-soft)}
 .global-degree-disclaimer{font-size:11px;line-height:1.55;color:var(--ink-soft);padding:0 3px}
 @media(max-width:760px){.global-degree-levels{grid-template-columns:1fr}.global-degree-subjects{grid-template-columns:repeat(2,minmax(0,1fr))}.global-degree-copy h2{font-size:21px}}
 @media(max-width:420px){.global-degree-subjects{grid-template-columns:1fr}}
+
+.global-subject-level-switch{display:flex;gap:8px;margin:0 0 12px}
+.global-subject-level{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:8px 13px;font-size:12px;font-weight:700;cursor:pointer}
+.global-subject-level.active{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1343,18 +1347,22 @@ footer{color:var(--ink-soft)}
       <div class="global-degree-levels">
         <a class="global-level-card bachelor" href="https://www.bachelorsportal.com/search/bachelor" target="_blank" rel="noopener">
           <span class="global-level-label">UNDERGRADUATE</span><strong>Bachelor’s worldwide</strong>
-          <span class="global-level-count">125,000+ listed programmes ↗</span>
+          <span class="global-level-count">123,000+ listed programmes ↗</span>
           <small>Explore country, subject, tuition, duration and language filters.</small>
         </a>
         <a class="global-level-card master" href="https://www.mastersportal.com/search/master" target="_blank" rel="noopener">
           <span class="global-level-label">POSTGRADUATE</span><strong>Master’s worldwide</strong>
-          <span class="global-level-count">95,000+ listed programmes ↗</span>
+          <span class="global-level-count">93,000+ listed programmes ↗</span>
           <small>Explore country, subject, tuition, duration and language filters.</small>
         </a>
       </div>
     </section>
     <section class="global-degree-section">
-      <div class="global-section-head"><div><h3>Browse by subject</h3><p>Choose a subject to open worldwide Bachelor’s or Master’s results.</p></div></div>
+      <div class="global-section-head"><div><h3>Browse by subject</h3><p>Switch degree level to open the same subject across worldwide Bachelor’s or Master’s results.</p></div></div>
+      <div class="global-subject-level-switch" role="group" aria-label="Subject degree level">
+        <button type="button" class="global-subject-level active" data-subject-level="bachelor">Bachelor’s subjects</button>
+        <button type="button" class="global-subject-level" data-subject-level="master">Master’s subjects</button>
+      </div>
       <div class="global-degree-subjects">
         <a data-subject="Agriculture & Forestry" data-slug="agriculture-forestry" href="https://www.bachelorsportal.com/search/bachelor/agriculture-forestry" target="_blank" rel="noopener">Agriculture &amp; Forestry</a>
         <a data-subject="Applied Sciences & Professions" data-slug="applied-sciences-professions" href="https://www.bachelorsportal.com/search/bachelor/applied-sciences-professions" target="_blank" rel="noopener">Applied Sciences &amp; Professions</a>
@@ -1380,10 +1388,10 @@ footer{color:var(--ink-soft)}
       </div>
     </section>
     <section class="global-degree-section">
-      <div class="global-section-head"><div><h3>Your tracker shortlist</h3><p>The built-in tracker below currently contains 604 selected Master’s programme records across 42 countries. It is a curated shortlist, not the complete worldwide programme database.</p></div></div>
+      <div class="global-section-head"><div><h3>Your tracker shortlist</h3><p>The built-in tracker currently contains 604 selected Master’s programme records across 42 countries. Bachelor’s and broader Master’s discovery is provided through the worldwide external directories above; these records have not been imported into the local tracker.</p></div></div>
       <button type="button" class="global-open-tracker" onclick="document.querySelector('.tab[data-p=cards]')?.click()">Open the 604-programme tracker ↗</button>
     </section>
-    <p class="global-degree-disclaimer">Global directory counts and listings belong to Bachelorsportal / Mastersportal and may change. They are external catalogues, not imported into this tracker’s local 604-record shortlist. Admission, IELTS, MOI, VPD, tuition and scholarship conditions must be verified with each institution.</p>
+    <p class="global-degree-disclaimer">Global directory counts and listings belong to Bachelorsportal / Mastersportal and may change. These are external worldwide catalogues, not records imported into this tracker. The 604 local entries remain a separate curated Master’s shortlist. Admission, IELTS, MOI, VPD, tuition and scholarship conditions must be verified with each institution.</p>
   </div>
 
     <div class="panel" id="p-germany">
@@ -3045,6 +3053,21 @@ document.querySelectorAll('.daad-degree-tab').forEach(btn=>btn.addEventListener(
 document.getElementById('daadLiveSearch')?.addEventListener('input',renderDdaadLive);
 document.getElementById('daadLiveSubject')?.addEventListener('input',renderDdaadLive);
 document.getElementById('daadLiveLanguage')?.addEventListener('change',renderDdaadLive);
+
+/* Global subject links switch between worldwide Bachelor and Master's results. */
+(function initGlobalSubjectLinks(){
+  const buttons=document.querySelectorAll('.global-subject-level');
+  const links=document.querySelectorAll('.global-degree-subjects a[data-slug]');
+  function setLevel(level){
+    buttons.forEach(b=>b.classList.toggle('active',b.dataset.subjectLevel===level));
+    links.forEach(a=>{
+      const slug=a.dataset.slug;
+      a.href='https://www.'+(level==='master'?'mastersportal':'bachelorsportal')+'.com/search/'+(level==='master'?'master':'bachelor')+'/'+encodeURIComponent(slug);
+    });
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>setLevel(b.dataset.subjectLevel)));
+  setLevel('bachelor');
+})();
 function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); renderGermanyGuide(); pxRenderAll(); syncShortlistExportButton(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
