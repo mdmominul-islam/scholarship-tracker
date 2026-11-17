@@ -1,13 +1,15 @@
 # Global Master's Scholarship Tracker
 
-A free, login-free study-abroad planning tool for applicants exploring master's programmes and scholarships for the 2027 intake.
+A free, login-free study-abroad planning tool for applicants exploring master's programmes, regular study options and scholarships across multiple entry cycles.
 
 **Live website:** https://mdmominul-islam.github.io/scholarship-tracker/  
 **Source code:** https://github.com/mdmominul-islam/scholarship-tracker
 
 ## Explore programmes
 
-- Search and filter the built-in programme directory.
+- Search and filter a growing global directory of 600+ master's programme and funding-route records across 40+ countries.
+- Browse both scholarship-linked opportunities and regular/self-funded programmes.
+- Filter by entry cycle; the data model supports future years as new official calls are published.
 - Browse country, subject, funding, priority, tuition, living-cost and deadline information.
 - View programme cards, a sortable table, scholarship listings, deadline timeline and country summaries.
 - Open official university and scholarship links.
@@ -52,6 +54,6 @@ Use the **Feedback** button to send suggestions, corrections, programme addition
 
 ## Data accuracy
 
-Tuition, living-cost estimates, funding details, eligibility and deadlines can change. Treat listings as a starting point, not a guarantee of admission or funding. Confirm current requirements, award coverage, application fees and deadlines with the official university or scholarship provider before applying or paying.
+The directory is compiled from national study portals, official university catalogues and scholarship-provider pages. Some listings use a general catalogue page rather than a course-specific link; these are flagged for confirmation. Tuition, living-cost estimates, funding details, eligibility and deadlines can change. Treat listings as a starting point, not a guarantee of admission or funding. Confirm current requirements, award coverage, application fees and deadlines with the official university or scholarship provider before applying or paying.
 
 This is an independent planning resource and is not an official university, government or scholarship-provider website.
