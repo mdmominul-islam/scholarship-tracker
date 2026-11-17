@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root{font-family:Inter,"Noto Sans Bengali",system-ui,sans-serif;color:#243746;background:#F5F8FA;font-synthesis:none;text-rendering:optimizeLegibility}
 :root[data-theme="dark"]{color-scheme:dark;background:#111D2B;color:#F1F5F9}
