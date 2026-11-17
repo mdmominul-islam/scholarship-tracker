@@ -575,6 +575,38 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 :root[data-theme=dark] ::selection{background:#81513d;color:#fffaf4}
 :root[data-theme=dark] :focus-visible{outline-color:#e8b49a}
 
+
+/* Germany guide — readable admission checklist and DAAD shortcuts */
+.tab[data-p=germany]:before{content:"🇩🇪"}
+.germany-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:4px 0 14px}
+.germany-head h2{font-size:22px;margin:0 0 5px}
+.germany-head p{margin:0;color:var(--ink-soft);font-size:12.5px;max-width:820px;line-height:1.6}
+.germany-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:0 0 14px}
+.germany-link{display:flex;flex-direction:column;gap:5px;padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--ink);text-decoration:none;box-shadow:var(--shadow);min-width:0}
+.germany-link strong{font-size:13px;color:var(--accent)}
+.germany-link span{font-size:11.5px;color:var(--ink-soft);line-height:1.5}
+.germany-link:hover{border-color:var(--accent);transform:translateY(-1px)}
+.germany-note{padding:13px 15px;border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:12px;background:var(--amber-soft);color:var(--amber);margin:0 0 14px}
+.germany-note strong{font-size:12px}
+.germany-note p{font-size:11.5px;line-height:1.55;margin:5px 0 0}
+.germany-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,260px);gap:10px;margin:0 0 10px}
+.germany-filters label{font-size:11px;font-weight:800;color:var(--ink-soft)}
+.germany-filters input,.germany-filters select{display:block;width:100%;margin-top:5px;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:inherit;font-size:12.5px}
+.germany-count{font-size:11.5px;color:var(--ink-soft);margin:0 0 8px}
+.germany-count strong{color:var(--accent)}
+.germany-tablebox{max-height:650px;overflow:auto}
+.germany-table{min-width:1040px}
+.germany-table thead th{top:0;z-index:2}
+.germany-table td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:11.5px;line-height:1.5}
+.germany-table .g-uni{font-weight:800;color:var(--ink)}
+.germany-table .g-prog{font-size:11px;color:var(--ink-soft);margin-top:3px}
+.g-status{display:inline-block;padding:4px 7px;border-radius:8px;font-size:10.5px;font-weight:800;line-height:1.35;background:var(--grey-soft);color:var(--grey)}
+.g-status.yes{background:var(--green-soft);color:var(--green)}
+.g-status.check{background:var(--amber-soft);color:var(--amber)}
+.germany-table a{color:var(--accent);font-weight:800;text-decoration:none;white-space:nowrap}
+.germany-footnote{font-size:11px;line-height:1.55;color:var(--ink-soft);margin:10px 0 0}
+:root[data-theme=dark] .germany-note{background:#46351f;color:#e5b76c;border-color:#69502d}
+@media(max-width:760px){.germany-links{grid-template-columns:1fr}.germany-filters{grid-template-columns:1fr}.germany-head h2{font-size:20px}}
 </style>
 <style id="ui-refresh-2026">
 :root{color-scheme:light;--paper:#F4F8F6;--card:#FFFFFF;--ink:#1C2D2A;--ink-soft:#596E68;--line:#DCE8E3;--head:#EAF2EE;--accent:#0F766E;--accent-soft:#E0F2ED;--green:#18794E;--green-soft:#DDF3E7;--amber:#946200;--amber-soft:#FFF1D3;--grey:#596E68;--grey-soft:#EDF3F0;--blue:#286A9B;--blue-soft:#E4F0F8;--red:#B4233A;--red-soft:#FCE7EB;--shadow:0 2px 5px rgba(20,55,46,.04),0 12px 28px rgba(20,55,46,.07)}
@@ -931,6 +963,7 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:v
           <button class="tab" data-p="schol"><span data-i18n="scholarships">Scholarships</span> <span class="c" id="cSchol"></span></button>
           <button class="tab" data-p="timeline"><span data-i18n="deadlines">Deadlines</span> <span class="c" id="cTimeline"></span></button>
           <button class="tab" data-p="country"><span data-i18n="countries">Countries</span> <span class="c" id="cCountry"></span></button>
+          <button class="tab" data-p="germany"><span data-i18n="germanyGuide">Germany guide</span> <span class="c" id="cGermany"></span></button>
           <button class="tab" data-p="ielts"><span data-i18n="ieltsScoreboard">IELTS Scoreboard</span></button>
           <button class="tab" data-p="table"><span data-i18n="tableView">Table view</span> <span class="c" id="cTable"></span></button>
         </div>
@@ -1013,6 +1046,42 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:v
   <div class="panel" id="p-schol"><div class="cards" id="scholCards"></div></div>
   <div class="panel" id="p-timeline"><div class="tl" id="tl"></div></div>
   <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
+
+  <div class="panel" id="p-germany">
+    <div class="germany-head">
+      <div>
+        <h2 data-i18n="germanyTitle">Germany Master's finder</h2>
+        <p data-i18n="germanyIntro">Search the Germany programmes already in this tracker, check the admission notes, and open the official DAAD catalogue for the full live list.</p>
+      </div>
+    </div>
+    <div class="germany-links">
+      <a class="germany-link" href="https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/" target="_blank" rel="noopener">
+        <strong>All DAAD degree programmes</strong><span>Open the official catalogue. Set Degree = Master, then choose your subject, language and city.</span>
+      </a>
+      <a class="germany-link" href="https://www2.daad.de/deutschland/studienangebote/international-programmes/en/" target="_blank" rel="noopener">
+        <strong>DAAD International Programmes</strong><span>Internationally oriented programmes, mostly taught in English.</span>
+      </a>
+      <a class="germany-link" href="https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/" target="_blank" rel="noopener">
+        <strong>VPD explained by uni-assist</strong><span>What it is, when it is needed and how to apply.</span>
+      </a>
+    </div>
+    <div class="germany-note">
+      <strong>How to use this section</strong>
+      <p>The DAAD catalogue contains far more courses than the Germany entries currently imported into this tracker. Use the official catalogue above for the complete live list. The table below covers the Germany programmes already listed here. VPD, IELTS and MOI rules are course-specific; “Check programme” means the requirement has not been verified for that exact course.</p>
+    </div>
+    <div class="germany-filters">
+      <label>Search university or programme<input id="gSearch" type="search" placeholder="e.g. Computer Science, Bonn, TUM…"></label>
+      <label>Teaching language<select id="gLanguage"><option value="English">English / English-taught</option><option value="all">All languages</option><option value="German">German-taught</option></select></label>
+    </div>
+    <div class="germany-count"><strong id="gCount">0</strong> programmes shown</div>
+    <div class="tablebox germany-tablebox">
+      <table class="germany-table">
+        <thead><tr><th>University &amp; programme</th><th>City</th><th>Language</th><th>VPD</th><th>IELTS</th><th>MOI accepted?</th><th>Official page</th></tr></thead>
+        <tbody id="gRows"></tbody>
+      </table>
+    </div>
+    <p class="germany-footnote">MOI = Medium of Instruction certificate. Do not assume an MOI is accepted just because a course is taught in English. If a requirement is marked “Check programme”, open the university's official course page before applying.</p>
+  </div>
 
   <div class="panel" id="p-ielts">
     <div class="ielts-intro">
@@ -2194,8 +2263,8 @@ document.getElementById('fbSend').addEventListener('click',async()=>{
 document.getElementById('fbCopy').addEventListener('click',()=>{const t=fbText();const txt=t.subj+'\n\n'+t.body;try{navigator.clipboard.writeText(txt);document.getElementById('fbNote').textContent='Copied.';}catch(e){document.getElementById('fbNote').textContent='Copy failed: select the text manually.';}});
 const setUpd=t=>{document.getElementById('upd').textContent=t;};
 const UI_TEXT={
- en:{kicker:'PROGRAMMES · SCHOLARSHIPS · REGULAR & FUNDED OPTIONS · MULTI-YEAR INTAKES',siteTitle:'Global Master’s Programmes & Scholarships Tracker',freeUse:'Free to use',noLogin:'No account required',localSave:'Progress stays on this device',openPlanner:'Open My Planner',searchLabel:'Find a programme',searchPlaceholder:'Search university, programme, country or subject…',filtersSort:'Filters & sort',country:'Country',allCountries:'All countries',subject:'Subject',allFields:'All fields',entryCycle:'Entry cycle',allYears:'All years',funding:'Funding / programme type',anyFunding:'Any funding',scholarshipOptions:'Scholarship options available',regularSelfFunded:'Regular / self-funded',fullFunding:'Full funding only',fullOrPartial:'Full or partial',partialFunding:'Partial funding only',priority:'Priority',anyPriority:'Any priority',highPriority:'High priority',mediumPriority:'Medium priority',lowPriority:'Low priority',sortBy:'Sort by',defaultOrder:'Default order',deadlineSoonest:'Deadline soonest',sortPriority:'Priority',lowestLiving:'Lowest living cost',shortlistOnly:'★ Show shortlist only',clearFilters:'Clear filters',downloadShortlist:'Download shortlist',printResults:'Print results',myPlanner:'My Planner',programmes:'Programmes',scholarships:'Scholarships',deadlines:'Deadlines',countries:'Countries',ieltsScoreboard:'IELTS Scoreboard',tableView:'Table view',plannerHeading:'My Study Abroad Planner',plannerIntro:'Plan applications, deadlines, documents, costs and your next steps — privately in this browser.',overview:'Overview',shortlist:'Shortlist',applications:'Applications',calendar:'Calendar',compare:'Compare',moreTools:'More tools',profileMatch:'Profile match',costPlanner:'Cost planner',documents:'Documents',sopCv:'SOP & CV',countryGuide:'Country guide',universityMap:'University map',scholarshipAlerts:'Scholarship alerts',backupRestore:'Backup & restore',myIeltsScore:'My IELTS score',myShortlistedProgrammes:'My shortlisted programmes',addProgramme:'Add a programme to My Applications',upcomingDeadlines:'Upcoming deadlines',applicationProgress:'Application progress',suggestedNextSteps:'Suggested next steps'},
- bn:{kicker:'মাস্টার্স প্রোগ্রাম · স্কলারশিপ · নিজ খরচে পড়াশোনা · বিভিন্ন বছরের ভর্তি',siteTitle:'মাস্টার্স প্রোগ্রাম ও স্কলারশিপ ট্র্যাকার',freeUse:'বিনামূল্যে ব্যবহার করুন',noLogin:'লগইন প্রয়োজন নেই',localSave:'তথ্য এই ডিভাইসে সংরক্ষিত থাকে',openPlanner:'আমার প্ল্যানার খুলুন',searchLabel:'প্রোগ্রাম খুঁজুন',searchPlaceholder:'বিশ্ববিদ্যালয়, প্রোগ্রাম, দেশ বা বিষয় লিখে খুঁজুন…',filtersSort:'ফিল্টার ও সাজানোর অপশন',country:'দেশ',allCountries:'সব দেশ',subject:'বিষয়',allFields:'সব বিষয়',entryCycle:'ভর্তির বছর',allYears:'সব বছর',funding:'অর্থায়ন / প্রোগ্রামের ধরন',anyFunding:'সব ধরনের অর্থায়ন',scholarshipOptions:'স্কলারশিপের সুযোগ আছে',regularSelfFunded:'সাধারণ / নিজের খরচে',fullFunding:'সম্পূর্ণ অর্থায়ন',fullOrPartial:'সম্পূর্ণ বা আংশিক',partialFunding:'আংশিক অর্থায়ন',priority:'অগ্রাধিকার',anyPriority:'সব অগ্রাধিকার',highPriority:'উচ্চ অগ্রাধিকার',mediumPriority:'মাঝারি অগ্রাধিকার',lowPriority:'কম অগ্রাধিকার',sortBy:'সাজান',defaultOrder:'ডিফল্ট ক্রম',deadlineSoonest:'নিকটবর্তী ডেডলাইন আগে',sortPriority:'অগ্রাধিকার অনুযায়ী',lowestLiving:'কম জীবনযাত্রার খরচ আগে',shortlistOnly:'★ শুধু পছন্দের তালিকা দেখুন',clearFilters:'ফিল্টার মুছুন',downloadShortlist:'পছন্দের তালিকা ডাউনলোড',printResults:'ফলাফল প্রিন্ট',myPlanner:'আমার প্ল্যানার',programmes:'প্রোগ্রামসমূহ',scholarships:'স্কলারশিপ',deadlines:'আবেদনের শেষ সময়',countries:'দেশসমূহ',ieltsScoreboard:'IELTS স্কোরবোর্ড',tableView:'টেবিল ভিউ',plannerHeading:'আমার বিদেশে পড়াশোনার পরিকল্পনা',plannerIntro:'আবেদন, ডেডলাইন, কাগজপত্র, খরচ ও পরবর্তী কাজগুলো এখানে গুছিয়ে রাখুন। তথ্য এই ব্রাউজারেই ব্যক্তিগতভাবে থাকবে।',overview:'সারসংক্ষেপ',shortlist:'পছন্দের তালিকা',applications:'আবেদনসমূহ',calendar:'ক্যালেন্ডার',compare:'তুলনা',moreTools:'আরও টুলস',profileMatch:'প্রোফাইল মিলিয়ে দেখুন',costPlanner:'খরচের পরিকল্পনা',documents:'প্রয়োজনীয় কাগজপত্র',sopCv:'SOP ও CV',countryGuide:'দেশের গাইড',universityMap:'বিশ্ববিদ্যালয়ের মানচিত্র',scholarshipAlerts:'স্কলারশিপ আপডেট',backupRestore:'ব্যাকআপ ও পুনরুদ্ধার',myIeltsScore:'আমার IELTS স্কোর',myShortlistedProgrammes:'আমার পছন্দের প্রোগ্রাম',addProgramme:'আমার আবেদনের তালিকায় প্রোগ্রাম যোগ করুন',upcomingDeadlines:'সামনের ডেডলাইন',applicationProgress:'আবেদনের অগ্রগতি',suggestedNextSteps:'পরবর্তী করণীয়'}
+ en:{kicker:'PROGRAMMES · SCHOLARSHIPS · REGULAR & FUNDED OPTIONS · MULTI-YEAR INTAKES',siteTitle:'Global Master’s Programmes & Scholarships Tracker',freeUse:'Free to use',noLogin:'No account required',localSave:'Progress stays on this device',openPlanner:'Open My Planner',searchLabel:'Find a programme',searchPlaceholder:'Search university, programme, country or subject…',filtersSort:'Filters & sort',country:'Country',allCountries:'All countries',subject:'Subject',allFields:'All fields',entryCycle:'Entry cycle',allYears:'All years',funding:'Funding / programme type',anyFunding:'Any funding',scholarshipOptions:'Scholarship options available',regularSelfFunded:'Regular / self-funded',fullFunding:'Full funding only',fullOrPartial:'Full or partial',partialFunding:'Partial funding only',priority:'Priority',anyPriority:'Any priority',highPriority:'High priority',mediumPriority:'Medium priority',lowPriority:'Low priority',sortBy:'Sort by',defaultOrder:'Default order',deadlineSoonest:'Deadline soonest',sortPriority:'Priority',lowestLiving:'Lowest living cost',shortlistOnly:'★ Show shortlist only',clearFilters:'Clear filters',downloadShortlist:'Download shortlist',printResults:'Print results',myPlanner:'My Planner',programmes:'Programmes',scholarships:'Scholarships',deadlines:'Deadlines',countries:'Countries',ieltsScoreboard:'IELTS Scoreboard',tableView:'Table view',germanyGuide:'Germany guide',germanyTitle:'Germany Master’s finder',germanyIntro:'Search the Germany programmes already in this tracker, check the admission notes, and open the official DAAD catalogue for the full live list.',plannerHeading:'My Study Abroad Planner',plannerIntro:'Plan applications, deadlines, documents, costs and your next steps — privately in this browser.',overview:'Overview',shortlist:'Shortlist',applications:'Applications',calendar:'Calendar',compare:'Compare',moreTools:'More tools',profileMatch:'Profile match',costPlanner:'Cost planner',documents:'Documents',sopCv:'SOP & CV',countryGuide:'Country guide',universityMap:'University map',scholarshipAlerts:'Scholarship alerts',backupRestore:'Backup & restore',myIeltsScore:'My IELTS score',myShortlistedProgrammes:'My shortlisted programmes',addProgramme:'Add a programme to My Applications',upcomingDeadlines:'Upcoming deadlines',applicationProgress:'Application progress',suggestedNextSteps:'Suggested next steps'},
+ bn:{kicker:'মাস্টার্স প্রোগ্রাম · স্কলারশিপ · নিজ খরচে পড়াশোনা · বিভিন্ন বছরের ভর্তি',siteTitle:'মাস্টার্স প্রোগ্রাম ও স্কলারশিপ ট্র্যাকার',freeUse:'বিনামূল্যে ব্যবহার করুন',noLogin:'লগইন প্রয়োজন নেই',localSave:'তথ্য এই ডিভাইসে সংরক্ষিত থাকে',openPlanner:'আমার প্ল্যানার খুলুন',searchLabel:'প্রোগ্রাম খুঁজুন',searchPlaceholder:'বিশ্ববিদ্যালয়, প্রোগ্রাম, দেশ বা বিষয় লিখে খুঁজুন…',filtersSort:'ফিল্টার ও সাজানোর অপশন',country:'দেশ',allCountries:'সব দেশ',subject:'বিষয়',allFields:'সব বিষয়',entryCycle:'ভর্তির বছর',allYears:'সব বছর',funding:'অর্থায়ন / প্রোগ্রামের ধরন',anyFunding:'সব ধরনের অর্থায়ন',scholarshipOptions:'স্কলারশিপের সুযোগ আছে',regularSelfFunded:'সাধারণ / নিজের খরচে',fullFunding:'সম্পূর্ণ অর্থায়ন',fullOrPartial:'সম্পূর্ণ বা আংশিক',partialFunding:'আংশিক অর্থায়ন',priority:'অগ্রাধিকার',anyPriority:'সব অগ্রাধিকার',highPriority:'উচ্চ অগ্রাধিকার',mediumPriority:'মাঝারি অগ্রাধিকার',lowPriority:'কম অগ্রাধিকার',sortBy:'সাজান',defaultOrder:'ডিফল্ট ক্রম',deadlineSoonest:'নিকটবর্তী ডেডলাইন আগে',sortPriority:'অগ্রাধিকার অনুযায়ী',lowestLiving:'কম জীবনযাত্রার খরচ আগে',shortlistOnly:'★ শুধু পছন্দের তালিকা দেখুন',clearFilters:'ফিল্টার মুছুন',downloadShortlist:'পছন্দের তালিকা ডাউনলোড',printResults:'ফলাফল প্রিন্ট',myPlanner:'আমার প্ল্যানার',programmes:'প্রোগ্রামসমূহ',scholarships:'স্কলারশিপ',deadlines:'আবেদনের শেষ সময়',countries:'দেশসমূহ',ieltsScoreboard:'IELTS স্কোরবোর্ড',tableView:'টেবিল ভিউ',germanyGuide:'জার্মানি গাইড',germanyTitle:'জার্মানির মাস্টার্স প্রোগ্রাম খুঁজুন',germanyIntro:'এই ট্র্যাকারে থাকা জার্মানির প্রোগ্রাম খুঁজুন, ভর্তি-সংক্রান্ত তথ্য দেখুন এবং DAAD-এর সম্পূর্ণ তালিকা খুলুন।',plannerHeading:'আমার বিদেশে পড়াশোনার পরিকল্পনা',plannerIntro:'আবেদন, ডেডলাইন, কাগজপত্র, খরচ ও পরবর্তী কাজগুলো এখানে গুছিয়ে রাখুন। তথ্য এই ব্রাউজারেই ব্যক্তিগতভাবে থাকবে।',overview:'সারসংক্ষেপ',shortlist:'পছন্দের তালিকা',applications:'আবেদনসমূহ',calendar:'ক্যালেন্ডার',compare:'তুলনা',moreTools:'আরও টুলস',profileMatch:'প্রোফাইল মিলিয়ে দেখুন',costPlanner:'খরচের পরিকল্পনা',documents:'প্রয়োজনীয় কাগজপত্র',sopCv:'SOP ও CV',countryGuide:'দেশের গাইড',universityMap:'বিশ্ববিদ্যালয়ের মানচিত্র',scholarshipAlerts:'স্কলারশিপ আপডেট',backupRestore:'ব্যাকআপ ও পুনরুদ্ধার',myIeltsScore:'আমার IELTS স্কোর',myShortlistedProgrammes:'আমার পছন্দের প্রোগ্রাম',addProgramme:'আমার আবেদনের তালিকায় প্রোগ্রাম যোগ করুন',upcomingDeadlines:'সামনের ডেডলাইন',applicationProgress:'আবেদনের অগ্রগতি',suggestedNextSteps:'পরবর্তী করণীয়'}
 };
 function applyLanguage(){document.documentElement.lang=UI_LANG==='bn'?'bn':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(UI_TEXT[UI_LANG][k])el.textContent=UI_TEXT[UI_LANG][k];});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.dataset.i18nPlaceholder;if(UI_TEXT[UI_LANG][k])el.placeholder=UI_TEXT[UI_LANG][k];});const langBtn=document.getElementById('langToggle');langBtn.textContent=UI_LANG==='bn'?'English':'বাংলা';langBtn.setAttribute('aria-label',UI_LANG==='bn'?'Switch to English':'বাংলা ভাষায় দেখুন');setThemeLabel();renderStats();}
 function setThemeLabel(){const dark=document.documentElement.dataset.theme==='dark',btn=document.getElementById('theme');btn.textContent=UI_LANG==='bn'?(dark?'লাইট মোড':'ডার্ক মোড'):(dark?'Light mode':'Dark mode');btn.setAttribute('aria-label',UI_LANG==='bn'?(dark?'লাইট মোড চালু করুন':'ডার্ক মোড চালু করুন'):(dark?'Switch to light mode':'Switch to dark mode'));btn.setAttribute('aria-pressed',dark?'true':'false');}
@@ -2462,7 +2531,53 @@ function syncShortlistExportButton(){
  btn.title=count?('Download your '+count+' shortlisted programme'+(count===1?'':'s')):'Star a programme to enable shortlist download';
  btn.setAttribute('aria-disabled',count===0?'true':'false');
 }
-function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); pxRenderAll(); syncShortlistExportButton(); }
+const GERMANY_ADMISSIONS={
+  'Technical University of Munich (TUM)':{
+    vpd:'Required for applicants whose Bachelor’s degree was obtained outside Germany.',
+    ielts:'IELTS Academic 6.5 overall. TUM also lists TOEFL iBT 88 and PTE Academic 65.',
+    moi:'May be accepted: previous degree must have been taught in English for at least 50% of the programme; transcript/degree certificate or official university confirmation is needed.',
+    source:'https://www.cit.tum.de/en/cit/studies/degree-programs/master-data-engineering-and-analytics/',
+    languageSource:'https://www.tum.de/en/studies/application/application-info-portal/admission-requirements/language-certificates',
+    extra:'For M.Sc. Data Engineering and Analytics, applicants with a Bachelor’s degree from Bangladesh must submit GRE General: Quantitative 164 and Analytical Writing 4.0.'
+  },
+  'TU Berlin':{
+    vpd:'Required for applicants with a foreign first university degree (including international Master’s applicants).',
+    ielts:'Programme-specific. Check the selected Master’s course page.',
+    moi:'Not confirmed centrally. Check the selected course regulations before relying on an MOI letter.',
+    source:'https://www.tu.berlin/en/i-a-office-of-student-affairs/masters-application-enrollment/application/applying-with-a-primary-university-degree-from-a-foreign-university',
+    languageSource:'https://www.tu.berlin/en/'
+  }
+};
+function germanyStatus(text){
+  const cls=/Required|May be accepted|accepted/i.test(text)&&!/Not confirmed/i.test(text)?'yes':/check|not confirmed|programme-specific/i.test(text)?'check':'';
+  return '<span class="g-status '+cls+'">'+text+'</span>';
+}
+function renderGermanyGuide(){
+  const search=(document.getElementById('gSearch')?.value||'').trim().toLowerCase();
+  const language=document.getElementById('gLanguage')?.value||'English';
+  const rows=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field))
+    .filter(d=>language==='all'||String(d.language||'').toLowerCase().includes(language.toLowerCase()))
+    .filter(d=>!search||[d.university,d.programme,d.city,d.field,d.language].join(' ').toLowerCase().includes(search));
+  document.getElementById('cGermany').textContent=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field)).length;
+  document.getElementById('gCount').textContent=rows.length;
+  document.getElementById('gRows').innerHTML=rows.map(d=>{
+    const req=GERMANY_ADMISSIONS[d.university]||{
+      vpd:'Check the exact programme and application route.',
+      ielts:'Programme-specific — not verified for this course.',
+      moi:'Not confirmed — do not assume MOI is accepted.',
+      source:'https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/'
+    };
+    const extra=req.extra&&/Data Engineering and Analytics/i.test(d.programme)?'<div class="g-prog">'+req.extra+'</div>':'';
+    return '<tr><td><div class="g-uni">'+d.university+'</div><div class="g-prog">'+d.programme+'</div>'+extra+'</td>'+
+      '<td>'+d.city+'</td><td>'+d.language+'</td><td>'+germanyStatus(req.vpd)+'</td>'+
+      '<td>'+germanyStatus(req.ielts)+'</td><td>'+germanyStatus(req.moi)+'</td>'+
+      '<td><a href="'+(req.source||'https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/')+'" target="_blank" rel="noopener">Requirements</a>'+(req.languageSource?' · <a href="'+req.languageSource+'" target="_blank" rel="noopener">Language</a>':'')+'</td></tr>';
+  }).join('')||'<tr><td colspan="7">No matching Germany programmes. Try another search or language filter.</td></tr>';
+}
+document.getElementById('gSearch').addEventListener('input',renderGermanyGuide);
+document.getElementById('gLanguage').addEventListener('change',renderGermanyGuide);
+
+function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); renderGermanyGuide(); pxRenderAll(); syncShortlistExportButton(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
 fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
