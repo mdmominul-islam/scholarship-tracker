@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'StudyPath',
   tagline: 'Your Global Education Journey Starts Here.',
   description: 'An independent platform to explore international universities, programmes and scholarships.',
-  contactEmail: '',
+  contactEmail: 'imdmominul196@gmail.com',
   repository: 'mdmominul-islam/scholarship-tracker',
   publicUrl: 'https://mdmominul-islam.github.io/scholarship-tracker/',
   defaultLanguage: 'en',
