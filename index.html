@@ -1051,7 +1051,7 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:v
     <div class="germany-head">
       <div>
         <h2 data-i18n="germanyTitle">Germany Master's finder</h2>
-        <p data-i18n="germanyIntro">Search the Germany programmes already in this tracker, check the admission notes, and open the official DAAD catalogue for the full live list.</p>
+        <p data-i18n="germanyIntro">Find a German Master’s programme, compare VPD and language requirements, and open the official source before applying. Use the filters to narrow the list.</p>
       </div>
     </div>
     <div class="germany-links">
@@ -1067,11 +1067,11 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:v
     </div>
     <div class="germany-note">
       <strong>How to use this section</strong>
-      <p>The DAAD catalogue contains far more courses than the Germany entries currently imported into this tracker. Use the official catalogue above for the complete live list. The table below covers the Germany programmes already listed here. VPD, IELTS and MOI rules are course-specific; “Check programme” means the requirement has not been verified for that exact course.</p>
+      <p><strong>Current tracker coverage:</strong> 21 Germany programme records are currently included here; this is not the complete DAAD database. Use the official DAAD catalogue links above to search the full live database. VPD, IELTS and MOI rules vary by programme. “Not confirmed” means we could not verify the rule from the programme’s official information—contact admissions before applying.</p>
     </div>
     <div class="germany-filters">
       <label>Search university or programme<input id="gSearch" type="search" placeholder="e.g. Computer Science, Bonn, TUM…"></label>
-      <label>Teaching language<select id="gLanguage"><option value="English">English / English-taught</option><option value="all">All languages</option><option value="German">German-taught</option></select></label>
+      <label>Teaching language<select id="gLanguage"><option value="all">All teaching languages</option><option value="English">English-taught or partly English</option><option value="German">German-taught or partly German</option><option value="EnglishOnly">English only</option><option value="GermanOnly">German only</option></select></label>
     </div>
     <div class="germany-count"><strong id="gCount">0</strong> programmes shown</div>
     <div class="tablebox germany-tablebox">
@@ -2636,7 +2636,7 @@ function renderGermanyGuide(){
   const search=(document.getElementById('gSearch')?.value||'').trim().toLowerCase();
   const language=document.getElementById('gLanguage')?.value||'English';
   const rows=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field))
-    .filter(d=>language==='all'||String(d.language||'').toLowerCase().includes(language.toLowerCase()))
+    .filter(d=>{const lang=String(d.language||'').toLowerCase();if(language==='all')return true;if(language==='EnglishOnly')return lang==='english';if(language==='GermanOnly')return lang==='german';return lang.includes(language.toLowerCase());})
     .filter(d=>!search||[d.university,d.programme,d.city,d.field,d.language].join(' ').toLowerCase().includes(search));
   document.getElementById('cGermany').textContent=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field)).length;
   document.getElementById('gCount').textContent=rows.length;
