@@ -1229,6 +1229,55 @@ footer{color:var(--ink-soft)}
 .global-subject-level-switch{display:flex;gap:8px;margin:0 0 12px}
 .global-subject-level{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:8px 13px;font-size:12px;font-weight:700;cursor:pointer}
 .global-subject-level.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* Single-site global programme catalogue */
+.global-catalogue-hero{background:linear-gradient(125deg,#f4f7ff,#eef5ff 58%,#eefaf6);border:1px solid #dfe8f8;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+:root[data-theme=dark] .global-catalogue-hero{background:linear-gradient(125deg,#17233c,#1a2b45 58%,#18372f);border-color:var(--line)}
+.global-catalogue-heading h2{font-size:25px;line-height:1.2;margin:9px 0 7px;letter-spacing:-.4px}
+.global-catalogue-heading p{color:var(--ink-soft);margin:0;max-width:780px}
+.global-catalogue-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.global-catalogue-stats article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.global-catalogue-stats strong{font-size:23px;line-height:1.2;color:var(--accent);font-variant-numeric:tabular-nums}
+.global-catalogue-stats span{font-size:11px;color:var(--ink-soft);font-weight:700}
+.global-catalogue-shell{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.global-degree-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.global-degree-tab{background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:10px 16px;border-radius:10px;font-size:13px}
+.global-degree-tab.active{background:var(--accent);border-color:var(--accent);color:white}
+.global-degree-tab span{font-size:11px;opacity:.85;margin-left:5px}
+.global-catalogue-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px}
+.global-catalogue-filters label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:750;color:var(--ink-soft)}
+.global-catalogue-filters input,.global-catalogue-filters select{width:100%;min-width:0;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:inherit;font-size:12px}
+.global-catalogue-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);margin-top:14px;padding-top:12px;font-size:12px;color:var(--ink-soft)}
+.global-catalogue-toolbar .ghost,.global-catalogue-pagination .ghost{padding:7px 11px;font-size:11px}
+.global-programme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:13px}
+.global-programme-card{border:1px solid var(--line);border-radius:13px;padding:14px;background:var(--card);min-width:0;display:flex;flex-direction:column;gap:7px;box-shadow:0 2px 9px rgba(30,45,80,.035)}
+.global-programme-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.global-degree-pill{font-size:10px;font-weight:800;padding:4px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent)}
+.global-source-pill{font-size:10px;color:var(--ink-soft);font-weight:700}
+.global-programme-card h3{font-size:15px;line-height:1.3;margin:2px 0 0}
+.global-programme-card .global-university{font-size:12px;color:var(--ink-soft);font-weight:650}
+.global-programme-tags{display:flex;gap:5px;flex-wrap:wrap}
+.global-programme-tags span{font-size:10px;padding:3px 7px;border-radius:20px;background:var(--grey-soft);color:var(--ink-soft)}
+.global-programme-facts{display:grid;grid-template-columns:1fr 1fr;gap:7px;background:var(--paper);border-radius:9px;padding:9px;margin-top:2px}
+.global-programme-facts div{min-width:0}
+.global-programme-facts small{display:block;font-size:9px;color:var(--ink-soft);font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.global-programme-facts strong{display:block;font-size:11px;line-height:1.35;overflow-wrap:anywhere;margin-top:2px}
+.global-programme-actions{display:flex;gap:7px;align-items:center;margin-top:auto;padding-top:5px}
+.global-programme-actions button{font-size:10px;padding:6px 9px}
+.global-programme-actions a{font-size:10px;color:var(--accent);font-weight:750;text-decoration:none}
+.global-programme-details{border-top:1px solid var(--line);padding-top:8px;margin-top:2px;font-size:11px;color:var(--ink-soft)}
+.global-programme-details summary{cursor:pointer;color:var(--accent);font-weight:750}
+.global-programme-details p{margin:7px 0 0;line-height:1.5}
+.global-programme-details a{color:var(--accent);font-weight:700}
+.global-catalogue-empty{grid-column:1/-1;text-align:center;padding:38px 14px;border:1px dashed var(--line);border-radius:12px;color:var(--ink-soft);font-size:13px}
+.global-catalogue-pagination{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:17px;font-size:11px;color:var(--ink-soft)}
+.global-catalogue-pagination button:disabled{opacity:.4;cursor:not-allowed}
+.global-catalogue-note{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:13px;background:var(--head);font-size:11px;color:var(--ink-soft);line-height:1.55}
+.global-catalogue-note strong{color:var(--ink);font-size:12px}
+.global-catalogue-note p{margin:5px 0 0}
+.global-saved{background:var(--green-soft)!important;border-color:var(--green)!important;color:var(--green)!important}
+@media(max-width:850px){.global-catalogue-filters{grid-template-columns:1fr 1fr}.global-catalogue-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.global-catalogue-shell{padding:11px}.global-catalogue-filters{grid-template-columns:1fr}.global-catalogue-heading h2{font-size:21px}.global-programme-grid{grid-template-columns:1fr}.global-catalogue-toolbar{align-items:flex-start}}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1252,7 +1301,7 @@ footer{color:var(--ink-soft)}
           <button class="tab" data-p="schol"><span data-i18n="scholarships">Scholarships</span> <span class="c" id="cSchol"></span></button>
           <button class="tab" data-p="timeline"><span data-i18n="deadlines">Deadlines</span> <span class="c" id="cTimeline"></span></button>
           <button class="tab" data-p="country"><span data-i18n="countries">Countries</span> <span class="c" id="cCountry"></span></button>
-          <button class="tab" data-p="globaldegrees"><span>Global Degrees</span><span class="c">BA / MA</span></button>
+          <button class="tab" data-p="globaldegrees"><span>Global Catalogue</span><span class="c">BA / MA</span></button>
           <button class="tab" data-p="germany"><span data-i18n="germanyGuide">Germany guide</span> <span class="c" id="cGermany"></span></button>
           <button class="tab" data-p="ielts"><span data-i18n="ieltsScoreboard">IELTS Scoreboard</span></button>
           <button class="tab" data-p="table"><span data-i18n="tableView">Table view</span> <span class="c" id="cTable"></span></button>
@@ -1338,63 +1387,51 @@ footer{color:var(--ink-soft)}
   <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
 
   <div class="panel" id="p-globaldegrees">
-    <section class="global-degree-intro">
-      <div class="global-degree-copy">
-        <span class="global-eyebrow">WORLDWIDE STUDY FINDER</span>
-        <h2>Find Bachelor’s &amp; Master’s programmes worldwide</h2>
-        <p>Choose a study level, then explore programmes by subject and country. The directories below cover international programmes across many countries; check each university’s official page for current entry rules, fees and deadlines.</p>
+    <section class="global-catalogue-hero">
+      <div class="global-catalogue-heading">
+        <span class="global-eyebrow">ONE WEBSITE · GLOBAL STUDY SEARCH</span>
+        <h2>Global Programme Catalogue</h2>
+        <p>Search programmes inside this website. Bachelor’s and Master’s are kept separate, with country, subject and language filters.</p>
       </div>
-      <div class="global-degree-levels">
-        <a class="global-level-card bachelor" href="https://www.bachelorsportal.com/search/bachelor" target="_blank" rel="noopener">
-          <span class="global-level-label">UNDERGRADUATE</span><strong>Bachelor’s worldwide</strong>
-          <span class="global-level-count">123,000+ listed programmes ↗</span>
-          <small>Explore country, subject, tuition, duration and language filters.</small>
-        </a>
-        <a class="global-level-card master" href="https://www.mastersportal.com/search/master" target="_blank" rel="noopener">
-          <span class="global-level-label">POSTGRADUATE</span><strong>Master’s worldwide</strong>
-          <span class="global-level-count">93,000+ listed programmes ↗</span>
-          <small>Explore country, subject, tuition, duration and language filters.</small>
-        </a>
+      <div class="global-catalogue-stats">
+        <article><strong id="globalStatTotal">—</strong><span>Programmes</span></article>
+        <article><strong id="globalStatCountries">—</strong><span>Countries</span></article>
+        <article><strong id="globalStatBachelor">—</strong><span>Bachelor’s</span></article>
+        <article><strong id="globalStatMaster">—</strong><span>Master’s</span></article>
       </div>
     </section>
-    <section class="global-degree-section">
-      <div class="global-section-head"><div><h3>Browse by subject</h3><p>Switch degree level to open the same subject across worldwide Bachelor’s or Master’s results.</p></div></div>
-      <div class="global-subject-level-switch" role="group" aria-label="Subject degree level">
-        <button type="button" class="global-subject-level active" data-subject-level="bachelor">Bachelor’s subjects</button>
-        <button type="button" class="global-subject-level" data-subject-level="master">Master’s subjects</button>
+    <section class="global-catalogue-shell">
+      <div class="global-degree-tabs" role="tablist" aria-label="Choose degree level">
+        <button type="button" class="global-degree-tab active" data-global-degree="Bachelor" aria-pressed="true">Bachelor’s <span id="globalBachelorCount">—</span></button>
+        <button type="button" class="global-degree-tab" data-global-degree="Master" aria-pressed="false">Master’s <span id="globalMasterCount">—</span></button>
       </div>
-      <div class="global-degree-subjects">
-        <a data-subject="Agriculture & Forestry" data-slug="agriculture-forestry" href="https://www.bachelorsportal.com/search/bachelor/agriculture-forestry" target="_blank" rel="noopener">Agriculture &amp; Forestry</a>
-        <a data-subject="Applied Sciences & Professions" data-slug="applied-sciences-professions" href="https://www.bachelorsportal.com/search/bachelor/applied-sciences-professions" target="_blank" rel="noopener">Applied Sciences &amp; Professions</a>
-        <a data-subject="Arts, Design & Architecture" data-slug="arts-design-architecture" href="https://www.bachelorsportal.com/search/bachelor/arts-design-architecture" target="_blank" rel="noopener">Arts, Design &amp; Architecture</a>
-        <a data-subject="Business & Management" data-slug="business-management" href="https://www.bachelorsportal.com/search/bachelor/business-management" target="_blank" rel="noopener">Business &amp; Management</a>
-        <a data-subject="Computer Science & IT" data-slug="computer-science-it" href="https://www.bachelorsportal.com/search/bachelor/computer-science-it" target="_blank" rel="noopener">Computer Science &amp; IT</a>
-        <a data-subject="Education & Training" data-slug="education-training" href="https://www.bachelorsportal.com/search/bachelor/education-training" target="_blank" rel="noopener">Education &amp; Training</a>
-        <a data-subject="Engineering & Technology" data-slug="engineering-technology" href="https://www.bachelorsportal.com/search/bachelor/engineering-technology" target="_blank" rel="noopener">Engineering &amp; Technology</a>
-        <a data-subject="Environmental Studies & Earth Sciences" data-slug="environmental-studies-earth-sciences" href="https://www.bachelorsportal.com/search/bachelor/environmental-studies-earth-sciences" target="_blank" rel="noopener">Environmental Studies &amp; Earth Sciences</a>
-        <a data-subject="Hospitality, Leisure & Sports" data-slug="hospitality-leisure-sports" href="https://www.bachelorsportal.com/search/bachelor/hospitality-leisure-sports" target="_blank" rel="noopener">Hospitality, Leisure &amp; Sports</a>
-        <a data-subject="Humanities" data-slug="humanities" href="https://www.bachelorsportal.com/search/bachelor/humanities" target="_blank" rel="noopener">Humanities</a>
-        <a data-subject="Journalism & Media" data-slug="journalism-media" href="https://www.bachelorsportal.com/search/bachelor/journalism-media" target="_blank" rel="noopener">Journalism &amp; Media</a>
-        <a data-subject="Law" data-slug="law" href="https://www.bachelorsportal.com/search/bachelor/law" target="_blank" rel="noopener">Law</a>
-        <a data-subject="Medicine & Health" data-slug="medicine-health" href="https://www.bachelorsportal.com/search/bachelor/medicine-health" target="_blank" rel="noopener">Medicine &amp; Health</a>
-        <a data-subject="Natural Sciences & Mathematics" data-slug="natural-sciences-mathematics" href="https://www.bachelorsportal.com/search/bachelor/natural-sciences-mathematics" target="_blank" rel="noopener">Natural Sciences &amp; Mathematics</a>
-        <a data-subject="Social Sciences" data-slug="social-sciences" href="https://www.bachelorsportal.com/search/bachelor/social-sciences" target="_blank" rel="noopener">Social Sciences</a>
+      <div class="global-catalogue-filters">
+        <label>Search programme or university<input id="globalSearch" type="search" placeholder="e.g. Computer Science, Business, university…"></label>
+        <label>Country<select id="globalCountry"><option value="">All available countries</option></select></label>
+        <label>Subject<select id="globalSubject"><option value="">All subjects</option></select></label>
+        <label>Language<select id="globalLanguage"><option value="">All languages</option><option value="English">English</option><option value="German">German</option><option value="Other">Other languages</option></select></label>
       </div>
-      <div class="global-directory-actions">
-        <a href="https://www.bachelorsportal.com/countries/" target="_blank" rel="noopener">Browse Bachelor’s by country ↗</a>
-        <a href="https://www.mastersportal.com/countries/" target="_blank" rel="noopener">Browse Master’s by country ↗</a>
-        <a href="https://www.bachelorsportal.com/search/bachelor" target="_blank" rel="noopener">All Bachelor’s programmes ↗</a>
-        <a href="https://www.mastersportal.com/search/master" target="_blank" rel="noopener">All Master’s programmes ↗</a>
+      <div class="global-catalogue-toolbar">
+        <span id="globalCatalogueStatus" aria-live="polite">Loading the local catalogue…</span>
+        <button type="button" class="ghost" id="globalReset">Reset filters</button>
+      </div>
+      <div class="global-programme-grid" id="globalProgrammeCards">
+        <div class="global-catalogue-empty">Loading programme records…</div>
+      </div>
+      <div class="global-catalogue-pagination">
+        <button type="button" class="ghost" id="globalPrev" disabled>← Previous</button>
+        <span id="globalPageLabel">Page 1</span>
+        <button type="button" class="ghost" id="globalNext" disabled>Next →</button>
       </div>
     </section>
-    <section class="global-degree-section">
-      <div class="global-section-head"><div><h3>Your tracker shortlist</h3><p>The built-in tracker currently contains 604 selected Master’s programme records across 42 countries. Bachelor’s and broader Master’s discovery is provided through the worldwide external directories above; these records have not been imported into the local tracker.</p></div></div>
-      <button type="button" class="global-open-tracker" onclick="document.querySelector('.tab[data-p=cards]')?.click()">Open the 604-programme tracker ↗</button>
+    <section class="global-catalogue-note">
+      <strong>Catalogue coverage and data accuracy</strong>
+      <p>This internal catalogue combines the tracker’s curated Master’s shortlist across 42 countries with the imported DAAD Bachelor’s and Master’s catalogue for Germany. The worldwide country catalogue is being expanded in stages. Fees, deadlines, IELTS, MOI and admission rules appear only where the source provides them; otherwise they are marked for confirmation.</p>
+      <p>Programme discovery and shortlisting stay on this website. Official university or DAAD source pages are provided only when you choose to verify a programme.</p>
     </section>
-    <p class="global-degree-disclaimer">Global directory counts and listings belong to Bachelorsportal / Mastersportal and may change. These are external worldwide catalogues, not records imported into this tracker. The 604 local entries remain a separate curated Master’s shortlist. Admission, IELTS, MOI, VPD, tuition and scholarship conditions must be verified with each institution.</p>
   </div>
 
-    <div class="panel" id="p-germany">
+  <div class="panel" id="p-germany">
     <div class="germany-head">
       <div>
         <h2 data-i18n="germanyTitle">Germany Study Finder</h2>
@@ -3040,6 +3077,7 @@ async function loadDdaadLive(){
     DAAD_LIVE_LOADED=true;
     window.DAAD_LIVE_UPDATED=payload.generatedAt?new Date(payload.generatedAt).toLocaleString():'date not supplied';
     renderDdaadLive();
+    renderGlobalCatalogue();
   }catch(error){
     if(status)status.textContent='DAAD catalogue import is pending or unavailable. Use the official DAAD link above.';
     const body=document.getElementById('daadLiveRows');
@@ -3068,7 +3106,123 @@ document.getElementById('daadLiveLanguage')?.addEventListener('change',renderDda
   buttons.forEach(b=>b.addEventListener('click',()=>setLevel(b.dataset.subjectLevel)));
   setLevel('bachelor');
 })();
-function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); renderGermanyGuide(); pxRenderAll(); syncShortlistExportButton(); }
+
+/* All programme discovery remains inside this website. */
+let GLOBAL_DEGREE='Bachelor';
+let GLOBAL_PAGE=1;
+const GLOBAL_PAGE_SIZE=30;
+let GLOBAL_SHORTLIST={};
+try{GLOBAL_SHORTLIST=JSON.parse(localStorage.getItem('trk_global_shortlist')||'{}')||{};}catch(e){}
+let GLOBAL_COUNTRIES_READY=false;
+let GLOBAL_SUBJECTS_READY=false;
+function globalCatalogueRecords(){
+  const local=DATA.map(d=>({
+    id:'local-'+d.no,degreeType:'Master',country:d.country||'Not specified',city:d.city||'',
+    university:d.university||'',programme:d.programme||'',subject:d.field||'Not specified',
+    language:d.language||'Not specified',duration:d.dur||'Not specified',tuition:d.tuition||'Not specified',
+    funding:d.fundText||'',fundLevel:d.fundLevel||'',deadline:d.deadline||'Not specified',
+    source:'Global shortlist',sourceUrl:/^https?:\/\//i.test(d.site||'')?d.site:'',
+    note:d.note||''
+  }));
+  const daad=DAAD_LIVE_PROGRAMMES.map((p,i)=>({
+    id:'daad-'+String(p.id||i),degreeType:p.degreeType||'Unknown',country:'Germany',city:p.city||'',
+    university:p.university||'',programme:p.programme||'',subject:p.subject||'Not specified',
+    language:p.language||'Not specified',duration:p.duration||'Not specified',tuition:p.tuition||'Not specified',
+    funding:'',fundLevel:'',deadline:p.intake||'Check official programme page',
+    source:'DAAD Germany',sourceUrl:p.officialUniversityUrl||p.detailUrl||'',
+    note:[p.applicationRoute,p.vpd,p.ielts,p.moi].filter(Boolean).join(' ')
+  }));
+  const byKey=new Map();
+  [...local,...daad].forEach(p=>{
+    const key=[p.degreeType,p.country,p.university,p.programme].map(x=>String(x).trim().toLowerCase()).join('|');
+    if(!byKey.has(key)||p.source==='DAAD Germany')byKey.set(key,p);
+  });
+  return [...byKey.values()];
+}
+function globalSelectOptions(id,values,placeholder){
+  const el=document.getElementById(id);if(!el)return;
+  const keep=el.value;
+  el.innerHTML='<option value="">'+escapeHtml(placeholder)+'</option>'+values.map(v=>'<option value="'+escapeHtml(v)+'">'+escapeHtml(v)+'</option>').join('');
+  if(values.includes(keep))el.value=keep;
+}
+function renderGlobalCatalogue(){
+  const root=document.getElementById('globalProgrammeCards');if(!root)return;
+  const all=globalCatalogueRecords();
+  const bachelors=all.filter(p=>p.degreeType==='Bachelor');
+  const masters=all.filter(p=>p.degreeType==='Master');
+  const countries=[...new Set(all.map(p=>p.country).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
+  const subjects=[...new Set(all.map(p=>p.subject).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
+  globalSelectOptions('globalCountry',countries,'All available countries');
+  globalSelectOptions('globalSubject',subjects,'All subjects');
+  const total=document.getElementById('globalStatTotal'),countryStat=document.getElementById('globalStatCountries');
+  const bStat=document.getElementById('globalStatBachelor'),mStat=document.getElementById('globalStatMaster');
+  if(total)total.textContent=all.length.toLocaleString();
+  if(countryStat)countryStat.textContent=countries.length.toLocaleString();
+  if(bStat)bStat.textContent=bachelors.length.toLocaleString();
+  if(mStat)mStat.textContent=masters.length.toLocaleString();
+  const bCount=document.getElementById('globalBachelorCount'),mCount=document.getElementById('globalMasterCount');
+  if(bCount)bCount.textContent=bachelors.length.toLocaleString();
+  if(mCount)mCount.textContent=masters.length.toLocaleString();
+  document.querySelectorAll('[data-global-degree]').forEach(btn=>{
+    const active=btn.dataset.globalDegree===GLOBAL_DEGREE;
+    btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));
+  });
+  const q=(document.getElementById('globalSearch')?.value||'').trim().toLowerCase();
+  const country=document.getElementById('globalCountry')?.value||'';
+  const subject=document.getElementById('globalSubject')?.value||'';
+  const language=document.getElementById('globalLanguage')?.value||'';
+  let rows=all.filter(p=>p.degreeType===GLOBAL_DEGREE);
+  rows=rows.filter(p=>{
+    const hay=[p.programme,p.university,p.city,p.country,p.subject,p.language].join(' ').toLowerCase();
+    const lang=String(p.language||'').toLowerCase();
+    const langMatch=!language||(language==='Other'?(!lang.includes('english')&&!lang.includes('german')):lang.includes(language.toLowerCase()));
+    return (!q||hay.includes(q))&&(!country||p.country===country)&&(!subject||p.subject===subject)&&langMatch;
+  }).sort((a,b)=>(a.country+' '+a.university+' '+a.programme).localeCompare(b.country+' '+b.university+' '+b.programme));
+  const pages=Math.max(1,Math.ceil(rows.length/GLOBAL_PAGE_SIZE));
+  GLOBAL_PAGE=Math.min(GLOBAL_PAGE,pages);
+  const start=(GLOBAL_PAGE-1)*GLOBAL_PAGE_SIZE;
+  const shown=rows.slice(start,start+GLOBAL_PAGE_SIZE);
+  const status=document.getElementById('globalCatalogueStatus');
+  if(status)status.textContent=rows.length.toLocaleString()+' '+GLOBAL_DEGREE+' programmes · '+countries.length.toLocaleString()+' countries in the current catalogue';
+  root.innerHTML=shown.map(p=>{
+    const saved=!!GLOBAL_SHORTLIST[p.id];
+    const detail=[p.note,p.funding?('Funding: '+p.funding):'',p.deadline?('Intake / deadline: '+p.deadline):''].filter(Boolean).join(' · ');
+    return '<article class="global-programme-card">'+
+      '<div class="global-programme-top"><span class="global-degree-pill">'+escapeHtml(p.degreeType)+'</span><span class="global-source-pill">'+escapeHtml(p.source)+'</span></div>'+
+      '<h3>'+escapeHtml(p.programme)+'</h3><div class="global-university">'+escapeHtml(p.university)+' · '+escapeHtml(p.city)+', '+escapeHtml(p.country)+'</div>'+
+      '<div class="global-programme-tags"><span>'+escapeHtml(p.subject)+'</span><span>'+escapeHtml(p.language)+'</span></div>'+
+      '<div class="global-programme-facts"><div><small>Duration</small><strong>'+escapeHtml(p.duration)+'</strong></div><div><small>Tuition</small><strong>'+escapeHtml(p.tuition)+'</strong></div></div>'+
+      '<div class="global-programme-actions"><button type="button" class="ghost '+(saved?'global-saved':'')+'" data-global-save="'+escapeHtml(p.id)+'">'+(saved?'✓ Saved':'＋ Shortlist')+'</button>'+
+      (p.sourceUrl?'<a href="'+escapeHtml(p.sourceUrl)+'" target="_blank" rel="noopener">Official source ↗</a>':'')+'</div>'+
+      (detail?'<details class="global-programme-details"><summary>More programme information</summary><p>'+escapeHtml(detail)+'</p></details>':'')+
+      '</article>';
+  }).join('')||'<div class="global-catalogue-empty">No '+escapeHtml(GLOBAL_DEGREE)+' programmes match these filters in the current imported catalogue. Try another country or subject.</div>';
+  const prev=document.getElementById('globalPrev'),next=document.getElementById('globalNext'),label=document.getElementById('globalPageLabel');
+  if(prev)prev.disabled=GLOBAL_PAGE<=1;if(next)next.disabled=GLOBAL_PAGE>=pages;
+  if(label)label.textContent='Page '+GLOBAL_PAGE+' of '+pages;
+  root.querySelectorAll('[data-global-save]').forEach(btn=>btn.addEventListener('click',()=>{
+    const id=btn.dataset.globalSave;
+    if(GLOBAL_SHORTLIST[id])delete GLOBAL_SHORTLIST[id];else GLOBAL_SHORTLIST[id]=true;
+    try{localStorage.setItem('trk_global_shortlist',JSON.stringify(GLOBAL_SHORTLIST));}catch(e){}
+    renderGlobalCatalogue();
+  }));
+}
+function initGlobalCatalogue(){
+  document.querySelectorAll('[data-global-degree]').forEach(btn=>btn.addEventListener('click',()=>{
+    GLOBAL_DEGREE=btn.dataset.globalDegree;GLOBAL_PAGE=1;renderGlobalCatalogue();
+  }));
+  ['globalSearch','globalCountry','globalSubject','globalLanguage'].forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.addEventListener(id==='globalSearch'?'input':'change',()=>{GLOBAL_PAGE=1;renderGlobalCatalogue();});
+  });
+  document.getElementById('globalReset')?.addEventListener('click',()=>{
+    ['globalSearch','globalCountry','globalSubject','globalLanguage'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    GLOBAL_PAGE=1;renderGlobalCatalogue();
+  });
+  document.getElementById('globalPrev')?.addEventListener('click',()=>{GLOBAL_PAGE=Math.max(1,GLOBAL_PAGE-1);renderGlobalCatalogue();});
+  document.getElementById('globalNext')?.addEventListener('click',()=>{GLOBAL_PAGE++;renderGlobalCatalogue();});
+}
+function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); renderGermanyGuide(); renderGlobalCatalogue(); pxRenderAll(); syncShortlistExportButton(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
 fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
@@ -3111,6 +3265,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
 }));
 
 initIELTS();
+initGlobalCatalogue();
 initPlanner();
 renderAll();
 loadDdaadLive();
