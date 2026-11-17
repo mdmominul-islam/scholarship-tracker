@@ -1278,6 +1278,82 @@ footer{color:var(--ink-soft)}
 .global-saved{background:var(--green-soft)!important;border-color:var(--green)!important;color:var(--green)!important}
 @media(max-width:850px){.global-catalogue-filters{grid-template-columns:1fr 1fr}.global-catalogue-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.global-catalogue-shell{padding:11px}.global-catalogue-filters{grid-template-columns:1fr}.global-catalogue-heading h2{font-size:21px}.global-programme-grid{grid-template-columns:1fr}.global-catalogue-toolbar{align-items:flex-start}}
+
+/* Complete single-screen StudyPath redesign */
+:root{--warm-bg:#f7f8fc;--warm-ink:#202b40;--warm-muted:#68758b;--warm-line:#e4e9f1;--warm-blue:#3769c8;--warm-blue-soft:#edf3ff;--warm-gold:#e8b85c}
+body{background:var(--warm-bg);color:var(--warm-ink)}
+.hero{background:linear-gradient(112deg,#15223b 0%,#243c67 58%,#3769c8 100%);border-radius:0 0 22px 22px;box-shadow:0 8px 24px rgba(30,48,80,.12)}
+.hero .kicker{letter-spacing:1.35px;font-size:10px}
+.hero h1{font-size:clamp(25px,3.1vw,39px);letter-spacing:-.9px}
+.hero .sub{max-width:740px}
+.app-layout{grid-template-columns:205px minmax(0,1fr);gap:20px}
+.side-nav{position:sticky;top:16px;align-self:start;border:1px solid #e5eaf2;border-radius:17px;background:#fff;box-shadow:0 5px 20px rgba(25,43,72,.055);padding:16px}
+.side-brand{border-bottom:1px solid #edf0f5;padding-bottom:15px;margin-bottom:14px}
+.side-brand-mark{background:linear-gradient(140deg,#4679db,#244eaa);border-radius:12px}
+.side-section{font-size:9px;letter-spacing:1.1px;color:#94a0b3}
+.side-nav .tabs{display:flex;flex-direction:column;gap:7px}
+.side-nav .tab{display:flex;justify-content:flex-start;align-items:center;width:100%;border-radius:10px;padding:11px 12px;background:transparent;color:#58677f;font-weight:650}
+.side-nav .tab.on{background:#edf3ff;color:#285bb8;border:1px solid #d5e2ff}
+.side-note{background:#f7f9fd;border:1px solid #edf0f5;border-radius:12px;padding:12px;margin-top:18px}
+.main-content{min-width:0}
+.main-content>.stats,.main-content>.notice,.main-content>.chips,.main-content>.controls,.main-content>details[style*="margin:-6px"]{display:none!important}
+#p-cards{display:block!important}
+#p-cards:not(.on){display:none!important}
+#p-table,#p-schol,#p-timeline,#p-country,#p-globaldegrees,#p-germany,#p-ielts{display:none!important}
+.unified-welcome{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;padding:clamp(21px,3vw,34px);border:1px solid #e2e9f5;border-radius:18px;background:linear-gradient(120deg,#fff 0%,#f0f5ff 68%,#f1f8f5 100%);box-shadow:0 7px 24px rgba(29,49,84,.055)}
+.unified-welcome-copy{max-width:760px}
+.unified-eyebrow,.unified-step{font-size:9px;font-weight:850;letter-spacing:1.25px;color:#5577b7}
+.unified-welcome h2{font-size:clamp(24px,3vw,34px);line-height:1.16;letter-spacing:-.8px;color:#202d45;margin:9px 0}
+.unified-welcome p{font-size:13px;line-height:1.65;color:#68768c;margin:0;max-width:730px}
+.unified-proof{display:flex;flex-direction:column;gap:7px;min-width:180px}
+.unified-proof span{font-size:10px;color:#536783;background:rgba(255,255,255,.75);border:1px solid #e5ebf4;border-radius:30px;padding:7px 10px;white-space:nowrap}
+.unified-degree-area,.unified-search-area{margin-top:17px;background:#fff;border:1px solid #e5eaf2;border-radius:17px;padding:clamp(16px,2vw,23px);box-shadow:0 5px 20px rgba(25,43,72,.045)}
+.unified-section-heading,.unified-search-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}
+.unified-section-heading h3,.unified-search-heading h3{font-size:18px;color:#25334b;margin:4px 0}
+.unified-section-heading p,.unified-search-heading p{font-size:11px;color:#7b879a;margin:0}
+.unified-degree-choices{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.unified-degree-choice{display:flex;align-items:center;gap:13px;text-align:left;padding:17px;border:1px solid #e4e9f1;border-radius:14px;background:#fff;cursor:pointer;transition:border-color .18s,background .18s,transform .18s;min-width:0}
+.unified-degree-choice:hover{border-color:#a9c2f4;background:#f8faff;transform:translateY(-1px)}
+.unified-degree-icon{display:grid;place-items:center;width:43px;height:43px;flex:0 0 43px;border-radius:12px;background:#edf3ff;color:#3265c5;font-size:19px;font-weight:850}
+.unified-degree-icon.master{background:#fff5e4;color:#a66a1e}
+.unified-degree-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.unified-degree-copy strong{font-size:14px;color:#27354b}
+.unified-degree-copy small{font-size:10px;line-height:1.4;color:#7b879a}
+.unified-degree-arrow{margin-left:auto;color:#6f87b1;font-size:20px}
+.unified-change-degree{border:1px solid #e1e7f0;background:#f8faff;color:#4c6388;border-radius:9px;padding:8px 11px;font-size:10px;font-weight:750;white-space:nowrap}
+.unified-search-area[hidden]{display:none!important}
+.unified-search-box{display:flex;align-items:center;gap:10px;border:1px solid #dce5f3;background:#f8faff;border-radius:12px;padding:0 14px;margin:15px 0 11px}
+.unified-search-box>span{font-size:25px;color:#7690bd}
+.unified-search-box input{width:100%;min-width:0;border:0!important;outline:0!important;background:transparent!important;padding:14px 0!important;font-size:13px;color:#26354d}
+.unified-filters{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:9px;align-items:end}
+.unified-filters label{display:flex;flex-direction:column;gap:5px;font-size:10px;font-weight:750;color:#6b7890}
+.unified-filters select{width:100%;min-width:0;border:1px solid #e1e7f0;background:#fff;border-radius:9px;padding:10px;color:#33435d;font-size:11px}
+.unified-reset{border:1px solid #e1e7f0;background:#fff;color:#62728b;border-radius:9px;padding:10px 12px;font-size:10px;font-weight:750}
+.unified-results-head{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #edf0f5;margin-top:15px;padding-top:13px;font-size:10px;color:#7c8799}
+.unified-results-head strong{font-size:12px;color:#34445e}
+.global-programme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px;margin-top:13px}
+.global-programme-card{border:1px solid #e5eaf2;border-radius:13px;padding:14px;background:#fff;min-width:0;display:flex;flex-direction:column;gap:7px;box-shadow:0 3px 12px rgba(30,45,80,.035)}
+.global-programme-card h3{font-size:14px;line-height:1.35;color:#26354c;margin:2px 0}
+.global-programme-card .global-university{font-size:11px;color:#718097;font-weight:650}
+.global-degree-pill{font-size:9px;font-weight:800;padding:4px 8px;border-radius:20px;background:#edf3ff;color:#3769c8}
+.global-source-pill{font-size:9px;color:#8793a6;font-weight:700}
+.global-programme-tags span{font-size:9px;padding:4px 7px;border-radius:20px;background:#f2f5fa;color:#687790}
+.global-programme-facts{display:grid;grid-template-columns:1fr 1fr;gap:7px;background:#f8f9fc;border-radius:9px;padding:9px}
+.global-programme-facts small{display:block;font-size:8px;color:#8591a3;font-weight:800;text-transform:uppercase;letter-spacing:.45px}
+.global-programme-facts strong{display:block;font-size:10px;line-height:1.4;color:#35445c;overflow-wrap:anywhere;margin-top:3px}
+.global-programme-actions{display:flex;gap:7px;align-items:center;margin-top:auto;padding-top:5px}
+.global-programme-actions button{font-size:10px;padding:7px 10px;border-radius:8px}
+.global-programme-details{border-top:1px solid #edf0f5;padding-top:8px;margin-top:2px;font-size:10px;color:#748198}
+.global-programme-details summary{cursor:pointer;color:#4169ac;font-weight:750}
+.global-programme-details p{margin:7px 0 0;line-height:1.6}
+.global-programme-details .detail-line{margin:4px 0}
+.global-programme-pagination{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:17px;font-size:10px;color:#78869b}
+.unified-data-note{margin-top:15px;padding:12px 14px;border-radius:11px;background:#f7f9fc;border:1px solid #e8edf4;font-size:10px;color:#748198;line-height:1.55}
+.unified-data-note strong{font-size:11px;color:#40516b}
+.unified-data-note p{margin:5px 0 0}
+.unified-loading-note{text-align:center;padding:12px;color:#8793a6;font-size:10px}
+@media(max-width:900px){.app-layout{grid-template-columns:1fr}.side-nav{position:static}.side-note{display:none}.side-nav .tabs{flex-direction:row}.side-nav .tab{width:auto}.unified-welcome{align-items:flex-start;flex-direction:column}.unified-proof{flex-direction:row;flex-wrap:wrap}.unified-filters{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.side-nav{padding:10px}.side-brand{padding-bottom:10px}.side-nav .tabs{display:grid;grid-template-columns:1fr 1fr}.side-nav .tab{justify-content:center}.unified-degree-choices{grid-template-columns:1fr}.unified-filters{grid-template-columns:1fr}.unified-search-heading{align-items:flex-start;flex-direction:column}.unified-results-head{align-items:flex-start;flex-direction:column}.global-programme-grid{grid-template-columns:1fr}}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1286,8 +1362,8 @@ footer{color:var(--ink-soft)}
 <body>
 <div class="wrap">
   <header class="hero"><div class="heroin"><div>
-    <div class="kicker" data-i18n="kicker">PROGRAMMES · SCHOLARSHIPS · REGULAR & FUNDED OPTIONS · MULTI-YEAR INTAKES</div>
-    <h1 data-i18n="siteTitle">Global Master’s Programmes &amp; Scholarships Tracker</h1>
+    <div class="kicker">BACHELOR’S · MASTER’S · SCHOLARSHIPS · GLOBAL UNIVERSITY SEARCH</div>
+    <h1>StudyPath — Find Your University</h1>
     <div class="sub" id="sub"></div><div class="upd" id="upd"></div><div class="hero-meta"><span data-i18n="freeUse">Free to use</span><span data-i18n="noLogin">No account required</span><span data-i18n="localSave">Progress stays on this device</span></div><button class="planner-launch" id="plannerLaunch" type="button"><span data-i18n="openPlanner">Open My Planner</span> <span aria-hidden="true">→</span></button></div>
     <button id="langToggle" type="button" aria-label="Switch language">বাংলা</button><button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
 
@@ -1296,17 +1372,9 @@ footer{color:var(--ink-soft)}
       <div class="side-brand"><span class="side-brand-mark">ST</span><span><strong>Study Tracker</strong><small>Study abroad workspace</small></span></div>
       <div class="side-section">WORKSPACE</div>
         <div class="tabs">
-          <button class="tab planner-tab" data-p="planner"><span data-i18n="myPlanner">My Planner</span></button>
-          <button class="tab on" data-p="cards"><span data-i18n="programmes">Programmes</span> <span class="c" id="cCards"></span></button>
-          <button class="tab" data-p="schol"><span data-i18n="scholarships">Scholarships</span> <span class="c" id="cSchol"></span></button>
-          <button class="tab" data-p="timeline"><span data-i18n="deadlines">Deadlines</span> <span class="c" id="cTimeline"></span></button>
-          <button class="tab" data-p="country"><span data-i18n="countries">Countries</span> <span class="c" id="cCountry"></span></button>
-          <button class="tab" data-p="globaldegrees"><span>Global Catalogue</span><span class="c">BA / MA</span></button>
-          <button class="tab" data-p="germany"><span data-i18n="germanyGuide">Germany guide</span> <span class="c" id="cGermany"></span></button>
-          <button class="tab" data-p="ielts"><span data-i18n="ieltsScoreboard">IELTS Scoreboard</span></button>
-          <button class="tab" data-p="table"><span data-i18n="tableView">Table view</span> <span class="c" id="cTable"></span></button>
-        </div>
-      <div class="side-note"><span class="side-note-mark">✓</span><strong>Your progress, your pace</strong><p>Shortlist programmes and organise your applications in one place.</p></div>
+          <button class="tab on" data-p="cards"><span>Find Programmes</span></button>
+          <button class="tab planner-tab" data-p="planner"><span>My Planner</span></button>
+        </div>     <div class="side-note"><span class="side-note-mark">✓</span><strong>Your progress, your pace</strong><p>Shortlist programmes and organise your applications in one place.</p></div>
     </aside>
     <main class="main-content">
       <div class="stats" id="stats"></div>
@@ -1358,7 +1426,45 @@ footer{color:var(--ink-soft)}
 
 
 
-  <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
+  <div class="panel on" id="p-cards">
+    <section class="unified-welcome">
+      <div class="unified-welcome-copy">
+        <span class="unified-eyebrow">YOUR STUDY ABROAD WORKSPACE</span>
+        <h2>Find the right university for your future</h2>
+        <p>Start by choosing your degree. Then explore universities and programmes by country, subject, language, fees, scholarships and admission requirements — all here, in one place.</p>
+      </div>
+      <div class="unified-proof"><span>One website</span><span>One programme catalogue</span><span>Your shortlist stays here</span></div>
+    </section>
+    <section class="unified-degree-area" aria-labelledby="unifiedDegreeTitle">
+      <div class="unified-section-heading"><span class="unified-step">STEP 1</span><div><h3 id="unifiedDegreeTitle">What do you want to study?</h3><p>Choose the degree level you are looking for.</p></div></div>
+      <div class="unified-degree-choices">
+        <button type="button" class="unified-degree-choice" data-global-degree="Bachelor" aria-pressed="false">
+          <span class="unified-degree-icon">B</span><span class="unified-degree-copy"><strong>Bachelor’s degree</strong><small>Undergraduate programmes · First university degree</small></span><span class="unified-degree-arrow">→</span>
+        </button>
+        <button type="button" class="unified-degree-choice" data-global-degree="Master" aria-pressed="false">
+          <span class="unified-degree-icon master">M</span><span class="unified-degree-copy"><strong>Master’s degree</strong><small>Postgraduate programmes · After a Bachelor’s</small></span><span class="unified-degree-arrow">→</span>
+        </button>
+      </div>
+    </section>
+    <section class="unified-search-area" id="unifiedSearchArea" hidden>
+      <div class="unified-search-heading">
+        <div><span class="unified-step">STEP 2</span><h3 id="unifiedSelectedDegree">Find your programme</h3><p>Search by university, programme or subject. Narrow the results using the filters.</p></div>
+        <button type="button" class="unified-change-degree" id="globalChangeDegree">← Change degree</button>
+      </div>
+      <div class="unified-search-box"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="Search university, programme or subject…" autocomplete="off"></div>
+      <div class="unified-filters">
+        <label>Country<select id="globalCountry"><option value="">All countries</option></select></label>
+        <label>Subject<select id="globalSubject"><option value="">All subjects</option></select></label>
+        <label>Teaching language<select id="globalLanguage"><option value="">All languages</option><option value="English">English</option><option value="German">German</option><option value="Other">Other languages</option></select></label>
+        <button type="button" class="unified-reset" id="globalReset">Reset filters</button>
+      </div>
+      <div class="unified-results-head"><strong id="globalCatalogueStatus" aria-live="polite">Loading programmes…</strong><span>Sorted by university and programme</span></div>
+      <div class="global-programme-grid" id="globalProgrammeCards"><div class="global-catalogue-empty">Loading programme records…</div></div>
+      <div class="global-catalogue-pagination"><button type="button" class="ghost" id="globalPrev" disabled>← Previous</button><span id="globalPageLabel">Page 1</span><button type="button" class="ghost" id="globalNext" disabled>Next →</button></div>
+      <div class="unified-data-note"><strong>About programme information</strong><p>Programme records are kept in this website. Fees, deadlines, IELTS, MOI and VPD are shown when the source provides them. Anything not verified is clearly labelled “Not confirmed” rather than guessed. You do not need to leave this site to search or shortlist programmes.</p></div>
+    </section>
+    <div class="unified-loading-note" id="unifiedLoadingNote">The programme catalogue is loading. You can choose Bachelor’s or Master’s above.</div>
+  </div>
   <div class="panel" id="p-table">
     <div class="tablebox">
       <table id="tbl">
@@ -3108,7 +3214,7 @@ document.getElementById('daadLiveLanguage')?.addEventListener('change',renderDda
 })();
 
 /* All programme discovery remains inside this website. */
-let GLOBAL_DEGREE='Bachelor';
+let GLOBAL_DEGREE='';
 let GLOBAL_PAGE=1;
 const GLOBAL_PAGE_SIZE=30;
 let GLOBAL_SHORTLIST={};
@@ -3121,7 +3227,7 @@ function globalCatalogueRecords(){
     university:d.university||'',programme:d.programme||'',subject:d.field||'Not specified',
     language:d.language||'Not specified',duration:d.dur||'Not specified',tuition:d.tuition||'Not specified',
     funding:d.fundText||'',fundLevel:d.fundLevel||'',deadline:d.deadline||'Not specified',
-    source:'Global shortlist',sourceUrl:/^https?:\/\//i.test(d.site||'')?d.site:'',
+    source:'Programme catalogue',applicationRoute:'Not confirmed — check university',vpd:'Not confirmed — check university',ielts:'Not confirmed — check university',moi:'Not confirmed — check university',
     note:d.note||''
   }));
   const daad=DAAD_LIVE_PROGRAMMES.map((p,i)=>({
@@ -3129,13 +3235,13 @@ function globalCatalogueRecords(){
     university:p.university||'',programme:p.programme||'',subject:p.subject||'Not specified',
     language:p.language||'Not specified',duration:p.duration||'Not specified',tuition:p.tuition||'Not specified',
     funding:'',fundLevel:'',deadline:p.intake||'Check official programme page',
-    source:'DAAD Germany',sourceUrl:p.officialUniversityUrl||p.detailUrl||'',
-    note:[p.applicationRoute,p.vpd,p.ielts,p.moi].filter(Boolean).join(' ')
+    source:'Germany catalogue',applicationRoute:p.applicationRoute||'Not confirmed — check university',vpd:p.vpd||'Not confirmed — check university',ielts:p.ielts||p.languageRequirements||'Not confirmed — check university',moi:p.moi||'Not confirmed — check university',
+    note:[p.intake,p.languageRequirements].filter(Boolean).join(' · ')
   }));
   const byKey=new Map();
   [...local,...daad].forEach(p=>{
     const key=[p.degreeType,p.country,p.university,p.programme].map(x=>String(x).trim().toLowerCase()).join('|');
-    if(!byKey.has(key)||p.source==='DAAD Germany')byKey.set(key,p);
+    if(!byKey.has(key)||p.source==='Germany catalogue')byKey.set(key,p);
   });
   return [...byKey.values()];
 }
@@ -3150,29 +3256,36 @@ function renderGlobalCatalogue(){
   const all=globalCatalogueRecords();
   const bachelors=all.filter(p=>p.degreeType==='Bachelor');
   const masters=all.filter(p=>p.degreeType==='Master');
-  const countries=[...new Set(all.map(p=>p.country).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
-  const subjects=[...new Set(all.map(p=>p.subject).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
-  globalSelectOptions('globalCountry',countries,'All available countries');
-  globalSelectOptions('globalSubject',subjects,'All subjects');
-  const total=document.getElementById('globalStatTotal'),countryStat=document.getElementById('globalStatCountries');
-  const bStat=document.getElementById('globalStatBachelor'),mStat=document.getElementById('globalStatMaster');
-  if(total)total.textContent=all.length.toLocaleString();
-  if(countryStat)countryStat.textContent=countries.length.toLocaleString();
-  if(bStat)bStat.textContent=bachelors.length.toLocaleString();
-  if(mStat)mStat.textContent=masters.length.toLocaleString();
+  const searchArea=document.getElementById('unifiedSearchArea');
+  const loading=document.getElementById('unifiedLoadingNote');
+  const choices=document.querySelector('.unified-degree-choices');
+  const degreeTitle=document.getElementById('unifiedSelectedDegree');
   const bCount=document.getElementById('globalBachelorCount'),mCount=document.getElementById('globalMasterCount');
-  if(bCount)bCount.textContent=bachelors.length.toLocaleString();
-  if(mCount)mCount.textContent=masters.length.toLocaleString();
+  if(bCount)bCount.textContent=bachelors.length.toLocaleString()+' listed';
+  if(mCount)mCount.textContent=masters.length.toLocaleString()+' listed';
   document.querySelectorAll('[data-global-degree]').forEach(btn=>{
     const active=btn.dataset.globalDegree===GLOBAL_DEGREE;
     btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));
   });
+  if(!GLOBAL_DEGREE){
+    if(searchArea)searchArea.hidden=true;
+    if(loading)loading.hidden=false;
+    root.innerHTML='';
+    return;
+  }
+  if(searchArea)searchArea.hidden=false;
+  if(loading)loading.hidden=true;
+  if(degreeTitle)degreeTitle.textContent='Find your '+(GLOBAL_DEGREE==='Bachelor'?'Bachelor’s':'Master’s')+' programme';
+  const base=all.filter(p=>p.degreeType===GLOBAL_DEGREE);
+  const countries=[...new Set(base.map(p=>p.country).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
+  const subjects=[...new Set(base.map(p=>p.subject).filter(x=>x&&x!=='Not specified'))].sort((a,b)=>a.localeCompare(b));
+  globalSelectOptions('globalCountry',countries,'All countries');
+  globalSelectOptions('globalSubject',subjects,'All subjects');
   const q=(document.getElementById('globalSearch')?.value||'').trim().toLowerCase();
   const country=document.getElementById('globalCountry')?.value||'';
   const subject=document.getElementById('globalSubject')?.value||'';
   const language=document.getElementById('globalLanguage')?.value||'';
-  let rows=all.filter(p=>p.degreeType===GLOBAL_DEGREE);
-  rows=rows.filter(p=>{
+  let rows=base.filter(p=>{
     const hay=[p.programme,p.university,p.city,p.country,p.subject,p.language].join(' ').toLowerCase();
     const lang=String(p.language||'').toLowerCase();
     const langMatch=!language||(language==='Other'?(!lang.includes('english')&&!lang.includes('german')):lang.includes(language.toLowerCase()));
@@ -3183,20 +3296,27 @@ function renderGlobalCatalogue(){
   const start=(GLOBAL_PAGE-1)*GLOBAL_PAGE_SIZE;
   const shown=rows.slice(start,start+GLOBAL_PAGE_SIZE);
   const status=document.getElementById('globalCatalogueStatus');
-  if(status)status.textContent=rows.length.toLocaleString()+' '+GLOBAL_DEGREE+' programmes · '+countries.length.toLocaleString()+' countries in the current catalogue';
+  if(status)status.textContent=rows.length.toLocaleString()+' programmes found · '+base.length.toLocaleString()+' in this degree catalogue';
   root.innerHTML=shown.map(p=>{
     const saved=!!GLOBAL_SHORTLIST[p.id];
-    const detail=[p.note,p.funding?('Funding: '+p.funding):'',p.deadline?('Intake / deadline: '+p.deadline):''].filter(Boolean).join(' · ');
+    const lines=[
+      ['Intake / deadline',p.deadline||'Not confirmed'],
+      ['Application route',p.applicationRoute||'Not confirmed'],
+      ['VPD',p.vpd||'Not confirmed — check university'],
+      ['IELTS',p.ielts||'Not confirmed — check university'],
+      ['MOI',p.moi||'Not confirmed — check university'],
+      ['Funding',p.funding||'Not listed in this record'],
+      ['Additional information',p.note||'No additional information supplied']
+    ];
     return '<article class="global-programme-card">'+
       '<div class="global-programme-top"><span class="global-degree-pill">'+escapeHtml(p.degreeType)+'</span><span class="global-source-pill">'+escapeHtml(p.source)+'</span></div>'+
       '<h3>'+escapeHtml(p.programme)+'</h3><div class="global-university">'+escapeHtml(p.university)+' · '+escapeHtml(p.city)+', '+escapeHtml(p.country)+'</div>'+
       '<div class="global-programme-tags"><span>'+escapeHtml(p.subject)+'</span><span>'+escapeHtml(p.language)+'</span></div>'+
       '<div class="global-programme-facts"><div><small>Duration</small><strong>'+escapeHtml(p.duration)+'</strong></div><div><small>Tuition</small><strong>'+escapeHtml(p.tuition)+'</strong></div></div>'+
-      '<div class="global-programme-actions"><button type="button" class="ghost '+(saved?'global-saved':'')+'" data-global-save="'+escapeHtml(p.id)+'">'+(saved?'✓ Saved':'＋ Shortlist')+'</button>'+
-      (p.sourceUrl?'<a href="'+escapeHtml(p.sourceUrl)+'" target="_blank" rel="noopener">Official source ↗</a>':'')+'</div>'+
-      (detail?'<details class="global-programme-details"><summary>More programme information</summary><p>'+escapeHtml(detail)+'</p></details>':'')+
+      '<div class="global-programme-actions"><button type="button" class="ghost '+(saved?'global-saved':'')+'" data-global-save="'+escapeHtml(p.id)+'">'+(saved?'✓ Shortlisted':'＋ Add to shortlist')+'</button></div>'+
+      '<details class="global-programme-details"><summary>Admission, funding &amp; more details</summary>'+lines.map(x=>'<p class="detail-line"><strong>'+escapeHtml(x[0])+':</strong> '+escapeHtml(x[1])+'</p>').join('')+'</details>'+
       '</article>';
-  }).join('')||'<div class="global-catalogue-empty">No '+escapeHtml(GLOBAL_DEGREE)+' programmes match these filters in the current imported catalogue. Try another country or subject.</div>';
+  }).join('')||'<div class="global-catalogue-empty">No '+escapeHtml(GLOBAL_DEGREE)+' programmes match these filters in the current catalogue. Try another country, subject or search term.</div>';
   const prev=document.getElementById('globalPrev'),next=document.getElementById('globalNext'),label=document.getElementById('globalPageLabel');
   if(prev)prev.disabled=GLOBAL_PAGE<=1;if(next)next.disabled=GLOBAL_PAGE>=pages;
   if(label)label.textContent='Page '+GLOBAL_PAGE+' of '+pages;
@@ -3209,8 +3329,16 @@ function renderGlobalCatalogue(){
 }
 function initGlobalCatalogue(){
   document.querySelectorAll('[data-global-degree]').forEach(btn=>btn.addEventListener('click',()=>{
-    GLOBAL_DEGREE=btn.dataset.globalDegree;GLOBAL_PAGE=1;renderGlobalCatalogue();
+    GLOBAL_DEGREE=btn.dataset.globalDegree;GLOBAL_PAGE=1;
+    renderGlobalCatalogue();
+    document.getElementById('unifiedSearchArea')?.scrollIntoView({behavior:'smooth',block:'start'});
   }));
+  document.getElementById('globalChangeDegree')?.addEventListener('click',()=>{
+    GLOBAL_DEGREE='';GLOBAL_PAGE=1;
+    ['globalSearch','globalCountry','globalSubject','globalLanguage'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    renderGlobalCatalogue();
+    document.querySelector('.unified-degree-area')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
   ['globalSearch','globalCountry','globalSubject','globalLanguage'].forEach(id=>{
     const el=document.getElementById(id);if(!el)return;
     el.addEventListener(id==='globalSearch'?'input':'change',()=>{GLOBAL_PAGE=1;renderGlobalCatalogue();});
