@@ -13,8 +13,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: refresh-daad-catalogue
-  cancel-in-progress: false
+  group: refresh-daad-catalogue-v2
+  cancel-in-progress: true
 
 jobs:
   refresh:
