@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mdmominul-islam.github.io/scholarship-tracker/sitemap-index.xml
