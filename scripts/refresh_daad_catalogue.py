@@ -225,6 +225,30 @@ def main():
         "Reading DAAD detail pages...",
         flush=True
     )
+    # Publish the complete programme list immediately. Detail-page enrichment
+    # runs afterwards, so a slow DAAD detail server cannot leave the catalogue empty.
+    initial_programmes = [normalize(course, {}) for course in courses]
+    initial_counts = {
+        "Bachelor": sum(1 for p in initial_programmes if p["degreeType"] == "Bachelor"),
+        "Master": sum(1 for p in initial_programmes if p["degreeType"] == "Master"),
+    }
+    initial_payload = {
+        "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "source": "DAAD International Programmes public API",
+        "scope": "All Bachelor and Master's listings returned by the DAAD International Programmes catalogue; not every degree programme offered in Germany.",
+        "count": len(initial_programmes),
+        "countsByDegree": initial_counts,
+        "detailFetched": 0,
+        "detailFailed": 0,
+        "detailEnrichmentStatus": "In progress",
+        "programmes": initial_programmes,
+    }
+    OUTPUT.write_text(json.dumps(initial_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(
+        f"Published full listing snapshot: {initial_counts['Bachelor']} Bachelor + "
+        f"{initial_counts['Master']} Master's = {len(initial_programmes)} programmes.",
+        flush=True
+    )
     # Fetch complete degree listings first. Detail pages are slower and not all
     # DAAD entries expose the same fields, so enrich a representative recent
     # subset per degree; keep all remaining listings with honest "Not confirmed"
@@ -276,6 +300,7 @@ def main():
         "countsByDegree": counts,
         "detailFetched": sum(1 for p in programmes if p.get("detailStatus") == "Fetched"),
         "detailFailed": sum(1 for p in programmes if str(p.get("detailStatus","")).startswith("Fetch failed")),
+        "detailEnrichmentStatus": "Complete",
         "programmes": programmes,
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
