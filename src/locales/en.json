@@ -1,0 +1,22 @@
+{
+  "home": "Home",
+  "explore": "Explore",
+  "countries": "Countries",
+  "universities": "Universities",
+  "courses": "Courses",
+  "scholarships": "Scholarships",
+  "studentTools": "Student tools",
+  "resources": "Resources",
+  "about": "About",
+  "contact": "Contact",
+  "search": "Search",
+  "save": "Save",
+  "compare": "Compare",
+  "clear": "Clear filters",
+  "loading": "Loading catalogue…",
+  "noResults": "No matching records found.",
+  "verify": "Verify current information with the official provider.",
+  "privacy": "Privacy Policy",
+  "terms": "Terms and Conditions",
+  "disclaimer": "Disclaimer"
+}

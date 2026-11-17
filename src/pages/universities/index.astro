@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="University Directory | StudyPath" description="Browse institutions found in the programme catalogue. Check each institution’s official website for current programmes and entry requirements.">
+<main class="container py-12">
+<a class="text-sm font-bold text-teal-700" href={base}>← StudyPath home</a>
+<div class="section-heading mt-7"><div><p class="eyebrow teal">STUDYPATH DIRECTORY</p><h1 class="text-3xl font-extrabold">University Directory</h1><p class="muted mt-2 max-w-3xl">Browse institutions found in the programme catalogue. Check each institution’s official website for current programmes and entry requirements.</p></div></div>
+<div class="surface grid gap-3 p-4 md:grid-cols-[1fr_220px]">
+<input id="directorySearch" class="field" type="search" placeholder="Search by name, country, subject or institution…" aria-label="Search directory"/>
+<select id="directorySort" class="field"><option value="name">Name A–Z</option><option value="country">Country A–Z</option></select>
+</div>
+<p id="directoryStatus" class="muted my-4 text-sm" aria-live="polite">Loading local catalogue…</p>
+<div id="directoryResults" class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"><div class="surface p-8 text-center muted">Loading…</div></div>
+<div class="mt-6 flex justify-center"><button id="directoryMore" class="btn secondary" hidden>Load more</button></div>
+<div class="surface mt-10 p-5"><h2 class="font-bold">Information and verification</h2><p class="muted mt-2 text-sm">StudyPath is an independent information resource. Catalogue records may be incomplete or require verification. Always use official institution and scholarship-provider websites for current tuition, admission criteria, eligibility and deadlines.</p></div>
+</main>
+<script>
+const base=import.meta.env.BASE_URL, file="universities.json", key="universities", nameKey="name", kind="university";
+const $=id=>document.getElementById(id), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let records=[],limit=30;
+async function load(){try{let r=await fetch(base+'data/'+file);if(!r.ok)throw Error('Catalogue file unavailable');let data=await r.json();records=Array.isArray(data)?data:data[key]||data.programmes||[];$('directoryStatus').textContent=records.length.toLocaleString()+' records · Details may require official verification.';render()}catch(e){$('directoryStatus').textContent='Could not load this catalogue: '+e.message;$('directoryResults').innerHTML='<p class="muted">Please refresh or report the issue.</p>'}}
+function render(){let q=$('directorySearch').value.toLowerCase().trim(),sort=$('directorySort').value;let rows=records.filter(x=>JSON.stringify(x).toLowerCase().includes(q));rows.sort((a,b)=>String(a[sort==='country'?'country':nameKey]||'').localeCompare(String(b[sort==='country'?'country':nameKey]||'')));$('directoryResults').innerHTML=rows.slice(0,limit).map(x=>{let title=x[nameKey]||x.programme||x.university||'Untitled record',sub=kind==='country'?(x.programmeCount+' catalogue programmes'):kind==='university'?(x.city+' · '+x.country):kind==='course'?(x.university+' · '+x.country):x.provider+' · '+x.country;let detail=kind==='course'?[['Degree',x.degreeType],['Subject',x.subject],['Duration',x.duration],['Tuition',x.tuition],['Language',x.language],['Deadline',x.deadline]]:kind==='scholarship'?[['Provider',x.provider],['Degree',x.degreeType],['Coverage',x.coverage],['Deadline',x.deadline]]:kind==='university'?[['City',x.city],['Programmes',x.programmeCount],['Degrees',(x.degrees||[]).join(', ')]]:[['Programmes',x.programmeCount],['Degrees',(x.degrees||[]).join(', ')]];let url=x.sourceUrl||x.officialUrl||x.officialLinks?.[0]||'';return '<article class="surface p-4"><span class="pill">'+esc(kind==='course'?x.degreeType||'Programme':x.country||'Directory')+'</span><h2 class="mt-3 font-bold">'+esc(title)+'</h2><p class="muted mt-1 text-xs">'+esc(sub)+'</p><dl class="mt-3 grid grid-cols-2 gap-2 text-xs">'+detail.map(([k,v])=>'<div><dt class="muted">'+esc(k)+'</dt><dd class="font-semibold">'+esc(v||'Not confirmed')+'</dd></div>').join('')+'</dl><p class="muted mt-3 text-xs">'+esc(x.publicationStatus||x.note||x.verification||'Verify current details with the official provider.')+'</p>'+(url&&/^https?:\/\//.test(url)?'<a class="mt-3 inline-block text-sm font-bold text-teal-700" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Official source ↗</a>':'<span class="mt-3 inline-block text-xs text-amber-700">Official link not confirmed</span>')+'</article>'}).join('')||'<div class="surface p-8 text-center muted">No matching records found.</div>';$('directoryMore').hidden=rows.length<=limit;$('directoryMore').textContent='Load more ('+(rows.length-limit)+')'}
+$('directorySearch').addEventListener('input',()=>{limit=30;render()});$('directorySort').addEventListener('change',render);$('directoryMore').addEventListener('click',()=>{limit+=30;render()});load();
+</script>
+</BaseLayout>

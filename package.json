@@ -1,0 +1,19 @@
+{
+  "name": "studypath",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/prepare-data.mjs && node scripts/validate-data.mjs && astro dev",
+    "prebuild": "node scripts/prepare-data.mjs && node scripts/validate-data.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validate:data": "node scripts/validate-data.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^7.4.12",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {}
+}
