@@ -1196,6 +1196,35 @@ footer{color:var(--ink-soft)}
 .daad-live-table th{position:sticky;top:0;background:var(--head);color:var(--ink-soft);text-align:left;padding:10px;font-size:10px;white-space:nowrap}
 .daad-live-table td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
 @media(max-width:700px){.daad-live-filters{grid-template-columns:1fr}.daad-degree-tab{flex:1}}
+
+/* Global Bachelor and Master's directory */
+.global-degree-intro,.global-degree-section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.global-degree-copy{max-width:850px}
+.global-eyebrow{display:inline-block;font-size:10px;letter-spacing:1.2px;font-weight:800;color:var(--accent);background:var(--accent-soft);padding:5px 9px;border-radius:20px}
+.global-degree-copy h2{font-size:24px;line-height:1.25;margin:10px 0 7px;color:var(--ink)}
+.global-degree-copy p,.global-section-head p{color:var(--ink-soft);margin:0;line-height:1.55}
+.global-degree-levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:18px}
+.global-level-card{display:flex;flex-direction:column;gap:7px;padding:17px;border:1px solid var(--line);border-radius:14px;text-decoration:none;background:var(--paper);color:var(--ink);transition:transform .15s ease,border-color .15s ease}
+.global-level-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.global-level-card.bachelor{background:linear-gradient(135deg,#f1f6ff,#fff);border-color:#d8e5ff}
+.global-level-card.master{background:linear-gradient(135deg,#effaf6,#fff);border-color:#d4eee3}
+:root[data-theme=dark] .global-level-card.bachelor{background:#192945;border-color:#30486c}
+:root[data-theme=dark] .global-level-card.master{background:#18342e;border-color:#2b5548}
+.global-level-label{font-size:10px;letter-spacing:1px;font-weight:800;color:var(--ink-soft)}
+.global-level-card strong{font-size:19px;line-height:1.3}
+.global-level-count{font-size:13px;font-weight:800;color:var(--accent)}
+.global-level-card small{font-size:12px;color:var(--ink-soft);line-height:1.45}
+.global-section-head{margin-bottom:13px}
+.global-section-head h3{margin:0 0 4px;font-size:17px}
+.global-degree-subjects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.global-degree-subjects a,.global-directory-actions a{display:flex;align-items:center;min-height:42px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--paper);font-size:12px;font-weight:650}
+.global-degree-subjects a:hover,.global-directory-actions a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.global-directory-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.global-directory-actions a{color:var(--accent)}
+.global-open-tracker{border:0;background:var(--accent);color:white;padding:11px 16px;border-radius:10px;font-weight:750;cursor:pointer}
+.global-degree-disclaimer{font-size:11px;line-height:1.55;color:var(--ink-soft);padding:0 3px}
+@media(max-width:760px){.global-degree-levels{grid-template-columns:1fr}.global-degree-subjects{grid-template-columns:repeat(2,minmax(0,1fr))}.global-degree-copy h2{font-size:21px}}
+@media(max-width:420px){.global-degree-subjects{grid-template-columns:1fr}}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1219,6 +1248,7 @@ footer{color:var(--ink-soft)}
           <button class="tab" data-p="schol"><span data-i18n="scholarships">Scholarships</span> <span class="c" id="cSchol"></span></button>
           <button class="tab" data-p="timeline"><span data-i18n="deadlines">Deadlines</span> <span class="c" id="cTimeline"></span></button>
           <button class="tab" data-p="country"><span data-i18n="countries">Countries</span> <span class="c" id="cCountry"></span></button>
+          <button class="tab" data-p="globaldegrees"><span>Global Degrees</span><span class="c">BA / MA</span></button>
           <button class="tab" data-p="germany"><span data-i18n="germanyGuide">Germany guide</span> <span class="c" id="cGermany"></span></button>
           <button class="tab" data-p="ielts"><span data-i18n="ieltsScoreboard">IELTS Scoreboard</span></button>
           <button class="tab" data-p="table"><span data-i18n="tableView">Table view</span> <span class="c" id="cTable"></span></button>
@@ -1303,7 +1333,60 @@ footer{color:var(--ink-soft)}
   <div class="panel" id="p-timeline"><div class="tl" id="tl"></div></div>
   <div class="panel" id="p-country"><div class="cgrid" id="cgrid"></div></div>
 
-  <div class="panel" id="p-germany">
+  <div class="panel" id="p-globaldegrees">
+    <section class="global-degree-intro">
+      <div class="global-degree-copy">
+        <span class="global-eyebrow">WORLDWIDE STUDY FINDER</span>
+        <h2>Find Bachelor’s &amp; Master’s programmes worldwide</h2>
+        <p>Choose a study level, then explore programmes by subject and country. The directories below cover international programmes across many countries; check each university’s official page for current entry rules, fees and deadlines.</p>
+      </div>
+      <div class="global-degree-levels">
+        <a class="global-level-card bachelor" href="https://www.bachelorsportal.com/search/bachelor" target="_blank" rel="noopener">
+          <span class="global-level-label">UNDERGRADUATE</span><strong>Bachelor’s worldwide</strong>
+          <span class="global-level-count">125,000+ listed programmes ↗</span>
+          <small>Explore country, subject, tuition, duration and language filters.</small>
+        </a>
+        <a class="global-level-card master" href="https://www.mastersportal.com/search/master" target="_blank" rel="noopener">
+          <span class="global-level-label">POSTGRADUATE</span><strong>Master’s worldwide</strong>
+          <span class="global-level-count">95,000+ listed programmes ↗</span>
+          <small>Explore country, subject, tuition, duration and language filters.</small>
+        </a>
+      </div>
+    </section>
+    <section class="global-degree-section">
+      <div class="global-section-head"><div><h3>Browse by subject</h3><p>Choose a subject to open worldwide Bachelor’s or Master’s results.</p></div></div>
+      <div class="global-degree-subjects">
+        <a data-subject="Agriculture & Forestry" data-slug="agriculture-forestry" href="https://www.bachelorsportal.com/search/bachelor/agriculture-forestry" target="_blank" rel="noopener">Agriculture &amp; Forestry</a>
+        <a data-subject="Applied Sciences & Professions" data-slug="applied-sciences-professions" href="https://www.bachelorsportal.com/search/bachelor/applied-sciences-professions" target="_blank" rel="noopener">Applied Sciences &amp; Professions</a>
+        <a data-subject="Arts, Design & Architecture" data-slug="arts-design-architecture" href="https://www.bachelorsportal.com/search/bachelor/arts-design-architecture" target="_blank" rel="noopener">Arts, Design &amp; Architecture</a>
+        <a data-subject="Business & Management" data-slug="business-management" href="https://www.bachelorsportal.com/search/bachelor/business-management" target="_blank" rel="noopener">Business &amp; Management</a>
+        <a data-subject="Computer Science & IT" data-slug="computer-science-it" href="https://www.bachelorsportal.com/search/bachelor/computer-science-it" target="_blank" rel="noopener">Computer Science &amp; IT</a>
+        <a data-subject="Education & Training" data-slug="education-training" href="https://www.bachelorsportal.com/search/bachelor/education-training" target="_blank" rel="noopener">Education &amp; Training</a>
+        <a data-subject="Engineering & Technology" data-slug="engineering-technology" href="https://www.bachelorsportal.com/search/bachelor/engineering-technology" target="_blank" rel="noopener">Engineering &amp; Technology</a>
+        <a data-subject="Environmental Studies & Earth Sciences" data-slug="environmental-studies-earth-sciences" href="https://www.bachelorsportal.com/search/bachelor/environmental-studies-earth-sciences" target="_blank" rel="noopener">Environmental Studies &amp; Earth Sciences</a>
+        <a data-subject="Hospitality, Leisure & Sports" data-slug="hospitality-leisure-sports" href="https://www.bachelorsportal.com/search/bachelor/hospitality-leisure-sports" target="_blank" rel="noopener">Hospitality, Leisure &amp; Sports</a>
+        <a data-subject="Humanities" data-slug="humanities" href="https://www.bachelorsportal.com/search/bachelor/humanities" target="_blank" rel="noopener">Humanities</a>
+        <a data-subject="Journalism & Media" data-slug="journalism-media" href="https://www.bachelorsportal.com/search/bachelor/journalism-media" target="_blank" rel="noopener">Journalism &amp; Media</a>
+        <a data-subject="Law" data-slug="law" href="https://www.bachelorsportal.com/search/bachelor/law" target="_blank" rel="noopener">Law</a>
+        <a data-subject="Medicine & Health" data-slug="medicine-health" href="https://www.bachelorsportal.com/search/bachelor/medicine-health" target="_blank" rel="noopener">Medicine &amp; Health</a>
+        <a data-subject="Natural Sciences & Mathematics" data-slug="natural-sciences-mathematics" href="https://www.bachelorsportal.com/search/bachelor/natural-sciences-mathematics" target="_blank" rel="noopener">Natural Sciences &amp; Mathematics</a>
+        <a data-subject="Social Sciences" data-slug="social-sciences" href="https://www.bachelorsportal.com/search/bachelor/social-sciences" target="_blank" rel="noopener">Social Sciences</a>
+      </div>
+      <div class="global-directory-actions">
+        <a href="https://www.bachelorsportal.com/countries/" target="_blank" rel="noopener">Browse Bachelor’s by country ↗</a>
+        <a href="https://www.mastersportal.com/countries/" target="_blank" rel="noopener">Browse Master’s by country ↗</a>
+        <a href="https://www.bachelorsportal.com/search/bachelor" target="_blank" rel="noopener">All Bachelor’s programmes ↗</a>
+        <a href="https://www.mastersportal.com/search/master" target="_blank" rel="noopener">All Master’s programmes ↗</a>
+      </div>
+    </section>
+    <section class="global-degree-section">
+      <div class="global-section-head"><div><h3>Your tracker shortlist</h3><p>The built-in tracker below currently contains 604 selected Master’s programme records across 42 countries. It is a curated shortlist, not the complete worldwide programme database.</p></div></div>
+      <button type="button" class="global-open-tracker" onclick="document.querySelector('.tab[data-p=cards]')?.click()">Open the 604-programme tracker ↗</button>
+    </section>
+    <p class="global-degree-disclaimer">Global directory counts and listings belong to Bachelorsportal / Mastersportal and may change. They are external catalogues, not imported into this tracker’s local 604-record shortlist. Admission, IELTS, MOI, VPD, tuition and scholarship conditions must be verified with each institution.</p>
+  </div>
+
+    <div class="panel" id="p-germany">
     <div class="germany-head">
       <div>
         <h2 data-i18n="germanyTitle">Germany Study Finder</h2>
