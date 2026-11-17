@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout>
+  <header class="border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-700 dark:bg-slate-900/95">
+    <div class="container flex min-h-16 items-center justify-between gap-4">
+      <a href={base} class="flex items-center gap-3 no-underline">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-navy text-sm font-extrabold text-white">SP</span>
+        <span><strong class="block text-lg leading-tight text-navy dark:text-white">StudyPath</strong><small class="muted">Global education explorer</small></span>
+      </a>
+      <nav class="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex dark:text-slate-200" aria-label="Main navigation">
+        <a href="#explore">Explore</a><a href="#tools">Student tools</a><a href="#guides">Guides</a><a href="#about">About</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="languageToggle" class="btn secondary !px-3 !py-2 text-sm" type="button" aria-label="Switch language">বাংলা</button>
+        <button id="themeToggle" class="btn secondary !px-3 !py-2 text-sm" type="button" aria-label="Change colour theme">Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="bg-navy py-16 text-white md:py-24">
+      <div class="container">
+        <p class="mb-4 text-xs font-bold uppercase tracking-[.2em] text-teal-200" data-i18n="kicker">Your independent study abroad companion</p>
+        <h1 class="max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl" data-i18n="heroTitle">Your Global Education Journey Starts Here.</h1>
+        <p class="mt-5 max-w-2xl text-base leading-7 text-slate-200 md:text-lg" data-i18n="heroText">Explore universities, degree programmes and scholarships around the world. Compare options and plan your next steps in one place.</p>
+        <div class="mt-9 max-w-4xl rounded-2xl bg-white p-4 text-slate-900 shadow-xl md:p-6">
+          <p class="mb-3 text-sm font-bold" data-i18n="chooseDegree">First, choose your degree level</p>
+          <div class="grid grid-cols-2 gap-3">
+            <button class="degree-choice rounded-xl border-2 border-teal bg-teal/10 p-4 text-left" data-degree="Bachelor" type="button"><span class="block text-lg font-extrabold text-navy">Bachelor's</span><span class="text-sm text-slate-600" data-i18n="undergraduate">Undergraduate programmes</span></button>
+            <button class="degree-choice rounded-xl border-2 border-slate-200 p-4 text-left" data-degree="Master" type="button"><span class="block text-lg font-extrabold text-navy">Master's</span><span class="text-sm text-slate-600" data-i18n="postgraduate">Postgraduate programmes</span></button>
+          </div>
+          <div class="mt-4 grid gap-3 md:grid-cols-[1fr_190px_190px_auto]">
+            <label class="sr-only" for="searchInput">Search programmes and universities</label>
+            <input id="searchInput" class="field" type="search" placeholder="Search university, course or subject..." />
+            <select id="countryFilter" class="field"><option value="">All countries</option></select>
+            <select id="subjectFilter" class="field"><option value="">All subjects</option></select>
+            <button id="searchButton" class="btn" type="button" data-i18n="search">Search</button>
+          </div>
+          <p class="mt-3 text-xs text-slate-500" id="dataStatus" aria-live="polite">Loading local programme catalogues…</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore" class="container py-12">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
+        <div><p class="text-xs font-bold uppercase tracking-widest text-teal">Explore opportunities</p><h2 class="mt-2 text-2xl font-extrabold md:text-3xl" data-i18n="resultsTitle">Find your programme</h2><p class="muted mt-2 text-sm" data-i18n="resultsSub">Search the catalogues already available on this website.</p></div>
+        <span id="resultCount" class="pill">Loading…</span>
+      </div>
+      <div id="results" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" aria-live="polite"><div class="surface p-8 text-center muted">Preparing programme listings…</div></div>
+      <div class="mt-6 flex justify-center"><button id="loadMore" class="btn secondary" type="button" hidden>Load more</button></div>
+    </section>
+
+    <section id="tools" class="bg-slate-100 py-14 dark:bg-slate-950">
+      <div class="container"><p class="text-xs font-bold uppercase tracking-widest text-teal">Plan with confidence</p><h2 class="mt-2 text-3xl font-extrabold" data-i18n="toolsTitle">Student planning tools</h2>
+        <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="surface p-5"><h3 class="font-bold">My Shortlist</h3><p class="muted mt-2 text-sm">Save programmes locally in this browser.</p><a class="mt-4 inline-block text-sm font-bold text-teal-700" href="#saved">View saved items →</a></article>
+          <article class="surface p-5"><h3 class="font-bold">Cost Calculator</h3><p class="muted mt-2 text-sm">Estimate tuition and living expenses.</p><a class="mt-4 inline-block text-sm font-bold text-teal-700" href="#calculator">Calculate costs →</a></article>
+          <article class="surface p-5"><h3 class="font-bold">Document Checklist</h3><p class="muted mt-2 text-sm">Prepare your documents without uploading them.</p><a class="mt-4 inline-block text-sm font-bold text-teal-700" href="#checklist">Open checklist →</a></article>
+          <article class="surface p-5"><h3 class="font-bold">Application Planner</h3><p class="muted mt-2 text-sm">Track your own application progress.</p><a class="mt-4 inline-block text-sm font-bold text-teal-700" href="#planner">Plan applications →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="saved" class="container py-12">
+      <h2 class="text-2xl font-extrabold">My Shortlist</h2><p class="muted mt-2 text-sm">Saved opportunities are stored only in this browser.</p>
+      <div id="savedItems" class="mt-5 grid gap-3 md:grid-cols-2"><p class="muted">No saved programmes yet.</p></div>
+    </section>
+
+    <section id="calculator" class="container pb-12">
+      <div class="surface grid gap-6 p-6 md:grid-cols-2">
+        <div><p class="text-xs font-bold uppercase tracking-widest text-teal">Planning estimate</p><h2 class="mt-2 text-2xl font-extrabold">Study cost calculator</h2><p class="muted mt-2 text-sm">Enter estimates in one currency. This calculator does not fetch live exchange rates.</p></div>
+        <div class="grid grid-cols-2 gap-3">
+          <label class="text-sm font-semibold">Annual tuition<input id="tuition" class="field mt-1" type="number" min="0" value="0" /></label>
+          <label class="text-sm font-semibold">Monthly living cost<input id="living" class="field mt-1" type="number" min="0" value="0" /></label>
+          <label class="text-sm font-semibold">Years of study<input id="years" class="field mt-1" type="number" min="1" value="1" /></label>
+          <label class="text-sm font-semibold">Scholarship total<input id="scholarship" class="field mt-1" type="number" min="0" value="0" /></label>
+          <p class="col-span-2 rounded-xl bg-slate-100 p-4 text-lg font-extrabold dark:bg-slate-900">Estimated total: <output id="totalCost">0</output></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist" class="container pb-12">
+      <div class="surface p-6"><h2 class="text-2xl font-extrabold">Document checklist</h2><p class="muted mt-2 text-sm">Checklist progress is stored locally. Never upload passports, bank statements or personal documents here.</p>
+        <div id="checkItems" class="mt-5 grid gap-3 sm:grid-cols-2"></div>
+      </div>
+    </section>
+
+    <section id="planner" class="container pb-14">
+      <div class="surface p-6"><h2 class="text-2xl font-extrabold">Application planner</h2><p class="muted mt-2 text-sm">Personal planning records only; nothing is submitted to a university.</p>
+        <form id="applicationForm" class="mt-5 grid gap-3 md:grid-cols-3">
+          <label class="text-sm font-semibold">University<input name="university" class="field mt-1" required maxlength="120" /></label>
+          <label class="text-sm font-semibold">Programme<input name="programme" class="field mt-1" required maxlength="120" /></label>
+          <label class="text-sm font-semibold">Deadline<input name="deadline" class="field mt-1" type="date" /></label>
+          <label class="text-sm font-semibold">Status<select name="status" class="field mt-1"><option>Researching</option><option>Shortlisted</option><option>Preparing Documents</option><option>Ready to Apply</option><option>Application Submitted</option><option>Offer Received</option><option>Visa Preparation</option><option>Enrolled</option></select></label>
+          <label class="text-sm font-semibold md:col-span-2">Notes<input name="notes" class="field mt-1" maxlength="300" /></label>
+          <button class="btn md:col-span-3" type="submit">Add to my planner</button>
+        </form>
+        <div id="applicationItems" class="mt-5 grid gap-3"></div>
+      </div>
+    </section>
+
+    <section id="guides" class="bg-slate-100 py-14 dark:bg-slate-950"><div class="container"><h2 class="text-2xl font-extrabold">Study abroad guides</h2><p class="muted mt-2 max-w-2xl text-sm">Use official university, scholarship-provider and government sources to confirm requirements before applying.</p><div class="mt-6 grid gap-4 md:grid-cols-3"><article class="surface p-5"><h3 class="font-bold">IELTS & English tests</h3><p class="muted mt-2 text-sm">Understand score requirements and component minimums.</p></article><article class="surface p-5"><h3 class="font-bold">SOP & CV preparation</h3><p class="muted mt-2 text-sm">Prepare clear academic and professional documents.</p></article><article class="surface p-5"><h3 class="font-bold">Visa preparation</h3><p class="muted mt-2 text-sm">Check current rules only on official immigration websites.</p></article></div></div></section>
+    <section id="about" class="container py-12"><div class="surface p-6"><h2 class="text-2xl font-extrabold">About StudyPath</h2><p class="muted mt-2 text-sm">StudyPath is an independent educational information platform. It is not affiliated with universities, governments or immigration authorities. Always verify programme details, tuition, deadlines and visa rules through official sources.</p></div></section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-8 dark:border-slate-700"><div class="container flex flex-col justify-between gap-4 text-sm md:flex-row"><p class="muted">© <span id="year"></span> StudyPath. Independent educational information.</p><nav class="flex flex-wrap gap-4"><a href={`${base}privacy-policy/`}>Privacy</a><a href={`${base}terms/`}>Terms</a><a href={`${base}disclaimer/`}>Disclaimer</a><a href={`${base}contact/`}>Contact</a></nav></div></footer>
+
+  <script>
+    type Row = Record<string, any>;
+    const base = import.meta.env.BASE_URL;
+    let degree = 'Bachelor';
+    let allRows: Row[] = [];
+    let visible = 12;
+    const $ = (id: string) => document.getElementById(id);
+    const read = (key: string, fallback: any) => { try { return JSON.parse(localStorage.getItem(key) || 'null') ?? fallback; } catch { return fallback; } };
+    const write = (key: string, value: any) => localStorage.setItem(key, JSON.stringify(value));
+    const value = (row: Row, keys: string[], fallback = 'Not confirmed') => { for (const key of keys) if (row[key] !== undefined && row[key] !== null && row[key] !== '') return String(row[key]); return fallback; };
+    const title = (r: Row) => value(r,['programme','program','course','courseName','title','name']);
+    const university = (r: Row) => value(r,['university','institution','provider','universityName']);
+    const country = (r: Row) => value(r,['country','destination']);
+    const subject = (r: Row) => value(r,['subject','field','discipline','category']);
+    const id = (r: Row) => value(r,['id','programmeId','programId'],title(r)+'-'+university(r));
+    const loadData = async () => {
+      const status = $('dataStatus')!;
+      const files = ['global-bachelor-programmes.json','daad-programmes.json'];
+      const loaded = await Promise.all(files.map(async file => {
+        try { const res = await fetch(`${base}data/${file}`); if (!res.ok) return []; const data = await res.json(); const rows = Array.isArray(data) ? data : data.programmes || data.items || data.results || []; return rows; }
+        catch { return []; }
+      }));
+      allRows = loaded.flat().map((r:any) => ({...r, __degree: String(r.degreeType || r.degree || '').toLowerCase().includes('bachelor') ? 'Bachelor' : 'Master'}));
+      status.textContent = `${allRows.length.toLocaleString()} local catalogue records loaded. Details marked "Not confirmed" need official verification.`;
+      render();
+    };
+    const filtered = () => {
+      const q = ($('searchInput') as HTMLInputElement).value.trim().toLowerCase();
+      const c = ($('countryFilter') as HTMLSelectElement).value;
+      const s = ($('subjectFilter') as HTMLSelectElement).value;
+      return allRows.filter(r => r.__degree === degree && (!q || [title(r),university(r),country(r),subject(r)].join(' ').toLowerCase().includes(q)) && (!c || country(r)===c) && (!s || subject(r)===s));
+    };
+    const render = () => {
+      const rows = filtered(); const result = $('results')!; $('resultCount')!.textContent = `${rows.length.toLocaleString()} programmes`;
+      const countries = [...new Set(allRows.filter(r=>r.__degree===degree).map(country))].filter(x=>x!=='Not confirmed').sort();
+      const subjects = [...new Set(allRows.filter(r=>r.__degree===degree).map(subject))].filter(x=>x!=='Not confirmed').sort();
+      const fill = (el: HTMLElement, items: string[], label: string) => { const select=el as HTMLSelectElement; const current=select.value; select.innerHTML=`<option value="">${label}</option>`+items.map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`).join(''); select.value=current; };
+      fill($('countryFilter')!,countries,'All countries'); fill($('subjectFilter')!,subjects,'All subjects');
+      const page = rows.slice(0,visible);
+      result.innerHTML = page.length ? page.map(r=>`<article class="surface result-card"><div class="flex flex-wrap items-center justify-between gap-2"><span class="pill">${escapeHtml(country(r))}</span><button class="save btn secondary !px-3 !py-2 text-xs" data-id="${escapeHtml(id(r))}" type="button">☆ Save</button></div><div><h3 class="text-lg font-extrabold">${escapeHtml(title(r))}</h3><p class="muted mt-1 text-sm">${escapeHtml(university(r))} · ${escapeHtml(value(r,['city'],'City not listed'))}</p></div><div class="grid grid-cols-2 gap-2 text-sm"><p><strong>Language:</strong> ${escapeHtml(value(r,['language','teachingLanguage']))}</p><p><strong>Duration:</strong> ${escapeHtml(value(r,['duration','studyDuration']))}</p><p><strong>Tuition:</strong> ${escapeHtml(value(r,['tuition','tuitionFee','fee']))}</p><p><strong>IELTS:</strong> ${escapeHtml(value(r,['ielts','ieltsRequirement','englishRequirement']))}</p></div><p class="muted text-xs">${escapeHtml(subject(r))} · ${escapeHtml(value(r,['deadline'],'Deadline not confirmed'))}</p><p class="mt-auto text-xs text-slate-500">Source status: verify current details with the institution.</p></article>`).join('') : '<div class="surface col-span-full p-10 text-center muted">No matching programmes. Try another search or degree level.</div>';
+      $('loadMore')!.toggleAttribute('hidden',rows.length<=visible);
+      document.querySelectorAll<HTMLButtonElement>('.save').forEach(btn=>btn.addEventListener('click',()=>{const row=allRows.find(r=>id(r)===btn.dataset.id);const saved=read('studypath-saved',[]);if(row&&!saved.some((x:any)=>id(x)===id(row))){saved.push(row);write('studypath-saved',saved);renderSaved();btn.textContent='✓ Saved';}}));
+    };
+    const escapeHtml=(v:any)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+    const renderSaved=()=>{const saved=read('studypath-saved',[]);$('savedItems')!.innerHTML=saved.length?saved.map((r:any)=>`<article class="surface p-4"><strong>${escapeHtml(title(r))}</strong><p class="muted mt-1 text-sm">${escapeHtml(university(r))} · ${escapeHtml(country(r))}</p><button class="remove btn secondary mt-3 !px-3 !py-2 text-xs" data-id="${escapeHtml(id(r))}">Remove</button></article>`).join(''):'<p class="muted">No saved programmes yet.</p>';document.querySelectorAll<HTMLButtonElement>('.remove').forEach(b=>b.addEventListener('click',()=>{write('studypath-saved',saved.filter((r:any)=>id(r)!==b.dataset.id));renderSaved();}));};
+    document.querySelectorAll<HTMLButtonElement>('.degree-choice').forEach(b=>b.addEventListener('click',()=>{degree=b.dataset.degree||'Bachelor';document.querySelectorAll('.degree-choice').forEach(x=>x.classList.toggle('border-teal',x===b));visible=12;render();}));
+    ['searchInput','countryFilter','subjectFilter'].forEach(x=>$(x)!.addEventListener('input',()=>{visible=12;render();}));
+    $('searchButton')!.addEventListener('click',render); $('loadMore')!.addEventListener('click',()=>{visible+=12;render();});
+    const updateCost=()=>{const t=Number(($('tuition') as HTMLInputElement).value)||0,l=Number(($('living') as HTMLInputElement).value)||0,y=Number(($('years') as HTMLInputElement).value)||1,s=Number(($('scholarship') as HTMLInputElement).value)||0;$('totalCost')!.textContent=Math.max(0,t*y+l*12*y-s).toLocaleString();};
+    ['tuition','living','years','scholarship'].forEach(x=>$(x)!.addEventListener('input',updateCost));
+    const checklist=['Academic certificates','Academic transcripts','Passport (checklist only)','CV / Resume','Statement of Purpose','Recommendation letters','English test result','Financial planning documents'];
+    const checks=read('studypath-checks',{});$('checkItems')!.innerHTML=checklist.map((x,i)=>`<label class="flex items-center gap-3 rounded-xl bg-slate-50 p-3 text-sm dark:bg-slate-900"><input type="checkbox" data-check="${i}" ${checks[i]?'checked':''}/> ${x}</label>`).join('');
+    document.querySelectorAll<HTMLInputElement>('[data-check]').forEach(c=>c.addEventListener('change',()=>{checks[c.dataset.check!]=c.checked;write('studypath-checks',checks);}));
+    const renderApps=()=>{const apps=read('studypath-apps',[]);$('applicationItems')!.innerHTML=apps.map((a:any,i:number)=>`<article class="surface flex flex-wrap items-center justify-between gap-3 p-4"><div><strong>${escapeHtml(a.university)}</strong><p class="muted text-sm">${escapeHtml(a.programme)} · ${escapeHtml(a.deadline||'No deadline')}</p><p class="muted text-xs">${escapeHtml(a.status)} ${a.notes?'· '+escapeHtml(a.notes):''}</p></div><button class="delete-app btn secondary !px-3 !py-2 text-xs" data-index="${i}">Delete</button></article>`).join('')||'<p class="muted text-sm">No applications planned yet.</p>';document.querySelectorAll<HTMLButtonElement>('.delete-app').forEach(b=>b.addEventListener('click',()=>{apps.splice(Number(b.dataset.index),1);write('studypath-apps',apps);renderApps();}));};
+    $('applicationForm')!.addEventListener('submit',(e)=>{e.preventDefault();const form=e.currentTarget as HTMLFormElement;const data=Object.fromEntries(new FormData(form).entries());const apps=read('studypath-apps',[]);apps.push(data);write('studypath-apps',apps);form.reset();renderApps();});
+    $('themeToggle')!.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem('studypath-theme',next);});
+    $('languageToggle')!.addEventListener('click',()=>{const bn=document.documentElement.lang!=='bn';document.documentElement.lang=bn?'bn':'en';$('languageToggle')!.textContent=bn?'English':'বাংলা';document.querySelectorAll<HTMLElement>('[data-i18n]').forEach(el=>{const key=el.dataset.i18n!;if(bn&&translations[key])el.textContent=translations[key];else if(!bn)el.textContent=english[key];});});
+    const english:any={kicker:'Your independent study abroad companion',heroTitle:'Your Global Education Journey Starts Here.',heroText:'Explore universities, degree programmes and scholarships around the world. Compare options and plan your next steps in one place.',chooseDegree:'First, choose your degree level',undergraduate:'Undergraduate programmes',postgraduate:'Postgraduate programmes',search:'Search',resultsTitle:'Find your programme',resultsSub:'Search the catalogues already available on this website.',toolsTitle:'Student planning tools'};
+    const translations:any={kicker:'বিদেশে উচ্চশিক্ষার নির্ভরযোগ্য তথ্য ও পরিকল্পনার সহায়ক',heroTitle:'আপনার আন্তর্জাতিক শিক্ষার যাত্রা শুরু হোক এখান থেকে।',heroText:'বিশ্বের বিভিন্ন দেশের বিশ্ববিদ্যালয়, ডিগ্রি প্রোগ্রাম ও স্কলারশিপ খুঁজুন। তুলনা করুন এবং একই জায়গায় আপনার পরবর্তী পদক্ষেপ পরিকল্পনা করুন।',chooseDegree:'প্রথমে আপনার ডিগ্রির স্তর নির্বাচন করুন',undergraduate:'স্নাতক পর্যায়ের প্রোগ্রাম',postgraduate:'স্নাতকোত্তর পর্যায়ের প্রোগ্রাম',search:'খুঁজুন',resultsTitle:'আপনার পছন্দের প্রোগ্রাম খুঁজুন',resultsSub:'এই ওয়েবসাইটে থাকা প্রোগ্রাম তালিকা থেকে অনুসন্ধান করুন।',toolsTitle:'শিক্ষার্থীদের পরিকল্পনার টুলস'};
+    $('year')!.textContent=String(new Date().getFullYear());renderSaved();renderApps();updateCost();loadData();
+  </script>
+</BaseLayout>
