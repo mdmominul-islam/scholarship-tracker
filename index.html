@@ -1184,6 +1184,18 @@ footer{color:var(--ink-soft)}
  .controls{position:static}
 }
 
+
+/* Bachelor / Master's switch and DAAD listing layout */
+.daad-degree-tabs{display:flex;gap:9px;margin:14px 0 10px;flex-wrap:wrap}
+.daad-degree-tab{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:10px 18px;font-size:13px}
+.daad-degree-tab.on{background:var(--accent);border-color:var(--accent);color:white}
+.daad-degree-tab span{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:20px;background:rgba(120,140,170,.16);font-size:11px}
+.daad-live-filters{grid-template-columns:minmax(0,1.6fr) minmax(150px,.8fr) minmax(150px,.8fr)}
+.daad-live-tablebox{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:12px}
+.daad-live-table{width:100%;min-width:1250px;border-collapse:collapse}
+.daad-live-table th{position:sticky;top:0;background:var(--head);color:var(--ink-soft);text-align:left;padding:10px;font-size:10px;white-space:nowrap}
+.daad-live-table td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:700px){.daad-live-filters{grid-template-columns:1fr}.daad-degree-tab{flex:1}}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1294,8 +1306,8 @@ footer{color:var(--ink-soft)}
   <div class="panel" id="p-germany">
     <div class="germany-head">
       <div>
-        <h2 data-i18n="germanyTitle">Germany Master's finder</h2>
-        <p data-i18n="germanyIntro">Find a German Master’s programme, compare VPD and language requirements, and open the official source before applying. Use the filters to narrow the list.</p>
+        <h2 data-i18n="germanyTitle">Germany Study Finder</h2>
+        <p data-i18n="germanyIntro">Explore DAAD-listed Bachelor and Master programmes separately. Search by university, subject or city, compare language and application information, and verify requirements on the official university page.</p>
       </div>
     </div>
     <div class="germany-links">
@@ -1311,7 +1323,7 @@ footer{color:var(--ink-soft)}
     </div>
     <div class="germany-note">
       <strong>How to use this section</strong>
-      <p><strong>Current tracker coverage:</strong> 21 Germany programme records are currently included here; this is not the complete DAAD database. Use the official DAAD catalogue links above to search the full live database. VPD, IELTS and MOI rules vary by programme. “Not confirmed” means we could not verify the rule from the programme’s official information—contact admissions before applying.</p>
+      <p>The live list below imports Bachelor and Master listings returned by the DAAD International Programmes catalogue. This is not every degree programme offered in Germany. VPD, IELTS and MOI vary by university and course; unverified items are labelled “Not confirmed”.</p>
     </div>
     <div class="germany-filters">
       <label>Search university or programme<input id="gSearch" type="search" placeholder="e.g. Computer Science, Bonn, TUM…"></label>
@@ -1330,20 +1342,27 @@ footer{color:var(--ink-soft)}
 
     <section class="daad-live" aria-labelledby="daadLiveTitle">
       <div class="daad-live-head">
-        <div><h3 id="daadLiveTitle">DAAD live Master's catalogue</h3>
-        <p>Search all Master's programmes listed in DAAD International Programmes. This list refreshes automatically every day from DAAD.</p></div>
-        <a href="https://www2.daad.de/deutschland/studienangebote/international-programmes/en/" target="_blank" rel="noopener">Open DAAD catalogue ↗</a>
+        <div><h3 id="daadLiveTitle">DAAD degree catalogue</h3>
+        <p>Browse DAAD International Programmes. Switch between Bachelor and Master's, then filter by subject, language or university.</p></div>
+        <a href="https://www2.daad.de/deutschland/studienangebote/international-programmes/en/" target="_blank" rel="noopener">Open official DAAD catalogue ↗</a>
+      </div>
+      <div class="daad-degree-tabs" role="tablist" aria-label="Degree level">
+        <button type="button" class="daad-degree-tab on" data-degree="Master" aria-pressed="true">Master's <span id="daadMasterCount">—</span></button>
+        <button type="button" class="daad-degree-tab" data-degree="Bachelor" aria-pressed="false">Bachelor <span id="daadBachelorCount">—</span></button>
       </div>
       <div class="daad-live-meta"><span id="daadLiveStatus">Loading DAAD catalogue…</span><strong id="daadLiveCount">—</strong></div>
       <div class="daad-live-filters">
-        <label>Search university, programme or city<input id="daadLiveSearch" type="search" placeholder="Try Computer Science, Berlin, Bonn…"></label>
+        <label>Search university, programme, subject or city<input id="daadLiveSearch" type="search" placeholder="Try Computer Science, Berlin, Bonn…"></label>
         <label>Teaching language<select id="daadLiveLanguage"><option value="all">All languages</option><option value="english">English</option><option value="german">German</option></select></label>
+        <label>Subject<input id="daadLiveSubject" type="search" placeholder="e.g. Engineering, Business…"></label>
       </div>
-      <div class="tablebox daad-live-tablebox"><table class="daad-live-table">
-        <thead><tr><th>University &amp; programme</th><th>City</th><th>Language</th><th>Duration</th><th>Tuition</th><th>VPD / application route</th><th>IELTS / English</th><th>MOI</th><th>DAAD / university links</th></tr></thead>
-        <tbody id="daadLiveRows"><tr><td colspan="9">Loading catalogue…</td></tr></tbody>
-      </table></div>
-      <p class="germany-footnote">DAAD supplies programme listings and some language/application information. IELTS, MOI and VPD are shown as confirmed only when the source text supports it; otherwise they are marked for verification. This DAAD International Programmes catalogue is not every Master's course offered in Germany.</p>
+      <div class="daad-live-tablebox">
+        <table class="daad-live-table">
+          <thead><tr><th>University &amp; programme</th><th>City</th><th>Subject</th><th>Language</th><th>Duration</th><th>Tuition</th><th>VPD / application</th><th>IELTS / English</th><th>MOI</th><th>DAAD / university links</th></tr></thead>
+          <tbody id="daadLiveRows"><tr><td colspan="10">Loading catalogue…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="germany-footnote">MOI = Medium of Instruction. Teaching in English does not automatically mean an MOI certificate is accepted. DAAD course details may not contain every university requirement; confirm VPD, IELTS, MOI and deadlines on the official university admissions page before applying.</p>
     </section>
   <div class="panel" id="p-ielts">
     <div class="ielts-intro">
@@ -2920,31 +2939,44 @@ document.getElementById('gSearch').addEventListener('input',renderGermanyGuide);
 document.getElementById('gLanguage').addEventListener('change',renderGermanyGuide);
 
 
-/* DAAD live catalogue: data is generated by the scheduled importer. */
+/* DAAD degree catalogue */
 let DAAD_LIVE_PROGRAMMES=[];
 let DAAD_LIVE_LOADED=false;
+let DAAD_ACTIVE_DEGREE='Master';
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 function renderDdaadLive(){
   const q=(document.getElementById('daadLiveSearch')?.value||'').trim().toLowerCase();
+  const subject=(document.getElementById('daadLiveSubject')?.value||'').trim().toLowerCase();
   const lang=document.getElementById('daadLiveLanguage')?.value||'all';
-  const rows=DAAD_LIVE_PROGRAMMES.filter(p=>{
+  const base=DAAD_LIVE_PROGRAMMES.filter(p=>p.degreeType===DAAD_ACTIVE_DEGREE);
+  const rows=base.filter(p=>{
     const hay=[p.university,p.programme,p.city,p.subject,p.language].join(' ').toLowerCase();
     const l=String(p.language||'').toLowerCase();
-    return (!q||hay.includes(q))&&(lang==='all'||l.includes(lang));
+    return (!q||hay.includes(q))&&(!subject||String(p.subject||'').toLowerCase().includes(subject))&&(lang==='all'||l.includes(lang));
   });
   const count=document.getElementById('daadLiveCount');
   const status=document.getElementById('daadLiveStatus');
   const body=document.getElementById('daadLiveRows');
-  if(count)count.textContent=rows.length.toLocaleString()+' programmes shown';
-  if(status)status.textContent=DAAD_LIVE_LOADED?'Source: DAAD · Last refresh: '+(window.DAAD_LIVE_UPDATED||'see data file'):'Catalogue data is not available yet.';
+  const m=document.getElementById('daadMasterCount'),b=document.getElementById('daadBachelorCount');
+  const masterCount=DAAD_LIVE_PROGRAMMES.filter(p=>p.degreeType==='Master').length;
+  const bachelorCount=DAAD_LIVE_PROGRAMMES.filter(p=>p.degreeType==='Bachelor').length;
+  if(m)m.textContent=masterCount.toLocaleString();
+  if(b)b.textContent=bachelorCount.toLocaleString();
+  if(count)count.textContent=rows.length.toLocaleString()+' '+(DAAD_ACTIVE_DEGREE==='Bachelor'?'Bachelor':'Master')+' programmes shown';
+  if(status)status.textContent=DAAD_LIVE_LOADED?'Source: DAAD · Last refresh: '+(window.DAAD_LIVE_UPDATED||'date not supplied'):'DAAD data has not loaded.';
+  document.querySelectorAll('.daad-degree-tab').forEach(btn=>{
+    const active=btn.dataset.degree===DAAD_ACTIVE_DEGREE;
+    btn.classList.toggle('on',active);btn.setAttribute('aria-pressed',String(active));
+  });
   if(!body)return;
-  body.innerHTML=rows.slice(0,2500).map(p=>{
-    const req=s=>'<span class="g-status check">'+escapeHtml(s||'Not confirmed — check university')+'</span>';
+  const req=s=>'<span class="g-status check">'+escapeHtml(s||'Not confirmed — check university')+'</span>';
+  body.innerHTML=rows.slice(0,3000).map(p=>{
     const links=[p.detailUrl?'<a href="'+escapeHtml(p.detailUrl)+'" target="_blank" rel="noopener">DAAD</a>':'',p.officialUniversityUrl?'<a href="'+escapeHtml(p.officialUniversityUrl)+'" target="_blank" rel="noopener">University</a>':''].filter(Boolean).join(' · ')||'—';
     return '<tr><td><div class="g-uni">'+escapeHtml(p.university)+'</div><div class="g-prog">'+escapeHtml(p.programme)+'</div></td>'+
-      '<td>'+escapeHtml(p.city)+'</td><td>'+escapeHtml(p.language)+'</td><td>'+escapeHtml(p.duration)+'</td><td>'+escapeHtml(p.tuition)+'</td>'+
-      '<td>'+req(p.vpd)+'</td><td>'+req(p.ielts||p.languageRequirements)+'</td><td>'+req(p.moi)+'</td><td>'+links+'</td></tr>';
-  }).join('')||'<tr><td colspan="9">No matching programmes. Try another search or language filter.</td></tr>';
+      '<td>'+escapeHtml(p.city)+'</td><td>'+escapeHtml(p.subject)+'</td><td>'+escapeHtml(p.language)+'</td>'+
+      '<td>'+escapeHtml(p.duration)+'</td><td>'+escapeHtml(p.tuition)+'</td><td>'+req(p.vpd)+'</td>'+
+      '<td>'+req(p.ielts||p.languageRequirements)+'</td><td>'+req(p.moi)+'</td><td>'+links+'</td></tr>';
+  }).join('')||'<tr><td colspan="10">No matching programmes. Try another search or language filter.</td></tr>';
 }
 async function loadDdaadLive(){
   const status=document.getElementById('daadLiveStatus');
@@ -2957,12 +2989,17 @@ async function loadDdaadLive(){
     window.DAAD_LIVE_UPDATED=payload.generatedAt?new Date(payload.generatedAt).toLocaleString():'date not supplied';
     renderDdaadLive();
   }catch(error){
-    if(status)status.textContent='Live data has not been imported yet. Use the official DAAD link above.';
+    if(status)status.textContent='DAAD catalogue import is pending or unavailable. Use the official DAAD link above.';
     const body=document.getElementById('daadLiveRows');
-    if(body)body.innerHTML='<tr><td colspan="9">The automatic first import is pending or DAAD is temporarily unavailable. The official DAAD catalogue link remains available above.</td></tr>';
+    if(body)body.innerHTML='<tr><td colspan="10">The first import is still running or DAAD is temporarily unavailable. Please check again later.</td></tr>';
   }
 }
+document.querySelectorAll('.daad-degree-tab').forEach(btn=>btn.addEventListener('click',()=>{
+  DAAD_ACTIVE_DEGREE=btn.dataset.degree;
+  renderDdaadLive();
+}));
 document.getElementById('daadLiveSearch')?.addEventListener('input',renderDdaadLive);
+document.getElementById('daadLiveSubject')?.addEventListener('input',renderDdaadLive);
 document.getElementById('daadLiveLanguage')?.addEventListener('change',renderDdaadLive);
 function renderAll(){ renderStats(); renderChips(); renderCards(); renderSchol(); renderTable(); renderTimeline(); renderCountry(); renderGermanyGuide(); pxRenderAll(); syncShortlistExportButton(); }
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
