@@ -2548,6 +2548,86 @@ const GERMANY_ADMISSIONS={
     languageSource:'https://www.tu.berlin/en/'
   }
 };
+const GERMANY_PROGRAMME_ADMISSIONS={
+  'University of Freiburg||M.Sc. Computer Science':{
+    vpd:'Not confirmed for this course. Check the university application portal.',
+    ielts:'IELTS Academic 7.0. TOEFL iBT 95 or other listed alternatives are also accepted.',
+    moi:'No. An MOI letter alone is not sufficient; only specified native-speaker / degree-country exemptions apply.',
+    source:'https://www.tf.uni-freiburg.de/en/study-programs/computer-science/m-sc-computer-science'
+  },
+  'Heidelberg University||M.Sc. Molecular Biosciences':{
+    vpd:'Not confirmed for this course. Check the programme application instructions.',
+    ielts:'IELTS 6.5 or TOEFL iBT 90 (other listed options also accepted).',
+    moi:'A Bachelor’s thesis written in English may be accepted as proof; a generic MOI letter is not explicitly confirmed.',
+    source:'https://www.bio.uni-heidelberg.de/en/faq'
+  },
+  'University of Göttingen||M.Sc. Applied Computer Science':{
+    vpd:'Not confirmed for this course. Check the university application route.',
+    ielts:'IELTS 5.5 is listed for the B2 route, which also requires German DSH-2; the English-only route requires C1 proof.',
+    moi:'Not confirmed for this course. Do not rely on an MOI letter without written confirmation.',
+    source:'https://dev5b2.www2.uni-goettingen.de/en/630842.html'
+  },
+  'University of Bonn||M.Sc. Computer Science':{
+    vpd:'Not confirmed for this course. Check the application portal.',
+    ielts:'IELTS Academic 7.0 or higher; TOEFL iBT 95 or other listed C1 proof.',
+    moi:'No for applicants with a Bachelor’s from Bangladesh: the programme says a Bachelor’s MOI statement is not sufficient.',
+    source:'https://www.informatik.uni-bonn.de/en/studies/master-programs/master-program-application'
+  },
+  'University of Bonn||M.Sc. Economics (BGSE)':{
+    vpd:'Not confirmed for this course. Check the application portal.',
+    ielts:'IELTS 7.0 or higher; TOEFL iBT 95 or Cambridge C1 Advanced also accepted.',
+    moi:'Yes, if the previous degree programme was taught entirely in English.',
+    source:'https://www.econ.uni-bonn.de/en/study-programs/study-programs/master/application-admission'
+  },
+  'Charité – Universitätsmedizin Berlin||M.Sc. International Health':{
+    vpd:'Not listed in the programme’s application steps; confirm with the admissions office.',
+    ielts:'IELTS 6.0 or equivalent TOEFL (80 iBT).',
+    moi:'Yes. A previous degree completed in English can meet the programme’s English-proof requirement.',
+    source:'https://internationalhealth.charite.de/en/application_admission/application_study_programmes'
+  },
+  'Hertie School||Master of Public Policy':{
+    vpd:'Not listed in the programme’s application steps; confirm with admissions.',
+    ielts:'IELTS overall 7.0 with Writing 7.0; TOEFL and Duolingo alternatives are listed.',
+    moi:'Yes, if the entire undergraduate degree was taught in English and the university provides an officially stamped confirmation. A Master’s degree alone does not waive the test.',
+    source:'https://www.hertie-school.org/en/mpp/faqs'
+  },
+  'Hertie School||Master of Data Science for Public Policy':{
+    vpd:'Not listed in the programme’s application steps; confirm with admissions.',
+    ielts:'IELTS overall 7.0 with Writing 7.0; TOEFL and Duolingo alternatives are listed.',
+    moi:'Yes, if the entire undergraduate degree was taught in English and the university provides an officially stamped confirmation. A Master’s degree alone does not waive the test.',
+    source:'https://www.hertie-school.org/en/content/detail/content/application-tips-the-english-requirement'
+  },
+  'University of Cologne (with Groningen)||Double Master Demography and Social Inequality':{
+    vpd:'Required. The university advises applying well in advance; VPD processing may take about 8 weeks.',
+    ielts:'IELTS Academic 6.5 (B2 level); TOEFL iBT 92 or listed alternatives also accepted.',
+    moi:'Yes, if the Bachelor’s programme was completed entirely in English.',
+    source:'https://wiso.uni-koeln.de/de/studium/bewerbung/master/double-masters-programme-in-demography-and-social-inequality'
+  },
+  'University of Hohenheim||M.Sc. Agricultural Sciences in the Tropics and Subtropics':{
+    vpd:'Not listed in the programme application checklist; verify with admissions.',
+    ielts:'IELTS Academic 6.5; TOEFL iBT 90 or Duolingo 125 also accepted.',
+    moi:'No for applicants from Bangladesh. An MOI letter is not sufficient unless the degree was completed in one of the specifically exempt countries / EU with English throughout.',
+    source:'https://www.uni-hohenheim.de/en/agricultural-sciences-in-the-tropics-and-subtropics-masters'
+  },
+  'University of Mannheim||Mannheim Master in Management':{
+    vpd:'Not confirmed for this course. Check the university application portal.',
+    ielts:'IELTS Academic 7.0; TOEFL iBT 100 or listed C1 alternatives also accepted.',
+    moi:'Yes, if at least 40% of the first degree was taught and examined in English, with the university’s official form.',
+    source:'https://www.uni-mannheim.de/en/academics/before-your-studies/applying/the-a-to-z-of-applying/masters-programs-foreign-language-requirements'
+  },
+  'University of Stuttgart||M.Sc. Computer Science':{
+    vpd:'Not confirmed for this course. The application is made through C@MPUS; check the programme regulations.',
+    ielts:'Programme-specific. The university publishes requirements in each English-taught Master’s admission regulation.',
+    moi:'Not confirmed for this course. Check the individual admission regulations.',
+    source:'https://www.uni-stuttgart.de/en/study/application/master/admission/'
+  },
+  'University of Bonn||M.Sc. Economics (BGSE)':{
+    vpd:'Not confirmed for this course. Check the application portal.',
+    ielts:'IELTS 7.0 or higher; TOEFL iBT 95 or Cambridge C1 Advanced also accepted.',
+    moi:'Yes, if the previous degree programme was taught entirely in English.',
+    source:'https://www.econ.uni-bonn.de/en/study-programs/study-programs/master/application-admission'
+  }
+};
 function germanyStatus(text){
   const cls=/Required|May be accepted|accepted/i.test(text)&&!/Not confirmed/i.test(text)?'yes':/check|not confirmed|programme-specific/i.test(text)?'check':'';
   return '<span class="g-status '+cls+'">'+text+'</span>';
@@ -2561,7 +2641,7 @@ function renderGermanyGuide(){
   document.getElementById('cGermany').textContent=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field)).length;
   document.getElementById('gCount').textContent=rows.length;
   document.getElementById('gRows').innerHTML=rows.map(d=>{
-    const req=GERMANY_ADMISSIONS[d.university]||{
+    const req=GERMANY_PROGRAMME_ADMISSIONS[d.university+'||'+d.programme]||GERMANY_ADMISSIONS[d.university]||{
       vpd:'Check the exact programme and application route.',
       ielts:'Programme-specific — not verified for this course.',
       moi:'Not confirmed — do not assume MOI is accepted.',
