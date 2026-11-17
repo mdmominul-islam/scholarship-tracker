@@ -509,6 +509,72 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 #langToggle:hover{background:rgba(255,255,255,.24)}
 @media(max-width:640px){#langToggle{position:static;order:-2;margin-bottom:8px}#theme{position:static;order:-1;margin-bottom:8px}.heroin{gap:0}}
 
+
+/* Warm Premium palette refresh — layout and functionality unchanged */
+:root{
+  color-scheme:light;
+  --paper:#f7f2ea;
+  --card:#fffdf9;
+  --ink:#302a25;
+  --ink-soft:#786d63;
+  --line:#e8ddd1;
+  --head:#f1e8dd;
+  --accent:#a9573d;
+  --accent-soft:#f4e3d9;
+  --green:#55745b;
+  --green-soft:#e4ede2;
+  --amber:#a56b2b;
+  --amber-soft:#f6e9d2;
+  --grey:#766b61;
+  --grey-soft:#eee8e0;
+  --blue:#647b8c;
+  --blue-soft:#e5edf1;
+  --red:#a84c4c;
+  --red-soft:#f5e2de;
+  --shadow:0 1px 2px rgba(75,51,35,.05),0 7px 22px rgba(75,51,35,.07);
+}
+:root[data-theme=dark]{
+  color-scheme:dark;
+  --paper:#1e1916;
+  --card:#29221d;
+  --ink:#f3eae1;
+  --ink-soft:#c0afa0;
+  --line:#49392f;
+  --head:#342820;
+  --accent:#e29a78;
+  --accent-soft:#493126;
+  --green:#9bc49f;
+  --green-soft:#263a2b;
+  --amber:#e5b76c;
+  --amber-soft:#46351f;
+  --grey:#bba99a;
+  --grey-soft:#3a3029;
+  --blue:#a9bdd2;
+  --blue-soft:#293744;
+  --red:#e69a8e;
+  --red-soft:#432c29;
+  --shadow:0 1px 2px rgba(0,0,0,.28),0 8px 24px rgba(0,0,0,.22);
+}
+.hero{
+  background:linear-gradient(135deg,#3e2b25 0%,#704335 58%,#a65d42 100%);
+}
+.hero .kicker{color:#f1c9ad}
+.hero .sub{color:#f8e8db}
+.hero .upd{color:#e8c8b3}
+.hero-meta span{color:#f8e8db}
+.planner-launch{background:#fff8ef;color:#704335}
+:root[data-theme=dark] .hero{
+  background:linear-gradient(135deg,#211915 0%,#503126 58%,#75432f 100%);
+}
+:root[data-theme=dark] .hero .kicker{color:#f1c9ad}
+:root[data-theme=dark] .hero .sub{color:#f8e8db}
+:root[data-theme=dark] .hero .upd{color:#e8c8b3}
+:root[data-theme=dark] .hero-meta span{color:#f8e8db}
+:root[data-theme=dark] .planner-launch{background:#fff8ef;color:#704335!important}
+:root[data-theme=dark] .star.on{color:#e9bd69}
+:root[data-theme=dark] ::selection{background:#81513d;color:#fffaf4}
+:root[data-theme=dark] :focus-visible{outline-color:#e8b49a}
+
 </style>
 <style id="ui-refresh-2026">
 :root{color-scheme:light;--paper:#F4F8F6;--card:#FFFFFF;--ink:#1C2D2A;--ink-soft:#596E68;--line:#DCE8E3;--head:#EAF2EE;--accent:#0F766E;--accent-soft:#E0F2ED;--green:#18794E;--green-soft:#DDF3E7;--amber:#946200;--amber-soft:#FFF1D3;--grey:#596E68;--grey-soft:#EDF3F0;--blue:#286A9B;--blue-soft:#E4F0F8;--red:#B4233A;--red-soft:#FCE7EB;--shadow:0 2px 5px rgba(20,55,46,.04),0 12px 28px rgba(20,55,46,.07)}
