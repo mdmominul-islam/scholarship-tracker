@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readFile } from 'node:fs/promises';
-const base = import.meta.env.BASE_URL;
-const catalogue = JSON.parse(await readFile(new URL('../../../public/data/universities.json', import.meta.url), 'utf8'));
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const catalogue = JSON.parse(await readFile(new URL('../../public/data/universities.json', import.meta.url), 'utf8'));
 const records = catalogue.universities || [];
 const initialRecords = records.slice(0, 30);
 ---
@@ -20,7 +20,7 @@ const initialRecords = records.slice(0, 30);
 <div class="surface mt-10 p-5"><h2 class="font-bold">Information and verification</h2><p class="muted mt-2 text-sm">StudyPath is an independent information resource. Catalogue records may be incomplete or require verification. Always use official institution and scholarship-provider websites for current tuition, admission criteria, eligibility and deadlines.</p></div>
 </main>
 <script>
-const base=import.meta.env.BASE_URL, file="universities.json", key="universities", nameKey="name", kind="university";
+const base=import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL+'/', file="universities.json", key="universities", nameKey="name", kind="university";
 const $=id=>document.getElementById(id), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let records=[],limit=30;
 async function load(){try{let r=await fetch(base+'data/'+file);if(!r.ok)throw Error('Catalogue file unavailable');let data=await r.json();records=Array.isArray(data)?data:data[key]||data.programmes||[];$('directoryStatus').textContent=records.length.toLocaleString()+' records · Details may require official verification.';render()}catch(e){$('directoryStatus').textContent='Could not load this catalogue: '+e.message;$('directoryStatus').textContent+=' · Showing the preloaded records below.'}}
