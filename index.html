@@ -3135,6 +3135,7 @@ function renderGermanyGuide(){ renderDdaadLive(); }
 
 /* DAAD degree catalogue */
 let DAAD_LIVE_PROGRAMMES=[];
+let GLOBAL_BACHELOR_PROGRAMMES=[];
 let DAAD_LIVE_LOADED=false;
 let DAAD_ACTIVE_DEGREE='Master';
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -3173,6 +3174,18 @@ function renderDdaadLive(){
       '<td>'+escapeHtml(p.duration)+'</td><td>'+escapeHtml(p.tuition)+'</td><td>'+req(p.vpd)+'</td>'+
       '<td>'+req(p.ielts||p.languageRequirements)+'</td><td>'+req(p.moi)+'</td><td>'+links+'</td></tr>';
   }).join('')||'<tr><td colspan="10">No matching programmes. Try another search or language filter.</td></tr>';
+}
+async function loadInternationalBachelorCatalogue(){
+  try{
+    const response=await fetch('./global-bachelor-programmes.json?refresh='+encodeURIComponent(new Date().toISOString().slice(0,10)),{cache:'no-store'});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    const payload=await response.json();
+    GLOBAL_BACHELOR_PROGRAMMES=Array.isArray(payload.programmes)?payload.programmes:[];
+    renderGlobalCatalogue();
+  }catch(error){
+    const status=document.getElementById('globalCatalogueStatus');
+    if(status)status.textContent='International Bachelor catalogue could not be loaded. Please refresh later.';
+  }
 }
 async function loadDdaadLive(){
   const status=document.getElementById('daadLiveStatus');
@@ -3231,6 +3244,16 @@ function globalCatalogueRecords(){
     source:'Programme catalogue',applicationRoute:'Not confirmed — check university',vpd:'Not confirmed — check university',ielts:'Not confirmed — check university',moi:'Not confirmed — check university',
     note:d.note||''
   }));
+  const internationalBachelor=GLOBAL_BACHELOR_PROGRAMMES.map((p,i)=>({
+    id:String(p.id||'global-bachelor-'+i),degreeType:'Bachelor',country:p.country||'Not specified',city:p.city||'',
+    university:p.university||'',programme:p.programme||'',subject:p.subject||'Not specified',
+    language:p.language||'Not specified',duration:p.duration||'Not confirmed',tuition:p.tuition||'Not confirmed',
+    funding:p.funding||'Not confirmed',fundLevel:p.fundLevel||'Not confirmed',deadline:p.deadline||'Check official programme page',
+    source:p.source||'Official university catalogue',sourceUrl:p.sourceUrl||'',
+    applicationRoute:p.applicationRoute||'Not confirmed — check university',
+    vpd:p.vpd||'Not confirmed — check university',ielts:p.ielts||'Not confirmed — check university',
+    moi:p.moi||'Not confirmed — ask university',note:p.note||''
+  }));
   const daad=DAAD_LIVE_PROGRAMMES.map((p,i)=>({
     id:'daad-'+String(p.id||i),degreeType:p.degreeType||'Unknown',country:'Germany',city:p.city||'',
     university:p.university||'',programme:p.programme||'',subject:p.subject||'Not specified',
@@ -3240,7 +3263,7 @@ function globalCatalogueRecords(){
     note:[p.intake,p.languageRequirements].filter(Boolean).join(' · ')
   }));
   const byKey=new Map();
-  [...local,...daad].forEach(p=>{
+  [...local,...internationalBachelor,...daad].forEach(p=>{
     const key=[p.degreeType,p.country,p.university,p.programme].map(x=>String(x).trim().toLowerCase()).join('|');
     if(!byKey.has(key)||p.source==='Germany catalogue')byKey.set(key,p);
   });
@@ -3398,6 +3421,7 @@ initGlobalCatalogue();
 initPlanner();
 renderAll();
 loadDdaadLive();
+loadInternationalBachelorCatalogue();
 applyLanguage();
 setUpd((UI_LANG==='bn'?'সর্বশেষ ডেটা আপডেট: ':'Built-in data last updated ')+CONFIG.UPDATED+(UI_LANG==='bn'?'। তারিখ ও কাউন্টডাউন আজকের তারিখ অনুযায়ী।':'. Dates and countdowns use today’s date.'));
 if(CONFIG.DATA_URL){
