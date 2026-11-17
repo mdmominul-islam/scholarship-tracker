@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-"""Refresh the DAAD International Programmes Master's catalogue.
+"""Import all DAAD International Programmes Bachelor and Master's listings.
 
-The DAAD API is the source of the programme list. Course detail pages are read
-for the application route and English-language evidence. Unclear requirements
-are deliberately marked as not confirmed rather than guessed.
+The DAAD API provides the complete catalogue list. Course detail pages are
+checked for VPD/application route and language evidence. Unknown requirements
+remain explicitly unconfirmed; they are never inferred from teaching language.
 """
 from __future__ import annotations
 
 import concurrent.futures
 import datetime as dt
 import json
-import os
 import re
 import time
 from pathlib import Path
@@ -24,37 +23,41 @@ OUTPUT = ROOT / "daad-programmes.json"
 BASE = "https://www2.daad.de"
 API = BASE + "/deutschland/studienangebote/international-programmes/api/solr/en/search.json"
 RESULT_PAGE = BASE + "/deutschland/studienangebote/international-programmes/en/result/"
-DETAIL = BASE + "/deutschland/studienangebote/international-programmes/en/detail/{}/"
 PAGE_SIZE = 500
-WORKERS = 6
-TIMEOUT = 35
+WORKERS = 12
+TIMEOUT = 20
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; ScholarshipTracker/1.0; +https://mdmominul-islam.github.io/scholarship-tracker/)",
     "Accept": "application/json, text/plain, */*",
     "X-Requested-With": "XMLHttpRequest",
     "Referer": RESULT_PAGE,
 }
+DEGREES = [(1, "Bachelor"), (2, "Master")]
 
 def get(url: str, *, params=None, headers=None):
     last = None
-    for attempt in range(4):
+    for attempt in range(2):
         try:
-            response = requests.get(url, params=params, headers=headers or HEADERS, timeout=TIMEOUT)
+            response = requests.get(
+                url, params=params, headers=headers or HEADERS,
+                timeout=TIMEOUT
+            )
             response.raise_for_status()
             return response
         except Exception as exc:
             last = exc
-            time.sleep(min(2 ** attempt, 8))
+            if attempt == 0:
+                time.sleep(1.2)
     raise RuntimeError(f"Could not fetch {url}: {last}")
 
-def fetch_all_masters() -> list[dict]:
+def fetch_degree(degree_id: int, degree_name: str) -> list[dict]:
     all_courses: list[dict] = []
     offset = 0
     total = None
     while total is None or offset < total:
         params = {
             "q": "",
-            "degree[]": "2",  # Master's programmes
+            "degree[]": str(degree_id),
             "limit": str(PAGE_SIZE),
             "offset": str(offset),
             "display": "list",
@@ -67,15 +70,15 @@ def fetch_all_masters() -> list[dict]:
             break
         all_courses.extend(courses)
         offset += len(courses)
-        print(f"Fetched {min(offset, total)} / {total} DAAD Master's records", flush=True)
+        print(f"Fetched {min(offset, total)} / {total} DAAD {degree_name} listings", flush=True)
         if offset >= total:
             break
-    # Keep the newest response's source order but remove duplicate IDs.
     seen, unique = set(), []
     for item in all_courses:
         key = str(item.get("id") or item.get("courseName") or item.get("name") or "")
         if key and key not in seen:
             seen.add(key)
+            item["_degreeType"] = degree_name
             unique.append(item)
     return unique
 
@@ -86,21 +89,27 @@ def first_value(item: dict, keys: tuple[str, ...], fallback=""):
     for key in keys:
         value = item.get(key)
         if isinstance(value, list):
-            value = ", ".join(str(v) for v in value if v)
+            value = ", ".join(
+                str(v.get("name") or v.get("label") or v) if isinstance(v, dict) else str(v)
+                for v in value if v
+            )
         if value not in (None, "", []):
             return str(value)
     return fallback
 
 def parse_detail(course: dict) -> dict:
     course_id = course.get("id")
-    path = course.get("link") or (f"/deutschland/studienangebote/international-programmes/en/detail/{course_id}/" if course_id else "")
+    path = course.get("link") or (
+        f"/deutschland/studienangebote/international-programmes/en/detail/{course_id}/"
+        if course_id else ""
+    )
     detail_url = urljoin(BASE, path) if path else ""
     defaults = {
         "teachingLanguage": first_value(course, ("language", "courseLanguage", "languages", "lang"), "See DAAD detail page"),
-        "languageRequirements": "Not listed on the DAAD detail page or page could not be read.",
-        "applicationRoute": "Not listed on the DAAD detail page.",
+        "languageRequirements": "Not listed by DAAD — check the university application page.",
+        "applicationRoute": "Not listed by DAAD — check the university application page.",
         "vpd": "Not confirmed — check the university application page.",
-        "ielts": "Not listed by DAAD — check the university application page.",
+        "ielts": "Not confirmed — check accepted English tests with the university.",
         "moi": "Not confirmed — do not assume an MOI certificate is accepted.",
         "officialUniversityUrl": "",
         "detailStatus": "Not fetched",
@@ -114,17 +123,17 @@ def parse_detail(course: dict) -> dict:
         language_req = ""
         application_route = ""
         teaching_language = defaults["teachingLanguage"]
-        for dt_node in soup.find_all("dt"):
-            label = text_of(dt_node).lower()
-            dd = dt_node.find_next_sibling("dd")
+        for node in soup.find_all("dt"):
+            label = text_of(node).lower()
+            dd = node.find_next_sibling("dd")
             value = text_of(dd)
             if not value:
                 continue
-            if "language requirement" in label or "language skills" in label or "english proficiency" in label:
+            if any(k in label for k in ("language requirement", "language skills", "english proficiency")):
                 language_req = value
-            elif ("language" in label and "requirement" not in label) and (not teaching_language or teaching_language == "See DAAD detail page"):
+            elif "language" in label and "requirement" not in label and teaching_language == "See DAAD detail page":
                 teaching_language = value
-            elif "submit application via" in label or "application method" in label or "application procedure" in label:
+            elif any(k in label for k in ("submit application via", "application method", "application procedure")):
                 application_route = value
 
         if not language_req:
@@ -135,36 +144,38 @@ def parse_detail(course: dict) -> dict:
         low_route = application_route.lower()
         low_text = full_text.lower()
         if "vpd" in low_route or "vorprüfungsdokumentation" in low_route:
-            vpd = "VPD explicitly mentioned on DAAD page — check if required for your case."
+            vpd = "VPD explicitly mentioned by DAAD — verify whether required for your applicant category."
         elif "uni-assist" in low_route or "uni assist" in low_route:
-            vpd = "uni-assist listed by DAAD; check whether this course requires a VPD."
+            vpd = "uni-assist listed by DAAD — confirm whether a VPD is required."
         elif "vpd" in low_text or "uni-assist" in low_text or "uni assist" in low_text:
-            vpd = "uni-assist/VPD mentioned in course information; verify the exact route."
+            vpd = "uni-assist/VPD mentioned — verify the exact application route."
         else:
-            vpd = "Not mentioned by DAAD — verify the university application route."
+            vpd = "Not confirmed by DAAD — check the university application page."
 
-        lang_low = language_req.lower()
-        if "ielts" in lang_low:
+        if re.search(r"\bIELTS\b", language_req, re.I):
             ielts = language_req
         else:
-            ielts = "No IELTS score listed in DAAD language field — check accepted alternatives with the university."
+            ielts = "No IELTS score specified in the DAAD language field — check accepted alternatives."
 
-        moi_match = re.search(r".{0,100}(?:medium of instruction|moi|previous degree.{0,35}english|degree.{0,35}taught in english).{0,150}", full_text, re.I)
+        moi_match = re.search(
+            r".{0,120}(?:medium of instruction|\bMOI\b|previous degree.{0,40}English|degree.{0,40}taught in English).{0,180}",
+            full_text, re.I
+        )
         if moi_match and re.search(r"accept|waiv|exempt|suffic|proof|certificate", moi_match.group(0), re.I) and not re.search(r"not accept|not sufficient|cannot|does not", moi_match.group(0), re.I):
-            moi = "MOI / previous English-taught degree is mentioned; confirm the exact evidence accepted by the university."
+            moi = "MOI / previous English-taught degree is mentioned — confirm exact evidence with the university."
         elif moi_match and re.search(r"not accept|not sufficient|cannot|does not", moi_match.group(0), re.I):
-            moi = "DAAD page indicates MOI is not sufficient; check the university page for exemptions."
+            moi = "DAAD page indicates MOI may not be sufficient — check for university exemptions."
         else:
             moi = "Not confirmed by DAAD — do not assume an MOI certificate is accepted."
 
         external = ""
         for a in soup.find_all("a", href=True):
-            label = text_of(a).lower()
-            href = a.get("href", "")
-            if href.startswith("http") and "daad.de" not in href and ("course website" in label or "programme website" in label or label == "website"):
+            label, href = text_of(a).lower(), a.get("href", "")
+            if href.startswith("http") and "daad.de" not in href and (
+                "course website" in label or "programme website" in label or label == "website"
+            ):
                 external = href
                 break
-
         return {
             **defaults,
             "teachingLanguage": teaching_language or defaults["teachingLanguage"],
@@ -181,18 +192,15 @@ def parse_detail(course: dict) -> dict:
         return {**defaults, "detailUrl": detail_url, "detailStatus": f"Fetch failed: {type(exc).__name__}"}
 
 def normalize(course: dict, detail: dict) -> dict:
-    name = first_value(course, ("courseName", "name", "title"), "Programme name not supplied")
-    university = first_value(course, ("academy", "institution", "university", "institutionName"), "University not supplied")
-    city = first_value(course, ("city", "location"), "Not specified")
-    language = detail.get("teachingLanguage") or "See DAAD detail page"
     return {
         "id": str(course.get("id") or ""),
-        "university": university,
-        "programme": name,
-        "city": city,
-        "language": language,
+        "degreeType": course.get("_degreeType", "Unknown"),
+        "university": first_value(course, ("academy", "institution", "university", "institutionName"), "University not supplied"),
+        "programme": first_value(course, ("courseName", "name", "title"), "Programme name not supplied"),
+        "city": first_value(course, ("city", "location"), "Not specified"),
+        "language": detail.get("teachingLanguage") or first_value(course, ("language", "courseLanguage", "languages", "lang"), "See DAAD detail page"),
         "duration": first_value(course, ("programmeDuration", "duration"), "Check DAAD page"),
-        "tuition": first_value(course, ("tuitionFees", "tuition", "fees"), "Check DAAD page"),
+        "tuition": first_value(course, ("tuitionFees", "tuition", "fees", "costString"), "Check DAAD page"),
         "intake": first_value(course, ("beginning", "start", "intake"), "Check DAAD page"),
         "subject": first_value(course, ("subject", "subjectGroup", "fieldOfStudy", "field"), "Not specified"),
         "detailUrl": detail.get("detailUrl", ""),
@@ -200,43 +208,59 @@ def normalize(course: dict, detail: dict) -> dict:
         "officialUniversityUrl": detail.get("officialUniversityUrl", ""),
         "applicationRoute": detail.get("applicationRoute", ""),
         "vpd": detail.get("vpd", "Not confirmed — check the university application page."),
-        "ielts": detail.get("ielts", "Not listed by DAAD — check the university application page."),
+        "ielts": detail.get("ielts", "Not confirmed — check accepted English tests with the university."),
         "moi": detail.get("moi", "Not confirmed — do not assume an MOI certificate is accepted."),
         "languageRequirements": detail.get("languageRequirements", ""),
         "detailStatus": detail.get("detailStatus", ""),
     }
 
 def main():
-    courses = fetch_all_masters()
-    print(f"Fetched {len(courses)} unique Master's programmes. Reading detail pages...", flush=True)
+    by_degree = {}
+    for degree_id, degree_name in DEGREES:
+        by_degree[degree_name] = fetch_degree(degree_id, degree_name)
+    courses = by_degree["Bachelor"] + by_degree["Master"]
+    print(
+        f"Fetched {len(by_degree['Bachelor'])} Bachelor + {len(by_degree['Master'])} Master's listings. "
+        "Reading DAAD detail pages...",
+        flush=True
+    )
     details = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        futures = {pool.submit(parse_detail, course): course for course in courses}
+        futures = {
+            pool.submit(parse_detail, course): course
+            for course in courses
+        }
         for index, future in enumerate(concurrent.futures.as_completed(futures), 1):
             course = futures[future]
-            key = str(course.get("id") or course.get("courseName") or course.get("name") or index)
+            key = f"{course.get('_degreeType','')}:{course.get('id') or course.get('courseName') or course.get('name') or index}"
             try:
                 details[key] = future.result()
             except Exception as exc:
                 details[key] = {"detailStatus": f"Fetch failed: {type(exc).__name__}"}
-            if index % 50 == 0 or index == len(courses):
-                print(f"Read {index} / {len(courses)} detail pages", flush=True)
+            if index % 100 == 0 or index == len(courses):
+                print(f"Read {index} / {len(courses)} DAAD detail pages", flush=True)
 
     programmes = []
     for course in courses:
-        key = str(course.get("id") or course.get("courseName") or course.get("name") or "")
+        key = f"{course.get('_degreeType','')}:{course.get('id') or course.get('courseName') or course.get('name') or ''}"
         programmes.append(normalize(course, details.get(key, {})))
 
+    counts = {
+        "Bachelor": sum(1 for p in programmes if p["degreeType"] == "Bachelor"),
+        "Master": sum(1 for p in programmes if p["degreeType"] == "Master"),
+    }
     payload = {
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "source": "DAAD International Programmes public Master's search API",
-        "scope": "Master's degree programmes indexed in DAAD International Programmes; this is not every German degree programme.",
+        "source": "DAAD International Programmes public API",
+        "scope": "All Bachelor and Master's listings returned by the DAAD International Programmes catalogue; not every degree programme offered in Germany.",
         "count": len(programmes),
+        "countsByDegree": counts,
         "detailFetched": sum(1 for p in programmes if p.get("detailStatus") == "Fetched"),
+        "detailFailed": sum(1 for p in programmes if str(p.get("detailStatus","")).startswith("Fetch failed")),
         "programmes": programmes,
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote {len(programmes)} programmes to {OUTPUT}", flush=True)
+    print(f"Wrote {counts['Bachelor']} Bachelor + {counts['Master']} Master's = {len(programmes)} total to {OUTPUT}", flush=True)
 
 if __name__ == "__main__":
     main()
