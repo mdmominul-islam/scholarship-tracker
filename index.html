@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Master’s Scholarship Tracker</title>
-<meta name="description" content="Searchable tracker of master’s programmes, scholarships and deadlines for applicants from Bangladesh.">
+<title>Global Master’s Programmes &amp; Scholarships Tracker</title>
+<meta name="description" content="A multi-year tracker for master’s programmes, regular study options, scholarships and application deadlines.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M10 24 32 14l22 10-22 10z M18 32v10c0 4 7 8 14 8s14-4 14-8V32l-14 6z' fill='white'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -459,7 +459,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .advanced-filters summary::-webkit-details-marker{display:none}
 .advanced-filters[open] summary{border-color:var(--accent);color:var(--accent)}
 .filter-icon{font-size:16px;line-height:1}
-.filter-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:12px 2px 3px}
+.filter-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:12px 2px 3px}
 .filter-field{display:block;min-width:0;color:var(--ink-soft);font-size:10.5px;font-weight:800}
 .filter-field select{display:block;width:100%;max-width:none;min-width:0;margin-top:5px;padding:10px 9px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font-size:12px}
 .filter-grid .chk{grid-column:1/-1;padding:5px 0;color:var(--ink)}
@@ -492,15 +492,32 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
  .planner-more{margin-left:0}
 }
 
+
+/* Strong contrast fixes for Planner in dark mode */
+:root[data-theme=dark]{--paper:#0a1120;--card:#141f33;--ink:#f4f6ff;--ink-soft:#c7d1e5;--line:#3a4965;--head:#202e49;--accent:#c0b2ff;--accent-soft:#35315f;--grey-soft:#293750;--blue:#9acbff;--blue-soft:#1b3b5d}
+:root[data-theme=dark] .subtabs button.subtab,:root[data-theme=dark] .planner-more-menu button.subtab{color:#d7e0f2!important;background:#1b2941!important;border-color:#465775!important}
+:root[data-theme=dark] .subtabs button.subtab.on,:root[data-theme=dark] .planner-more-menu button.subtab.on{color:#fff!important;background:#51458f!important;border-color:#b6a8ff!important}
+:root[data-theme=dark] .subtabs button.subtab:hover,:root[data-theme=dark] .planner-more-menu button.subtab:hover{color:#fff!important;background:#344765!important}
+:root[data-theme=dark] .planner-more summary{color:#f1f4ff!important;background:#202e49!important;border-color:#465775!important}
+:root[data-theme=dark] .planner-head h2,:root[data-theme=dark] .module-card h3,:root[data-theme=dark] .app-card h3,:root[data-theme=dark] .module-item h4{color:#f4f6ff!important}
+:root[data-theme=dark] .planner-head p,:root[data-theme=dark] .module-card p,:root[data-theme=dark] .module-item p,:root[data-theme=dark] .module-note,:root[data-theme=dark] .module-card .small,:root[data-theme=dark] .app-meta{color:#c7d1e5!important}
+:root[data-theme=dark] .module-card,:root[data-theme=dark] .module-item,:root[data-theme=dark] .app-card{background:#141f33!important;border-color:#3a4965!important}
+:root[data-theme=dark] .module-card input,:root[data-theme=dark] .module-card select,:root[data-theme=dark] .module-card textarea,:root[data-theme=dark] .app-card input,:root[data-theme=dark] .app-card select,:root[data-theme=dark] .app-card textarea{background:#0e192b!important;color:#f4f6ff!important;border-color:#465775!important}
+:root[data-theme=dark] .module-card button:not(.ghost),:root[data-theme=dark] .app-card button:not(.ghost){color:#fff!important}
+:root[data-theme=dark] .module-card button.ghost,:root[data-theme=dark] .app-card button.ghost{color:#e6ebf7!important;background:#202e49!important;border-color:#465775!important}
+#langToggle{position:absolute;right:126px;top:0;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.14);color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+#langToggle:hover{background:rgba(255,255,255,.24)}
+@media(max-width:640px){#langToggle{position:static;order:-2;margin-bottom:8px}#theme{position:static;order:-1;margin-bottom:8px}.heroin{gap:0}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="hero"><div class="heroin"><div>
-    <div class="kicker">Programmes · Scholarships · Deadlines · For applicants from Bangladesh · 2027 entry</div>
-    <h1>Global Master’s Scholarship Tracker</h1>
-    <div class="sub" id="sub"></div><div class="upd" id="upd"></div><div class="hero-meta"><span>Free to use</span><span>No account required</span><span>Progress stays on this device</span></div><button class="planner-launch" id="plannerLaunch" type="button">Open My Planner <span aria-hidden="true">→</span></button></div>
-    <button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
+    <div class="kicker" data-i18n="kicker">PROGRAMMES · SCHOLARSHIPS · REGULAR & FUNDED OPTIONS · MULTI-YEAR INTAKES</div>
+    <h1 data-i18n="siteTitle">Global Master’s Programmes &amp; Scholarships Tracker</h1>
+    <div class="sub" id="sub"></div><div class="upd" id="upd"></div><div class="hero-meta"><span data-i18n="freeUse">Free to use</span><span data-i18n="noLogin">No account required</span><span data-i18n="localSave">Progress stays on this device</span></div><button class="planner-launch" id="plannerLaunch" type="button"><span data-i18n="openPlanner">Open My Planner</span> <span aria-hidden="true">→</span></button></div>
+    <button id="langToggle" type="button" aria-label="Switch language">বাংলা</button><button id="theme" aria-label="Toggle dark mode">Dark mode</button></div></header>
 
   <div class="stats" id="stats"></div>
   <div class="notice"><strong>Please note:</strong> dates, fees and funding shown here are indicative and compiled from public sources. Entries marked “unconfirmed” or “check” have not been verified. Always confirm on the official programme or scholarship page before applying or paying any fee.</div>
@@ -509,52 +526,55 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   <details style="margin:-6px 0 14px;font-size:12.5px;color:var(--ink-soft)"><summary style="cursor:pointer;color:var(--accent)">ISCED fields with no Master's programmes here</summary><p style="margin:8px 0 0;max-width:900px">These are vocational or basic-level and not offered as Master's degrees: basic programmes; literacy and numeracy; personal skills; handicrafts; secretarial and office work; wholesale and retail sales; work skills; domestic services; hair and beauty services; traditional and complementary medicine; protection of persons and property (closest: Security rows). Dentistry, Medicine and Midwifery are professional first degrees, so no Master's route is listed.</p></details>
 
   <div class="controls" aria-label="Programme search and filters">
-    <label class="search-label" for="q">Find a programme
-      <input type="search" id="q" placeholder="Search university, programme, country or subject…" autocomplete="off">
+    <label class="search-label" for="q"><span data-i18n="searchLabel">Find a programme</span>
+      <input type="search" id="q" placeholder="Search university, programme, country or subject…" data-i18n-placeholder="searchPlaceholder" autocomplete="off">
     </label>
     <details class="advanced-filters">
-      <summary><span class="filter-icon" aria-hidden="true">☷</span> Filters & sort</summary>
+      <summary><span class="filter-icon" aria-hidden="true">☷</span> <span data-i18n="filtersSort">Filters &amp; sort</span></summary>
       <div class="filter-grid">
-        <label class="filter-field">Country<select id="fCountry"><option value="">All countries</option></select></label>
-        <label class="filter-field">Subject<select id="fField"><option value="">All fields</option></select></label>
-        <label class="filter-field">Funding
+        <label class="filter-field"><span data-i18n="country">Country</span><select id="fCountry"><option value="" data-i18n="allCountries">All countries</option></select></label>
+        <label class="filter-field"><span data-i18n="subject">Subject</span><select id="fField"><option value="" data-i18n="allFields">All fields</option></select></label>
+        <label class="filter-field"><span data-i18n="entryCycle">Entry cycle</span><select id="fCycle"><option value="" data-i18n="allYears">All years</option></select></label>
+        <label class="filter-field"><span data-i18n="funding">Funding / programme type</span>
           <select id="fFund">
-            <option value="">Any funding</option>
-            <option value="Full">Full funding only</option>
-            <option value="Full or partial">Full or partial</option>
-            <option value="Partial">Partial only</option>
+            <option value="" data-i18n="anyFunding">Any funding</option>
+            <option value="Scholarship options" data-i18n="scholarshipOptions">Scholarship options available</option>
+            <option value="Regular / self-funded" data-i18n="regularSelfFunded">Regular / self-funded</option>
+            <option value="Full" data-i18n="fullFunding">Full funding only</option>
+            <option value="Full or partial" data-i18n="fullOrPartial">Full or partial</option>
+            <option value="Partial" data-i18n="partialFunding">Partial funding only</option>
           </select>
         </label>
-        <label class="filter-field">Priority
+        <label class="filter-field"><span data-i18n="priority">Priority</span>
           <select id="fPrio">
-            <option value="">Any priority</option>
-            <option value="High">High priority</option>
-            <option value="Medium">Medium priority</option>
-            <option value="Low">Low priority</option>
+            <option value="" data-i18n="anyPriority">Any priority</option>
+            <option value="High" data-i18n="highPriority">High priority</option>
+            <option value="Medium" data-i18n="mediumPriority">Medium priority</option>
+            <option value="Low" data-i18n="lowPriority">Low priority</option>
           </select>
         </label>
-        <label class="filter-field">Sort by
-          <select id="fSort"><option value="no">Default order</option><option value="deadline">Deadline soonest</option><option value="priority">Priority</option><option value="living">Lowest living cost</option></select>
+        <label class="filter-field"><span data-i18n="sortBy">Sort by</span>
+          <select id="fSort"><option value="no" data-i18n="defaultOrder">Default order</option><option value="deadline" data-i18n="deadlineSoonest">Deadline soonest</option><option value="priority" data-i18n="sortPriority">Priority</option><option value="living" data-i18n="lowestLiving">Lowest living cost</option></select>
         </label>
-        <label class="chk"><input type="checkbox" id="fFav"> ★ Show shortlist only</label>
+        <label class="chk"><input type="checkbox" id="fFav"> <span data-i18n="shortlistOnly">★ Show shortlist only</span></label>
       </div>
     </details>
     <span class="cbtns">
-      <button class="ghost" id="reset">Clear filters</button>
-      <button class="ghost" id="exportFav">Download shortlist</button>
-      <button class="ghost" id="printBtn">Print results</button>
-      <button id="dl">Download all data</button>
+      <button class="ghost" id="reset" data-i18n="clearFilters">Clear filters</button>
+      <button class="ghost" id="exportFav" data-i18n="downloadShortlist">Download shortlist</button>
+      <button class="ghost" id="printBtn" data-i18n="printResults">Print results</button>
+      <button id="dl" data-i18n="downloadAll">Download all data</button>
     </span>
   </div>
 
   <div class="tabs">
-    <button class="tab planner-tab" data-p="planner">My Planner</button>
-    <button class="tab on" data-p="cards">Programmes <span class="c" id="cCards"></span></button>
-    <button class="tab" data-p="schol">Scholarships <span class="c" id="cSchol"></span></button>
-    <button class="tab" data-p="timeline">Deadlines <span class="c" id="cTimeline"></span></button>
-    <button class="tab" data-p="country">Countries <span class="c" id="cCountry"></span></button>
-    <button class="tab" data-p="ielts">IELTS Scoreboard</button>
-    <button class="tab" data-p="table">Table view <span class="c" id="cTable"></span></button>
+    <button class="tab planner-tab" data-p="planner"><span data-i18n="myPlanner">My Planner</span></button>
+    <button class="tab on" data-p="cards"><span data-i18n="programmes">Programmes</span> <span class="c" id="cCards"></span></button>
+    <button class="tab" data-p="schol"><span data-i18n="scholarships">Scholarships</span> <span class="c" id="cSchol"></span></button>
+    <button class="tab" data-p="timeline"><span data-i18n="deadlines">Deadlines</span> <span class="c" id="cTimeline"></span></button>
+    <button class="tab" data-p="country"><span data-i18n="countries">Countries</span> <span class="c" id="cCountry"></span></button>
+    <button class="tab" data-p="ielts"><span data-i18n="ieltsScoreboard">IELTS Scoreboard</span></button>
+    <button class="tab" data-p="table"><span data-i18n="tableView">Table view</span> <span class="c" id="cTable"></span></button>
   </div>
 
   <div class="panel on" id="p-cards"><div class="cards" id="cards"></div><div class="empty" id="emptyC" style="display:none">No programme matches those filters.</div></div>
@@ -587,12 +607,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
   <div class="panel" id="p-ielts">
     <div class="ielts-intro">
-      <h2>IELTS Scoreboard</h2>
+      <h2 data-i18n="ieltsScoreboard">IELTS Scoreboard</h2>
       <p>Save your IELTS result and compare it with the overall English requirement of a selected Master's programme.</p>
     </div>
     <div class="ielts-grid">
       <article class="card ielts-card">
-        <h3>My IELTS score</h3>
+        <h3 data-i18n="myIeltsScore">My IELTS score</h3>
         <p class="ielts-help">Enter your Listening, Reading, Writing and Speaking band scores.</p>
         <div class="ielts-score-inputs">
           <label for="ieltsListening">Listening<input id="ieltsListening" type="number" min="0" max="9" step="0.5" placeholder="e.g. 7.0"></label>
@@ -623,16 +643,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 
   <div class="panel" id="p-planner">
-    <div class="planner-head"><h2>My Study Abroad Planner</h2><p>Plan applications, deadlines, documents, costs and your next steps — privately in this browser.</p></div>
+    <div class="planner-head"><h2 data-i18n="plannerHeading">My Study Abroad Planner</h2><p data-i18n="plannerIntro">Plan applications, deadlines, documents, costs and your next steps — privately in this browser.</p></div>
     <div class="subtabs" id="plannerTabs">
-      <button class="subtab on" data-sub="dashboard">Overview</button><button class="subtab" data-sub="shortlist">Shortlist</button><button class="subtab" data-sub="applications">Applications</button><button class="subtab" data-sub="calendar">Calendar</button><button class="subtab" data-sub="compare">Compare</button>
-      <details class="planner-more"><summary>More tools <span aria-hidden="true">⌄</span></summary><div class="planner-more-menu">
-        <button class="subtab" data-sub="profile">Profile match</button><button class="subtab" data-sub="cost">Cost planner</button><button class="subtab" data-sub="documents">Documents</button><button class="subtab" data-sub="writing">SOP & CV</button><button class="subtab" data-sub="guide">Country guide</button><button class="subtab" data-sub="map">University map</button><button class="subtab" data-sub="alerts">Scholarship alerts</button><button class="subtab" data-sub="backup">Backup & restore</button>
+      <button class="subtab on" data-sub="dashboard" data-i18n="overview">Overview</button><button class="subtab" data-sub="shortlist" data-i18n="shortlist">Shortlist</button><button class="subtab" data-sub="applications" data-i18n="applications">Applications</button><button class="subtab" data-sub="calendar" data-i18n="calendar">Calendar</button><button class="subtab" data-sub="compare" data-i18n="compare">Compare</button>
+      <details class="planner-more"><summary><span data-i18n="moreTools">More tools</span> <span aria-hidden="true">⌄</span></summary><div class="planner-more-menu">
+        <button class="subtab" data-sub="profile" data-i18n="profileMatch">Profile match</button><button class="subtab" data-sub="cost" data-i18n="costPlanner">Cost planner</button><button class="subtab" data-sub="documents" data-i18n="documents">Documents</button><button class="subtab" data-sub="writing" data-i18n="sopCv">SOP &amp; CV</button><button class="subtab" data-sub="guide" data-i18n="countryGuide">Country guide</button><button class="subtab" data-sub="map" data-i18n="universityMap">University map</button><button class="subtab" data-sub="alerts" data-i18n="scholarshipAlerts">Scholarship alerts</button><button class="subtab" data-sub="backup" data-i18n="backupRestore">Backup &amp; restore</button>
       </div></details>
     </div>
-    <section class="subpanel on" id="sp-dashboard"><div class="module-grid" id="dashStats"></div><div class="module-grid"><article class="module-card"><h3>Upcoming deadlines</h3><div id="dashDeadlines" class="module-list"></div></article><article class="module-card"><h3>Application progress</h3><div id="dashProgress"></div></article><article class="module-card"><h3>Suggested next steps</h3><div id="dashNext"></div></article></div></section>
-    <section class="subpanel" id="sp-shortlist"><article class="module-card"><h3>My shortlisted programmes</h3><p class="module-note">Tap the star on any programme card to add or remove it. Choose Compare to add a programme to the comparison table.</p><div id="shortlistList" class="module-list"></div></article></section>
-    <section class="subpanel" id="sp-applications"><article class="module-card"><h3>Add a programme to My Applications</h3><div class="module-row"><select class="module-select" id="appAddSelect" style="flex:1"><option value="">Choose a programme</option></select><button id="appAddBtn" type="button">Add to tracker</button></div><p class="module-note">Shortlisted programmes and programmes with an updated status also appear below. Status changes sync with the existing Cards and Table views.</p></article><div id="applicationsList" class="module-list" style="margin-top:12px"></div></section>
+    <section class="subpanel on" id="sp-dashboard"><div class="module-grid" id="dashStats"></div><div class="module-grid"><article class="module-card"><h3 data-i18n="upcomingDeadlines">Upcoming deadlines</h3><div id="dashDeadlines" class="module-list"></div></article><article class="module-card"><h3 data-i18n="applicationProgress">Application progress</h3><div id="dashProgress"></div></article><article class="module-card"><h3 data-i18n="suggestedNextSteps">Suggested next steps</h3><div id="dashNext"></div></article></div></section>
+    <section class="subpanel" id="sp-shortlist"><article class="module-card"><h3 data-i18n="myShortlistedProgrammes">My shortlisted programmes</h3><p class="module-note">Tap the star on any programme card to add or remove it. Choose Compare to add a programme to the comparison table.</p><div id="shortlistList" class="module-list"></div></article></section>
+    <section class="subpanel" id="sp-applications"><article class="module-card"><h3 data-i18n="addProgramme">Add a programme to My Applications</h3><div class="module-row"><select class="module-select" id="appAddSelect" style="flex:1"><option value="">Choose a programme</option></select><button id="appAddBtn" type="button">Add to tracker</button></div><p class="module-note">Shortlisted programmes and programmes with an updated status also appear below. Status changes sync with the existing Cards and Table views.</p></article><div id="applicationsList" class="module-list" style="margin-top:12px"></div></section>
     <section class="subpanel" id="sp-calendar"><article class="module-card"><div class="module-row" style="justify-content:space-between"><div><h3>Application deadline calendar</h3><p class="module-note">Calendar dates are extracted from deadline text and may be approximate. Confirm exact dates on official programme pages.</p></div><input class="module-input" id="calendarMonth" type="month" style="max-width:180px"></div><div id="calendarGrid" class="calendar-grid"></div><div id="calendarList" class="module-list" style="margin-top:12px"></div></article></section>
     <section class="subpanel" id="sp-compare"><article class="module-card"><h3>Compare up to four programmes</h3><div class="module-fields" id="compareSelects"></div><div id="compareResult"></div><p class="module-note">Figures are indicative dataset values. Check each official programme page before deciding.</p></article></section>
     <section class="subpanel" id="sp-profile"><article class="module-card"><h3>Student profile & programme finder</h3><p class="module-note">Filter by subject, English-taught option, funding and living-cost budget. This is a planning match, not an official admission or scholarship eligibility decision.</p><div class="module-fields">
@@ -695,8 +715,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 </div>
 
 <script>
+let UI_LANG='en';try{UI_LANG=localStorage.getItem('trk_lang')==='bn'?'bn':'en';}catch(e){}
 const CONFIG={DATA_URL:'',FEEDBACK_EMAIL:'imdmominul196@gmail.com',OWNER_NAME:'',UPDATED:'15 Nov 2026'};
-const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuition (non-EU/yr),Living cost (EUR/mo),Funding scheme(s),Funding level,Intake and deadline (2027 entry),Website,Notes,My status,Priority
+const CSV = `No,Country,City,University,Programme,Field,Language,Duration,Tuition (non-EU/yr),Living cost (EUR/mo),Funding scheme(s),Funding level,Intake and deadline,Website,Notes,My status,Priority
 1,EU (multi-country),Multiple,Erasmus Mundus consortium,Erasmus Mundus Joint Master (100+ programmes),Various,English,2 yrs,€0–9000 (covered by scholarship),1000,EMJM Scholarship (tuition + ~€1400/mo + travel + installation),Full,Oct 2026 – Jan 2027 (varies per programme),erasmus-plus.ec.europa.eu,Easiest full-funding route for Bangladeshi students. You may apply to max 3 programmes. Check the EMJM catalogue every October.,Not started,High
 2,Germany,Munich,Technical University of Munich (TUM),M.Sc. Computer Science,Computer Science,English/German,2 yrs,€0 + ~€150/semester fee,1000,DAAD Study Scholarship; Deutschlandstipendium (€300/mo); TUM merit awards,Partial,Winter: 15 Jan 2027 / Summer: 30 Nov 2026,tum.de,No tuition for any student — only semester fee which includes public transport pass.,Not started,High
 3,Germany,Munich,Technical University of Munich (TUM),M.Sc. Data Engineering and Analytics,Data Science,English,2 yrs,€0 + fees,1000,DAAD; Deutschlandstipendium,Partial,15 Jan 2027,tum.de,Strong ML/data programme; very competitive GPA requirement.,Not started,High
@@ -1046,13 +1067,15 @@ function keyDate(s){
 }
 
 const mapRow=r=>{
-  const d=keyDate(r['Intake and deadline (2027 entry)']);
+  const deadlineText=r['Intake and deadline']||r['Intake and deadline (2027 entry)']||'';
+  const d=keyDate(deadlineText);
+  const cycle=String(r['Entry cycle']||r['Entry year']||'2027').trim()||'2027';
   return {
     no:+r['No'], country:r['Country'], city:r['City'], university:r['University'],
     programme:r['Programme'], field:r['Field'], language:r['Language'], dur:r['Duration'],
     tuition:r['Tuition (non-EU/yr)'], living:+r['Living cost (EUR/mo)'],
     fundText:r['Funding scheme(s)'], fundLevel:r['Funding level'],
-    deadline:r['Intake and deadline (2027 entry)'], site:r['Website'],
+    deadline:deadlineText, cycle, site:r['Website'],
     note:r['Notes'], status:r['My status'], priority:r['Priority'],
     date:d
   };
@@ -1090,19 +1113,22 @@ const countries=new Set(DATA.map(d=>d.country)).size;
 const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
 
 /* ---------- filters ---------- */
-const fC=document.getElementById('fCountry'), fF=document.getElementById('fField');
-function fillFilters(){[[fC,'country'],[fF,'field']].forEach(([el,k])=>{const keep=el.value;while(el.options.length>1)el.remove(1);[...new Set(DATA.map(d=>d[k]))].sort().forEach(v=>el.add(new Option(v,v)));el.value=keep;});}
+const fC=document.getElementById('fCountry'), fF=document.getElementById('fField'), fCycle=document.getElementById('fCycle');
+function fillFilters(){[[fC,'country'],[fF,'field'],[fCycle,'cycle']].forEach(([el,k])=>{const keep=el.value;while(el.options.length>1)el.remove(1);[...new Set(DATA.map(d=>String(d[k]||'')))].filter(Boolean).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).forEach(v=>el.add(new Option(v,v)));el.value=keep;});}
 fillFilters();
 
-let state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
+let state={q:'',country:'',field:'',cycle:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
 
 function matches(d){
   if(state.country && d.country!==state.country) return false;
   if(state.field && d.field!==state.field) return false;
+  if(state.cycle && String(d.cycle)!==state.cycle) return false;
   if(state.group && grp(d)!==state.group) return false;
   if(state.fav && !FAV.has(d.no)) return false;
   if(state.prio && d.priority!==state.prio) return false;
   if(state.fund){
+    if(state.fund==='Scholarship options' && d.fundLevel==='None') return false;
+    if(state.fund==='Regular / self-funded' && d.fundLevel!=='None') return false;
     if(state.fund==='Full' && d.fundLevel!=='Full') return false;
     if(state.fund==='Partial' && d.fundLevel!=='Partial') return false;
     if(state.fund==='Full or partial' && !/Full/.test(d.fundLevel)) return false;
@@ -1344,11 +1370,10 @@ function renderStats(){
   const countries=new Set(DATA.map(d=>d.country)).size;
   const soon=DATA.filter(d=>d.date && days(d.date,TODAY)>=0 && days(d.date,TODAY)<=120).length;
   const applied=DATA.filter(d=>d.status==='Applied'||d.status==='Offer').length;
-  document.getElementById('sub').textContent=DATA.length+' programmes across '+countries+' countries, covering all 11 ISCED broad fields. Tuition, living cost, funding and the deadline that matters.';
-  document.getElementById('stats').innerHTML=[
-    [DATA.length,'Programmes'],[countries,'Countries'],[DATA.filter(d=>d.fundLevel==='Full').length,'Full-funding options'],
-    [soon,'Deadlines in 120 days'],[FAV.size,'Shortlisted'],[applied,'Applied or offered']
-  ].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+  document.getElementById('sub').textContent=UI_LANG==='bn'?`${DATA.length}টি মাস্টার্স প্রোগ্রাম, ${countries}টি দেশ। স্কলারশিপসহ ও নিজ খরচে পড়ার সুযোগ, টিউশন ফি, জীবনযাত্রার খরচ এবং আবেদনের সময়সীমা দেখুন।`:`${DATA.length} programmes across ${countries} countries, including scholarship-funded and regular study options. Compare tuition, living costs, funding and deadlines.`;
+  const labels=UI_LANG==='bn'?['প্রোগ্রাম','দেশ','সম্পূর্ণ অর্থায়নের সুযোগ','আগামী ১২০ দিনের ডেডলাইন','শর্টলিস্ট','আবেদন / অফার']:['Programmes','Countries','Full-funding options','Deadlines in 120 days','Shortlisted','Applied or offered'];
+  const nums=[DATA.length,countries,DATA.filter(d=>d.fundLevel==='Full').length,soon,FAV.size,applied];
+  document.getElementById('stats').innerHTML=nums.map((n,i)=>`<div class="stat"><div class="n">${n}</div><div class="l">${labels[i]}</div></div>`).join('');
 }
 function renderCards(){
   const rows=sortRows(DATA.filter(matches));
@@ -1433,7 +1458,13 @@ fbm.addEventListener('click',e=>{if(e.target===fbm)fbm.hidden=true;});
 document.getElementById('fbSend').addEventListener('click',async()=>{const btn=document.getElementById('fbSend'),msg=document.getElementById('fbMsg').value.trim(),email=document.getElementById('fbEmail').value.trim(),note=document.getElementById('fbNote');if(!msg){note.textContent='Please write a message before sending.';document.getElementById('fbMsg').focus();return;}if(email&&!document.getElementById('fbEmail').checkValidity()){note.textContent='Please enter a valid email address, or leave it blank.';return;}const t=fbText();btn.disabled=true;btn.textContent='Sending…';note.textContent='Sending your feedback securely…';try{const response=await fetch('https://formsubmit.co/ajax/'+CONFIG.FEEDBACK_EMAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:email||'Scholarship Tracker visitor',email:email,message:t.body,_subject:t.subj,_template:'table',_captcha:'false'})});const data=await response.json().catch(()=>({}));if(!response.ok||!(data.success===true||data.success==='true'))throw new Error(data.message||'Email service did not accept the message.');note.textContent='Feedback submitted. If this is the first submission, the site owner must confirm the activation email before messages can arrive.';document.getElementById('fbMsg').value='';}catch(err){note.textContent='Automatic sending failed. Use Copy, or email '+CONFIG.FEEDBACK_EMAIL+' directly. '+(err&&err.message?err.message:'');}finally{btn.disabled=false;btn.textContent='Send feedback';}});
 document.getElementById('fbCopy').addEventListener('click',()=>{const t=fbText();const txt=t.subj+'\n\n'+t.body;try{navigator.clipboard.writeText(txt);document.getElementById('fbNote').textContent='Copied.';}catch(e){document.getElementById('fbNote').textContent='Copy failed: select the text manually.';}});
 const setUpd=t=>{document.getElementById('upd').textContent=t;};
-function setThemeLabel(){const dark=document.documentElement.dataset.theme==='dark',btn=document.getElementById('theme');btn.textContent=dark?'Light mode':'Dark mode';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');btn.setAttribute('aria-pressed',dark?'true':'false');}
+const UI_TEXT={
+ en:{kicker:'PROGRAMMES · SCHOLARSHIPS · REGULAR & FUNDED OPTIONS · MULTI-YEAR INTAKES',siteTitle:'Global Master’s Programmes & Scholarships Tracker',freeUse:'Free to use',noLogin:'No account required',localSave:'Progress stays on this device',openPlanner:'Open My Planner',searchLabel:'Find a programme',searchPlaceholder:'Search university, programme, country or subject…',filtersSort:'Filters & sort',country:'Country',allCountries:'All countries',subject:'Subject',allFields:'All fields',entryCycle:'Entry cycle',allYears:'All years',funding:'Funding / programme type',anyFunding:'Any funding',scholarshipOptions:'Scholarship options available',regularSelfFunded:'Regular / self-funded',fullFunding:'Full funding only',fullOrPartial:'Full or partial',partialFunding:'Partial funding only',priority:'Priority',anyPriority:'Any priority',highPriority:'High priority',mediumPriority:'Medium priority',lowPriority:'Low priority',sortBy:'Sort by',defaultOrder:'Default order',deadlineSoonest:'Deadline soonest',sortPriority:'Priority',lowestLiving:'Lowest living cost',shortlistOnly:'★ Show shortlist only',clearFilters:'Clear filters',downloadShortlist:'Download shortlist',printResults:'Print results',downloadAll:'Download all data',myPlanner:'My Planner',programmes:'Programmes',scholarships:'Scholarships',deadlines:'Deadlines',countries:'Countries',ieltsScoreboard:'IELTS Scoreboard',tableView:'Table view',plannerHeading:'My Study Abroad Planner',plannerIntro:'Plan applications, deadlines, documents, costs and your next steps — privately in this browser.',overview:'Overview',shortlist:'Shortlist',applications:'Applications',calendar:'Calendar',compare:'Compare',moreTools:'More tools',profileMatch:'Profile match',costPlanner:'Cost planner',documents:'Documents',sopCv:'SOP & CV',countryGuide:'Country guide',universityMap:'University map',scholarshipAlerts:'Scholarship alerts',backupRestore:'Backup & restore',myIeltsScore:'My IELTS score',myShortlistedProgrammes:'My shortlisted programmes',addProgramme:'Add a programme to My Applications',upcomingDeadlines:'Upcoming deadlines',applicationProgress:'Application progress',suggestedNextSteps:'Suggested next steps'},
+ bn:{kicker:'মাস্টার্স প্রোগ্রাম · স্কলারশিপ · নিজ খরচে পড়াশোনা · বিভিন্ন বছরের ভর্তি',siteTitle:'মাস্টার্স প্রোগ্রাম ও স্কলারশিপ ট্র্যাকার',freeUse:'বিনামূল্যে ব্যবহার করুন',noLogin:'লগইন প্রয়োজন নেই',localSave:'তথ্য এই ডিভাইসে সংরক্ষিত থাকে',openPlanner:'আমার প্ল্যানার খুলুন',searchLabel:'প্রোগ্রাম খুঁজুন',searchPlaceholder:'বিশ্ববিদ্যালয়, প্রোগ্রাম, দেশ বা বিষয় লিখে খুঁজুন…',filtersSort:'ফিল্টার ও সাজানোর অপশন',country:'দেশ',allCountries:'সব দেশ',subject:'বিষয়',allFields:'সব বিষয়',entryCycle:'ভর্তির বছর',allYears:'সব বছর',funding:'অর্থায়ন / প্রোগ্রামের ধরন',anyFunding:'সব ধরনের অর্থায়ন',scholarshipOptions:'স্কলারশিপের সুযোগ আছে',regularSelfFunded:'সাধারণ / নিজের খরচে',fullFunding:'সম্পূর্ণ অর্থায়ন',fullOrPartial:'সম্পূর্ণ বা আংশিক',partialFunding:'আংশিক অর্থায়ন',priority:'অগ্রাধিকার',anyPriority:'সব অগ্রাধিকার',highPriority:'উচ্চ অগ্রাধিকার',mediumPriority:'মাঝারি অগ্রাধিকার',lowPriority:'কম অগ্রাধিকার',sortBy:'সাজান',defaultOrder:'ডিফল্ট ক্রম',deadlineSoonest:'নিকটবর্তী ডেডলাইন আগে',sortPriority:'অগ্রাধিকার অনুযায়ী',lowestLiving:'কম জীবনযাত্রার খরচ আগে',shortlistOnly:'★ শুধু পছন্দের তালিকা দেখুন',clearFilters:'ফিল্টার মুছুন',downloadShortlist:'পছন্দের তালিকা ডাউনলোড',printResults:'ফলাফল প্রিন্ট',downloadAll:'সব তথ্য ডাউনলোড',myPlanner:'আমার প্ল্যানার',programmes:'প্রোগ্রামসমূহ',scholarships:'স্কলারশিপ',deadlines:'আবেদনের শেষ সময়',countries:'দেশসমূহ',ieltsScoreboard:'IELTS স্কোরবোর্ড',tableView:'টেবিল ভিউ',plannerHeading:'আমার বিদেশে পড়াশোনার পরিকল্পনা',plannerIntro:'আবেদন, ডেডলাইন, কাগজপত্র, খরচ ও পরবর্তী কাজগুলো এখানে গুছিয়ে রাখুন। তথ্য এই ব্রাউজারেই ব্যক্তিগতভাবে থাকবে।',overview:'সারসংক্ষেপ',shortlist:'পছন্দের তালিকা',applications:'আবেদনসমূহ',calendar:'ক্যালেন্ডার',compare:'তুলনা',moreTools:'আরও টুলস',profileMatch:'প্রোফাইল মিলিয়ে দেখুন',costPlanner:'খরচের পরিকল্পনা',documents:'প্রয়োজনীয় কাগজপত্র',sopCv:'SOP ও CV',countryGuide:'দেশের গাইড',universityMap:'বিশ্ববিদ্যালয়ের মানচিত্র',scholarshipAlerts:'স্কলারশিপ আপডেট',backupRestore:'ব্যাকআপ ও পুনরুদ্ধার',myIeltsScore:'আমার IELTS স্কোর',myShortlistedProgrammes:'আমার পছন্দের প্রোগ্রাম',addProgramme:'আমার আবেদনের তালিকায় প্রোগ্রাম যোগ করুন',upcomingDeadlines:'সামনের ডেডলাইন',applicationProgress:'আবেদনের অগ্রগতি',suggestedNextSteps:'পরবর্তী করণীয়'}
+};
+function applyLanguage(){document.documentElement.lang=UI_LANG==='bn'?'bn':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(UI_TEXT[UI_LANG][k])el.textContent=UI_TEXT[UI_LANG][k];});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.dataset.i18nPlaceholder;if(UI_TEXT[UI_LANG][k])el.placeholder=UI_TEXT[UI_LANG][k];});const langBtn=document.getElementById('langToggle');langBtn.textContent=UI_LANG==='bn'?'English':'বাংলা';langBtn.setAttribute('aria-label',UI_LANG==='bn'?'Switch to English':'বাংলা ভাষায় দেখুন');setThemeLabel();renderStats();}
+function setThemeLabel(){const dark=document.documentElement.dataset.theme==='dark',btn=document.getElementById('theme');btn.textContent=UI_LANG==='bn'?(dark?'লাইট মোড':'ডার্ক মোড'):(dark?'Light mode':'Dark mode');btn.setAttribute('aria-label',UI_LANG==='bn'?(dark?'লাইট মোড চালু করুন':'ডার্ক মোড চালু করুন'):(dark?'Switch to light mode':'Switch to dark mode'));btn.setAttribute('aria-pressed',dark?'true':'false');}
+document.getElementById('langToggle').addEventListener('click',()=>{UI_LANG=UI_LANG==='bn'?'en':'bn';try{localStorage.setItem('trk_lang',UI_LANG);}catch(e){}applyLanguage();});
 setThemeLabel();
 document.getElementById('printBtn').addEventListener('click',()=>window.print());
 document.getElementById('exportFav').addEventListener('click',()=>{
@@ -1692,34 +1723,43 @@ function renderAll(){ renderStats(); renderChips(); renderSchol(); renderCards()
 document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;renderAll();});
 fC.addEventListener('change',e=>{state.country=e.target.value;renderAll();});
 fF.addEventListener('change',e=>{state.field=e.target.value;renderAll();});
+fCycle.addEventListener('change',e=>{state.cycle=e.target.value;renderAll();});
 document.getElementById('fFund').addEventListener('change',e=>{state.fund=e.target.value;renderAll();});
 document.getElementById('fPrio').addEventListener('change',e=>{state.prio=e.target.value;renderAll();});
 document.getElementById('reset').addEventListener('click',()=>{
-  state={q:'',country:'',field:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
-  document.getElementById('q').value=''; fC.value=''; fF.value='';
+  state={q:'',country:'',field:'',cycle:'',fund:'',prio:'',group:'',fav:false,sort:'no',dir:1};
+  document.getElementById('q').value=''; fC.value=''; fF.value=''; fCycle.value='';
   document.getElementById('fFund').value=''; document.getElementById('fPrio').value=''; document.getElementById('fSort').value='no'; document.getElementById('fFav').checked=false;
   renderAll();
 });
 document.body.dataset.tab='cards';
+let lastNonPlannerTab='cards';
+function activateMainTab(name){
+  document.body.dataset.tab=name;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.p===name));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id==='p-'+name));
+}
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-  document.body.dataset.tab=t.dataset.p;
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
-  t.classList.add('on');
-  document.getElementById('p-'+t.dataset.p).classList.add('on');
+  const current=document.querySelector('.tab.on')?.dataset.p||'cards';
+  let next=t.dataset.p;
+  if(next==='planner'&&current==='planner') next=lastNonPlannerTab||'cards';
+  else if(next==='planner'&&current!=='planner') lastNonPlannerTab=current;
+  else if(next!=='planner') lastNonPlannerTab=next;
+  activateMainTab(next);
 }));
 document.getElementById('dl').addEventListener('click',()=>{
   const blob=new Blob(["﻿"+CSV],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='Masters_Scholarship_Tracker_'+DATA.length+'.csv';
+  a.download='Study_Abroad_Programmes_'+DATA.length+'.csv';
   a.click(); URL.revokeObjectURL(a.href);
 });
 
 initIELTS();
 initPlanner();
 renderAll();
-setUpd('Built-in data last updated '+CONFIG.UPDATED+'. Dates and countdowns use today’s date.');
+applyLanguage();
+setUpd((UI_LANG==='bn'?'সর্বশেষ ডেটা আপডেট: ':'Built-in data last updated ')+CONFIG.UPDATED+(UI_LANG==='bn'?'। তারিখ ও কাউন্টডাউন আজকের তারিখ অনুযায়ী।':'. Dates and countdowns use today’s date.'));
 if(CONFIG.DATA_URL){
   fetch(CONFIG.DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{
     const rows=parseCSV(t).map(mapRow);
