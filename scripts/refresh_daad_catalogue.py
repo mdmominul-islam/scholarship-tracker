@@ -25,7 +25,8 @@ API = BASE + "/deutschland/studienangebote/international-programmes/api/solr/en/
 RESULT_PAGE = BASE + "/deutschland/studienangebote/international-programmes/en/result/"
 PAGE_SIZE = 500
 WORKERS = 12
-TIMEOUT = 20
+DETAILS_PER_DEGREE = 150
+TIMEOUT = 15
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; ScholarshipTracker/1.0; +https://mdmominul-islam.github.io/scholarship-tracker/)",
     "Accept": "application/json, text/plain, */*",
@@ -224,11 +225,29 @@ def main():
         "Reading DAAD detail pages...",
         flush=True
     )
+    # Fetch complete degree listings first. Detail pages are slower and not all
+    # DAAD entries expose the same fields, so enrich a representative recent
+    # subset per degree; keep all remaining listings with honest "Not confirmed"
+    # values rather than delaying or dropping the full catalogue.
+    selected = []
+    selected_ids = set()
+    for degree_name in ("Bachelor", "Master"):
+        group = [x for x in by_degree[degree_name]][:DETAILS_PER_DEGREE]
+        selected.extend(group)
+        selected_ids.update(
+            f"{x.get('_degreeType','')}:{x.get('id') or x.get('courseName') or x.get('name') or ''}"
+            for x in group
+        )
+    print(
+        f"Enriching {len(selected)} course detail pages "
+        f"({DETAILS_PER_DEGREE} per degree); all listings remain included.",
+        flush=True
+    )
     details = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
         futures = {
             pool.submit(parse_detail, course): course
-            for course in courses
+            for course in selected
         }
         for index, future in enumerate(concurrent.futures.as_completed(futures), 1):
             course = futures[future]
@@ -237,8 +256,8 @@ def main():
                 details[key] = future.result()
             except Exception as exc:
                 details[key] = {"detailStatus": f"Fetch failed: {type(exc).__name__}"}
-            if index % 100 == 0 or index == len(courses):
-                print(f"Read {index} / {len(courses)} DAAD detail pages", flush=True)
+            if index % 50 == 0 or index == len(selected):
+                print(f"Enriched {index} / {len(selected)} DAAD detail pages", flush=True)
 
     programmes = []
     for course in courses:
