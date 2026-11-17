@@ -659,6 +659,96 @@ button.ghost{background:var(--card)!important;color:var(--ink)!important;border-
 :root[data-theme=dark] .feedback-box .feedback-error{background:var(--red-soft)!important;color:var(--red)!important}
 @media(max-width:640px){.hero{background:linear-gradient(145deg,#38232A 0%,#713747 58%,#9B5965 100%)!important}}
 </style>
+<style id="ui-refresh-2026-v5">
+:root{
+ color-scheme:light;
+ --paper:#F8FAFC;
+ --card:#FFFFFF;
+ --ink:#0F172A;
+ --ink-soft:#64748B;
+ --line:#E2E8F0;
+ --head:#F1F5F9;
+ --accent:#3B82F6;
+ --accent-soft:#DBEAFE;
+ --green:#15803D;
+ --green-soft:#DCFCE7;
+ --amber:#A16207;
+ --amber-soft:#FEF3C7;
+ --grey:#64748B;
+ --grey-soft:#F1F5F9;
+ --blue:#2563EB;
+ --blue-soft:#DBEAFE;
+ --red:#B91C1C;
+ --red-soft:#FEE2E2;
+ --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.055);
+}
+:root[data-theme=dark]{
+ color-scheme:dark;
+ --paper:#0B1120;
+ --card:#1E293B;
+ --ink:#F8FAFC;
+ --ink-soft:#94A3B8;
+ --line:#334155;
+ --head:#0F172A;
+ --accent:#3B82F6;
+ --accent-soft:#1E3A8A;
+ --green:#86EFAC;
+ --green-soft:#14532D;
+ --amber:#FCD34D;
+ --amber-soft:#713F12;
+ --grey:#94A3B8;
+ --grey-soft:#263449;
+ --blue:#60A5FA;
+ --blue-soft:#1E3A5F;
+ --red:#FCA5A5;
+ --red-soft:#7F1D1D;
+ --shadow:0 2px 8px rgba(0,0,0,.22),0 12px 30px rgba(0,0,0,.16);
+}
+body{background:var(--paper)!important;color:var(--ink)!important}
+.hero{background:linear-gradient(120deg,#0F172A 0%,#1E3A8A 56%,#3B82F6 100%)!important;color:#fff}
+.hero:before{background:radial-gradient(circle,rgba(191,219,254,.22),transparent 68%)}
+.hero:after{background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%)}
+.kicker,.upd{color:#DBEAFE!important}
+.sub{color:#EFF6FF!important}
+#theme{background:rgba(255,255,255,.13)!important;border-color:rgba(255,255,255,.32)!important;color:#fff!important}
+.planner-launch{background:#FFFFFF!important;color:#1D4ED8!important;box-shadow:0 8px 22px rgba(15,23,42,.2)}
+.planner-launch:hover{background:#EFF6FF!important}
+.stat,.card,.module-card,.module-item,.app-card,.ielts-card,.ccard,.tlmonth{
+ background:var(--card)!important;border-color:var(--line)!important;color:var(--ink)!important;box-shadow:var(--shadow)
+}
+.stat .n{color:var(--accent)!important}
+.stat:after{background:linear-gradient(90deg,var(--accent),#93C5FD)!important}
+.notice,.facts,.dlr,.checkrow,.app-check{background:var(--head)!important;border-color:var(--line)!important;color:var(--ink)!important}
+.chip{background:var(--card)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.chip.on,.tab.on,.subtab.on,.planner-tab{background:var(--accent-soft)!important;color:var(--accent)!important;border-color:var(--accent)!important}
+.tabs,.subtabs{background:var(--card)!important;border-color:var(--line)!important}
+.tab,.subtab{color:var(--ink-soft)!important}
+.planner-more summary{background:var(--head)!important;color:var(--ink)!important}
+.planner-more-menu .subtab{background:var(--card)!important}
+button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip):not(#theme){
+ background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important
+}
+button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip):not(#theme):hover{
+ background:var(--blue)!important;filter:brightness(.94)
+}
+button.ghost{background:var(--card)!important;color:var(--ink)!important;border-color:var(--line)!important}
+:root[data-theme=dark] button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip):not(#theme){background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important}
+:root[data-theme=dark] button:not(.ghost):not(.tab):not(.star):not(.dbtn):not(.chip):not(#theme):hover{background:#60A5FA!important;color:#0B1120!important}
+:root[data-theme=dark] button.ghost{background:var(--card)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.module-input,.module-select,.module-textarea,.ielts-score-inputs input,.ielts-program-search,.ielts-program-select,.ielts-minimum,.controls input,.controls select,.feedback-box input,.feedback-box select,.feedback-box textarea{
+ background:var(--card)!important;color:var(--ink)!important;border-color:var(--line)!important
+}
+.module-card p,.module-item p,.module-note,.planner-head p,.app-meta,.feedback-recipient{color:var(--ink-soft)!important}
+.calendar-day{background:var(--card)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.calendar-day.today{border-color:var(--accent)!important}
+.planner-link,.module-item a{color:var(--blue)!important}
+#exportFav:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 48%,transparent)!important;outline-offset:2px}
+:root[data-theme=dark] .feedback-box .mnote{background:var(--head)!important;color:var(--ink-soft)!important}
+:root[data-theme=dark] .feedback-box .feedback-success{background:var(--green-soft)!important;color:var(--green)!important}
+:root[data-theme=dark] .feedback-box .feedback-error{background:var(--red-soft)!important;color:var(--red)!important}
+@media(max-width:640px){.hero{background:linear-gradient(145deg,#0F172A 0%,#1E3A8A 58%,#3B82F6 100%)!important}}
+</style>
 </head>
 <body>
 <div class="wrap">
