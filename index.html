@@ -1307,43 +1307,28 @@ footer{color:var(--ink-soft)}
     <div class="germany-head">
       <div>
         <h2 data-i18n="germanyTitle">Germany Study Finder</h2>
-        <p data-i18n="germanyIntro">Explore DAAD-listed Bachelor and Master programmes separately. Search by university, subject or city, compare language and application information, and verify requirements on the official university page.</p>
+        <p data-i18n="germanyIntro">Browse the DAAD International Programmes catalogue with separate Bachelor and Master's lists. Search by university, programme, subject or city, and verify admission requirements with the official university.</p>
       </div>
     </div>
     <div class="germany-links">
       <a class="germany-link" href="https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/" target="_blank" rel="noopener">
-        <strong>All DAAD degree programmes</strong><span>Open the official catalogue. Set Degree = Master, then choose your subject, language and city.</span>
+        <strong>All DAAD degree programmes</strong><span>Open the official DAAD catalogue for the wider German degree-programme database.</span>
       </a>
       <a class="germany-link" href="https://www2.daad.de/deutschland/studienangebote/international-programmes/en/" target="_blank" rel="noopener">
-        <strong>DAAD International Programmes</strong><span>Internationally oriented programmes, mostly taught in English.</span>
+        <strong>DAAD International Programmes</strong><span>Official source for the catalogue imported below.</span>
       </a>
       <a class="germany-link" href="https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/" target="_blank" rel="noopener">
         <strong>VPD explained by uni-assist</strong><span>What it is, when it is needed and how to apply.</span>
       </a>
     </div>
     <div class="germany-note">
-      <strong>How to use this section</strong>
-      <p>The live list below imports Bachelor and Master listings returned by the DAAD International Programmes catalogue. This is not every degree programme offered in Germany. VPD, IELTS and MOI vary by university and course; unverified items are labelled “Not confirmed”.</p>
+      <strong>Catalogue coverage and admission checks</strong>
+      <p>This catalogue contains all Bachelor and Master's listings returned by the DAAD International Programmes database at the latest import. It is not every degree offered in Germany. VPD, IELTS and MOI are programme-specific; where official details do not confirm a rule, it is labelled “Not confirmed”.</p>
     </div>
-    <div class="germany-filters">
-      <label>Search university or programme<input id="gSearch" type="search" placeholder="e.g. Computer Science, Bonn, TUM…"></label>
-      <label>Teaching language<select id="gLanguage"><option value="all">All teaching languages</option><option value="English">English-taught or partly English</option><option value="German">German-taught or partly German</option><option value="EnglishOnly">English only</option><option value="GermanOnly">German only</option></select></label>
-    </div>
-    <div class="germany-count"><strong id="gCount">0</strong> programmes shown</div>
-    <div class="tablebox germany-tablebox">
-      <table class="germany-table">
-        <thead><tr><th>University &amp; programme</th><th>City</th><th>Language</th><th>VPD</th><th>IELTS</th><th>MOI accepted?</th><th>Official page</th></tr></thead>
-        <tbody id="gRows"></tbody>
-      </table>
-    </div>
-    <p class="germany-footnote">MOI = Medium of Instruction certificate. Do not assume an MOI is accepted just because a course is taught in English. If a requirement is marked “Check programme”, open the university's official course page before applying.</p>
-  </div>
-
-
     <section class="daad-live" aria-labelledby="daadLiveTitle">
       <div class="daad-live-head">
         <div><h3 id="daadLiveTitle">DAAD degree catalogue</h3>
-        <p>Browse DAAD International Programmes. Switch between Bachelor and Master's, then filter by subject, language or university.</p></div>
+        <p>Choose a degree level first, then search or filter the imported programmes.</p></div>
         <a href="https://www2.daad.de/deutschland/studienangebote/international-programmes/en/" target="_blank" rel="noopener">Open official DAAD catalogue ↗</a>
       </div>
       <div class="daad-degree-tabs" role="tablist" aria-label="Degree level">
@@ -1362,8 +1347,10 @@ footer{color:var(--ink-soft)}
           <tbody id="daadLiveRows"><tr><td colspan="10">Loading catalogue…</td></tr></tbody>
         </table>
       </div>
-      <p class="germany-footnote">MOI = Medium of Instruction. Teaching in English does not automatically mean an MOI certificate is accepted. DAAD course details may not contain every university requirement; confirm VPD, IELTS, MOI and deadlines on the official university admissions page before applying.</p>
+      <p class="germany-footnote">MOI = Medium of Instruction. Teaching in English does not automatically mean an MOI certificate is accepted. Confirm VPD, IELTS, MOI and deadlines on the official university admissions page before applying.</p>
     </section>
+  </div>
+
   <div class="panel" id="p-ielts">
     <div class="ielts-intro">
       <h2 data-i18n="ieltsScoreboard">IELTS Scoreboard</h2>
@@ -2909,35 +2896,7 @@ const GERMANY_PROGRAMME_ADMISSIONS={
     source:'https://www.econ.uni-bonn.de/en/study-programs/study-programs/master/application-admission'
   }
 };
-function germanyStatus(text){
-  const cls=/Required|May be accepted|accepted/i.test(text)&&!/Not confirmed/i.test(text)?'yes':/check|not confirmed|programme-specific/i.test(text)?'check':'';
-  return '<span class="g-status '+cls+'">'+text+'</span>';
-}
-function renderGermanyGuide(){
-  const search=(document.getElementById('gSearch')?.value||'').trim().toLowerCase();
-  const language=document.getElementById('gLanguage')?.value||'English';
-  const rows=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field))
-    .filter(d=>{const lang=String(d.language||'').toLowerCase();if(language==='all')return true;if(language==='EnglishOnly')return lang==='english';if(language==='GermanOnly')return lang==='german';return lang.includes(language.toLowerCase());})
-    .filter(d=>!search||[d.university,d.programme,d.city,d.field,d.language].join(' ').toLowerCase().includes(search));
-  document.getElementById('cGermany').textContent=DATA.filter(d=>d.country==='Germany'&&!/^Foundation/.test(d.field)).length;
-  document.getElementById('gCount').textContent=rows.length;
-  document.getElementById('gRows').innerHTML=rows.map(d=>{
-    const req=GERMANY_PROGRAMME_ADMISSIONS[d.university+'||'+d.programme]||GERMANY_ADMISSIONS[d.university]||{
-      vpd:'Check the exact programme and application route.',
-      ielts:'Programme-specific — not verified for this course.',
-      moi:'Not confirmed — do not assume MOI is accepted.',
-      source:'https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/'
-    };
-    const extra=req.extra&&/Data Engineering and Analytics/i.test(d.programme)?'<div class="g-prog">'+req.extra+'</div>':'';
-    return '<tr><td><div class="g-uni">'+d.university+'</div><div class="g-prog">'+d.programme+'</div>'+extra+'</td>'+
-      '<td>'+d.city+'</td><td>'+d.language+'</td><td>'+germanyStatus(req.vpd)+'</td>'+
-      '<td>'+germanyStatus(req.ielts)+'</td><td>'+germanyStatus(req.moi)+'</td>'+
-      '<td><a href="'+(req.source||'https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/')+'" target="_blank" rel="noopener">Requirements</a>'+(req.languageSource?' · <a href="'+req.languageSource+'" target="_blank" rel="noopener">Language</a>':'')+'</td></tr>';
-  }).join('')||'<tr><td colspan="7">No matching Germany programmes. Try another search or language filter.</td></tr>';
-}
-document.getElementById('gSearch').addEventListener('input',renderGermanyGuide);
-document.getElementById('gLanguage').addEventListener('change',renderGermanyGuide);
-
+function renderGermanyGuide(){ renderDdaadLive(); }
 
 /* DAAD degree catalogue */
 let DAAD_LIVE_PROGRAMMES=[];
@@ -2962,6 +2921,8 @@ function renderDdaadLive(){
   const bachelorCount=DAAD_LIVE_PROGRAMMES.filter(p=>p.degreeType==='Bachelor').length;
   if(m)m.textContent=masterCount.toLocaleString();
   if(b)b.textContent=bachelorCount.toLocaleString();
+  const navCount=document.getElementById('cGermany');
+  if(navCount)navCount.textContent=(masterCount+bachelorCount).toLocaleString();
   if(count)count.textContent=rows.length.toLocaleString()+' '+(DAAD_ACTIVE_DEGREE==='Bachelor'?'Bachelor':'Master')+' programmes shown';
   if(status)status.textContent=DAAD_LIVE_LOADED?'Source: DAAD · Last refresh: '+(window.DAAD_LIVE_UPDATED||'date not supplied'):'DAAD data has not loaded.';
   document.querySelectorAll('.daad-degree-tab').forEach(btn=>{
