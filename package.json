@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/prepare-data.mjs && astro dev",
-    "prebuild": "node scripts/prepare-data.mjs",
+    "dev": "node scripts/prepare-data.mjs && node scripts/validate-data.mjs && astro dev",
+    "prebuild": "node scripts/prepare-data.mjs && node scripts/validate-data.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "validate:data": "node scripts/validate-data.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
