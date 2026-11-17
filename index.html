@@ -2781,6 +2781,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
 initIELTS();
 initPlanner();
 renderAll();
+loadDdaadLive();
 applyLanguage();
 setUpd((UI_LANG==='bn'?'সর্বশেষ ডেটা আপডেট: ':'Built-in data last updated ')+CONFIG.UPDATED+(UI_LANG==='bn'?'। তারিখ ও কাউন্টডাউন আজকের তারিখ অনুযায়ী।':'. Dates and countdowns use today’s date.'));
 if(CONFIG.DATA_URL){
