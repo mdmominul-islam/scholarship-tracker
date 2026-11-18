@@ -1,44 +1,47 @@
-name: Refresh DAAD Master's catalogue
+name: Test DAAD catalogue refresh (isolated)
 
 on:
-  push:
-    paths:
-      - ".github/workflows/refresh-daad-catalogue.yml"
-      - "scripts/refresh_daad_catalogue.py"
   workflow_dispatch:
-  schedule:
-    - cron: "17 3 * * *"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: refresh-daad-catalogue-v2
-  cancel-in-progress: true
+  group: daad-refresh-isolated-test
+  cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - name: Check out repository
+      - name: Check out isolated test branch
         uses: actions/checkout@v4
+        with:
+          ref: fix/daad-refresh-isolated
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Install scraper dependencies
         run: python -m pip install --upgrade requests beautifulsoup4
-      - name: Fetch all DAAD Bachelor and Master's programmes and course details
+      - name: Fetch DAAD catalogue (test only)
         run: python scripts/refresh_daad_catalogue.py
-      - name: Commit updated catalogue
+      - name: Validate generated catalogue
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add daad-programmes.json
-          if git diff --cached --quiet; then
-            echo "DAAD catalogue has no changes."
-          else
-            git commit -m "Refresh DAAD Master's catalogue"
-            git push
-          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("daad-programmes.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert isinstance(data.get("programmes"), list), "programmes must be a list"
+          assert len(data["programmes"]) > 0, "catalogue is empty"
+          print(f"Validated {len(data['programmes'])} programmes")
+          PY
+      - name: Upload test catalogue
+        uses: actions/upload-artifact@v4
+        with:
+          name: daad-catalogue-isolated-test
+          path: daad-programmes.json
+          if-no-files-found: error
+          retention-days: 7
