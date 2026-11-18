@@ -67,13 +67,16 @@ await writeJson('legacy-masters.json', { generatedAt: new Date().toISOString(), 
 console.log('Preserved legacy Masters records:', legacy.length);
 
 const bachelor = await readJson('global-bachelor-programmes.json');
+const additional = await readJson('additional-programmes.json');
 const daad = await readJson('daad-programmes.json');
 if (!bachelor) throw new Error('global-bachelor-programmes.json is missing.');
+if (!additional) throw new Error('additional-programmes.json is missing.');
+await copyFile('additional-programmes.json', new URL('additional-programmes.json', outputDir));
 await copyFile('global-bachelor-programmes.json', new URL('global-bachelor-programmes.json', outputDir));
 try { await access('daad-programmes.json', constants.R_OK); await copyFile('daad-programmes.json', new URL('daad-programmes.json', outputDir)); }
 catch { console.warn('DAAD catalogue not found; the rest of the catalogue will still build.'); }
 
-const raw = [...rowsOf(bachelor), ...legacy, ...rowsOf(daad)];
+const raw = [...rowsOf(bachelor), ...legacy, ...rowsOf(daad), ...rowsOf(additional)];
 const normalized = raw.map((r, i) => {
   const degree = String(r.degreeType || r.degree || '').toLowerCase();
   return {
