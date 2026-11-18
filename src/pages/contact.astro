@@ -1,6 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { siteConfig } from '../config/site';
 const base = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="Contact | StudyPath"><main class="container py-14"><a class="text-sm font-bold text-teal-700" href={base}>← StudyPath home</a><article class="surface mt-6 max-w-3xl p-7"><p class="eyebrow teal">CONTACT & REPORTS</p><h1 class="mt-2 text-3xl font-extrabold">Contact StudyPath</h1><p class="muted mt-4">Report incorrect programme information, broken official links, outdated funding references or website issues. This static website prepares an email in your own email application; it does not collect or send form submissions to a server.</p><form id="contactForm" class="mt-6 grid gap-4"><label class="grid gap-2 text-sm font-bold">Report type<select name="type" class="field"><option>Incorrect information</option><option>Broken official link</option><option>Outdated scholarship</option><option>Incorrect admission requirements</option><option>Website problem</option><option>Content suggestion</option><option>General feedback</option></select></label><label class="grid gap-2 text-sm font-bold">Details<textarea name="details" class="field" rows="5" maxlength="2000" required placeholder="Include the programme name and official source if possible."></textarea></label><button class="btn primary" type="submit">Prepare email</button><p id="contactStatus" class="muted text-xs" aria-live="polite"></p></form><p class="muted mt-6 text-sm">Contact email: <a class="font-bold text-teal-700" href="mailto:imdmominul196@gmail.com">imdmominul196@gmail.com</a></p></article></main><script>document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget),subject=encodeURIComponent('StudyPath: '+f.get('type')),body=encodeURIComponent(f.get('details'));location.href='mailto:imdmominul196@gmail.com?subject='+subject+'&body='+body;document.getElementById('contactStatus').textContent='Your email application should open with a draft. It has not been sent by this website.';});</script></BaseLayout>
+<BaseLayout title="Contact | StudyPath">
+<main class="container py-14">
+<a class="text-sm font-bold text-teal-700" href={base}>← StudyPath home</a>
+<article class="surface mt-6 max-w-3xl p-7 md:p-9">
+<p class="eyebrow teal">CONTACT & APPLICATION SUPPORT</p>
+<h1 class="mt-2 text-3xl font-extrabold">Contact StudyPath</h1>
+<p class="muted mt-4">For programme corrections, broken official links, outdated scholarship information, website feedback or application document support, contact us by email. This static website opens an email draft in your own email application; it does not collect or send form submissions to a server.</p>
+<section class="mt-7">
+<h2 class="text-xl font-bold">Application writing support</h2>
+<p class="muted mt-2">Personalised drafting and editing support is available for:</p>
+<ul class="service-list mt-3">
+<li>Statement of Purpose (SOP)</li>
+<li>CV / Academic Resume</li>
+<li>Recommendation Letter drafting support</li>
+<li>Motivation Letter</li>
+</ul>
+<p class="muted mt-3">To enquire, email your requested document, target university and programme, intake, and your genuine academic and personal background. Recommendation letters must be reviewed and approved by the actual recommender; we can help with structure and drafting support, not impersonate or sign on their behalf.</p>
+<a class="btn primary mt-4" href="mailto:imdmominul196@gmail.com?subject=StudyPath%20-%20Application%20Writing%20Support&body=Hello%2C%0A%0AI%20would%20like%20help%20with%3A%20SOP%20%2F%20CV%20%2F%20Recommendation%20Letter%20%2F%20Motivation%20Letter.%0A%0ATarget%20university%20and%20programme%3A%0AIntake%3A%0AMy%20academic%20background%3A%0A%0AThank%20you.">Email for writing support</a>
+</section>
+<hr class="my-8"/>
+<section>
+<h2 class="text-xl font-bold">Feedback and website corrections</h2>
+<form id="contactForm" class="mt-5 grid gap-4">
+<label class="grid gap-2 text-sm font-bold">Enquiry type
+<select name="type" class="field">
+<option>Incorrect programme information</option><option>Broken official link</option><option>Outdated scholarship</option><option>Incorrect admission requirements</option><option>Website problem</option><option>Content suggestion</option><option>General feedback</option>
+</select></label>
+<label class="grid gap-2 text-sm font-bold">Details
+<textarea name="details" class="field" rows="5" maxlength="2000" required placeholder="Include the programme name and official source if possible."></textarea></label>
+<button class="btn primary" type="submit">Prepare feedback email</button>
+<p id="contactStatus" class="muted text-xs" aria-live="polite"></p>
+</form>
+</section>
+<p class="muted mt-7 text-sm">Contact email: <a class="font-bold text-teal-700" href="mailto:imdmominul196@gmail.com">imdmominul196@gmail.com</a></p>
+</article>
+</main>
+<script>
+document.getElementById('contactForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const f=new FormData(e.currentTarget),subject=encodeURIComponent('StudyPath: '+f.get('type')),body=encodeURIComponent(f.get('details'));
+ location.href='mailto:imdmominul196@gmail.com?subject='+subject+'&body='+body;
+ document.getElementById('contactStatus').textContent='Your email application should open with a draft. It has not been sent by this website.';
+});
+</script>
+</BaseLayout>
