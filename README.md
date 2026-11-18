@@ -1,26 +1,45 @@
 # StudyPath
 
-**Study-abroad research and programme discovery platform**
+> **Study-abroad research and programme discovery platform**
 
-StudyPath is an independent information platform designed to help students explore international university programmes, scholarships, admission requirements, and study-abroad opportunities in a structured way.
+### Live Website
 
-## What the project provides
+**[Visit StudyPath →](https://mdmominul-islam.github.io/scholarship-tracker/)**
 
-- University and programme discovery
-- Search by programme, university, country, degree level, and subject
+StudyPath is an independent information platform created by **Mominul Islam** to help students explore international university programmes, scholarships, admission requirements, and study-abroad opportunities in a structured way.
+
+## About the project
+
+The website brings university and programme information together in a searchable interface so students can compare opportunities by:
+
+- University
+- Programme / subject
+- Country
+- Degree level
+- Scholarship and funding
+- Admission requirements
+- Study-abroad resources
+
+## What I built
+
+This project includes:
+
+- A searchable programme database
+- University and country directories
+- Subject and degree-level filtering
 - Scholarship and funding information
-- Study-abroad planning resources
-- Application guidance
-- Links to official university and scholarship sources
-- Structured programme data for easier comparison
+- Official-source links for programme information
+- Student planning and application resources
+- Application-document support information
+- Responsive web interface for desktop and mobile
 
 ## Research and information approach
 
-The project focuses on organising publicly available higher-education information into a searchable format. Programme availability, tuition fees, eligibility requirements, funding, language requirements, and deadlines can change; users should always verify current details with the relevant official institution.
+The project focuses on organising publicly available higher-education information into a structured, searchable format. Programme availability, tuition fees, eligibility requirements, funding, language requirements, and deadlines can change, so users should verify current details with the relevant official institution.
 
 ## Application support
 
-The project also provides information about application-document support, including:
+The website provides information about support for:
 
 - Statement of Purpose (SOP)
 - CV / Academic Resume
@@ -33,12 +52,16 @@ All application documents should be based on the applicant's genuine academic, p
 
 **Active project** — programme coverage, subjects, universities, and research resources are being expanded progressively.
 
-## Disclaimer
-
-StudyPath is an independent project and is not affiliated with universities, governments, scholarship providers, or immigration authorities. Information is provided for educational and planning purposes. Users must verify current requirements and deadlines through official sources.
-
 ## Researcher
 
 **Mominul Islam**  
 **Public Health Researcher | Health & Social Research**
 
+## Disclaimer
+
+StudyPath is an independent project and is not affiliated with universities, governments, scholarship providers, or immigration authorities. Information is provided for educational and planning purposes. Users should verify current requirements and deadlines through official sources.
+
+---
+
+**Live site:** https://mdmominul-islam.github.io/scholarship-tracker/  
+**Repository:** https://github.com/mdmominul-islam/scholarship-tracker
