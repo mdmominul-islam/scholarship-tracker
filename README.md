@@ -1,77 +1,44 @@
-# StudyPath — Global Study Abroad Information Platform
+# StudyPath
 
-**Live:** https://mdmominul-islam.github.io/scholarship-tracker/  
-**Repository:** https://github.com/mdmominul-islam/scholarship-tracker
+**Study-abroad research and programme discovery platform**
 
-StudyPath is a free English/Bengali static information and planning platform for students in Bangladesh and international applicants.
+StudyPath is an independent information platform designed to help students explore international university programmes, scholarships, admission requirements, and study-abroad opportunities in a structured way.
 
-## Features
-- Combined Bachelor, Master and other programme search.
-- Country, university, course and scholarship/funding-reference directories.
-- Degree, country and subject filters; sorting and CSV export.
-- Local shortlist and up-to-four programme comparison.
-- Preliminary programme matching (not an admissions decision).
-- Local document checklist, application tracker, deadline planner and study cost calculator.
-- JSON backup/restore for local non-sensitive planning data.
-- Light/dark theme, key bilingual interface labels, responsive mobile navigation.
-- Study-abroad guides, FAQ, email-draft feedback, Privacy, Terms, Disclaimer and Copyright pages.
+## What the project provides
 
-## Free technology
-Astro, TypeScript, Tailwind CSS, static JSON catalogues, browser localStorage, GitHub Pages and GitHub Actions. No paid APIs, backend, paid hosting, authentication service, database subscription or secret API keys.
+- University and programme discovery
+- Search by programme, university, country, degree level, and subject
+- Scholarship and funding information
+- Study-abroad planning resources
+- Application guidance
+- Links to official university and scholarship sources
+- Structured programme data for easier comparison
 
-## Data provenance and accuracy
-The catalogue combines the preserved Master's records embedded in the original root `index.html`, curated `global-bachelor-programmes.json`, and the DAAD International Programmes catalogue in `daad-programmes.json` when available. Build scripts normalise these sources and derive country, university, course and funding-reference directories. Some records need verification. Funding references do not mean an award is currently open. Always check official provider sources for fees, deadlines, eligibility, current availability and award coverage. The DAAD catalogue is not a complete inventory of every German degree programme.
+## Research and information approach
 
-## Main folders
-- `src/pages/`: homepage, directory, resources and legal pages.
-- `src/layouts/`: shared layout.
-- `src/styles/global.css`: theme and responsive design.
-- `src/config/site.ts`: brand, URL and contact configuration.
-- `src/locales/`: English and Bengali UI dictionaries.
-- `public/data/`: generated data files.
-- `scripts/prepare-data.mjs`: preserved catalogue extraction and normalisation.
-- `scripts/validate-data.mjs`: data validation.
-- `.github/workflows/deploy.yml`: GitHub Pages deployment.
-- `index.html`: preserved original website and legacy Master's CSV source.
+The project focuses on organising publicly available higher-education information into a searchable format. Programme availability, tuition fees, eligibility requirements, funding, language requirements, and deadlines can change; users should always verify current details with the relevant official institution.
 
-## Requirements
-Node.js 22+ and npm.
+## Application support
 
-## Run locally (Windows PowerShell)
-```powershell
-npm install
-npm run dev
-```
-Open the local URL printed by Astro (normally `http://localhost:4321`).
+The project also provides information about application-document support, including:
 
-## Build and preview
-```powershell
-npm run build
-npm run preview
-```
-The build prepares and validates the JSON catalogues before generating static files in `dist/`.
+- Statement of Purpose (SOP)
+- CV / Academic Resume
+- Motivation Letter
+- Recommendation Letter drafting support
 
-## GitHub Pages deployment
-1. Push the code to this public repository.
-2. In GitHub → Settings → Pages, choose **GitHub Actions** as the source.
-3. Review and merge the StudyPath Astro Pull Request into `main`.
-4. Check the Actions tab for a successful Pages deployment.
-5. Visit the Live URL above.
+All application documents should be based on the applicant's genuine academic, professional, and personal information. Recommendation letters must be reviewed and approved by the actual recommender.
 
-Astro is configured with the project base path `/scholarship-tracker/`. Keep this base path unless the hosting URL changes.
+## Project status
 
-## Change brand, contact, URL or colours
-- Brand/email/public URL: `src/config/site.ts`.
-- GitHub Pages site/base: `astro.config.mjs`.
-- Main and dark colour variables: `src/styles/global.css`.
+**Active project** — programme coverage, subjects, universities, and research resources are being expanded progressively.
 
-## Add or update programmes
-- Curated Bachelor records: `global-bachelor-programmes.json`.
-- DAAD records: existing `scripts/refresh_daad_catalogue.py` and scheduled workflow.
-- Legacy Master's CSV remains in root `index.html` and is extracted during build.
-Use stable unique IDs, official source URLs and clear verification notes. Never guess fees, deadlines, eligibility or scholarships. Run `npm run build` before publishing.
+## Disclaimer
 
-## Privacy and limitations
-There are no user accounts, secure backend, cloud sync, document uploads or background notifications. Shortlists, notes, checklists, application plans and events are saved only in the current browser. Do not enter passport numbers, bank information, passwords, private documents or sensitive personal data. Feedback opens a `mailto:` draft; the site does not send it itself. Eligibility matching is informational only and cost calculations are estimates based on user-entered values.
+StudyPath is an independent project and is not affiliated with universities, governments, scholarship providers, or immigration authorities. Information is provided for educational and planning purposes. Users must verify current requirements and deadlines through official sources.
 
-See `CONTENT-MANAGEMENT-GUIDE.md` and `PRIVACY-AND-DISCLAIMER-NOTES.md` for detailed guidance.
+## Researcher
+
+**Mominul Islam**  
+**Public Health Researcher | Health & Social Research**
+
