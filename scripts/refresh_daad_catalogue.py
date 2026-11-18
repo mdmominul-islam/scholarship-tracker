@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "daad-programmes.json"
+TEMP_OUTPUT = ROOT / "daad-programmes.json.tmp"
 BASE = "https://www2.daad.de"
 API = BASE + "/deutschland/studienangebote/international-programmes/api/solr/en/search.json"
 RESULT_PAGE = BASE + "/deutschland/studienangebote/international-programmes/en/result/"
@@ -243,7 +244,6 @@ def main():
         "detailEnrichmentStatus": "In progress",
         "programmes": initial_programmes,
     }
-    OUTPUT.write_text(json.dumps(initial_payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(
         f"Published full listing snapshot: {initial_counts['Bachelor']} Bachelor + "
         f"{initial_counts['Master']} Master's = {len(initial_programmes)} programmes.",
@@ -303,7 +303,8 @@ def main():
         "detailEnrichmentStatus": "Complete",
         "programmes": programmes,
     }
-    OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    TEMP_OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    TEMP_OUTPUT.replace(OUTPUT)
     print(f"Wrote {counts['Bachelor']} Bachelor + {counts['Master']} Master's = {len(programmes)} total to {OUTPUT}", flush=True)
 
 if __name__ == "__main__":
